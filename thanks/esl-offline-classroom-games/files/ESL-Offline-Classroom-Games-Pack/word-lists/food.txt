@@ -1,0 +1,20 @@
+# Fruit
+apple = a round red or green fruit
+banana = a long yellow fruit
+orange = a round fruit and a colour
+# Vegetables
+carrot = a long orange vegetable
+potato = we make chips and fries from it
+tomato = a red fruit we use in salads
+# Drinks
+milk = a white drink from cows
+juice = a drink made from fruit
+water = a clear drink we need every day
+# Meals
+breakfast = the first meal of the day
+lunch = the meal in the middle of the day
+dinner = the meal in the evening
+# Snacks
+cookie = a small sweet baked snack
+popcorn = a snack we eat at the cinema
+ice cream = a cold sweet dessert

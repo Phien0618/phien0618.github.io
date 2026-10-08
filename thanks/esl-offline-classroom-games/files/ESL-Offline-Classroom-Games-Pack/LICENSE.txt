@@ -1,0 +1,22 @@
+ESL Offline Classroom Games Pack — Single Teacher License
+
+Thank you for buying this pack.
+
+WHAT YOU MAY DO
+- One teacher (the buyer) may use these files in all of their own classes, lessons and tutoring sessions.
+- You may copy the files onto every computer, laptop and USB stick that you use for your own teaching.
+- You may project the games in class and share your screen in online lessons.
+- You may edit the word lists and create as many of your own lists as you like.
+
+WHAT YOU MAY NOT DO
+- Do not resell, sublicense or give away the files, in full or in part.
+- Do not upload the files to a public website, shared drive, learning platform or file-sharing service where other people can download them.
+- Do not share the files with colleagues. Each teacher needs their own copy. (School and multi-teacher licenses are not available yet.)
+
+PRIVACY
+The games run entirely in your web browser. They do not connect to the internet, do not collect data and do not use cookies. Word lists and scores are stored only in your browser on your computer (localStorage, keys starting with "eslgames_").
+
+NO WARRANTY
+The files are provided "as is". You may use them for as long as you like; there is no subscription.
+
+Copyright © 2026 ESL Offline Classroom Games. All rights reserved. All artwork is original.

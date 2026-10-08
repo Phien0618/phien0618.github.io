@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>07 Unscramble · ESL Offline Classroom Games</title>
+<style>
+:root{--board:#163A3A;--board2:#1F4B4A;--chalk:#FFFDF6;--paper:#FFF6E5;--ink:#1E2030;--sun:#FFC83D;--sky:#5BB8F5;--mint:#3DD39A;--grape:#8E5BE8;--berry:#E8457A;--orange:#FF8A3D;--used:#2C5452;
+--fd:"Fredoka",ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito","Segoe UI",system-ui,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC",sans-serif;
+--fb:"Nunito",ui-rounded,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:clamp(14px,min(1.46vw,2.7vh),40px)}
+body{height:100vh;overflow:hidden;background:var(--board);color:var(--chalk);font-family:var(--fb);font-size:1rem;font-weight:700;display:flex;flex-direction:column;-webkit-user-select:none;user-select:none}
+input,textarea,select{-webkit-user-select:text;user-select:text}
+button{font:inherit;font-weight:800;cursor:pointer;border:0;color:inherit;background:none}
+.top{flex:none;height:3.43rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0 1.43rem;background:var(--board2);box-shadow:0 4px 0 rgba(0,0,0,.2);position:relative;z-index:2}
+.ttl{display:flex;align-items:center;gap:.55rem;font-family:var(--fd);font-weight:700;font-size:1.3rem;white-space:nowrap;min-width:0}
+.ttl svg{width:2rem;height:2rem;flex:none}
+.ttl small{font-family:var(--fb);font-weight:700;font-size:1rem;opacity:.8;overflow:hidden;text-overflow:ellipsis}
+.btns{display:flex;gap:.45rem;flex:none}
+.btn{min-height:2.3rem;min-width:2.3rem;border-radius:.65rem;background:#2C5F5D;color:var(--chalk);display:inline-flex;align-items:center;justify-content:center;gap:.35rem;padding:0 .75rem;font-size:1rem;line-height:1.1;box-shadow:0 .2rem 0 rgba(0,0,0,.3);white-space:nowrap}
+.btn:active{transform:translateY(.15rem);box-shadow:none}
+.btn.p{background:var(--sun);color:var(--ink)}.btn.g{background:var(--mint);color:var(--ink)}.btn.r{background:var(--berry);color:#fff}.btn.w{background:var(--chalk);color:var(--ink)}
+.btn.L{min-height:2.6rem;font-size:1.1rem;padding:0 1.1rem}
+.btn.XL{min-height:3.4rem;font-size:1.6rem;padding:0 1.6rem;font-family:var(--fd)}
+.btn svg{width:1.15rem;height:1.15rem}
+.btn[disabled]{opacity:.4;cursor:default}
+#bSound .soff{display:none}#bSound.muted .son{display:none}#bSound.muted .soff{display:inline}
+main{flex:1;min-height:0;width:100%;max-width:63rem;margin:0 auto;padding:.8rem 1.43rem;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem}
+.doo{position:fixed;opacity:.25;pointer-events:none;z-index:0}
+.teams{flex:none;display:grid;gap:.55rem;padding:.35rem 1.43rem .7rem;position:relative;z-index:1}
+.team{border-radius:1rem;color:var(--ink);padding:.3rem .45rem .45rem .7rem;box-shadow:0 .2rem 0 rgba(0,0,0,.25);display:flex;flex-direction:column;gap:.2rem;min-width:0;transition:transform .15s}
+.team.on{outline:.18rem solid var(--chalk);outline-offset:.12rem}
+.team.bump{transform:scale(1.04)}
+.r1{display:flex;align-items:center;justify-content:space-between;gap:.4rem}
+.tn{font:inherit;font-weight:800;font-size:1rem;background:transparent;border:0;border-bottom:2px dashed rgba(30,32,48,.3);color:var(--ink);min-width:0;width:100%;outline:0}
+.sc{font-family:var(--fd);font-weight:700;font-size:2rem;line-height:1}
+.pm{display:flex;gap:.3rem}
+.pm button{flex:1;min-width:2.3rem;height:2.3rem;border-radius:.6rem;background:rgba(255,255,255,.6);font-size:1rem;color:var(--ink)}
+.pm button:active{transform:translateY(2px)}
+.ov{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(8,26,26,.8);padding:1rem}
+.ov.show{display:flex}
+.mcard{background:var(--chalk);color:var(--ink);border-radius:1.15rem;width:min(58rem,96vw);max-height:94vh;overflow:auto;text-align:center;box-shadow:0 .3rem 0 rgba(0,0,0,.35);display:flex;flex-direction:column}
+.mband{padding:.45rem 1rem;font-family:var(--fd);font-weight:700;font-size:1.1rem;background:var(--sun);color:var(--ink);letter-spacing:.03em}
+.mbody{padding:1.1rem 1.4rem .6rem;overflow-wrap:anywhere}
+.mbtns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.4rem 1rem 1.1rem}
+.big{font-family:var(--fd);font-weight:700;font-size:4rem;line-height:1.1}
+.q{font-weight:800;font-size:2.6rem;line-height:1.2}
+.sub{font-size:1.1rem;opacity:.8;margin-top:.4rem}
+.hl{text-align:left;font-size:1rem;line-height:1.4}
+.hl p,.hl li{margin-bottom:.35rem}.hl ol,.hl ul{padding-left:1.4rem;margin-bottom:.5rem}
+.kt{border-collapse:collapse;margin-top:.5rem;width:100%}
+.kt td{padding:.25rem .5rem;border-bottom:1px solid #E6D7B8;vertical-align:top}
+.k{display:inline-block;min-width:1.6rem;text-align:center;border:2px solid var(--ink);border-bottom-width:4px;border-radius:.4rem;padding:0 .35rem;background:#fff;color:var(--ink);font-weight:800;font-size:.9em;line-height:1.3}
+#toast{position:fixed;left:50%;top:4rem;transform:translate(-50%,-160%);background:var(--sun);color:var(--ink);padding:.5rem 1.1rem;border-radius:.8rem;font-weight:800;font-size:1rem;z-index:80;box-shadow:0 .2rem 0 rgba(0,0,0,.3);transition:transform .25s,opacity .25s;opacity:0;max-width:90vw;text-align:center;pointer-events:none}
+#toast.show{transform:translate(-50%,0);opacity:1}
+#flash{position:fixed;inset:0;background:var(--berry);opacity:0;pointer-events:none;z-index:70}
+#flash.go{animation:fl 1.2s}
+@keyframes fl{0%,40%,80%{opacity:.95}20%,60%,100%{opacity:0}}
+.paper{background:var(--paper);color:var(--ink);align-items:stretch;padding:.9rem 1.4rem}
+.sp{width:100%;max-width:64rem;margin:0 auto;display:flex;flex-direction:column;gap:.55rem;min-height:0}
+.sph{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.sph h2{font-family:var(--fd);font-size:1.45rem;display:flex;align-items:center;gap:.5rem}
+.sph h2 svg{width:2.1rem;height:2.1rem}
+.spg{flex:1;min-height:0;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:1rem}
+.c1{display:flex;flex-direction:column;min-height:0;gap:.35rem}
+.c2,.c3{display:flex;flex-direction:column;gap:.5rem;overflow:auto;min-height:0;padding:.1rem .25rem .3rem}
+.c2 h3,.c3 h3{font-family:var(--fd);font-size:1.1rem}
+textarea{flex:1;min-height:5rem;width:100%;resize:none;font-family:var(--fb);font-weight:700;font-size:1rem;line-height:1.4;padding:.5rem .7rem;border:3px solid #E6D7B8;border-radius:.8rem;background:#fff;color:var(--ink);outline:0}
+textarea:focus,.paper input:focus,.paper select:focus{border-color:var(--sun)}
+.paper label{display:flex;flex-direction:column;gap:.15rem;font-weight:800}
+.paper label.ck{flex-direction:row;align-items:center;gap:.5rem;cursor:pointer}
+.paper select,.paper input[type=text],.paper input[type=number]{font-family:var(--fb);font-weight:700;font-size:1rem;min-height:2.3rem;padding:0 .5rem;border:3px solid #E6D7B8;border-radius:.6rem;background:#fff;color:var(--ink);width:100%;outline:0}
+.paper input[type=checkbox]{width:1.3rem;height:1.3rem;accent-color:#1F4B4A;flex:none}
+.paper .btn{background:var(--board2);color:var(--chalk)}.paper .btn.p{background:var(--sun);color:var(--ink)}
+.row{display:flex;gap:.4rem;flex-wrap:wrap}.row>*{flex:1}
+.stat{font-weight:800;min-height:1.4rem}.ok{color:#11744E}.warn{color:#B0174A}
+.fmt{font-size:1rem;color:#3E4052;line-height:1.35;font-weight:700}
+.fmt b{color:var(--ink)}
+.bar{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;align-items:center}
+/* game */
+.us{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;height:100%}
+.uh{display:flex;align-items:center;justify-content:space-between;width:100%}
+.clock{width:4.4rem;height:4.4rem;border-radius:50%;background:var(--board2);border:.25rem solid var(--sun);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:2rem}
+.clock.low{border-color:var(--berry);color:var(--berry)}.clock.off{opacity:0}
+.lt{display:flex;flex-wrap:wrap;justify-content:center;gap:.25em;font-family:var(--fd);font-weight:700}
+.lt i{font-style:normal;width:1.35em;height:1.45em;border-radius:.22em;display:flex;align-items:center;justify-content:center;color:var(--ink);box-shadow:0 .08em 0 rgba(0,0,0,.3)}
+.lt i.wt{color:#fff}.lt b{width:.6em}
+.ans .lt i{background:var(--mint)!important;color:var(--ink)!important}
+.hint7{font-size:1.4rem;min-height:1.8rem;text-align:center;color:var(--sun)}
+</style></head><body>
+<svg class="doo" style="left:1rem;top:4.3rem" width="56" height="56" viewBox="0 0 60 60"><path d="M30 6l6 16 17 1-13 11 4 17-14-9-14 9 4-17L7 23l17-1z" fill="none" stroke="#FFFDF6" stroke-width="3" stroke-linejoin="round"/></svg>
+<header class="top"><div class="ttl"><svg viewBox="0 0 64 64"><g font-family="Arial" font-weight="700" font-size="20" text-anchor="middle" fill="#1E2030"><rect x="2" y="24" width="19" height="22" rx="4" fill="#FFC83D" transform="rotate(-8 11 35)"/><text x="11" y="42" transform="rotate(-8 11 35)">T</text><rect x="22" y="16" width="19" height="22" rx="4" fill="#FF8A3D"/><text x="31" y="34">A</text><rect x="43" y="26" width="19" height="22" rx="4" fill="#3DD39A" transform="rotate(10 52 37)"/><text x="52" y="44" transform="rotate(10 52 37)">C</text></g></svg><span>Unscramble</span><small id="lname"></small></div>
+<div class="btns"><button class="btn" id="bGames" title="Switch game (keeps this word list)">▦ Games</button><button class="btn" id="bWords" title="Word list">✎ Words</button><button class="btn" id="bRestart" title="Restart this game (scores to 0)">↻ Restart</button><button class="btn" id="bSound" title="Sound on/off" aria-label="Sound"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path class="son" d="M16 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/><path class="soff" d="M16 9l5 6M21 9l-5 6"/></svg></button><button class="btn" id="bFull" title="Full screen (F)" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button><button class="btn p" id="bHelp" title="How to play">?</button></div></header>
+<main id="main"><div class="us"><div class="uh"><span id="pos"></span><div class="clock" id="clk"></div></div><div class="lt" id="sc"></div><div class="hint7" id="h7"></div><div class="ans" id="ans"></div>
+<div class="bar"><button class="btn L" id="bH">Hint <span class="k">H</span></button><button class="btn g L" id="bR">Reveal <span class="k">R</span></button><button class="btn p L" id="bN">Next <span class="k">Space</span></button></div></div></main>
+<div class="teams" id="teams"></div>
+<div class="ov paper" id="setup"><div class="sp">
+<div class="sph"><h2><svg viewBox="0 0 64 64"><g font-family="Arial" font-weight="700" font-size="20" text-anchor="middle" fill="#1E2030"><rect x="2" y="24" width="19" height="22" rx="4" fill="#FFC83D" transform="rotate(-8 11 35)"/><text x="11" y="42" transform="rotate(-8 11 35)">T</text><rect x="22" y="16" width="19" height="22" rx="4" fill="#FF8A3D"/><text x="31" y="34">A</text><rect x="43" y="26" width="19" height="22" rx="4" fill="#3DD39A" transform="rotate(10 52 37)"/><text x="52" y="44" transform="rotate(10 52 37)">C</text></g></svg>Unscramble · word list</h2><div style="display:flex;gap:.6rem;align-items:center;flex:none"><button class="btn L" id="bGames2" title="Open another game with this word list">▦ Other games</button><button class="btn p XL" id="bStart">▶ Start <span class="k">Space</span></button></div></div>
+<div class="spg">
+<div class="c1"><textarea id="ta" spellcheck="false" placeholder="cat = a small pet&#10;dog | 狗&#10;# Food&#10;apple - 사과"></textarea><div class="stat" id="stat"></div></div>
+<div class="c2"><h3>Lists</h3>
+<label>Sample list<select id="selS"></select></label>
+<div class="row"><button class="btn" id="bImp">Import .txt</button><button class="btn" id="bExp">Export .txt</button></div>
+<input type="file" id="file" accept=".txt,text/plain" hidden>
+<label>List name<input type="text" id="nm" maxlength="40" placeholder="e.g. Unit 3 animals"></label>
+<button class="btn" id="bSave">Save list in this browser</button>
+<label>My saved lists (up to 200)<select id="selL"></select></label>
+<div class="row"><button class="btn" id="bLoad">Load</button><button class="btn" id="bRen">Rename</button><button class="btn" id="bDel">Delete</button></div>
+</div>
+<div class="c3"><h3>Game</h3>
+<label>Teams<select id="selT"></select></label>
+<label>Custom points button<input type="number" id="cust" min="-999" max="999"></label>
+<div id="opts" style="display:flex;flex-direction:column;gap:.5rem"></div>
+</div></div>
+<p class="fmt">One entry per line: <b>word = meaning</b> (or Tab, <b>|</b>, <b> - </b>). Lines starting with <b>#</b> are categories. 5–100 entries. Lists stay in this browser on this computer; nothing is uploaded.</p>
+</div></div>
+<div class="ov" id="help"><div class="mcard"><div class="mband">How to play · Unscramble</div><div class="mbody hl" id="helpBody"></div><div class="mbtns"><button class="btn p L" data-x="help">Close <span class="k">Esc</span></button></div></div></div>
+<div class="ov" id="modal"><div class="mcard"><div class="mband" id="mBand"></div><div class="mbody" id="mBody"></div><div class="mbtns" id="mBtns"></div></div></div>
+<div id="toast"></div><div id="flash"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a};
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const LS={get(k,d){try{const v=localStorage.getItem('eslgames_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('eslgames_'+k,JSON.stringify(v))}catch(e){}}};
+const TC=['#FFC83D','#5BB8F5','#3DD39A','#B793F2','#F27FA5','#FF8A3D','#C9E265','#F5A3C7'];
+const COL=['#FFC83D','#5BB8F5','#3DD39A','#8E5BE8','#E8457A','#FF8A3D'];
+const DEMO_NAMES=['Tigers','Rockets','Owls','Comets','Pandas','Stars','Waves','Kites'];
+const SAMPLES={
+'Animals':`cat = a small pet that says "meow"
+dog = a pet that barks and wags its tail
+elephant = a big grey animal with a long nose
+giraffe = an animal with a very long neck
+lion = a big wild cat with a mane
+monkey = an animal that climbs trees and eats bananas
+rabbit = a small animal with long ears
+horse = a big animal that people ride
+cow = a farm animal that gives us milk
+duck = a bird that swims and says "quack"
+snake = a long animal with no legs
+penguin = a black and white bird that cannot fly
+tiger = a big orange cat with black stripes
+frog = a small green animal that jumps
+bear = a big strong animal that sleeps in winter`,
+'Food':`# Fruit
+apple = a round red or green fruit
+banana = a long yellow fruit
+orange = a round fruit and a colour
+# Vegetables
+carrot = a long orange vegetable
+potato = we make chips and fries from it
+tomato = a red fruit we use in salads
+# Drinks
+milk = a white drink from cows
+juice = a drink made from fruit
+water = a clear drink we need every day
+# Meals
+breakfast = the first meal of the day
+lunch = the meal in the middle of the day
+dinner = the meal in the evening
+# Snacks
+cookie = a small sweet baked snack
+popcorn = a snack we eat at the cinema
+ice cream = a cold sweet dessert`,
+'Classroom objects':`pencil = you write and draw with it
+eraser = it removes pencil marks
+ruler = you draw straight lines with it
+scissors = you cut paper with them
+glue = it makes paper stick together
+notebook = you write your lessons in it
+backpack = you carry your books in it
+desk = a table where you sit and work
+chair = you sit on it
+whiteboard = the teacher writes on it with markers
+marker = a thick pen for the whiteboard
+crayon = a stick of colour for drawing
+book = you read it
+pencil case = a small bag for pens and pencils`,
+'Jobs':`teacher = works in a school and helps students learn
+doctor = helps sick people get better
+nurse = cares for people in a hospital
+farmer = grows food and keeps animals
+chef = cooks food in a restaurant
+police officer = keeps people safe and stops crime
+firefighter = puts out fires
+pilot = flies a plane
+bus driver = drives a bus
+dentist = looks after your teeth
+singer = sings songs for people
+vet = an animal doctor
+builder = makes houses and buildings
+mail carrier = brings letters to your home`,
+'Weather':`sunny = the sun is shining
+rainy = water is falling from the sky
+cloudy = there are lots of clouds
+windy = the air is moving fast
+snowy = white snow is falling
+stormy = rain, wind and thunder
+foggy = it is hard to see far
+hot = a very high temperature
+cold = a very low temperature
+rainbow = colours in the sky after rain
+umbrella = it keeps you dry in the rain
+thunder = a loud noise in a storm`,
+'Body parts':`head = the top part of your body
+eye = you see with it
+ear = you hear with it
+nose = you smell with it
+mouth = you eat and talk with it
+tooth = white and hard; you bite with it
+hand = it has five fingers
+finger = you have ten of them
+arm = between your shoulder and your hand
+leg = you walk with it
+foot = you stand on it
+knee = the middle of your leg
+shoulder = between your neck and your arm
+hair = it grows on your head`,
+'Family':`mother = your mum
+father = your dad
+sister = a girl with the same parents as you
+brother = a boy with the same parents as you
+grandmother = your mum's or dad's mother
+grandfather = your mum's or dad's father
+aunt = your mum's or dad's sister
+uncle = your mum's or dad's brother
+cousin = your aunt's or uncle's child
+baby = a very young child
+son = a boy child of a parent
+daughter = a girl child of a parent`,
+'Daily routine':`wake up = open your eyes in the morning
+get up = get out of bed
+brush your teeth = clean your teeth
+take a shower = wash your body with water
+get dressed = put on your clothes
+eat breakfast = have the first meal of the day
+go to school = travel to school
+have lunch = eat in the middle of the day
+do homework = study at home after school
+play = have fun with friends or toys
+watch TV = look at shows on television
+cook dinner = make the evening meal
+wash your face = clean your face with water
+go to bed = go to sleep at night`,
+'Feelings':`happy = feeling good and smiling
+sad = feeling bad; you may cry
+angry = feeling very mad
+tired = you need to sleep
+hungry = you want to eat
+thirsty = you want to drink
+scared = afraid of something
+excited = very happy about something soon
+bored = nothing is interesting
+surprised = something unexpected happened
+nervous = worried before something important
+proud = happy about something you did well`,
+'Transport':`car = a vehicle with four wheels for a family
+bus = a big vehicle that carries many people
+train = it runs on rails
+plane = it flies in the sky
+bike = two wheels; you pedal it
+boat = it moves on water
+taxi = a car you pay to ride in
+subway = a train that runs under the city
+helicopter = it flies with spinning blades on top
+truck = a big vehicle that carries things
+motorcycle = a bike with an engine
+ship = a very big boat`,
+'Animals 中文':`cat = 猫 (māo)
+dog = 狗 (gǒu)
+elephant = 大象 (dàxiàng)
+giraffe = 长颈鹿 (chángjǐnglù)
+lion = 狮子 (shīzi)
+monkey = 猴子 (hóuzi)
+rabbit = 兔子 (tùzi)
+horse = 马 (mǎ)
+cow = 奶牛 (nǎiniú)
+duck = 鸭子 (yāzi)
+snake = 蛇 (shé)
+penguin = 企鹅 (qǐ'é)
+tiger = 老虎 (lǎohǔ)
+frog = 青蛙 (qīngwā)
+bear = 熊 (xióng)`,
+'Food 日本語·한국어':`apple = りんご · 사과
+banana = バナナ · 바나나
+orange = オレンジ · 오렌지
+carrot = にんじん · 당근
+potato = じゃがいも · 감자
+tomato = トマト · 토마토
+milk = ぎゅうにゅう · 우유
+water = みず · 물
+rice = ごはん · 밥
+bread = パン · 빵
+egg = たまご · 계란
+fish = さかな · 생선
+chicken = とりにく · 닭고기
+ice cream = アイスクリーム · 아이스크림`};
+let SOUND=LS.get('sound',true),AC=null,P={items:[],cats:[],hasM:false,dup:0,trunc:0},ITEMS=[],TEAMS=[],STARTED=false,CUSTOM=5;
+function ac(){if(!AC){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}
+function tone(f,d,type,v,when,to){if(!SOUND)return;try{const c=ac();if(!c)return;const t=c.currentTime+(when||0),o=c.createOscillator(),g=c.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t);if(to)o.frequency.exponentialRampToValueAtTime(to,t+d);g.gain.setValueAtTime(v||.2,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.05)}catch(e){}}
+function noise(d,v){if(!SOUND)return;try{const c=ac();if(!c)return;const n=Math.floor(c.sampleRate*d),b=c.createBuffer(1,n,c.sampleRate),x=b.getChannelData(0);for(let i=0;i<n;i++)x[i]=(Math.random()*2-1)*Math.pow(1-i/n,2);const s=c.createBufferSource(),g=c.createGain();g.gain.value=v;s.buffer=b;s.connect(g);g.connect(c.destination);s.start()}catch(e){}}
+const SFX={click:()=>tone(700,.05,'square',.05),ding:()=>tone(880,.15,'triangle',.25),good:()=>{tone(523,.12,'triangle',.3);tone(659,.12,'triangle',.3,.1);tone(784,.25,'triangle',.3,.2)},bad:()=>tone(220,.35,'sawtooth',.15,0,110),tick:()=>tone(1500,.03,'square',.05),pop:()=>{tone(1000,.12,'sine',.35,0,150);noise(.08,.3)},boom:()=>{noise(1.2,.8);tone(90,.8,'sine',.5,0,30)},alarm:()=>{for(let i=0;i<4;i++)tone(880,.15,'square',.12,i*.25)},win:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,.25,'triangle',.25,i*.13))}};
+function parseList(text){const out=[],seen={},cats=[];let cat='',dup=0,trunc=0;
+String(text||'').split(/\r?\n/).forEach(raw=>{const line=raw.trim();if(!line)return;
+if(line.charAt(0)==='#'){cat=line.replace(/^#+\s*/,'').trim();if(cat&&cats.indexOf(cat)<0)cats.push(cat);return}
+let w=line,m='';const seps=['\t','=','|',' - '];for(let s=0;s<seps.length;s++){const i=line.indexOf(seps[s]);if(i>0){w=line.slice(0,i).trim();m=line.slice(i+seps[s].length).trim();break}}
+if(!w)return;const k=w.toLowerCase();if(seen[k]){dup++;return}seen[k]=1;if(out.length>=100){trunc++;return}out.push({w:w,m:m,cat:cat})});
+return {items:out,cats:cats.filter(c=>out.some(x=>x.cat===c)),dup:dup,trunc:trunc,hasM:out.some(x=>x.m)}}
+function toast(m,ms){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),ms||3200)}
+function show(id){$(id).classList.add('show')}
+function hide(id){$(id).classList.remove('show')}
+function isOpen(id){const e=$(id);return !!e&&e.classList.contains('show')}
+function modal(band,color,body,btns){const b=$('#mBand');b.textContent=band;b.style.background=color||'#FFC83D';b.style.color=/8E5BE8|E8457A/i.test(color||'')?'#fff':'#1E2030';$('#mBody').innerHTML=body;const w=$('#mBtns');w.innerHTML='';(btns||[]).forEach(x=>{const e=document.createElement('button');e.className='btn L '+(x.c||'');e.innerHTML=x.t;if(x.bg){e.style.background=x.bg;e.style.color='#1E2030'}e.onclick=x.f;w.appendChild(e)});show('#modal')}
+function closeModal(){hide('#modal')}
+function setTeams(n){const nm=LS.get('teamnames',[]),old=TEAMS;TEAMS=[];for(let i=0;i<n;i++)TEAMS.push({name:nm[i]||('Team '+(i+1)),score:old[i]?old[i].score:0});drawTeams()}
+function drawTeams(){const el=$('#teams');if(!el)return;if(G.noStrip){el.style.display='none';return}const cu=(CUSTOM>0?'+':'')+CUSTOM,ST=G.step||1;el.style.gridTemplateColumns='repeat('+TEAMS.length+',minmax(0,1fr))';el.innerHTML=TEAMS.map((t,i)=>'<div class="team'+(G.turn===i?' on':'')+'" style="background:'+TC[i]+'"><div class="r1"><span aria-hidden="true" style="opacity:.55;flex:none">✎</span><input class="tn" data-i="'+i+'" value="'+esc(t.name)+'" maxlength="16" aria-label="Team name (click to rename)" title="Click to rename"><b class="sc">'+t.score+'</b></div><div class="pm"><button data-i="'+i+'" data-d="-'+ST+'">−'+ST+'</button><button data-i="'+i+'" data-d="'+ST+'">+'+ST+'</button><button data-i="'+i+'" data-d="'+CUSTOM+'">'+cu+'</button></div></div>').join('')}
+function addScore(i,d){if(!TEAMS[i])return;TEAMS[i].score+=d;drawTeams();(d>0?SFX.good:SFX.bad)();const s=$('#teams').children[i];if(s){s.classList.add('bump');setTimeout(()=>s.classList.remove('bump'),350)}}
+function leaders(){const m=Math.max.apply(null,TEAMS.map(t=>t.score));return TEAMS.filter(t=>t.score===m)}
+function scoreLine(){return TEAMS.map(t=>esc(t.name)+': '+t.score).join(' · ')}
+function winnerHTML(){const w=leaders();return '<div class="big">'+(w.length>1?'It’s a tie!':esc(w[0].name)+' wins!')+'</div><div class="sub">'+scoreLine()+'</div>'}
+function fit(el,max,min){if(!el)return;let s=max,g=0;el.style.fontSize=s+'rem';while(s>min&&g++<90&&(el.scrollHeight>el.clientHeight+2||el.scrollWidth>el.clientWidth+2)){s=Math.max(min,s-.15);el.style.fontSize=s+'rem'}}
+function fullscreen(){const d=document,el=d.documentElement;try{if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d)}else{const r=el.requestFullscreen||el.webkitRequestFullscreen;if(r){const p=r.call(el);if(p&&p.catch)p.catch(()=>{})}}}catch(e){}}
+function openHelp(){const keys=(G.keys||[]).concat([['F',G.fNote||'Full screen on / off'],['?','Show this help'],['Esc','Close a window']]);$('#helpBody').innerHTML=(G.help||'')+'<table class="kt">'+keys.map(k=>'<tr><td><span class="k">'+k[0]+'</span></td><td>'+k[1]+'</td></tr>').join('')+'</table>';show('#help')}
+function updStat(){const p=parseList($('#ta').value),n=p.items.length;let m;
+if(n===0&&G.optional&&G.optional())m='<span class="ok">'+(G.optNote||'No words needed for this mode.')+'</span>';
+else if(n<5)m='<span class="warn">'+n+' entr'+(n===1?'y':'ies')+' — add at least 5 to play.</span>';else m='<span class="ok">✓ '+n+' entries ready</span>';
+if(p.dup)m+=' · '+p.dup+' duplicate'+(p.dup>1?'s':'')+' removed';if(p.trunc)m+=' · <span class="warn">only the first 100 are used</span>';if(p.cats.length)m+=' · '+p.cats.length+' categor'+(p.cats.length>1?'ies':'y');if(n&&!p.hasM)m+=' · no meanings';
+$('#stat').innerHTML=m;return p}
+function drawSaved(){const L=LS.get('lists',[]);$('#selL').innerHTML=L.length?L.map((x,i)=>'<option value="'+i+'">'+esc(x.n)+'</option>').join(''):'<option value="">(no saved lists yet)</option>'}
+function start(){const p=updStat(),n=p.items.length,opt=G.optional&&G.optional();
+if(n<5&&!(opt&&n===0)){toast(n?'At least 5 entries are needed to play (you have '+n+').':'Paste at least 5 entries, or choose a sample list.');SFX.bad();return}
+P=p;ITEMS=p.items;const nm=$('#nm').value.trim();LS.set('current',{n:nm,t:$('#ta').value});try{if(!/^#demo/.test(location.hash))history.replaceState(null,'','#'+listHash())}catch(e){}
+CUSTOM=parseInt($('#cust').value,10)||5;LS.set('custom_'+G.id,CUSTOM);
+const tn=+$('#selT').value;LS.set('teams',tn);setTeams(tn);
+$('#lname').textContent=n?('· '+(nm?nm+' · ':'')+n+' words'+(G.needM&&!p.hasM?' · word-only mode':'')):'';
+hide('#setup');closeModal();STARTED=true;
+const m=[];if(p.trunc)m.push('Only the first 100 entries are used ('+(n+p.trunc)+' found).');if(p.dup)m.push(p.dup+' duplicate'+(p.dup>1?'s':'')+' removed.');if(G.needM&&n&&!p.hasM)m.push(G.needM);
+if(m.length)toast(m.join(' '),7000);
+G.start(p)}
+function restart(){if(!STARTED){openWords();return}if(G.beforeRestart)G.beforeRestart();TEAMS.forEach(t=>t.score=0);if(G.turn!=null)G.turn=0;closeModal();(G.restart||G.start).call(G,P);drawTeams();toast('New round: scores cleared')}
+function openWords(){if(G.stop)G.stop();closeModal();show('#setup')}
+function onKey(e){const tg=(e.target&&e.target.tagName)||'';
+if(tg==='INPUT'||tg==='TEXTAREA'||tg==='SELECT'){if(e.key==='Escape'||(e.key==='Enter'&&tg==='INPUT'))e.target.blur();return}
+if(e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key;
+if(k==='Escape'){if(isOpen('#help')){hide('#help');return}if(isOpen('#setup')){if(STARTED)hide('#setup');return}if(G.esc&&G.esc())return;closeModal();return}
+if(isOpen('#help'))return;
+if(k==='?'){e.preventDefault();openHelp();return}
+if(isOpen('#setup')){if(k===' '||e.code==='Space'){e.preventDefault();start()}return}
+if(k===' '||e.code==='Space'){e.preventDefault();if(G.space)G.space();return}
+if((k==='f'||k==='F')&&!(G.useF&&G.useF())){fullscreen();return}
+if(G.key)G.key(e)}
+const GAMES=[['01-quiz-board','Quiz Board'],['02-spin-wheel','Spin Wheel'],['03-hidden-picture','Hidden Picture'],['04-letter-guess','Letter Guess'],['05-hot-potato','Hot Potato'],['06-memory-match','Memory Match'],['07-unscramble','Unscramble'],['08-quick-fire','Quick Fire'],['09-scoreboard','Scoreboard'],['10-quiz-choice','Quiz Choice']];
+function hashList(h){if(!h||h.indexOf('w=')!==0)return null;const o={t:'',n:''};h.split('&').forEach(p=>{try{if(p.indexOf('w=')===0)o.t=decodeURIComponent(p.slice(2));if(p.indexOf('n=')===0)o.n=decodeURIComponent(p.slice(2))}catch(e){}});return o.t?o:null}
+function listHash(){return 'w='+encodeURIComponent($('#ta').value)+'&n='+encodeURIComponent($('#nm').value.trim())}
+function goGame(f){LS.set('current',{n:$('#nm').value.trim(),t:$('#ta').value});location.href=f+'#'+listHash()}
+function openGames(){if(G.stop)G.stop();modal('Switch game · keep this word list','#5BB8F5','<div class="sub" style="margin:0">Your word list goes with you. Scores start again in the new game.</div>',GAMES.filter(g=>g[0].slice(0,2)!==G.id).map(g=>({t:g[0].slice(0,2)+' '+g[1],f:()=>goGame(g[0]+'.html')})).concat([{t:'⌂ START-HERE',c:'p',f:()=>goGame('../START-HERE.html')},{t:'Cancel',f:closeModal}]))}
+function boot(){const s=$('#selS');s.innerHTML='<option value="">Choose a sample list…</option>'+Object.keys(SAMPLES).map(k=>'<option>'+esc(k)+'</option>').join('');
+drawSaved();const mx=G.maxTeams||6,t=$('#selT');let h='';for(let i=2;i<=mx;i++)h+='<option>'+i+'</option>';t.innerHTML=h;t.value=String(Math.min(mx,Math.max(2,LS.get('teams',4))));
+$('#cust').value=LS.get('custom_'+G.id,G.custom||5);$('#opts').innerHTML=G.opts||'';
+const H=location.hash.slice(1),demo=H.indexOf('demo')===0,HW=hashList(H),cur=HW||LS.get('current',null);if(HW){LS.set('current',HW);setTimeout(()=>toast('Same word list as before: '+parseList(HW.t).items.length+' entries. Press Space to play.',4500),400)}
+if(demo){$('#ta').value=G.demoText?G.demoText():SAMPLES[G.demoList||'Animals'];$('#nm').value=G.demoName||G.demoList||'Animals'}
+else if(cur&&cur.t){$('#ta').value=cur.t;$('#nm').value=cur.n||''}
+else{const k=G.demoList||'Animals';$('#ta').value=SAMPLES[k];$('#nm').value=k}
+if(G.init)G.init();
+s.onchange=()=>{if(!s.value)return;$('#ta').value=SAMPLES[s.value];$('#nm').value=s.value;updStat()};
+$('#ta').oninput=()=>{clearTimeout(boot._t);boot._t=setTimeout(updStat,200)};
+$('#bImp').onclick=()=>$('#file').click();
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#ta').value=String(r.result);$('#nm').value=f.name.replace(/\.txt$/i,'').slice(0,40);updStat();toast('Imported '+f.name)};r.readAsText(f,'UTF-8');e.target.value=''};
+$('#bExp').onclick=()=>{const b=new Blob([$('#ta').value],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(($('#nm').value||'').replace(/[\\\/:*?"<>|]+/g,'').trim()||'word-list')+'.txt';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)};
+$('#bSave').onclick=()=>{const n=$('#nm').value.trim()||'My list',L=LS.get('lists',[]);let i=-1;L.forEach((x,j)=>{if(x.n===n)i=j});if(i<0){if(L.length>=200){toast('You can keep 200 saved lists. Delete one first.');return}L.push({n:n,t:$('#ta').value});i=L.length-1}else L[i].t=$('#ta').value;LS.set('lists',L);drawSaved();$('#selL').value=String(i);$('#nm').value=n;toast('Saved “'+n+'” in this browser')};
+const sel=()=>{const L=LS.get('lists',[]),i=parseInt($('#selL').value,10);if(isNaN(i)||!L[i]){toast('No saved list selected.');return null}return {L:L,i:i}};
+$('#bLoad').onclick=()=>{const r=sel();if(!r)return;$('#ta').value=r.L[r.i].t;$('#nm').value=r.L[r.i].n;updStat();toast('Loaded “'+r.L[r.i].n+'”')};
+$('#bRen').onclick=()=>{const r=sel();if(!r)return;const n=prompt('New name for this list:',r.L[r.i].n);if(!n||!n.trim())return;r.L[r.i].n=n.trim().slice(0,40);LS.set('lists',r.L);drawSaved();$('#selL').value=String(r.i)};
+$('#bDel').onclick=()=>{const r=sel();if(!r)return;if(!confirm('Delete “'+r.L[r.i].n+'”?'))return;r.L.splice(r.i,1);LS.set('lists',r.L);drawSaved();toast('Deleted')};
+$('#bStart').onclick=start;$('#bWords').onclick=openWords;$('#bRestart').onclick=restart;
+$('#bSound').onclick=()=>{SOUND=!SOUND;LS.set('sound',SOUND);$('#bSound').classList.toggle('muted',!SOUND);if(SOUND)SFX.click()};$('#bSound').classList.toggle('muted',!SOUND);
+$('#bFull').onclick=fullscreen;$('#bHelp').onclick=openHelp;$('#bGames').onclick=openGames;$('#bGames2').onclick=openGames;
+document.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>hide('#'+b.dataset.x));
+const T=$('#teams');T.addEventListener('click',e=>{const b=e.target.closest('button[data-d]');if(b)addScore(+b.dataset.i,+b.dataset.d)});
+T.addEventListener('change',e=>{const n=e.target.closest('.tn');if(!n)return;const i=+n.dataset.i;TEAMS[i].name=n.value.trim()||('Team '+(i+1));LS.set('teamnames',TEAMS.map(x=>x.name))});
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(b)setTimeout(()=>b.blur(),0)});
+document.addEventListener('keydown',onKey);
+document.addEventListener('dragover',e=>e.preventDefault());document.addEventListener('drop',e=>e.preventDefault());
+window.addEventListener('resize',()=>{if(G.resize&&STARTED)G.resize()});
+updStat();
+if(demo){start();TEAMS.forEach((x,i)=>x.name=DEMO_NAMES[i]);drawTeams();if(G.demo)G.demo(H)}
+else if(G.autoStart&&G.autoStart()){start();if(!STARTED)show('#setup')}
+else show('#setup')}
+</script>
+<script>
+const G={id:'07',demoList:'Jobs',
+opts:'<label>Timer per word<select id="oT"><option value="0">Off</option><option>15</option><option>20</option><option selected>30</option><option>45</option><option>60</option><option>90</option></select></label>',
+help:'<p>The letters of a word are mixed up. Teams race to say or write the word.</p><ol><li>Read the mixed-up letters. The clock counts down (30 seconds by default; change it or turn it off in Words).</li><li><b>Hint</b> shows the first letter. Press it again to show the meaning.</li><li><b>Reveal</b> shows the answer. When time is up, the answer is shown automatically.</li><li>Give points with the score strip, then press <b>Space</b> for the next word.</li></ol><p>The mixed-up letters are never the same as the real word (except one-letter words).</p>',
+keys:[['Space','Next word'],['H','Hint (first letter, then meaning)'],['R','Reveal the answer']],
+order:[],idx:0,t:0,iv:null,hl:0,done:false,
+init(){$('#bH').onclick=()=>this.hint();$('#bR').onclick=()=>this.reveal();$('#bN').onclick=()=>this.next()},
+start(p){this.stop();this.order=shuffle(p.items);this.idx=0;this.round()},
+restart(){this.start(P)},
+stop(){clearInterval(this.iv)},
+scr(w){const tok=w.split(' '),can=tok.some(t=>new Set(t.toLowerCase().split('')).size>1);for(let k=0;k<80;k++){const r=tok.map(t=>shuffle(t.split('')).join('')).join(' ');if(!can||r.toLowerCase()!==w.toLowerCase())return r}return tok.map(t=>t.length>1?t.slice(1)+t[0]:t).join(' ')},
+tiles(s,el){const n=s.length,m=$('#main'),rem=parseFloat(getComputedStyle(document.documentElement).fontSize);let fs=Math.min(2.7*rem,(m.clientWidth*.9)/(n*1.65));el.style.fontSize=Math.max(fs,rem*1.4)+'px';
+el.innerHTML=s.split('').map((c,i)=>c===' '?'<b></b>':'<i class="'+((i%6===3||i%6===4)?'wt':'')+'" style="background:'+COL[i%6]+'">'+esc(c)+'</i>').join('')},
+round(){this.stop();const it=this.order[this.idx];this.hl=0;this.done=false;$('#h7').textContent='';$('#ans').innerHTML='';$('#pos').textContent='Word '+(this.idx+1)+' / '+this.order.length;
+this.tiles(this.scr(it.w),$('#sc'));const T=+$('#oT').value,c=$('#clk');c.className='clock'+(T?'':' off');
+if(T){this.t=T;c.textContent=T;this.iv=setInterval(()=>{this.t--;c.textContent=Math.max(0,this.t);if(this.t<=5){c.classList.add('low');if(this.t>0)SFX.tick()}if(this.t<=0){this.stop();SFX.alarm();this.reveal(true)}},1000)}},
+hint(){if(this.done)return;const it=this.order[this.idx];this.hl++;if(this.hl===1)$('#h7').textContent='Starts with: '+it.w.charAt(0);else $('#h7').textContent=it.m?'Meaning: '+it.m:'Starts with: '+it.w.slice(0,2)+'…';SFX.click()},
+reveal(late){if(this.done)return;this.done=true;this.stop();const a=document.createElement('div');a.className='lt';$('#ans').innerHTML='';$('#ans').appendChild(a);this.tiles(this.order[this.idx].w,a);if(late)$('#h7').textContent='Time’s up!';else SFX.good()},
+next(){this.idx++;if(this.idx>=this.order.length){this.order=shuffle(ITEMS);this.idx=0;toast('All words used. Starting again with a new order.')}this.round()},
+space(){if(isOpen('#modal')){closeModal();return}this.next()},
+key(e){const k=e.key.toLowerCase();if(k==='h')this.hint();if(k==='r')this.reveal()},
+resize(){},
+demo(h){this.stop();this.idx=Math.max(0,this.order.findIndex(x=>x.w==='teacher'));this.round();this.stop();$('#clk').textContent='18';this.hint();[2,1,3,0].forEach((v,i)=>{if(TEAMS[i])TEAMS[i].score=v});drawTeams()}
+};
+boot();
+</script>
+</body></html>

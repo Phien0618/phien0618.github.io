@@ -1,0 +1,306 @@
+FREELANCE PRICING & QUOTE KIT: SCRIPTS AND TEMPLATES (v3)
+Every email and script from the guide (Chapters 2 to 5) as plain text.
+Paste into Gmail, Outlook, Google Docs, Word or Notion. Replace everything in [brackets].
+Sections are numbered in the same order as the guide (the guide shows "scripts-and-templates.txt §N" on each block).
+
+Amounts are currency-neutral: "1,900" means 1,900 of your own currency.
+Maya Ortiz and Northfield Coffee are a fictional worked example.
+Disclaimer: templates and planning tools only. This is not tax, legal or financial advice.
+For large contracts, have a lawyer review your terms.
+
+CONTENTS
+§1  Three-package quote email (Chapter 2)
+§2  Scope of work section (Chapter 3)
+§3  Kickoff recap email (Chapter 3)
+§4  Change order (Chapter 3)
+§5  Change log (Chapter 3)
+§6  Reply scripts for new requests, A to F (Chapter 3)
+§7  Price pushback replies, 1 to 8 (Chapter 4)
+§8  Rate increase emails, A and B (Chapter 5)
+§9  Replies when clients respond to a rate increase, 1 to 3 (Chapter 5)
+
+
+======================================================================
+§1  THREE-PACKAGE QUOTE EMAIL (Chapter 2, filled in with Maya's example)
+======================================================================
+
+Subject: Brand refresh: three options
+
+Hi Sam,
+
+Thanks for the call on Tuesday. Here are three ways we can do the brand refresh:
+
+Essential: 1,900. Discovery, refreshed logo and color palette, two rounds of revisions.
+Standard: 2,700. Everything in Essential plus a social media kit and a mini brand guide your team can use.
+Premium: 3,250. Everything in Standard plus 30 days of priority support after launch.
+
+I recommend Standard: it gives your team the files and the rules to use the new look from day one. A 50% deposit starts the work; the balance is due on delivery. This quote is valid until November 30.
+
+Not included: copywriting, printing, and website changes. I'm happy to quote these separately.
+
+The full quote is attached. To go ahead, reply with the package you'd like and I'll send the deposit invoice.
+
+Best,
+Maya
+
+--- Blank version ---
+
+Subject: [Project]: three options
+
+Hi [Name],
+
+Thanks for the call on [day]. Here are three ways we can do the [project]:
+
+Essential: [price]. [What it includes.]
+Standard: [price]. Everything in Essential plus [extras].
+Premium: [price]. Everything in Standard plus [extras].
+
+I recommend [package]: [one reason that is about the client]. A [50]% deposit starts the work; the balance is due on delivery. This quote is valid until [date].
+
+Not included: [2-3 items]. I'm happy to quote these separately.
+
+The full quote is attached. To go ahead, reply with the package you'd like and I'll send the deposit invoice.
+
+Best,
+[Your name]
+
+
+======================================================================
+§2  SCOPE OF WORK SECTION (Chapter 3, document 1)
+======================================================================
+Paste this into your proposal or quote.
+
+Project: [Project name]
+Goal: [One sentence on what the finished work should achieve for the client.]
+
+Included
+- [Deliverable 1, with a number, e.g. "Design of 5 pages: Home, About, Services, Blog index, Contact"]
+- [Deliverable 2, e.g. "Build in WordPress on the client's existing hosting"]
+- [Deliverable 3, e.g. "Entry of client-supplied text and images"]
+- Revisions: [2] rounds of consolidated feedback per deliverable
+- Meetings: [1] kickoff call + [2] check-in calls of up to [30] minutes
+- Support: [14] days of bug fixes after launch
+
+Not included (available as add-ons on request)
+- [Copywriting or editing of text]
+- [Stock photos or paid fonts/plugins, billed at cost if needed]
+- [Additional pages beyond the 5 listed]
+- [Ongoing maintenance, hosting or updates after the support period]
+- [SEO, ads or analytics setup]
+
+Client responsibilities
+- Provide [text, images, logins] by [date]
+- Send consolidated feedback (one email per round) within [3] working days
+- Delays in client materials or feedback move the delivery date by the same amount
+
+Additional work
+Anything not listed under "Included" is quoted separately before work starts, at [rate]/hour or as a fixed price agreed in writing through a change order. Rush work (delivery earlier than the agreed timeline) carries a [25]% fee.
+
+Tip: aim for 3-5 "Not included" bullets. Choose the things clients in your field most often assume are included.
+
+
+======================================================================
+§3  KICKOFF RECAP EMAIL (Chapter 3, document 2; send on day 1)
+======================================================================
+
+Subject: [Project]: kickoff recap and next steps
+
+Hi [Name],
+
+Great to get started. A quick recap so we're on the same page:
+
+- What I'm delivering: [short list]
+- Revisions: [2] rounds per deliverable, with feedback collected into one email per round
+- Timeline: [milestone 1, date], then [milestone 2, date], then launch [date]
+- What I need from you: [materials] by [date]
+- Not included this time: [the 2-3 most likely assumptions]
+
+If something comes up that's outside this list, I'll quote it before I start, so there are never surprises on the invoice.
+
+Looking forward to it,
+[Your name]
+
+
+======================================================================
+§4  CHANGE ORDER (Chapter 3, document 3)
+======================================================================
+
+--- Maya's example (filled in) ---
+
+Change order #:               1
+Project:                      Brand refresh for Northfield Coffee
+Date:                         November 18
+Original agreement:           Quote 2026-014, Standard package, accepted November 6
+Requested change:             Design a loyalty card in the new brand style
+Not included in this change:  Printing the cards
+Estimate:                     4 hours, including communication
+Price impact:                 +425, new project total 3,125
+Timeline impact:              Delivery moves from December 4 to December 8
+Payment:                      Added to the final invoice
+
+All other terms of the original agreement stay the same.
+Approved by: ____________________ Date: __________ (a reply email saying "approved" also counts)
+
+--- Blank version ---
+
+Change order #:               [1]
+Project:                      [Project name]
+Date:                         [date]
+Original agreement:           [Quote/contract number, package, date accepted]
+Requested change:             [One or two sentences: exactly what is added or changed]
+Not included in this change:  [e.g. "Copywriting for the new page"]
+Estimate:                     [X] hours, including communication
+Price impact:                 +[amount], new project total [amount]
+Timeline impact:              [None / delivery moves from X to Y]
+Payment:                      [Added to the final invoice / 50% before work starts]
+
+All other terms of the original agreement stay the same.
+Approved by: ____________________ Date: __________ (a reply email saying "approved" also counts)
+
+How to price a change: estimated hours x (1 + overhead, typically 10-20%) x your rate x rush multiplier (1.0 normal, 1.25 rush, 1.5 urgent), rounded up.
+Maya: 4 x 1.15 x 90 x 1.0 = 414, rounded up to the nearest 25 = 425. The Change Order tab in the workbook does this for you.
+
+
+======================================================================
+§5  CHANGE LOG (Chapter 3, document 4; keep one per project, share it at each milestone)
+======================================================================
+
+#  | Date   | Request (who asked)           | In scope? | Hours | Price | Status
+---|--------|-------------------------------|-----------|-------|-------|------------------------
+1  | Nov 18 | Loyalty card design (Sam)     | No        | 4     | 425   | Approved CO #1
+2  | Nov 20 | Swap one palette shade (Sam)  | Small     | 0.25  | 0     | Done, absorbed (noted)
+3  | Nov 24 | Menu board layout (Jo)        | No        | 5     | 525   | Quoted
+4  | [date] | [request] ([who])             |           |       |       |
+
+Why keep one: small favors you absorb become visible. When they add up, you can bundle them into one change order and have the evidence ready.
+
+
+======================================================================
+§6  REPLY SCRIPTS FOR NEW REQUESTS (Chapter 3, document 5)
+======================================================================
+
+A. A small favor you absorb
+"Done! That one was outside our scope but quick, so no charge this time. For anything else beyond scope I'll send a short quote first."
+
+B. A new feature
+"Good idea. It isn't in the current scope, so there are two options: add it now for [price] (delivery moves to [date]), or do it as phase 2 after launch so the current date holds. Which would you prefer? I'll send a change order."
+
+C. An extra revision round
+"We've used the [2] included rounds. Further rounds are [price] each. Reply 'go ahead' and I'll start today."
+
+D. The deadline moves earlier
+"Here are the options: full scope by [new date] with a [amount] rush fee; core items by [new date] and the rest on the original date at no extra cost; or we keep [date]."
+
+E. A pile-up of small requests
+"I've listed the extra requests from the past few weeks: [list]. Together they come to about [X] hours. I suggest one change order for [price]. Once it's approved, I'll fold them into the next delivery."
+
+F. Asked on a call
+"Let me check how that fits the scope and come back to you by email today."
+
+The rule behind every script: Never agree to a price or timeline live. Confirm it in writing.
+
+
+======================================================================
+§7  PRICE PUSHBACK REPLIES (Chapter 4)
+======================================================================
+The one rule: when price comes up, change what's included, never just the price.
+Each reply uses Maya's quote (Essential 1,900 / Standard 2,700 / Premium 3,250). Swap in your own packages and amounts.
+
+1. CLIENT: "Can you do it cheaper?"
+   DON'T SAY: "I guess I could do 2,200 instead."
+   SAY THIS: "The price reflects the work in each package, so I keep it the same. If budget is tight, Essential gets you the core result (refreshed logo and palette) for 1,900."
+   Why it works: you offer a cheaper option without suggesting your price was padded.
+
+2. CLIENT: "Another freelancer quoted less."
+   DON'T SAY: "Oh, how much? I can match it."
+   SAY THIS: "That makes sense. Quotes often cover different things. Mine includes two revision rounds and a mini brand guide. If you send me theirs, I'll tell you honestly where they differ."
+   Why it works: it moves the comparison from price to what's included.
+
+3. CLIENT: "We don't have the budget right now."
+   DON'T SAY: "No problem, what can you afford? I'll make it work."
+   SAY THIS: "Understood. Two options: we start with Essential now for 1,900 and add the social media kit later, or I hold this quote until [date] and we pick it up when the budget is there. Which suits you better?"
+   Why it works: both options are a yes, and neither lowers your rate.
+
+4. CLIENT: "Can we start now and pay later?"
+   DON'T SAY: "Sure, just pay me when you can."
+   SAY THIS: "I start every project with a 50% deposit; for Standard that's 1,350. If cash flow is the issue, I can split the remaining 1,350 into two payments of 675: one when you approve the first concepts and one on delivery."
+   Why it works: you stay flexible on timing but never work without a deposit.
+
+5. CLIENT: "Can you do a free sample first?"
+   DON'T SAY: "OK, I'll mock up a quick logo idea for you."
+   SAY THIS: "I don't do free concept work, but here are [2-3] similar projects with the brief and the result: [links]. If you'd like a smaller first step, Essential starts with a 950 deposit."
+   Why it works: past work is the proof, and a small paid step replaces free work.
+
+6. CLIENT: "We'll have lots more work for you later."
+   DON'T SAY: "Great, then I'll do this first one at a discount."
+   SAY THIS: "Great to hear, I'd like that too. I price each project on its own. Once we've done a few together, I'm happy to talk about a monthly retainer with priority time."
+   Why it works: future work gets a real agreement later, not a discount now for a promise.
+
+7. CLIENT: "If we book six months of work, can we get a discount?"
+   DON'T SAY: "Sure, let's say 25% off everything."
+   SAY THIS: "For a fixed six-month commitment, paid monthly in advance, I can take 5% off the monthly fee. Booked time saves me sales and admin work, so I pass part of that on. Without the commitment, my standard rates apply."
+   Why it works: the discount buys you something real: guaranteed, prepaid work.
+
+8. CLIENT: "Can you send an hourly breakdown?"
+   DON'T SAY: "Sure: 2 hours discovery, 12 hours logo, 4 hours revisions..."
+   SAY THIS: "I price by package, not by the hour, so you know the total up front and it doesn't grow if a task takes longer. Here's what each package delivers: [list]. If one item isn't needed, tell me and I'll quote a version without it."
+   Why it works: you talk about deliverables, not hours to haggle over, and removing scope stays possible.
+
+Before you reply to any of these: reply in writing, not live on a call (script F in §6). Keep the reply short: one sentence on why the price stays, one option that changes the scope, one question that moves things forward.
+
+
+======================================================================
+§8  RATE INCREASE EMAILS (Chapter 5)
+======================================================================
+
+--- §8A  Email A: existing client, with notice (give at least [30] days) ---
+
+Subject: My rates from [February 1]
+
+Hi [Name],
+
+I'm writing to let you know about a change to my rates. From [February 1], my hourly rate will be [100] (currently [90]), and my project packages will go up in line with it.
+
+Any project already in progress, and anything you book before [February 1], stays at the current rate.
+
+Thank you for working with me over the past [year]. If you'd like to book work before the change, reply to this email and I'll hold the dates.
+
+Best,
+[Your name]
+
+--- §8B  Email B: new clients only (current clients keep their rate for a while) ---
+
+Subject: A quick update on my rates
+
+Hi [Name],
+
+A quick update: from [February 1], my rate for new clients goes up to [100] per hour. As an existing client, you keep your current rate of [90] until [July 31]. After that, the new rate applies to all new projects.
+
+Nothing changes for the work we already have planned. Thank you for being one of my first clients.
+
+Best,
+[Your name]
+
+Maya's numbers (Rate Increase tab): 90 -> 100, 88 billable hours a month, expected loss 5% of client hours.
+Current monthly revenue 90 x 88 = 7,920. New monthly revenue 100 x 83.6 = 8,360 (+440).
+Break-even client loss = 1 - 90 / 100 = 10%.
+
+
+======================================================================
+§9  REPLIES WHEN CLIENTS RESPOND TO A RATE INCREASE (Chapter 5)
+======================================================================
+
+1. CLIENT: "That's more than we budgeted for."
+   SAY THIS: "Understood. Two options: book the next project before [February 1] at the current rate, or we adjust the scope so it fits your budget at the new rate. I'm happy to suggest what to trim."
+
+2. CLIENT: "Can you keep our old rate?"
+   SAY THIS: "I value working with you, which is why I'm giving you notice and keeping your current rate until [date]. After that, the new rate applies to all my clients, so it stays fair for everyone."
+
+3. CLIENT: "We'll have to find someone cheaper."
+   SAY THIS: "I understand, and thanks for telling me. If it helps the handover, I'll send the final files and my notes from our projects. If you'd like to work together again later, my door's open."
+
+Stick to it: once the email is sent, don't negotiate the rate itself. Change the scope, the timing or the package, the same way as in Chapter 4.
+
+----------------------------------------------------------------------
+Questions or problems: chenphien@gmail.com
+Not tax, legal or financial advice.

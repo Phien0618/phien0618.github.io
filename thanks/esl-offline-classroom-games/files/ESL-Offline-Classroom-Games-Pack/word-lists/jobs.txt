@@ -1,0 +1,15 @@
+# Jobs
+teacher = works in a school and helps students learn
+doctor = helps sick people get better
+nurse = cares for people in a hospital
+farmer = grows food and keeps animals
+chef = cooks food in a restaurant
+police officer = keeps people safe and stops crime
+firefighter = puts out fires
+pilot = flies a plane
+bus driver = drives a bus
+dentist = looks after your teeth
+singer = sings songs for people
+vet = an animal doctor
+builder = makes houses and buildings
+mail carrier = brings letters to your home

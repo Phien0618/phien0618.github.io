@@ -1,0 +1,13 @@
+# Feelings
+happy = feeling good and smiling
+sad = feeling bad; you may cry
+angry = feeling very mad
+tired = you need to sleep
+hungry = you want to eat
+thirsty = you want to drink
+scared = afraid of something
+excited = very happy about something soon
+bored = nothing is interesting
+surprised = something unexpected happened
+nervous = worried before something important
+proud = happy about something you did well

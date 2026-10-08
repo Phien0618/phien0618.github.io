@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quote template: Freelance Pricing &amp; Quote Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style id="pagesize">@page{size:8.5in 11in;margin:0}</style>
+<style>
+:root{--pw:8.5in;--ph:11in;--accent:#EE6B57}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;color:#16233A;background:#E9E5DD;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.bar{position:sticky;top:0;z-index:5;background:#16233A;color:#fff;padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:13px}
+.bar b{color:#fff}
+.bar button,.bar label{background:#fff;color:#16233A;border:0;border-radius:6px;padding:7px 12px;font:600 13px Inter,sans-serif;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.bar button.pri{background:var(--accent);color:#fff}
+.bar input[type=color]{width:22px;height:18px;border:0;padding:0;background:none}
+.bar .hint{opacity:.85;flex-basis:100%;font-size:12px}
+.page{width:var(--pw);height:var(--ph);position:relative;padding:.65in .7in .9in;overflow:hidden;background:#fff;margin:18px auto;box-shadow:0 6px 24px rgba(0,0,0,.15);break-after:page;page-break-after:always}
+.page:last-of-type{break-after:auto;page-break-after:auto}
+[contenteditable]{background:#FFF4C2;border-radius:2px;padding:0 2px;outline:none}
+[contenteditable]:focus{box-shadow:0 0 0 2px #EE6B57}
+body.printstate [contenteditable]{background:none!important}
+@media print{
+  body{background:#fff}
+  .bar{display:none}
+  .page{margin:0;box-shadow:none}
+  [contenteditable]{background:none!important;box-shadow:none!important}
+}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.logo{width:1.5in;height:.55in;border:1.5px dashed #C9C3B7;border-radius:6px;display:grid;place-items:center;font-size:8.5pt;color:#6B6F7B}
+.from{font-size:9.5pt;line-height:1.5;text-align:right;color:#2B3D5C}
+.from b{color:#16233A;font-size:10.5pt}
+h1{font-size:26pt;font-weight:800;letter-spacing:-.01em;margin-top:.34in;line-height:1.15}
+.accent{width:44pt;height:4px;background:var(--accent);margin-top:8pt;border-radius:2px}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16pt;border:1px solid #D9D3C7;border-radius:8px;overflow:hidden}
+.meta>div{padding:8pt 10pt;border-right:1px solid #D9D3C7;font-size:10pt;line-height:1.4}
+.meta>div:last-child{border-right:0}
+.lbl{display:block;font-size:7.5pt;font-weight:700;letter-spacing:.12em;color:#6B6F7B;margin-bottom:2pt}
+.mono{font-family:'JetBrains Mono',monospace}
+h2{font-size:8.5pt;font-weight:800;letter-spacing:.14em;color:#6B6F7B;margin-top:18pt;margin-bottom:6pt}
+p{font-size:10.5pt;line-height:1.55;color:#1E1E24}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:10pt;margin-top:12pt;align-items:stretch}
+.p{border:1.3px solid #D9D3C7;border-radius:10px;padding:14pt 12pt 12pt;position:relative;display:flex;flex-direction:column}
+.p.rec{border:2.2px solid #16233A}
+.tag{position:absolute;top:-9pt;left:12pt;background:var(--accent);color:#fff;font-size:7.5pt;font-weight:800;letter-spacing:.1em;padding:3pt 7pt;border-radius:4px}
+.pn{font-size:9pt;font-weight:800;letter-spacing:.12em}
+.pp{font-size:22pt;font-weight:800;margin-top:4pt;font-family:'JetBrains Mono',monospace;letter-spacing:-.02em;display:inline-block}
+.pd{font-size:8.5pt;color:#6B6F7B;font-family:'JetBrains Mono',monospace;margin-top:2pt}
+.p ul{list-style:none;margin-top:10pt;border-top:1px solid #EFE8DC;padding-top:8pt;flex:1}
+.p li{font-size:9.5pt;line-height:1.4;padding:3pt 0 3pt 15pt;position:relative;color:#1E1E24}
+.p li:before{content:"";position:absolute;left:0;top:5.5pt;width:9pt;height:9pt;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.4l2.7 2.7L10 3.3' fill='none' stroke='%2316233A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/contain}
+.p li.plus{color:#6B6F7B;font-style:italic}
+.p li.plus:before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 2v8M2 6h8' fill='none' stroke='%236B6F7B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")}
+.choose{margin-top:10pt;font-size:8.5pt;font-weight:700;color:#2B3D5C;border-top:1px dashed #D9D3C7;padding-top:7pt}
+.box{width:10pt;height:10pt;border:1.4px solid #16233A;display:inline-block;vertical-align:-1.5pt;margin-right:5pt;border-radius:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22pt}
+.ni{list-style:none}
+.ni li{font-size:10pt;line-height:1.5;padding-left:15pt;position:relative}
+.ni li:before{content:"";position:absolute;left:0;top:5pt;width:8pt;height:8pt;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 3l6 6M9 3l-6 6' fill='none' stroke='%236B6F7B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain}
+.terms{list-style:none;border:1px solid #D9D3C7;border-radius:8px}
+.terms li{display:grid;grid-template-columns:1.6in 1fr;gap:10pt;padding:8pt 12pt;border-bottom:1px solid #EFE8DC;font-size:10pt;line-height:1.5}
+.terms li:last-child{border-bottom:0}
+.terms b{font-size:8pt;letter-spacing:.1em;color:#6B6F7B;padding-top:1.5pt}
+.acc{border:2px solid #16233A;border-radius:10px;padding:14pt 16pt;margin-top:8pt}
+.acc .opts{display:flex;gap:22pt;font-size:10.5pt;font-weight:600;margin:4pt 0 10pt}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:10pt 22pt}
+.sig div{font-size:8pt;font-weight:700;letter-spacing:.1em;color:#6B6F7B;border-bottom:1.2px solid #16233A;height:11mm;display:flex;align-items:flex-end;padding-bottom:3pt}
+.next{background:#F4F1EA;border-radius:8px;padding:12pt 14pt;margin-top:16pt}
+.next p{font-size:10.5pt}
+.foot{position:absolute;left:.7in;right:.7in;bottom:.45in;border-top:1px solid #D9D3C7;padding-top:6pt;display:flex;justify-content:space-between;font-size:8.5pt;color:#6B6F7B}
+.foot [contenteditable]{color:#6B6F7B}
+@media screen and (max-width:880px){.page{zoom:.85}}
+@media screen and (max-width:720px){.page{zoom:.64}}
+@media screen and (max-width:560px){.page{zoom:.6}}
+</style></head>
+<body>
+<div class="bar">
+  <b>Your quote</b>
+  <button class="pri" onclick="printAs('letter')">Print / Save PDF: US Letter</button>
+  <button class="pri" onclick="printAs('a4')">Print / Save PDF: A4</button>
+  <label>Accent <input type="color" id="acc" value="#EE6B57"></label>
+  <button onclick="resetAll()">Reset to example</button>
+  <span class="hint">Click any yellow field and type. Changes are saved in this browser automatically. The yellow highlight does not print. In the print dialog choose "Save as PDF", margins "None" or "Default".</span>
+</div>
+
+<section class="page" id="p1">
+  <div class="top">
+    <div class="logo" contenteditable data-k="logo">[Your logo]</div>
+    <div class="from"><b contenteditable data-k="biz">Maya Ortiz Studio</b><br><span contenteditable data-k="email">maya@example.com</span><br><span contenteditable data-k="web">mayaortiz.design</span></div>
+  </div>
+  <h1 contenteditable data-k="title">Brand Refresh Proposal</h1>
+  <div class="accent"></div>
+  <div class="meta">
+    <div><span class="lbl">PREPARED FOR</span><b contenteditable data-k="client">Sam Lee</b><br><span contenteditable data-k="company" style="font-size:9pt;color:#2B3D5C">Northfield Coffee</span></div>
+    <div><span class="lbl">QUOTE NO.</span><span class="mono" contenteditable data-k="qno">2026-014</span></div>
+    <div><span class="lbl">DATE</span><span contenteditable data-k="date">November 1, 2026</span></div>
+    <div><span class="lbl">VALID UNTIL</span><b contenteditable data-k="valid">November 30, 2026</b></div>
+  </div>
+
+  <h2>PROJECT GOAL</h2>
+  <p contenteditable data-k="goal">Refresh Northfield Coffee's logo and color palette so the brand looks consistent across the new shopfront, packaging and social media, and give your team simple rules to keep it that way.</p>
+
+  <h2>CHOOSE YOUR PACKAGE</h2>
+  <div class="pk">
+    <div class="p">
+      <div class="pn" contenteditable data-k="n1">ESSENTIAL</div><div><span class="pp" contenteditable data-k="pr1">1,900</span></div><div class="pd">50% deposit: <span contenteditable data-k="d1">950</span></div>
+      <ul contenteditable data-k="l1"><li>Discovery call &amp; brief</li><li>Logo refresh + color palette</li><li>Two revision rounds</li></ul>
+      <div class="choose"><span class="box"></span>Choose Essential</div>
+    </div>
+    <div class="p rec"><span class="tag">RECOMMENDED</span>
+      <div class="pn" contenteditable data-k="n2">STANDARD</div><div><span class="pp" contenteditable data-k="pr2">2,700</span></div><div class="pd">50% deposit: <span contenteditable data-k="d2">1,350</span></div>
+      <ul contenteditable data-k="l2"><li class="plus">Everything in Essential</li><li>Social media kit</li><li>Mini brand guide for your team</li></ul>
+      <div class="choose"><span class="box"></span>Choose Standard</div>
+    </div>
+    <div class="p">
+      <div class="pn" contenteditable data-k="n3">PREMIUM</div><div><span class="pp" contenteditable data-k="pr3">3,250</span></div><div class="pd">50% deposit: <span contenteditable data-k="d3">1,625</span></div>
+      <ul contenteditable data-k="l3"><li class="plus">Everything in Standard</li><li>30 days of priority support after launch</li></ul>
+      <div class="choose"><span class="box"></span>Choose Premium</div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div>
+      <h2>NOT INCLUDED</h2>
+      <ul class="ni" contenteditable data-k="ni"><li>Copywriting</li><li>Printing and print management</li><li>Website changes</li></ul>
+      <p style="font-size:9pt;color:#6B6F7B;margin-top:5pt">Happy to quote these separately.</p>
+    </div>
+    <div>
+      <h2>TIMELINE</h2>
+      <p contenteditable data-k="time" style="font-size:10pt">Start within 5 working days of the deposit. First concepts in week 2; final files by the end of week 4 (Standard and Premium: week 5).</p>
+    </div>
+  </div>
+  <h2>WHAT I NEED FROM YOU</h2>
+  <p contenteditable data-k="need" style="font-size:10pt">Current logo files and any brand material within 3 days of starting · one decision-maker for feedback · feedback on each round within 3 working days.</p>
+  <div class="foot"><span>Quote <span contenteditable data-k="f1">2026-014 · Maya Ortiz Studio</span></span><span>Page 1 of 2 · Payment terms and acceptance on page 2</span></div>
+</section>
+
+<section class="page" id="p2">
+  <h2 style="margin-top:0">PAYMENT TERMS</h2>
+  <ul class="terms">
+    <li><b>DEPOSIT</b><span contenteditable data-k="t1">50% of the chosen package, invoiced on acceptance. Work starts when the deposit is paid.</span></li>
+    <li><b>BALANCE</b><span contenteditable data-k="t2">The remaining 50% on delivery of the final files, due within 14 days of the invoice.</span></li>
+    <li><b>LATE PAYMENT</b><span contenteditable data-k="t3">Final files are released when the balance is paid. Invoices more than 14 days overdue may pause any further work.</span></li>
+    <li><b>HOW TO PAY</b><span contenteditable data-k="t4">[Bank transfer / payment link details]</span></li>
+  </ul>
+
+  <h2>CHANGE REQUESTS</h2>
+  <p contenteditable data-k="chg" style="font-size:10pt">Anything not listed in your package is quoted before work starts, through a short written change order: estimated hours × (1 + 15% overhead) × 90 per hour, rounded up. Rush delivery (earlier than the agreed timeline) is charged at 1.25× or 1.5×. Small tweaks may be absorbed at my discretion and are noted in a shared change log.</p>
+
+  <h2>WHAT HAPPENS NEXT</h2>
+  <div class="next"><p contenteditable data-k="nxt">1. Tick the package you'd like and sign below (or reply to my email with the package name).<br>2. I send the deposit invoice and book your start date.<br>3. We hold a 45-minute kickoff call, and I send a written recap of scope, dates and what I need from you.</p></div>
+
+  <h2>ACCEPTANCE</h2>
+  <div class="acc">
+    <p style="font-size:10pt">I accept this quote (<span contenteditable data-k="qno2">2026-014</span>) for the package ticked below, under the terms on both pages.</p>
+    <div class="opts"><span><span class="box"></span>Essential · <span contenteditable data-k="a1">1,900</span></span><span><span class="box"></span>Standard · <span contenteditable data-k="a2">2,700</span></span><span><span class="box"></span>Premium · <span contenteditable data-k="a3">3,250</span></span></div>
+    <div class="sig"><div>NAME</div><div>COMPANY</div><div>SIGNATURE</div><div>DATE</div></div>
+  </div>
+  <p style="font-size:9pt;color:#6B6F7B;margin-top:12pt" contenteditable data-k="valid2">This quote is valid until November 30, 2026. Prices after that date may change.</p>
+  <div class="foot"><span>Quote <span contenteditable data-k="f2">2026-014 · Maya Ortiz Studio</span></span><span>Page 2 of 2</span></div>
+</section>
+
+<script>
+var KEY='fpk-quote-v3';
+var SIZES={letter:['8.5in','11in'],a4:['210mm','297mm']};
+function setSize(s){var z=SIZES[s]||SIZES.letter;document.documentElement.style.setProperty('--pw',z[0]);document.documentElement.style.setProperty('--ph',z[1]);document.getElementById('pagesize').textContent='@page{size:'+z[0]+' '+z[1]+';margin:0}';}
+function printAs(s){setSize(s);setTimeout(function(){window.print();},50);}
+function save(){var d={};document.querySelectorAll('[data-k]').forEach(function(e){d[e.getAttribute('data-k')]=e.innerHTML;});d._acc=document.getElementById('acc').value;try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
+function load(){var d=null;try{d=JSON.parse(localStorage.getItem(KEY));}catch(e){}if(!d)return;document.querySelectorAll('[data-k]').forEach(function(e){var k=e.getAttribute('data-k');if(typeof d[k]==='string')e.innerHTML=d[k];});if(d._acc){document.getElementById('acc').value=d._acc;document.documentElement.style.setProperty('--accent',d._acc);}}
+function resetAll(){if(confirm('Reset every field to the example?')){try{localStorage.removeItem(KEY);}catch(e){}location.reload();}}
+document.addEventListener('input',function(e){if(e.target.id==='acc'){document.documentElement.style.setProperty('--accent',e.target.value);}save();});
+if(window.QT_SIZE)setSize(window.QT_SIZE);
+if(window.QT_PRINTSTATE)document.body.className='printstate';
+load();
+// Short fields (names, prices, dates): clicking selects the whole field, so typing replaces it.
+var qtJust=null;
+function qtSelect(el){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
+document.addEventListener('focusin',function(e){var el=e.target;if(!el.isContentEditable||!el.hasAttribute('data-k'))return;if(/^(P|UL)$/.test(el.tagName)||el.textContent.length>60)return;qtJust=el;qtSelect(el);setTimeout(function(){qtSelect(el);},0);});
+document.addEventListener('mouseup',function(e){if(qtJust&&qtJust.contains(e.target)){setTimeout(function(){if(qtJust){qtSelect(qtJust);qtJust=null;}},0);}});
+</script>
+</body></html>

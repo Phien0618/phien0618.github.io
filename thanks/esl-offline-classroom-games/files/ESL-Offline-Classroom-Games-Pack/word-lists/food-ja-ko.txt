@@ -1,0 +1,15 @@
+# Food 食べ物 · 음식
+apple = りんご · 사과
+banana = バナナ · 바나나
+orange = オレンジ · 오렌지
+carrot = にんじん · 당근
+potato = じゃがいも · 감자
+tomato = トマト · 토마토
+milk = ぎゅうにゅう · 우유
+water = みず · 물
+rice = ごはん · 밥
+bread = パン · 빵
+egg = たまご · 계란
+fish = さかな · 생선
+chicken = とりにく · 닭고기
+ice cream = アイスクリーム · 아이스크림

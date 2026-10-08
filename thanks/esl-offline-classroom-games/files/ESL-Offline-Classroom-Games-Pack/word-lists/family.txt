@@ -1,0 +1,13 @@
+# Family
+mother = your mum
+father = your dad
+sister = a girl with the same parents as you
+brother = a boy with the same parents as you
+grandmother = your mum's or dad's mother
+grandfather = your mum's or dad's father
+aunt = your mum's or dad's sister
+uncle = your mum's or dad's brother
+cousin = your aunt's or uncle's child
+baby = a very young child
+son = a boy child of a parent
+daughter = a girl child of a parent

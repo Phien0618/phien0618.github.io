@@ -1,0 +1,16 @@
+# Animals
+cat = a small pet that says "meow"
+dog = a pet that barks and wags its tail
+elephant = a big grey animal with a long nose
+giraffe = an animal with a very long neck
+lion = a big wild cat with a mane
+monkey = an animal that climbs trees and eats bananas
+rabbit = a small animal with long ears
+horse = a big animal that people ride
+cow = a farm animal that gives us milk
+duck = a bird that swims and says "quack"
+snake = a long animal with no legs
+penguin = a black and white bird that cannot fly
+tiger = a big orange cat with black stripes
+frog = a small green animal that jumps
+bear = a big strong animal that sleeps in winter

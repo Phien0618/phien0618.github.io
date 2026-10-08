@@ -1,0 +1,13 @@
+# Weather
+sunny = the sun is shining
+rainy = water is falling from the sky
+cloudy = there are lots of clouds
+windy = the air is moving fast
+snowy = white snow is falling
+stormy = rain, wind and thunder
+foggy = it is hard to see far
+hot = a very high temperature
+cold = a very low temperature
+rainbow = colours in the sky after rain
+umbrella = it keeps you dry in the rain
+thunder = a loud noise in a storm

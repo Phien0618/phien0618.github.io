@@ -1,0 +1,13 @@
+# Transport
+car = a vehicle with four wheels for a family
+bus = a big vehicle that carries many people
+train = it runs on rails
+plane = it flies in the sky
+bike = two wheels; you pedal it
+boat = it moves on water
+taxi = a car you pay to ride in
+subway = a train that runs under the city
+helicopter = it flies with spinning blades on top
+truck = a big vehicle that carries things
+motorcycle = a bike with an engine
+ship = a very big boat

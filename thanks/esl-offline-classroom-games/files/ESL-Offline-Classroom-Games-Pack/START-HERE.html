@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>START HERE · ESL Offline Classroom Games</title>
+<style>
+:root{--board:#163A3A;--board2:#1F4B4A;--chalk:#FFFDF6;--paper:#FFF6E5;--ink:#1E2030;--sun:#FFC83D;--sky:#5BB8F5;--mint:#3DD39A;--grape:#8E5BE8;--berry:#E8457A;--orange:#FF8A3D;
+--fd:"Fredoka",ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito","Segoe UI",system-ui,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC",sans-serif;--fb:"Nunito",ui-rounded,"Segoe UI",system-ui,-apple-system,Arial,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC",sans-serif}
+*{box-sizing:border-box;margin:0}
+html{font-size:clamp(14px,1.1vw,22px)}
+body{background:var(--paper);font-family:var(--fb);color:var(--ink);font-weight:700;overflow-x:hidden}
+header{background:var(--board);color:var(--chalk);padding:1.6rem 3.6vw 1.7rem;position:relative}
+h1{font-family:var(--fd);font-weight:700;font-size:2.8rem;line-height:1}
+h1 span{color:var(--sun)}
+.steps{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.1rem}
+.step{display:flex;align-items:center;gap:.6rem;background:var(--board2);border-radius:1rem;padding:.55rem 1.1rem .55rem .55rem;font-weight:800;font-size:1.2rem}
+.step b{width:2.1rem;height:2.1rem;border-radius:50%;background:var(--sun);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--fd)}
+.kc{background:var(--chalk);color:var(--ink);border-radius:.4rem;padding:0 .4rem}
+.off{position:absolute;right:3.6vw;top:1.6rem;display:flex;align-items:center;gap:.5rem;background:var(--chalk);color:var(--ink);border-radius:999px;padding:.5rem 1.2rem;font-weight:900;font-size:1.1rem}
+.wl{margin:1.4rem 3.6vw 0;background:#fff;border:3px solid var(--sun);border-radius:1.2rem;padding:1rem 1.2rem;display:grid;grid-template-columns:1.5fr 1fr;gap:1.2rem;box-shadow:0 .35rem 0 #E6D7B8}
+.wl h2{font-family:var(--fd);font-size:1.45rem;display:flex;align-items:center;gap:.5rem}
+.wl h2 b{width:2rem;height:2rem;border-radius:50%;background:var(--sun);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.wl p.n{font-size:1rem;color:#3E4052;margin:.2rem 0 .5rem}
+textarea{width:100%;height:11rem;resize:vertical;font-family:var(--fb);font-weight:700;font-size:1.05rem;line-height:1.4;padding:.5rem .7rem;border:3px solid #E6D7B8;border-radius:.8rem;background:#FFFDF6;color:var(--ink);outline:0;tab-size:12}
+textarea:focus,select:focus,input:focus{border-color:var(--sun)}
+.side{display:flex;flex-direction:column;gap:.5rem}
+.side label{display:flex;flex-direction:column;gap:.15rem;font-weight:800;font-size:1rem}
+select,input[type=text]{font-family:var(--fb);font-weight:700;font-size:1rem;min-height:2.3rem;padding:0 .5rem;border:3px solid #E6D7B8;border-radius:.6rem;background:#fff;color:var(--ink);width:100%;outline:0}
+.r{display:flex;gap:.4rem}.r>*{flex:1}
+.b{font:inherit;font-weight:800;font-size:1rem;min-height:2.3rem;border:0;border-radius:.6rem;background:var(--board2);color:var(--chalk);cursor:pointer;padding:0 .6rem;box-shadow:0 .2rem 0 rgba(0,0,0,.25)}
+.stat{font-weight:800;font-size:1.05rem;margin-top:.4rem;min-height:1.4rem}.ok{color:#11744E}.warn{color:#B0174A}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1.2rem;padding:1.4rem 3.6vw 2rem}
+.gh{padding:1.4rem 3.6vw 0;font-family:var(--fd);font-size:1.45rem;display:flex;align-items:center;gap:.5rem}
+.gh b{width:2rem;height:2rem;border-radius:50%;background:var(--sun);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.gh small{font-family:var(--fb);font-size:1rem;color:#3E4052;font-weight:700}
+a.card{background:#fff;border-radius:1.2rem;overflow:hidden;box-shadow:0 .35rem 0 #E6D7B8;display:flex;flex-direction:column;text-decoration:none;color:var(--ink);transition:transform .15s}
+a.card:hover{transform:translateY(-4px)}
+.band{height:.55rem}
+.body{padding:1rem 1.1rem 1.1rem;display:flex;flex-direction:column;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between}
+.icon{width:4rem;height:4rem;border-radius:1rem;display:flex;align-items:center;justify-content:center}
+.icon svg{width:3rem;height:3rem}
+.no{font-family:var(--fd);font-size:1.3rem;color:#6B6D7A}
+.name{font-family:var(--fd);font-size:1.6rem;margin-top:.7rem}
+.desc{font-size:1rem;line-height:1.35;color:#3E4052;margin-top:.3rem;flex:1}
+.play{align-self:flex-start;background:var(--sun);border-radius:.8rem;padding:.45rem 1.1rem;font-weight:900;font-size:1.1rem;margin-top:.9rem;box-shadow:0 .25rem 0 rgba(0,0,0,.18)}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.2rem;padding:0 3.6vw 2.5rem}
+.box{background:#fff;border:2px solid #E6D7B8;border-radius:1rem;padding:1rem 1.2rem;font-size:1rem;line-height:1.45}
+.box h2{font-family:var(--fd);font-size:1.3rem;margin-bottom:.4rem}
+.box a{color:#0B5E8E}
+pre{font-family:var(--fb);font-weight:800;background:#FFF0D1;border-radius:.6rem;padding:.6rem .8rem;margin-top:.5rem;white-space:pre-wrap}
+#toast{position:fixed;left:50%;top:1rem;transform:translate(-50%,-160%);background:var(--sun);color:var(--ink);padding:.5rem 1.1rem;border-radius:.8rem;font-weight:800;z-index:80;box-shadow:0 .2rem 0 rgba(0,0,0,.3);transition:transform .25s,opacity .25s;opacity:0;pointer-events:none}
+#toast.show{transform:translate(-50%,0);opacity:1}
+@media (max-width:800px){.wl{grid-template-columns:1fr}.off{position:static;display:inline-flex;margin-top:1rem}}
+</style></head><body>
+<header><h1>ESL Offline Classroom <span>Games</span></h1>
+<div class="steps"><div class="step"><b>1</b>Paste your word list once (or choose a sample)</div><div class="step"><b>2</b>Pick any game: the list goes with you</div><div class="step"><b>3</b>Press <span class="kc">Space</span> to play</div></div>
+<div class="off"><svg width="26" height="26" viewBox="0 0 40 40"><g fill="none" stroke="#1E2030" stroke-width="4" stroke-linecap="round"><path d="M5 16a22 22 0 0 1 30 0"/><path d="M11 22a13 13 0 0 1 18 0"/><circle cx="20" cy="29" r="2.5" fill="#1E2030"/><path d="M6 6l28 28" stroke="#E8457A"/></g></svg>Works offline</div></header>
+<section class="wl" id="wl"><div>
+<h2><b>1</b>Your word list</h2>
+<p class="n">One entry per line: <b>word = meaning</b>, or paste two columns straight from Excel / Google Sheets. Chinese, Japanese and Korean meanings work.</p>
+<textarea id="ta" spellcheck="false" placeholder="cat&#9;猫 (māo)&#10;dog = いぬ&#10;rabbit | 토끼&#10;# Food&#10;apple - a round red or green fruit"></textarea>
+<div class="r" style="align-items:center;margin-top:.4rem"><div class="stat" id="stat" style="flex:3;margin:0"></div><button class="b" id="bClr" style="flex:none">Clear box</button></div></div>
+<div class="side">
+<label>Sample list<select id="selS"></select></label>
+<label>List name<input type="text" id="nm" maxlength="40" placeholder="e.g. Unit 3 animals"></label>
+<div class="r"><button class="b" id="bImp">Import .txt</button><button class="b" id="bSave">Save list</button></div>
+<input type="file" id="file" accept=".txt,text/plain" hidden>
+<label>My saved lists<select id="selL"></select></label>
+<div class="r"><button class="b" id="bLoad">Load</button><button class="b" id="bDel">Delete</button></div>
+<p class="n" style="margin:0">Lists stay in this browser on this computer. Nothing is uploaded.</p>
+</div></section>
+<div class="gh"><b>2</b>Pick a game <small>· every game opens with the list above</small></div>
+<div class="grid">
+<a class="card" href="games/01-quiz-board.html"><div class="band" style="background:var(--sun)"></div><div class="body"><div class="row"><div class="icon" style="background:#FFF1C9"><svg viewBox="0 0 64 64"><rect x="4" y="8" width="56" height="48" rx="10" fill="#FFC83D"/><g fill="#1E2030"><rect x="11" y="15" width="12" height="9" rx="2"/><rect x="26" y="15" width="12" height="9" rx="2"/><rect x="41" y="15" width="12" height="9" rx="2"/><rect x="11" y="28" width="12" height="9" rx="2"/><rect x="26" y="28" width="12" height="9" rx="2"/><rect x="41" y="28" width="12" height="9" rx="2"/><rect x="11" y="41" width="12" height="9" rx="2"/><rect x="26" y="41" width="12" height="9" rx="2"/><rect x="41" y="41" width="12" height="9" rx="2"/></g></svg></div><span class="no">01</span></div><div class="name">Quiz Board</div><div class="desc">Teams choose a category and points, then answer.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/02-spin-wheel.html"><div class="band" style="background:var(--sky)"></div><div class="body"><div class="row"><div class="icon" style="background:#DDF0FD"><svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="26" fill="#5BB8F5"/><path d="M32 34L32 8A26 26 0 0 1 58 34Z" fill="#FFC83D"/><path d="M32 34L58 34A26 26 0 0 1 32 60Z" fill="#3DD39A"/><path d="M32 34L6 34A26 26 0 0 1 32 8Z" fill="#E8457A"/><circle cx="32" cy="34" r="5" fill="#1E2030"/><path d="M26 2h12l-6 10z" fill="#1E2030"/></svg></div><span class="no">02</span></div><div class="name">Spin Wheel</div><div class="desc">Pick a random word or a student's name.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/03-hidden-picture.html"><div class="band" style="background:var(--grape)"></div><div class="body"><div class="row"><div class="icon" style="background:#ECE3FC"><svg viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="8" fill="#FFF0D1"/><g fill="#8E5BE8"><rect x="6" y="6" width="16" height="16" rx="3"/><rect x="24" y="6" width="16" height="16" rx="3"/><rect x="42" y="6" width="16" height="16" rx="3"/><rect x="6" y="24" width="16" height="16" rx="3"/><rect x="42" y="24" width="16" height="16" rx="3"/><rect x="6" y="42" width="16" height="16" rx="3"/><rect x="42" y="42" width="16" height="16" rx="3"/></g><circle cx="32" cy="38" r="6" fill="#E8457A"/></svg></div><span class="no">03</span></div><div class="name">Hidden Picture</div><div class="desc">Open tiles one by one. 20 built-in drawings, or the word.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/04-letter-guess.html"><div class="band" style="background:var(--berry)"></div><div class="body"><div class="row"><div class="icon" style="background:#FCE1EA"><svg viewBox="0 0 64 64"><ellipse cx="32" cy="26" rx="18" ry="22" fill="#E8457A"/><ellipse cx="25" cy="17" rx="4" ry="7" fill="#fff" opacity=".6"/><path d="M28 47h8l-4 5z" fill="#E8457A"/><path d="M32 52c-4 4 4 6 0 10" stroke="#1E2030" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><span class="no">04</span></div><div class="name">Letter Guess</div><div class="desc">Guess letters before all the balloons pop.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/05-hot-potato.html"><div class="band" style="background:var(--orange)"></div><div class="body"><div class="row"><div class="icon" style="background:#FFE6D3"><svg viewBox="0 0 64 64"><circle cx="28" cy="38" r="20" fill="#1E2030"/><ellipse cx="21" cy="31" rx="4" ry="6" fill="#fff" opacity=".35"/><path d="M44 12c4-6 8-2 10-6" stroke="#1E2030" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M56 4l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1z" fill="#FF8A3D"/></svg></div><span class="no">05</span></div><div class="name">Hot Potato</div><div class="desc">Answer and pass it on before the bomb goes off.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/06-memory-match.html"><div class="band" style="background:var(--mint)"></div><div class="body"><div class="row"><div class="icon" style="background:#D8F6EA"><svg viewBox="0 0 64 64"><rect x="6" y="12" width="30" height="40" rx="6" fill="#3DD39A" transform="rotate(-10 21 32)"/><rect x="26" y="10" width="30" height="40" rx="6" fill="#5BB8F5" stroke="#fff" stroke-width="3" transform="rotate(8 41 30)"/></svg></div><span class="no">06</span></div><div class="name">Memory Match</div><div class="desc">Match each word card to its meaning card.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/07-unscramble.html"><div class="band" style="background:var(--sun)"></div><div class="body"><div class="row"><div class="icon" style="background:#FFF1C9"><svg viewBox="0 0 64 64"><g font-family="Arial" font-weight="700" font-size="20" text-anchor="middle" fill="#1E2030"><rect x="2" y="24" width="19" height="22" rx="4" fill="#FFC83D" transform="rotate(-8 11 35)"/><text x="11" y="42" transform="rotate(-8 11 35)">T</text><rect x="22" y="16" width="19" height="22" rx="4" fill="#FF8A3D"/><text x="31" y="34">A</text><rect x="43" y="26" width="19" height="22" rx="4" fill="#3DD39A" transform="rotate(10 52 37)"/><text x="52" y="44" transform="rotate(10 52 37)">C</text></g></svg></div><span class="no">07</span></div><div class="name">Unscramble</div><div class="desc">Put the mixed-up letters back in order.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/08-quick-fire.html"><div class="band" style="background:var(--sky)"></div><div class="body"><div class="row"><div class="icon" style="background:#DDF0FD"><svg viewBox="0 0 64 64"><path d="M36 4L12 36h16l-4 24 26-34H34z" fill="#FFC83D" stroke="#1E2030" stroke-width="3" stroke-linejoin="round"/></svg></div><span class="no">08</span></div><div class="name">Quick Fire</div><div class="desc">Words flash on a timer. Say them fast!</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/09-scoreboard.html"><div class="band" style="background:var(--board2)"></div><div class="body"><div class="row"><div class="icon" style="background:#DCE8E6"><svg viewBox="0 0 64 64"><rect x="4" y="14" width="56" height="36" rx="8" fill="#1F4B4A"/><text x="32" y="42" font-family="Arial" font-weight="700" font-size="24" text-anchor="middle" fill="#FFC83D">3:2</text></svg></div><span class="no">09</span></div><div class="name">Scoreboard</div><div class="desc">Big team scores and a timer for any activity.</div><div class="play">Play ▸</div></div></a>
+<a class="card" href="games/10-quiz-choice.html"><div class="band" style="background:var(--grape)"></div><div class="body"><div class="row"><div class="icon" style="background:#ECE3FC"><svg viewBox="0 0 64 64"><path d="M16 6l11 19H5z" fill="#E8457A"/><path d="M48 4l11 11-11 11-11-11z" fill="#5BB8F5"/><circle cx="16" cy="46" r="11" fill="#FFC83D"/><rect x="37" y="36" width="21" height="21" rx="3" fill="#3DD39A"/></svg></div><span class="no">10</span></div><div class="name">Quiz Choice</div><div class="desc">Four answers, four shapes. Teams pick one.</div><div class="play">Play ▸</div></div></a>
+</div>
+<div class="info">
+<div class="box"><h2>Word list format</h2>One entry per line. Separators: Tab (two spreadsheet columns), <b>=</b>, <b>|</b> or <b> - </b>. Lines starting with <b>#</b> are categories (column titles in Quiz Board). 5–100 entries.<pre># Animals
+elephant = a big grey animal with a long nose
+rabbit | 兔子 (tùzi)
+apple - りんご · 사과</pre></div>
+<div class="box"><h2>One list, every game</h2>The list you paste here travels with you: it is passed to the game inside the link, so it works in Chrome, Edge, Safari and Firefox, even with no internet. Inside any game, click <b>▦ Games</b> to jump to another game with the same list. Save up to 200 named lists in this browser. To move lists to another computer, use <b>Export .txt</b> in a game, then <b>Import .txt</b>.</div>
+<div class="box"><h2>Help &amp; printouts</h2>Press <b>?</b> in any game for the rules and keys. <b>Space</b> = start/next, <b>F</b> = full screen, <b>Esc</b> = close.<br>Printable guides: <a href="docs/Quick-Start-Letter.pdf">Quick Start (Letter)</a> · <a href="docs/Quick-Start-A4.pdf">(A4)</a> · <a href="docs/Teacher-Guide-Letter.pdf">Teacher Guide (Letter)</a> · <a href="docs/Teacher-Guide-A4.pdf">(A4)</a></div>
+</div>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem('eslgames_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('eslgames_'+k,JSON.stringify(v))}catch(e){}}};
+const SAMPLES={
+'Animals':`cat = a small pet that says "meow"
+dog = a pet that barks and wags its tail
+elephant = a big grey animal with a long nose
+giraffe = an animal with a very long neck
+lion = a big wild cat with a mane
+monkey = an animal that climbs trees and eats bananas
+rabbit = a small animal with long ears
+horse = a big animal that people ride
+cow = a farm animal that gives us milk
+duck = a bird that swims and says "quack"
+snake = a long animal with no legs
+penguin = a black and white bird that cannot fly
+tiger = a big orange cat with black stripes
+frog = a small green animal that jumps
+bear = a big strong animal that sleeps in winter`,
+'Food':`# Fruit
+apple = a round red or green fruit
+banana = a long yellow fruit
+orange = a round fruit and a colour
+# Vegetables
+carrot = a long orange vegetable
+potato = we make chips and fries from it
+tomato = a red fruit we use in salads
+# Drinks
+milk = a white drink from cows
+juice = a drink made from fruit
+water = a clear drink we need every day
+# Meals
+breakfast = the first meal of the day
+lunch = the meal in the middle of the day
+dinner = the meal in the evening
+# Snacks
+cookie = a small sweet baked snack
+popcorn = a snack we eat at the cinema
+ice cream = a cold sweet dessert`,
+'Classroom objects':`pencil = you write and draw with it
+eraser = it removes pencil marks
+ruler = you draw straight lines with it
+scissors = you cut paper with them
+glue = it makes paper stick together
+notebook = you write your lessons in it
+backpack = you carry your books in it
+desk = a table where you sit and work
+chair = you sit on it
+whiteboard = the teacher writes on it with markers
+marker = a thick pen for the whiteboard
+crayon = a stick of colour for drawing
+book = you read it
+pencil case = a small bag for pens and pencils`,
+'Jobs':`teacher = works in a school and helps students learn
+doctor = helps sick people get better
+nurse = cares for people in a hospital
+farmer = grows food and keeps animals
+chef = cooks food in a restaurant
+police officer = keeps people safe and stops crime
+firefighter = puts out fires
+pilot = flies a plane
+bus driver = drives a bus
+dentist = looks after your teeth
+singer = sings songs for people
+vet = an animal doctor
+builder = makes houses and buildings
+mail carrier = brings letters to your home`,
+'Weather':`sunny = the sun is shining
+rainy = water is falling from the sky
+cloudy = there are lots of clouds
+windy = the air is moving fast
+snowy = white snow is falling
+stormy = rain, wind and thunder
+foggy = it is hard to see far
+hot = a very high temperature
+cold = a very low temperature
+rainbow = colours in the sky after rain
+umbrella = it keeps you dry in the rain
+thunder = a loud noise in a storm`,
+'Body parts':`head = the top part of your body
+eye = you see with it
+ear = you hear with it
+nose = you smell with it
+mouth = you eat and talk with it
+tooth = white and hard; you bite with it
+hand = it has five fingers
+finger = you have ten of them
+arm = between your shoulder and your hand
+leg = you walk with it
+foot = you stand on it
+knee = the middle of your leg
+shoulder = between your neck and your arm
+hair = it grows on your head`,
+'Family':`mother = your mum
+father = your dad
+sister = a girl with the same parents as you
+brother = a boy with the same parents as you
+grandmother = your mum's or dad's mother
+grandfather = your mum's or dad's father
+aunt = your mum's or dad's sister
+uncle = your mum's or dad's brother
+cousin = your aunt's or uncle's child
+baby = a very young child
+son = a boy child of a parent
+daughter = a girl child of a parent`,
+'Daily routine':`wake up = open your eyes in the morning
+get up = get out of bed
+brush your teeth = clean your teeth
+take a shower = wash your body with water
+get dressed = put on your clothes
+eat breakfast = have the first meal of the day
+go to school = travel to school
+have lunch = eat in the middle of the day
+do homework = study at home after school
+play = have fun with friends or toys
+watch TV = look at shows on television
+cook dinner = make the evening meal
+wash your face = clean your face with water
+go to bed = go to sleep at night`,
+'Feelings':`happy = feeling good and smiling
+sad = feeling bad; you may cry
+angry = feeling very mad
+tired = you need to sleep
+hungry = you want to eat
+thirsty = you want to drink
+scared = afraid of something
+excited = very happy about something soon
+bored = nothing is interesting
+surprised = something unexpected happened
+nervous = worried before something important
+proud = happy about something you did well`,
+'Transport':`car = a vehicle with four wheels for a family
+bus = a big vehicle that carries many people
+train = it runs on rails
+plane = it flies in the sky
+bike = two wheels; you pedal it
+boat = it moves on water
+taxi = a car you pay to ride in
+subway = a train that runs under the city
+helicopter = it flies with spinning blades on top
+truck = a big vehicle that carries things
+motorcycle = a bike with an engine
+ship = a very big boat`,
+'Animals 中文':`cat = 猫 (māo)
+dog = 狗 (gǒu)
+elephant = 大象 (dàxiàng)
+giraffe = 长颈鹿 (chángjǐnglù)
+lion = 狮子 (shīzi)
+monkey = 猴子 (hóuzi)
+rabbit = 兔子 (tùzi)
+horse = 马 (mǎ)
+cow = 奶牛 (nǎiniú)
+duck = 鸭子 (yāzi)
+snake = 蛇 (shé)
+penguin = 企鹅 (qǐ'é)
+tiger = 老虎 (lǎohǔ)
+frog = 青蛙 (qīngwā)
+bear = 熊 (xióng)`,
+'Food 日本語·한국어':`apple = りんご · 사과
+banana = バナナ · 바나나
+orange = オレンジ · 오렌지
+carrot = にんじん · 당근
+potato = じゃがいも · 감자
+tomato = トマト · 토마토
+milk = ぎゅうにゅう · 우유
+water = みず · 물
+rice = ごはん · 밥
+bread = パン · 빵
+egg = たまご · 계란
+fish = さかな · 생선
+chicken = とりにく · 닭고기
+ice cream = アイスクリーム · 아이스크림`};
+function parseList(text){const out=[],seen={};let dup=0,trunc=0,hasM=false;
+String(text||'').split(/\r?\n/).forEach(raw=>{const line=raw.trim();if(!line||line.charAt(0)==='#')return;
+let w=line,m='';const seps=['\t','=','|',' - '];for(let s=0;s<seps.length;s++){const i=line.indexOf(seps[s]);if(i>0){w=line.slice(0,i).trim();m=line.slice(i+seps[s].length).trim();break}}
+if(!w)return;const k=w.toLowerCase();if(seen[k]){dup++;return}seen[k]=1;if(out.length>=100){trunc++;return}if(m)hasM=true;out.push(w)});
+return {n:out.length,dup:dup,trunc:trunc,hasM:hasM}}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2800)}
+function stat(){const p=parseList($('#ta').value);let m=p.n<5?'<span class="warn">'+p.n+' entr'+(p.n===1?'y':'ies')+' — add at least 5 to play.</span>':'<span class="ok">✓ '+p.n+' entries ready for all 10 games</span>';
+if(p.dup)m+=' · '+p.dup+' duplicate'+(p.dup>1?'s':'')+' removed';if(p.trunc)m+=' · <span class="warn">only the first 100 are used</span>';if(p.n&&!p.hasM)m+=' · no meanings';$('#stat').innerHTML=m;return p}
+function remember(){LS.set('current',{n:$('#nm').value.trim(),t:$('#ta').value})}
+function drawSaved(){const L=LS.get('lists',[]);$('#selL').innerHTML=L.length?L.map((x,i)=>'<option value="'+i+'">'+esc(x.n)+'</option>').join(''):'<option value="">(no saved lists yet)</option>'}
+(function(){const s=$('#selS');s.innerHTML='<option value="">Choose a sample list…</option>'+Object.keys(SAMPLES).map(k=>'<option>'+esc(k)+'</option>').join('');
+let hw=null;const H=location.hash.slice(1);if(H.indexOf('w=')===0){hw={t:'',n:''};H.split('&').forEach(p=>{try{if(p.indexOf('w=')===0)hw.t=decodeURIComponent(p.slice(2));if(p.indexOf('n=')===0)hw.n=decodeURIComponent(p.slice(2))}catch(e){}});if(!hw.t)hw=null}
+const cur=hw||LS.get('current',null);if(cur&&cur.t){$('#ta').value=cur.t;$('#nm').value=cur.n||''}else{$('#ta').value=SAMPLES['Animals 中文'];$('#nm').value='Animals 中文'}
+drawSaved();stat();if(hw)remember();
+s.onchange=()=>{if(!s.value)return;$('#ta').value=SAMPLES[s.value];$('#nm').value=s.value;stat();remember()};
+const ta=$('#ta');ta.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.shiftKey&&!e.ctrlKey&&!e.altKey&&!e.metaKey){e.preventDefault();const a=ta.selectionStart,b=ta.selectionEnd;ta.value=ta.value.slice(0,a)+'\t'+ta.value.slice(b);ta.selectionStart=ta.selectionEnd=a+1;ta.dispatchEvent(new Event('input'))}});
+ta.addEventListener('input',()=>{clearTimeout(ta._t);ta._t=setTimeout(()=>{stat();remember()},150)});
+$('#nm').addEventListener('change',remember);
+$('#bClr').onclick=()=>{$('#ta').value='';$('#nm').value='';$('#selS').value='';stat();remember();$('#ta').focus()};
+$('#bImp').onclick=()=>$('#file').click();
+$('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#ta').value=String(r.result);$('#nm').value=f.name.replace(/\.txt$/i,'').slice(0,40);stat();remember();toast('Imported '+f.name)};r.readAsText(f,'UTF-8');e.target.value=''};
+$('#bSave').onclick=()=>{const n=$('#nm').value.trim()||'My list',L=LS.get('lists',[]);let i=L.findIndex(x=>x.n===n);if(i<0){if(L.length>=200){toast('You can keep 200 saved lists. Delete one first.');return}L.push({n:n,t:$('#ta').value});i=L.length-1}else L[i].t=$('#ta').value;LS.set('lists',L);drawSaved();$('#selL').value=String(i);$('#nm').value=n;remember();toast('Saved “'+n+'” in this browser')};
+const sel=()=>{const L=LS.get('lists',[]),i=parseInt($('#selL').value,10);if(isNaN(i)||!L[i]){toast('No saved list selected.');return null}return {L:L,i:i}};
+$('#bLoad').onclick=()=>{const r=sel();if(!r)return;$('#ta').value=r.L[r.i].t;$('#nm').value=r.L[r.i].n;stat();remember();toast('Loaded “'+r.L[r.i].n+'”')};
+$('#bDel').onclick=()=>{const r=sel();if(!r)return;if(!confirm('Delete “'+r.L[r.i].n+'”?'))return;r.L.splice(r.i,1);LS.set('lists',r.L);drawSaved();toast('Deleted')};
+document.querySelectorAll('a.card').forEach(a=>a.addEventListener('click',e=>{const p=parseList($('#ta').value);if(p.n<5&&a.getAttribute('href').indexOf('09-')<0){e.preventDefault();toast('Add at least 5 entries first (or choose a sample list).');$('#ta').focus();return}
+e.preventDefault();remember();location.href=a.getAttribute('href')+'#w='+encodeURIComponent($('#ta').value)+'&n='+encodeURIComponent($('#nm').value.trim())}));
+})();
+</script>
+</body></html>

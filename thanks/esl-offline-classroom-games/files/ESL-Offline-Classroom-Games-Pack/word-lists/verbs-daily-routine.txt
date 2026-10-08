@@ -1,0 +1,15 @@
+# Daily routine
+wake up = open your eyes in the morning
+get up = get out of bed
+brush your teeth = clean your teeth
+take a shower = wash your body with water
+get dressed = put on your clothes
+eat breakfast = have the first meal of the day
+go to school = travel to school
+have lunch = eat in the middle of the day
+do homework = study at home after school
+play = have fun with friends or toys
+watch TV = look at shows on television
+cook dinner = make the evening meal
+wash your face = clean your face with water
+go to bed = go to sleep at night

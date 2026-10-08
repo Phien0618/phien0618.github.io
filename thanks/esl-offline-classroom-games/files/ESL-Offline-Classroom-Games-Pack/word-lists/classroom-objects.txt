@@ -1,0 +1,15 @@
+# Classroom objects
+pencil = you write and draw with it
+eraser = it removes pencil marks
+ruler = you draw straight lines with it
+scissors = you cut paper with them
+glue = it makes paper stick together
+notebook = you write your lessons in it
+backpack = you carry your books in it
+desk = a table where you sit and work
+chair = you sit on it
+whiteboard = the teacher writes on it with markers
+marker = a thick pen for the whiteboard
+crayon = a stick of colour for drawing
+book = you read it
+pencil case = a small bag for pens and pencils
