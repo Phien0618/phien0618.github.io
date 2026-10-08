@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Quote a Freelance Project: Step-by-Step with a Worked Example</title>
+<meta name="description" content="A step-by-step method for quoting a freelance project: break the work into tasks, add contingency, offer three tiers and set a deposit. Includes a free quote calculator and a copy-ready quote template.">
+<link rel="stylesheet" href="../../style.css">
+<style>
+.tpl{background:#f6f6f4;border-left:4px solid #888;padding:1rem 1.2rem;white-space:pre-wrap;font-family:inherit;margin:1rem 0}
+.calc label{display:block;margin:.5rem 0 .2rem}
+.calc input{padding:.4rem;width:10rem}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+th,td{border:1px solid #ddd;padding:.4rem .6rem;text-align:left}
+#qout{margin-top:1rem}
+</style>
+</head>
+<body>
+<header>
+  <a href="../../index.html">Hustle Studio</a>
+  <nav><a href="../index.html">Free guides</a><a href="../../index.html#products">Products</a></nav>
+</header>
+
+<h1>How to quote a freelance project (step by step, with a worked example)</h1>
+
+<p>Most quote templates online give you a blank table and leave you to fill it in. The table isn't the hard part. The hard part is deciding <em>what number goes in it</em>, so you don't underprice the work, scare the client off, or end up doing twice the scope for the same fee. This guide walks through a repeatable method, one worked example, a free calculator, and a quote you can copy.</p>
+
+<h2>Step 1: know your floor rate before you look at the project</h2>
+<p>Your floor is the lowest hourly rate you can accept and still cover your costs and income target. Work it out once and keep it, so it doesn't change every time a client mentions their budget:</p>
+<p><strong>Floor rate = (target yearly income + yearly business costs) ÷ billable hours per year</strong></p>
+<p>Billable hours are fewer than you think. After admin, sales, holidays and sick days, many solo freelancers bill somewhere between 900 and 1,400 hours a year, not 2,000. Use your own numbers if you've tracked them. This number is internal. You never show it to the client, but every quote has to land above it.</p>
+
+<h2>Step 2: break the project into tasks you can estimate</h2>
+<p>Don't estimate "a website". Estimate the pieces: discovery call and brief, wireframes, design, build, content entry, testing, launch, handover. Small tasks are easier to estimate honestly, and the list doubles as your scope. If a task is too vague to estimate, it's a sign you need to ask the client a question before you quote.</p>
+<p>Include the work people forget: meetings, email back-and-forth, revision rounds, exporting files, and project management. A common rule of thumb is to add 10–20% of the total for communication alone.</p>
+
+<h2>Step 3: add contingency, openly</h2>
+<p>Estimates are almost always optimistic. Add a contingency buffer, usually 10–25% depending on how well-defined the project is: low for repeat work you've done many times, high for anything new to you or with an unclear brief. You can show it as a separate line ("Contingency, 15%") or fold it into the task estimates. Showing it is more honest and rarely gets challenged.</p>
+
+<h2>Step 4: turn hours into a project price, then sanity-check against value</h2>
+<p>Hours × rate gives you a cost-based price. Then ask: what is this worth to the client? A landing page for a product launch is worth more than an internal "about us" page with the same hours. If the value is clearly higher, price above your hourly math. If the client's budget is below your floor, reduce scope, don't cut your rate.</p>
+
+<h2>Step 5: offer three options, not one</h2>
+<p>A single price invites a yes/no decision, and often a no. Three tiers turn it into "which one?":</p>
+<ul>
+  <li><strong>Essential:</strong> the minimum scope that solves the problem.</li>
+  <li><strong>Standard:</strong> what you actually recommend. Design the quote so this is the obvious choice.</li>
+  <li><strong>Premium:</strong> more scope, faster turnaround or extra support. Some clients will take it, and it makes Standard look reasonable.</li>
+</ul>
+<p>Each tier should differ in <em>scope or outcome</em>, not just in price, and each one must be above your floor.</p>
+
+<h2>Step 6: set payment terms and a deposit</h2>
+<p>For new clients, 30–50% upfront is a common deposit, with the rest at milestones or on delivery. State the number of revision rounds included, what counts as extra work, how long the quote is valid (14–30 days is typical), and your payment terms (for example "due within 14 days of invoice").</p>
+
+<h2>Free quote calculator</h2>
+<p>Enter your rate and the estimated hours. The calculator adds contingency and builds three tiers with deposits. Everything runs in your browser and nothing is sent anywhere.</p>
+<div class="card calc">
+  <label for="qrate">Hourly rate</label>
+  <input id="qrate" type="number" value="65" min="0">
+  <label for="qhours">Estimated hours for the recommended (Standard) scope</label>
+  <input id="qhours" type="number" value="40" min="0">
+  <label for="qcont">Contingency (%)</label>
+  <input id="qcont" type="number" value="15" min="0">
+  <label for="qdep">Deposit (%)</label>
+  <input id="qdep" type="number" value="40" min="0" max="100">
+  <div id="qout"></div>
+</div>
+<script>
+function qcalc(){
+  var g=function(id){return +document.getElementById(id).value};
+  var r=g('qrate'),h=g('qhours'),c=g('qcont'),d=g('qdep'),o=document.getElementById('qout');
+  o.textContent='';
+  if(!(r>0&&h>0&&c>=0&&d>=0&&d<=100)){o.textContent='Enter positive numbers (deposit 0–100%).';return;}
+  var tiers=[['Essential',0.65],['Standard',1],['Premium',1.5]];
+  var t=document.createElement('table'),hd=t.insertRow();
+  ['Tier','Hours','Price','Deposit'].forEach(function(x){var th=document.createElement('th');th.textContent=x;hd.appendChild(th)});
+  tiers.forEach(function(tr){
+    var hrs=h*tr[1],price=Math.ceil(hrs*r*(1+c/100)/10)*10,row=t.insertRow();
+    [tr[0],hrs.toFixed(1),price.toLocaleString(),Math.round(price*d/100).toLocaleString()].forEach(function(v){row.insertCell().textContent=v});
+  });
+  o.appendChild(t);
+  var p=document.createElement('p');p.className='muted';
+  p.textContent='Essential assumes about 65% of the Standard scope and Premium about 150%. Adjust the scope of each tier to match these hours. Prices are rounded up to the nearest 10.';
+  o.appendChild(p);
+}
+['qrate','qhours','qcont','qdep'].forEach(function(id){document.getElementById(id).addEventListener('input',qcalc)});qcalc();
+</script>
+
+<h2>Worked example: a small business website</h2>
+<p>A designer's floor rate is 55/hour and their normal rate is 65/hour. A client wants a five-page website. The task breakdown for the recommended scope:</p>
+<table>
+  <tr><th>Task</th><th>Hours</th></tr>
+  <tr><td>Discovery call, brief and sitemap</td><td>3</td></tr>
+  <tr><td>Wireframes (5 pages)</td><td>5</td></tr>
+  <tr><td>Visual design, 2 revision rounds</td><td>12</td></tr>
+  <tr><td>Build and responsive testing</td><td>12</td></tr>
+  <tr><td>Content entry and basic on-page SEO</td><td>4</td></tr>
+  <tr><td>Launch, handover and a 30-minute training call</td><td>4</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>40</strong></td></tr>
+</table>
+<p>40 hours × 65 = 2,600. Add 15% contingency: 2,990, rounded to <strong>2,990</strong>. That's the Standard tier. Essential (one-page site plus contact form, about 26 hours) comes to 1,950. Premium (Standard plus a blog setup, copywriting help and 60 days of support, about 60 hours) comes to 4,490. A 40% deposit on Standard is 1,196. These are exactly the numbers the calculator above shows with its default values, so you can check the math.</p>
+
+<h2>Copy-ready quote template</h2>
+<div class="tpl">Quote for [CLIENT NAME]: [PROJECT NAME]
+Date: [DATE] · Valid until: [DATE + 21 days]
+
+THE GOAL
+[One or two sentences in the client's words: what they want to achieve and why.]
+
+OPTIONS
+1. Essential: [PRICE]
+   [3–4 bullet points of scope]
+   Timeline: [X weeks]
+
+2. Standard (recommended): [PRICE]
+   Everything in Essential, plus:
+   [3–4 bullet points]
+   Timeline: [X weeks]
+
+3. Premium: [PRICE]
+   Everything in Standard, plus:
+   [2–3 bullet points: extra scope, priority turnaround or support period]
+   Timeline: [X weeks]
+
+INCLUDED IN ALL OPTIONS
+- [N] rounds of revisions per deliverable
+- [Communication: e.g. weekly update by email]
+
+NOT INCLUDED
+- [Things the client might assume are included, e.g. hosting fees, stock photos, copywriting]
+- Additional work is billed at [RATE]/hour or quoted separately.
+
+PAYMENT
+[DEPOSIT %] deposit to book the start date, [REMAINDER] on [milestone/delivery].
+Invoices are due within [14] days.
+
+NEXT STEP
+Reply with the option you'd like, and I'll send the agreement and deposit invoice.
+I can start on [DATE].</div>
+
+<h2>Common quoting mistakes</h2>
+<ul>
+  <li><strong>Quoting on the call.</strong> Say "I'll send you a written quote by [day]". Numbers given on the spot are almost always too low.</li>
+  <li><strong>No "not included" section.</strong> Scope creep starts with what you didn't write down.</li>
+  <li><strong>Discounting instead of descoping.</strong> If the price is too high, offer the Essential tier rather than cutting Standard's price.</li>
+  <li><strong>Unlimited revisions.</strong> Always state a number.</li>
+  <li><strong>Open-ended validity.</strong> A quote without an expiry date can come back six months later when your rates have gone up.</li>
+</ul>
+
+<div class="card">
+  <h2 style="margin-top:0">Want this as a reusable tool?</h2>
+  <p>The <a href="../../index.html#products">Freelance Pricing &amp; Quote Kit</a> ($12) is an offline calculator and spreadsheet that works out your floor rate from your real costs and hours, lets you list tasks line by line, and builds a three-tier quote with contingency and deposit as copyable text. It autosaves in your browser.</p>
+  <a class="btn" href="../../index.html#products">Get the Pricing &amp; Quote Kit</a>
+</div>
+
+<h2>Related guides</h2>
+<ul>
+  <li><a href="../raise-freelance-rates-email/index.html">How to tell existing clients you're raising your rates (5 email templates + calculator)</a></li>
+  <li><a href="../index.html">All free guides for freelancers</a></li>
+</ul>
+
+<p class="muted">General information, not financial or legal advice. Figures in the example are illustrative. Last updated October 2026.</p>
+
+<footer>
+  © 2026 Hustle Studio · <a href="../../privacy.html">Privacy</a> · <a href="../../terms.html">Terms</a> · Support: <a href="mailto:chenphien@gmail.com">chenphien@gmail.com</a>
+</footer>
+</body>
+</html>
