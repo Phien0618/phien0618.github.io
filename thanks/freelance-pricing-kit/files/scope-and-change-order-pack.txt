@@ -1,0 +1,136 @@
+FREELANCE SCOPE & CHANGE ORDER PACK
+Part of the Freelance Pricing & Quote Kit by Hustle Studio
+Plain text: paste into Google Docs, Word, Notion or an email. Replace everything in [brackets].
+Templates only. This is not legal advice; for large contracts, have a lawyer review your terms.
+
+======================================================================
+1. SCOPE OF WORK SECTION (paste into your proposal or quote)
+======================================================================
+
+SCOPE OF WORK
+Project: [Project name]
+Goal: [One sentence: what the finished work should achieve for the client.]
+
+Included
+- [Deliverable 1, with a number: e.g. "Design of 5 pages: Home, About, Services, Blog index, Contact"]
+- [Deliverable 2: e.g. "Build in WordPress using the client's existing hosting"]
+- [Deliverable 3: e.g. "Entry of client-supplied text and images"]
+- Revisions: [2] rounds of consolidated feedback per deliverable
+- Meetings: [1] kickoff call + [2] check-in calls of up to [30] minutes
+- Support: [14] days of bug fixes after launch
+
+Not included (available as add-ons on request)
+- [Copywriting or editing of text]
+- [Stock photos or paid fonts/plugins; billed at cost if needed]
+- [Additional pages beyond the 5 listed]
+- [Ongoing maintenance, hosting or updates after the support period]
+- [SEO, ads or analytics setup]
+
+Client responsibilities
+- Provide [text, images, logins] by [date]
+- Send consolidated feedback (one email per round) within [3] working days
+- Delays in client materials or feedback move the delivery date by the same amount
+
+Additional work
+Anything not listed under "Included" is quoted separately before work starts,
+at [rate]/hour or as a fixed price agreed in writing via a change order.
+Rush work (delivery earlier than the agreed timeline) carries a [25]% fee.
+
+Tip: aim for 3-5 "Not included" bullets. Pick the things clients in your
+field most often assume are included.
+
+======================================================================
+2. KICKOFF EMAIL RECAP (send on day 1)
+======================================================================
+
+Subject: [Project]: kickoff recap and next steps
+
+Hi [Name],
+
+Great to get started. A quick recap so we're on the same page:
+
+- What I'm delivering: [short list]
+- Revisions: [2] rounds per deliverable, with feedback collected into one email per round
+- Timeline: [milestone 1, date] → [milestone 2, date] → launch [date]
+- What I need from you: [materials] by [date]
+- Not included this time: [2-3 most likely assumptions]
+
+Anything outside this list I'll quote separately before starting, so there
+are never surprises on the invoice.
+
+Looking forward to it,
+[Your name]
+
+======================================================================
+3. CHANGE ORDER
+======================================================================
+
+CHANGE ORDER #[1]
+Project: [Project name]                 Date: [date]
+Client: [Client name]                   Original agreement: [proposal/contract, date]
+
+Requested change
+[One or two sentences describing exactly what is added or changed.]
+
+Not included in this change
+[e.g. "Copywriting for the new page"]
+
+Estimate:         [X] hours incl. communication overhead
+Price impact:     +[amount]     New project total: [amount]
+Timeline impact:  [none / delivery moves from X to Y]
+Payment:          [added to final invoice / 50% before work starts]
+
+All other terms of the original agreement remain unchanged.
+
+Approved by: ______________________   Date: ____________
+(A reply email saying "approved" also counts as approval.)
+
+How to price it: estimated hours × (1 + overhead %, typically 10-20%) × your
+rate × rush multiplier (1.0 normal, 1.25 rush, 1.5 urgent). Round up. The
+pricing-calculator.html in this kit gives you your rate.
+
+======================================================================
+4. CHANGE LOG (keep one per project; share it at each milestone)
+======================================================================
+
+#  | Date     | Request (who asked)          | In scope? | Hours | Price  | Status
+---|----------|------------------------------|-----------|-------|--------|------------------
+1  | [date]   | [e.g. Extra FAQ page - Sam]  | No        | 4     | [300]  | Approved CO #1
+2  | [date]   | [e.g. Button colour - Sam]   | Small     | 0.25  | 0      | Done, absorbed (noted)
+3  | [date]   | [ ... ]                      |           |       |        | Quoted / Declined
+
+Why keep one: small "absorbed" favours become visible, so when they add up
+you can bundle them into a single change order with evidence.
+
+======================================================================
+5. REPLY SCRIPTS (short versions)
+======================================================================
+
+A) Small favour you absorb
+"Done! That one was outside our scope but quick, so no charge this time. For
+anything else beyond scope I'll send a short quote first."
+
+B) New feature
+"Good idea. It isn't in the current scope, so two options: add it now for
+[price] (delivery moves to [date]), or do it as phase 2 after launch so the
+current date holds. Which do you prefer? I'll send a change order."
+
+C) Extra revision round
+"We've used the [2] included rounds. More rounds are [price] each. Reply
+'go ahead' and I'll start today."
+
+D) Deadline pulled earlier
+"Options: full scope by [new date] with a [amount] rush fee; core items by
+[new date] and the rest on the original date at no extra cost; or keep [date]."
+
+E) Pile-up of small requests
+"I've listed the extra requests from the past weeks: [list]. Together
+they're about [X] hours. I suggest one change order for [price]. Once it's
+approved, I'll fold them into the next delivery."
+
+F) Saying it on a call
+"Let me check how that fits the scope and come back to you by email today."
+(Never agree to price or timeline live. Confirm in writing.)
+
+----------------------------------------------------------------------
+Questions or problems: chenphien@gmail.com
