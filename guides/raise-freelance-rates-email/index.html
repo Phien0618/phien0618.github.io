@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Tell Existing Clients You're Raising Your Rates (5 Email Templates)</title>
+<meta name="description" content="Five copy-ready rate increase emails for freelancers (hourly, retainer, project, grandfathered, and a reply to pushback), plus a free calculator for how many clients you can lose and still earn more.">
+<link rel="stylesheet" href="../../style.css">
+<style>
+.tpl{background:#f6f6f4;border-left:4px solid #888;padding:1rem 1.2rem;white-space:pre-wrap;font-family:inherit;margin:1rem 0}
+.calc label{display:block;margin:.5rem 0 .2rem}
+.calc input{padding:.4rem;width:10rem}
+#out{margin-top:1rem;font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <a href="../../index.html">Hustle Studio</a>
+  <nav><a href="../index.html">Free guides</a><a href="../../index.html#products">Products</a></nav>
+</header>
+
+<h1>How to tell existing clients you're raising your rates (5 email templates)</h1>
+
+<p>Raising rates with clients you already have is harder than quoting a new one. You know them, they know your old number, and the email feels like a confrontation. It doesn't need to be. A good rate-increase email is short, gives a clear date, doesn't apologize, and leaves the client with an easy next step.</p>
+
+<p>Below you'll find a calculator that shows how much a raise is actually worth, a short checklist, and five emails you can copy for the most common situations: hourly clients, monthly retainers, project-based work, a softer "grandfathered" version, and a reply for when a client pushes back.</p>
+
+<h2>First: what is the raise actually worth?</h2>
+<p>A lot of freelancers put off raising rates because they're afraid of losing a client. Run the numbers first. This calculator shows your income before and after the increase, and how much client work you could lose before you'd end up earning less.</p>
+
+<div class="card calc">
+  <label for="rate">Current rate (hourly, daily or per month, any currency)</label>
+  <input id="rate" type="number" value="60" min="0">
+  <label for="units">Billable units per month (hours, days or 1 for a retainer)</label>
+  <input id="units" type="number" value="80" min="0">
+  <label for="pct">Planned increase (%)</label>
+  <input id="pct" type="number" value="15" min="0">
+  <div id="out"></div>
+</div>
+<script>
+function calc(){
+  var r=+document.getElementById('rate').value,u=+document.getElementById('units').value,p=+document.getElementById('pct').value;
+  var o=document.getElementById('out');
+  if(!(r>0&&u>0&&p>=0)){o.textContent='Enter positive numbers.';return;}
+  var now=r*u,nr=r*(1+p/100),after=nr*u,lose=p>0?(1-1/(1+p/100))*100:0;
+  o.innerHTML='New rate: '+nr.toFixed(2)+'<br>Monthly income now: '+now.toFixed(0)+' &rarr; after the raise (same workload): '+after.toFixed(0)+' (+'+(after-now).toFixed(0)+')'+
+  '<br>Break-even: you could lose '+lose.toFixed(1)+'% of your billable work ('+(u*lose/100).toFixed(1)+' units/month) and still earn the same as today, with fewer hours worked.';
+}
+['rate','units','pct'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});calc();
+</script>
+<p class="muted">The arithmetic: at a new rate of r × (1 + p), you earn the same with 1/(1 + p) of the work. With a 15% raise, that means you could lose about 13% of your billable work and come out even.</p>
+
+<h2>Before you send anything: a 6-point checklist</h2>
+<ol>
+  <li><strong>Pick a number you can defend.</strong> For an existing client, 10–20% at a time is common and easy to accept. If you're far below market, think about a bigger jump for new clients and step existing ones up over two rounds.</li>
+  <li><strong>Read your contract.</strong> If it fixes rates for a term or requires a notice period, follow it. A rate increase can't override a signed agreement. It applies from the next term or renewal.</li>
+  <li><strong>Give real notice.</strong> 30 days is the minimum. 60 days is kinder for retainers and for clients who set budgets quarterly. Always name an exact date, not "next month".</li>
+  <li><strong>Time it well.</strong> Good moments: right after a successful delivery, at contract renewal, or ahead of a new calendar or fiscal year. Bad moments: in the middle of a project, or the week after you missed a deadline.</li>
+  <li><strong>Send it as a separate email.</strong> If you bury it in an invoice or a status update, the client may feel ambushed later.</li>
+  <li><strong>Decide your walk-away point in advance.</strong> Know whether you'd keep the client at the old rate, meet halfway, or let them go. Then you won't be negotiating against yourself on a call.</li>
+</ol>
+
+<h2>Template 1: hourly or daily-rate client</h2>
+<div class="tpl">Subject: Rate update effective [DATE]
+
+Hi [NAME],
+
+Thanks for another good stretch of work together. [ONE SPECIFIC RESULT, e.g. "The new onboarding flow went live on schedule and support tickets have dropped."]
+
+I'm writing to let you know that from [DATE, at least 30 days away] my rate will be [NEW RATE] per [hour/day], up from [OLD RATE]. Anything we start before that date will be billed at the current rate.
+
+I'm looking forward to continuing the work on [UPCOMING PROJECT/AREA]. If you'd like to talk about how this affects your budget or planning, just reply and we'll find a time.
+
+Best,
+[YOUR NAME]</div>
+<p><strong>Why it works:</strong> it opens with a concrete result rather than a vague thank-you, states the change once with both numbers and a date, protects work already in progress, and offers a conversation without asking for permission.</p>
+
+<h2>Template 2: monthly retainer</h2>
+<div class="tpl">Subject: Retainer update for [MONTH YEAR]
+
+Hi [NAME],
+
+Over the past [PERIOD] the retainer has covered [WHAT YOU ACTUALLY DO, e.g. "weekly content, the monthly report and ad-hoc design requests"]. I've enjoyed it and I'd like to keep it going.
+
+Starting with the [MONTH] invoice, the retainer will be [NEW AMOUNT]/month (currently [OLD AMOUNT]). Scope stays the same: [SHORT SCOPE LIST].
+
+If the budget is tight, an alternative is to keep the current fee and reduce the scope to [SMALLER SCOPE]. Let me know which works better by [DATE], and I'll update the agreement.
+
+Thanks,
+[YOUR NAME]</div>
+<p><strong>Why it works:</strong> retainer clients care most about predictability. Offering a smaller-scope option at the old price gives them a "yes" either way. Both outcomes raise your effective rate.</p>
+
+<h2>Template 3: project-based client</h2>
+<div class="tpl">Subject: Pricing for upcoming projects
+
+Hi [NAME],
+
+Now that [LAST PROJECT] is wrapped, a quick heads-up for planning: from [DATE] my project pricing is changing. A project like [LAST PROJECT] would now be quoted at around [NEW PRICE] (it was [OLD PRICE]).
+
+Anything you send me before [DATE] I'll still quote at the current pricing. Happy to look at what's coming up next whenever you're ready.
+
+Best,
+[YOUR NAME]</div>
+<p><strong>Why it works:</strong> project clients don't buy hours, so frame the change around a project they recognize. The "quote before [DATE]" line is a fair deadline that often brings in work early.</p>
+
+<h2>Template 4: the gentle version (grandfathering a long-term client)</h2>
+<div class="tpl">Subject: A note about my rates
+
+Hi [NAME],
+
+You were one of my first clients, and I really value that. My rate for new clients is now [NEW RATE]. I've kept yours at [OLD RATE] until now, and I'd like to move it to [MIDPOINT RATE] from [DATE, 60 days away]. It will stay there through at least [MONTH YEAR].
+
+Thanks for the trust you've put in me. I'm glad to answer any questions.
+
+Warmly,
+[YOUR NAME]</div>
+<p><strong>Why it works:</strong> it's honest that they already have a discount, the step up is smaller, and the guaranteed period gives them certainty. Use this for clients you'd really hate to lose.</p>
+
+<h2>Template 5: replying when a client pushes back</h2>
+<div class="tpl">Hi [NAME],
+
+Thanks for being upfront, I appreciate it. I understand the new rate is more than you'd planned for.
+
+The rate itself is staying at [NEW RATE], but a few options might help:
+- Reduce the scope to [SMALLER SCOPE] so the monthly total stays close to what you pay now.
+- Move the start date of the new rate to [LATER DATE] so it falls in your next budget cycle.
+- [If true] A [3/6]-month commitment at [SLIGHTLY LOWER RATE].
+
+If none of these work, I understand, and I'll make sure everything is handed over cleanly. Just let me know which way you'd like to go.
+
+Best,
+[YOUR NAME]</div>
+<p><strong>Why it works:</strong> you hold the rate but stay flexible on scope, timing and commitment. Offering a clean handover shows you're not bluffing, and that alone often settles things.</p>
+
+<h2>Mistakes that make clients say no</h2>
+<ul>
+  <li><strong>Apologizing or over-explaining.</strong> Saying "I'm so sorry, costs have gone up and I hate to do this…" invites negotiation. One sentence of context is enough.</li>
+  <li><strong>Leaving out the old number.</strong> Clients will look it up anyway. Show both so there are no surprises on the invoice.</li>
+  <li><strong>Using percentages only.</strong> "A 15% increase" makes them do math. Give the actual new figure.</li>
+  <li><strong>No date, or a date that's too soon.</strong> Without a clear effective date the change feels optional. A date that's too soon feels hostile.</li>
+  <li><strong>Raising everyone at once without a plan.</strong> Stagger it if a few clients make up most of your income. Use the calculator above to see the risk.</li>
+</ul>
+
+<h2>After you send it</h2>
+<p>Most clients reply with a short "noted, thanks", or don't reply at all. Treat silence as acceptance, but mention the new rate again in the last invoice before the change ("Reminder: from [DATE], the rate is [NEW RATE]"). Update your proposal template and contracts on the same day so new clients get quoted the new number right away.</p>
+
+<div class="card">
+  <h2 style="margin-top:0">Not sure what your new rate should be?</h2>
+  <p>The <a href="../../index.html#products">AI-First Freelancer Playbook</a> includes a rate-setting worksheet with four methods (minimum viable, market, value-based and target income), a proposal template with tiered pricing, and ready-made AI prompts for rate increases, scope creep and overdue invoices. $19, instant download. If you only need the numbers, the <a href="../../index.html#products">Freelance Pricing &amp; Quote Kit</a> ($12) calculates your floor rate and builds three-tier quotes offline.</p>
+  <a class="btn" href="../../index.html#products">See the playbook</a>
+</div>
+
+<h2>Related guides</h2>
+<ul>
+  <li><a href="../index.html">All free guides for freelancers</a></li>
+</ul>
+
+<p class="muted">General information, not legal advice. Check your contract and local rules before changing agreed terms. Last updated October 2026.</p>
+
+<footer>
+  © 2026 Hustle Studio · <a href="../../privacy.html">Privacy</a> · <a href="../../terms.html">Terms</a> · Support: <a href="mailto:chenphien@gmail.com">chenphien@gmail.com</a>
+</footer>
+</body>
+</html>

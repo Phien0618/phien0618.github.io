@@ -1,0 +1,34 @@
+Item,Value,Tier (1-3) / note
+Target take-home income per year (after tax),60000,edit
+Business costs per year,6000,edit
+Effective tax rate on profit (%),25,edit
+Savings buffer (%),10,edit
+Working weeks per year,44,edit
+Hours worked per week,40,edit
+Billable share of hours (%),60,edit
+Hours per day rate,8,edit
+Revenue needed per year,"=(B2/(1-B4/100)+B3)*(1+B5/100)",formula
+Billable hours per year,=B6*B7*B8/100,formula
+Minimum hourly rate,=B10/B11,formula
+Rounded hourly rate,"=CEILING(B12,5)",formula
+Minimum day rate,=B13*B9,formula
+Revenue needed per month,=B10/12,formula
+Hourly rate to quote at,=B13,edit (overwrite with your market rate)
+Contingency (%),15,edit
+Deposit (%),50,edit
+QUOTE LINES: task,Hours,Tier
+Discovery call & brief,2,1
+Core deliverable,12,1
+Two revision rounds,4,1
+Extra deliverable / variant,6,2
+Handover documentation,2,2
+Priority support (30 days),5,3
+Essential - hours,"=SUMIF(C20:C25,""<=1"",B20:B25)",formula
+Standard - hours,"=SUMIF(C20:C25,""<=2"",B20:B25)",formula
+Premium - hours,"=SUMIF(C20:C25,""<=3"",B20:B25)",formula
+Essential - price,"=CEILING(B26*$B$16*(1+$B$17/100),50)",formula
+Standard - price,"=CEILING(B27*$B$16*(1+$B$17/100),50)",formula
+Premium - price,"=CEILING(B28*$B$16*(1+$B$17/100),50)",formula
+Essential - deposit,=B29*$B$18/100,formula
+Standard - deposit,=B30*$B$18/100,formula
+Premium - deposit,=B31*$B$18/100,formula
