@@ -53,10 +53,49 @@ textarea{width:100%;height:16rem;font-family:ui-monospace,Menlo,monospace;border
 <label>Quote valid for (days) <input id="valid" type="number" value="14"></label>
 <textarea id="quote" readonly></textarea>
 <button id="copy">Copy quote text</button> <button id="reset">Reset to example</button>
-<p class="muted">For a client-facing document, copy the prices into quote-template.html. Questions: chenphien@gmail.com</p>
+<p class="muted">For a client-facing document, copy the prices into quote-template.html.</p>
+
+<h2>Step 4: Per-word rate &rarr; hourly, and a monthly retainer</h2>
+<p class="muted">For writers and anyone paid per piece. Defaults are Theo's example from guide Chapter 6 (fictional content writer, floor rate 70).</p>
+<label>Words per piece <input id="pw_words" type="number" value="1500"></label>
+<label>Your rate per word <input id="pw_rate" type="number" step="0.01" value="0.12"></label>
+<label>Total hours per piece (research, draft, edits, emails) <input id="pw_hours" type="number" step="0.25" value="6"></label>
+<label>Your floor hourly rate (use your Step 1 result) <input id="pw_floor" type="number" value="70"></label>
+<div class="res" id="r4a"></div>
+<label>Pieces per month in the retainer <input id="rt_pieces" type="number" value="4"></label>
+<label>Fixed hours per month (planning call, reporting) <input id="rt_fixed" type="number" step="0.5" value="2"></label>
+<label>Commitment discount (%) for a 3+ month minimum, paid in advance <input id="rt_disc" type="number" value="5"></label>
+<label>Round the monthly fee up to the nearest <input id="rt_step" type="number" value="50"></label>
+<div class="res" id="r4b"></div>
+
+<h2>Step 5: Rate increase, 12-month cash flow</h2>
+<p class="muted">Stress-test a raise: what if you lose more client hours than break-even, and refill them slowly at the new rate? Defaults are Maya's stress test from guide Chapter 5.</p>
+<label>Current hourly rate <input id="ri_cur" type="number" value="90"></label>
+<label>New hourly rate <input id="ri_new" type="number" value="100"></label>
+<label>Billable hours per month today <input id="ri_hrs" type="number" step="0.1" value="88"></label>
+<label>Client hours you might lose (%) <input id="ri_loss" type="number" value="15"></label>
+<label>Months to refill the lost hours with new clients (0 = never) <input id="ri_months" type="number" value="4"></label>
+<div class="res" id="r5"></div>
+<table id="ri_tab" style="margin-top:.8rem"><thead><tr><th>Month</th><th>Hours billed</th><th>Revenue (new rate)</th><th>vs. today</th><th>Running total</th></tr></thead><tbody></tbody></table>
+<p class="muted">Hours in month m = kept hours + (lost hours &divide; refill months) &times; (m &minus; 1), capped at today's hours. Planning tool, not financial advice.</p>
 
 <script>
-var F=['inc','cost','tax','buf','wk','hpw','bill','hpd','qrate','cont','dep','step','client','valid'];
+var F=['inc','cost','tax','buf','wk','hpw','bill','hpd','qrate','cont','dep','step','client','valid','pw_words','pw_rate','pw_hours','pw_floor','rt_pieces','rt_fixed','rt_disc','rt_step','ri_cur','ri_new','ri_hrs','ri_loss','ri_months'];
+function sg(x){var r=Math.round(x);return (r>0?'+':r<0?'&minus;':'')+Math.abs(r).toLocaleString('en-US')}
+function f2(x){var r=Math.round(x*100)/100;return r.toLocaleString('en-US',{minimumFractionDigits:(r%1?2:0),maximumFractionDigits:2})}
+function upd45(){
+ var w=n('pw_words'),pr=n('pw_rate'),h=n('pw_hours'),fl=n('pw_floor');
+ var piece=w*pr,eff=h>0?piece/h:0,minP=h*fl,minW=w>0?minP/w:0;
+ $('r4a').innerHTML='Price per piece today: <b>'+f2(piece)+'</b> ('+fm(w)+' &times; '+pr+')<br>Effective hourly rate: <b>'+f2(eff)+'</b>'+(fl>0?(eff<fl?' &mdash; below your floor of '+fl:' &mdash; at or above your floor of '+fl):'')+'<br>Minimum price per piece at your floor: <b>'+f2(minP)+'</b> ('+h+' h &times; '+fl+')<br>Minimum rate per word: <b>'+(Math.ceil(minW*1000-1e-9)/1000)+'</b>';
+ var mh=n('rt_pieces')*h+n('rt_fixed'),full=mh*fl,disc=full*(1-n('rt_disc')/100),fee=ceilTo(disc,n('rt_step'));
+ $('r4b').innerHTML='Monthly hours: <b>'+f2(mh)+'</b> ('+n('rt_pieces')+' &times; '+h+' + '+n('rt_fixed')+')<br>At '+fl+' per hour: '+fm(full)+', minus '+n('rt_disc')+'% = '+fm(disc)+'<br><b>Monthly retainer fee: '+fm(fee)+'</b>'+(n('rt_pieces')>0?' ('+f2(fee/n('rt_pieces'))+' per piece)':'')+'<br>Extra pieces outside the retainer: <b>'+f2(minP)+'</b> each';
+ var cur=n('ri_cur'),nw=n('ri_new'),hr=n('ri_hrs'),loss=n('ri_loss')/100,mo=n('ri_months');
+ var kept=hr*(1-loss),lost=hr-kept,refill=mo>0?lost/mo:0,today=cur*hr,run=0,low=0,lowM=0,posM=0,rows='';
+ for(var m=1;m<=12;m++){var hh=Math.min(hr,kept+refill*(m-1)),rev=hh*nw,d=rev-today;run+=d;if(run<low){low=run;lowM=m}if(!posM&&run>0)posM=m;rows+='<tr><td>'+m+'</td><td>'+hh.toFixed(1)+'</td><td>'+fm(rev)+'</td><td>'+sg(d)+'</td><td>'+sg(run)+'</td></tr>'}
+ $('ri_tab').tBodies[0].innerHTML=rows;
+ var be=nw>0?(1-cur/nw)*100:0,worst=(kept*nw-today)*12;
+ $('r5').innerHTML='Revenue today: <b>'+fm(today)+'</b> a month ('+cur+' &times; '+hr+')<br>Break-even client loss: <b>'+(Math.round(be*10)/10)+'%</b> (1 &minus; '+cur+' &divide; '+nw+')<br>Running total after 12 months: <b>'+sg(run)+'</b>'+(posM?' (positive from month '+posM+')':'')+'<br>Cash cushion needed: <b>'+fm(-low)+'</b>'+(lowM?' (lowest point in month '+lowM+')':'')+'<br>Worst case, no refill at all: <b>'+sg(worst)+'</b> over 12 months';
+}
 var DEF_ITEMS=[['Discovery call & brief',2,1],['Core deliverable (logo refresh + palette)',12,1],['Two revision rounds',4,1],['Extra deliverable (social media kit)',6,2],['Handover documentation (mini brand guide)',2,2],['Priority support (30 days)',5,3]];
 function $(i){return document.getElementById(i)}
 function n(i){return parseFloat($(i).value)||0}
@@ -78,15 +117,16 @@ function upd(){
  out.forEach(function(o,k){txt+=o[0].toUpperCase()+': '+fm(o[2])+' ('+n('dep')+'% deposit: '+fm(o[2]*n('dep')/100)+')\n';its.filter(function(x){return x[2]<=k+1}).forEach(function(x){txt+='  - '+x[0]+'\n'});txt+='\n'});
  txt+='Payment: '+n('dep')+'% deposit to start, balance on delivery.\nAnything not listed above is out of scope and quoted separately.\n';
  $('quote').value=txt;
- var s={};F.forEach(function(f){s[f]=$(f).value});s.items=its;try{localStorage.setItem('fpk3',JSON.stringify(s))}catch(e){}
+ upd45();
+ var s={};F.forEach(function(f){s[f]=$(f).value});s.items=its;try{localStorage.setItem('fpk4',JSON.stringify(s))}catch(e){}
 }
-var s=null;try{s=JSON.parse(localStorage.getItem('fpk3'))}catch(e){}
+var s=null;try{s=JSON.parse(localStorage.getItem('fpk4'))}catch(e){}
 if(s){F.forEach(function(f){if(s[f]!==undefined)$(f).value=s[f]})}
 (s&&s.items&&s.items.length?s.items:DEF_ITEMS).forEach(function(x){row(x[0],x[1],x[2])});
 F.forEach(function(f){$(f).oninput=upd});
 $('add').onclick=function(){row('New task',1,1);upd()};
 $('copy').onclick=function(){$('quote').select();navigator.clipboard?navigator.clipboard.writeText($('quote').value):document.execCommand('copy')};
-$('reset').onclick=function(){if(confirm('Reset all fields to the example?')){localStorage.removeItem('fpk3');location.reload()}};
+$('reset').onclick=function(){if(confirm('Reset all fields to the example?')){localStorage.removeItem('fpk4');location.reload()}};
 // Click a field = it empties (old value shown greyed as a hint), so typing replaces it.
 // Leave it without typing and the old value comes back. Backspace on an empty field keeps it empty.
 document.addEventListener('focusin',function(e){var t=e.target;if(t.tagName!=='INPUT'||t.type==='color')return;t._old=t.value;t._ph=t.placeholder;t._keep=false;if(t.value!==''){t.placeholder=t.value;t.value=''}});

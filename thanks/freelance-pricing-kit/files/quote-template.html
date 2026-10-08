@@ -79,9 +79,10 @@ p{font-size:10.5pt;line-height:1.55;color:#1E1E24}
   <b>Your quote</b>
   <button class="pri" onclick="printAs('letter')">Print / Save PDF: US Letter</button>
   <button class="pri" onclick="printAs('a4')">Print / Save PDF: A4</button>
+  <label>Deposit % <input type="number" id="dp" value="50" onfocus="this.select()" onmouseup="return false" min="0" max="100" step="5" style="width:56px;border:1px solid #D9D3C7;border-radius:4px;padding:2px 4px;font:600 13px Inter,sans-serif"></label>
   <label>Accent <input type="color" id="acc" value="#EE6B57"></label>
   <button onclick="resetAll()">Reset to example</button>
-  <span class="hint">Click any yellow field and type. Changes are saved in this browser automatically. The yellow highlight does not print. In the print dialog choose "Save as PDF", margins "None" or "Default".</span>
+  <span class="hint">Click any yellow field and type. Deposits (and the prices in the acceptance box) are calculated for you from each package price and the Deposit %. Changes are saved in this browser automatically. The yellow highlight does not print. In the print dialog choose "Save as PDF", margins "None" or "Default".</span>
 </div>
 
 <section class="page" id="p1">
@@ -104,17 +105,17 @@ p{font-size:10.5pt;line-height:1.55;color:#1E1E24}
   <h2>CHOOSE YOUR PACKAGE</h2>
   <div class="pk">
     <div class="p">
-      <div class="pn" contenteditable data-k="n1">ESSENTIAL</div><div><span class="pp" contenteditable data-k="pr1">1,900</span></div><div class="pd">50% deposit: <span contenteditable data-k="d1">950</span></div>
+      <div class="pn" contenteditable data-k="n1">ESSENTIAL</div><div><span class="pp" contenteditable data-k="pr1">1,900</span></div><div class="pd"><span class="dpv">50</span>% deposit: <span class="dep" id="d1">950</span></div>
       <ul contenteditable data-k="l1"><li>Discovery call &amp; brief</li><li>Logo refresh + color palette</li><li>Two revision rounds</li></ul>
       <div class="choose"><span class="box"></span>Choose Essential</div>
     </div>
     <div class="p rec"><span class="tag">RECOMMENDED</span>
-      <div class="pn" contenteditable data-k="n2">STANDARD</div><div><span class="pp" contenteditable data-k="pr2">2,700</span></div><div class="pd">50% deposit: <span contenteditable data-k="d2">1,350</span></div>
+      <div class="pn" contenteditable data-k="n2">STANDARD</div><div><span class="pp" contenteditable data-k="pr2">2,700</span></div><div class="pd"><span class="dpv">50</span>% deposit: <span class="dep" id="d2">1,350</span></div>
       <ul contenteditable data-k="l2"><li class="plus">Everything in Essential</li><li>Social media kit</li><li>Mini brand guide for your team</li></ul>
       <div class="choose"><span class="box"></span>Choose Standard</div>
     </div>
     <div class="p">
-      <div class="pn" contenteditable data-k="n3">PREMIUM</div><div><span class="pp" contenteditable data-k="pr3">3,250</span></div><div class="pd">50% deposit: <span contenteditable data-k="d3">1,625</span></div>
+      <div class="pn" contenteditable data-k="n3">PREMIUM</div><div><span class="pp" contenteditable data-k="pr3">3,250</span></div><div class="pd"><span class="dpv">50</span>% deposit: <span class="dep" id="d3">1,625</span></div>
       <ul contenteditable data-k="l3"><li class="plus">Everything in Standard</li><li>30 days of priority support after launch</li></ul>
       <div class="choose"><span class="box"></span>Choose Premium</div>
     </div>
@@ -139,8 +140,8 @@ p{font-size:10.5pt;line-height:1.55;color:#1E1E24}
 <section class="page" id="p2">
   <h2 style="margin-top:0">PAYMENT TERMS</h2>
   <ul class="terms">
-    <li><b>DEPOSIT</b><span contenteditable data-k="t1">50% of the chosen package, invoiced on acceptance. Work starts when the deposit is paid.</span></li>
-    <li><b>BALANCE</b><span contenteditable data-k="t2">The remaining 50% on delivery of the final files, due within 14 days of the invoice.</span></li>
+    <li><b>DEPOSIT</b><span><span class="dpv">50</span>% of the chosen package, <span contenteditable data-k="t1">invoiced on acceptance. Work starts when the deposit is paid.</span></span></li>
+    <li><b>BALANCE</b><span>The remaining <span class="bpv">50</span>% <span contenteditable data-k="t2">on delivery of the final files, due within 14 days of the invoice.</span></span></li>
     <li><b>LATE PAYMENT</b><span contenteditable data-k="t3">Final files are released when the balance is paid. Invoices more than 14 days overdue may pause any further work.</span></li>
     <li><b>HOW TO PAY</b><span contenteditable data-k="t4">[Bank transfer / payment link details]</span></li>
   </ul>
@@ -154,7 +155,7 @@ p{font-size:10.5pt;line-height:1.55;color:#1E1E24}
   <h2>ACCEPTANCE</h2>
   <div class="acc">
     <p style="font-size:10pt">I accept this quote (<span contenteditable data-k="qno2">2026-014</span>) for the package ticked below, under the terms on both pages.</p>
-    <div class="opts"><span><span class="box"></span>Essential · <span contenteditable data-k="a1">1,900</span></span><span><span class="box"></span>Standard · <span contenteditable data-k="a2">2,700</span></span><span><span class="box"></span>Premium · <span contenteditable data-k="a3">3,250</span></span></div>
+    <div class="opts"><span><span class="box"></span><span class="nm1">Essential</span> · <span id="a1">1,900</span></span><span><span class="box"></span><span class="nm2">Standard</span> · <span id="a2">2,700</span></span><span><span class="box"></span><span class="nm3">Premium</span> · <span id="a3">3,250</span></span></div>
     <div class="sig"><div>NAME</div><div>COMPANY</div><div>SIGNATURE</div><div>DATE</div></div>
   </div>
   <p style="font-size:9pt;color:#6B6F7B;margin-top:12pt" contenteditable data-k="valid2">This quote is valid until November 30, 2026. Prices after that date may change.</p>
@@ -162,17 +163,28 @@ p{font-size:10.5pt;line-height:1.55;color:#1E1E24}
 </section>
 
 <script>
-var KEY='fpk-quote-v3';
+var KEY='fpk-quote-v4';
+// Deposits: price x Deposit %, recalculated whenever a price or the Deposit % changes.
+function num(t){var m=String(t).replace(/,/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function pre(t){var m=String(t).match(/^[^0-9-]*/);return m?m[0].trim():'';}
+function fmt(x){var r=Math.round(x*100)/100;return r.toLocaleString('en-US',{minimumFractionDigits:(r%1?2:0),maximumFractionDigits:2});}
+function calc(){var dpEl=document.getElementById('dp');var dp=parseFloat(dpEl.value);if(isNaN(dp)||dp<0)dp=0;if(dp>100)dp=100;
+ document.querySelectorAll('.dpv').forEach(function(e){e.textContent=String(dp);});
+ document.querySelectorAll('.bpv').forEach(function(e){e.textContent=String(Math.round((100-dp)*100)/100);});
+ for(var i=1;i<=3;i++){var pe=document.querySelector('[data-k="pr'+i+'"]');var t=pe.textContent;if(pe._old!==undefined&&t.replace(/\s/g,'')===''){var tmp=document.createElement('div');tmp.innerHTML=pe._old;t=tmp.textContent;}
+  var v=num(t),p=pre(t);document.getElementById('d'+i).textContent=isNaN(v)?'':p+fmt(v*dp/100);document.getElementById('a'+i).textContent=t.trim();
+  var ne=document.querySelector('[data-k="n'+i+'"]');var nm=ne.textContent.trim().toLowerCase();document.querySelector('.nm'+i).textContent=nm.charAt(0).toUpperCase()+nm.slice(1);}}
 var SIZES={letter:['8.5in','11in'],a4:['210mm','297mm']};
 function setSize(s){var z=SIZES[s]||SIZES.letter;document.documentElement.style.setProperty('--pw',z[0]);document.documentElement.style.setProperty('--ph',z[1]);document.getElementById('pagesize').textContent='@page{size:'+z[0]+' '+z[1]+';margin:0}';}
 function printAs(s){setSize(s);setTimeout(function(){window.print();},50);}
-function save(){var d={};document.querySelectorAll('[data-k]').forEach(function(e){d[e.getAttribute('data-k')]=e.innerHTML;});d._acc=document.getElementById('acc').value;try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
-function load(){var d=null;try{d=JSON.parse(localStorage.getItem(KEY));}catch(e){}if(!d)return;document.querySelectorAll('[data-k]').forEach(function(e){var k=e.getAttribute('data-k');if(typeof d[k]==='string')e.innerHTML=d[k];});if(d._acc){document.getElementById('acc').value=d._acc;document.documentElement.style.setProperty('--accent',d._acc);}}
+function save(){calc();var d={};document.querySelectorAll('[data-k]').forEach(function(e){d[e.getAttribute('data-k')]=(e._old!==undefined&&e.textContent.replace(/\s/g,'')==='')?e._old:e.innerHTML;});d._acc=document.getElementById('acc').value;d._dp=document.getElementById('dp').value;try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
+function load(){var d=null;try{d=JSON.parse(localStorage.getItem(KEY));}catch(e){}if(!d)return;document.querySelectorAll('[data-k]').forEach(function(e){var k=e.getAttribute('data-k');if(typeof d[k]==='string')e.innerHTML=d[k];});if(d._acc){document.getElementById('acc').value=d._acc;document.documentElement.style.setProperty('--accent',d._acc);}if(d._dp!==undefined)document.getElementById('dp').value=d._dp;}
 function resetAll(){if(confirm('Reset every field to the example?')){try{localStorage.removeItem(KEY);}catch(e){}location.reload();}}
 document.addEventListener('input',function(e){if(e.target.id==='acc'){document.documentElement.style.setProperty('--accent',e.target.value);}save();});
 if(window.QT_SIZE)setSize(window.QT_SIZE);
 if(window.QT_PRINTSTATE)document.body.className='printstate';
 load();
+calc();
 // Short fields (names, prices, dates): clicking empties the field (old text shown greyed as a hint),
 // so typing replaces it. Click away without typing and the old text comes back.
 document.addEventListener('focusin',function(e){var el=e.target;if(!el.isContentEditable||!el.hasAttribute('data-k'))return;if(/^(P|UL)$/.test(el.tagName)||el.textContent.length>60)return;el._old=el.innerHTML;el.setAttribute('data-ph',el.textContent);el.innerHTML='';});

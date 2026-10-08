@@ -1,10 +1,10 @@
 FREELANCE PRICING & QUOTE KIT: SCRIPTS AND TEMPLATES (v3)
-Every email and script from the guide (Chapters 2 to 5) as plain text.
+Every email and script from the guide (Chapters 2 to 6) as plain text.
 Paste into Gmail, Outlook, Google Docs, Word or Notion. Replace everything in [brackets].
 Sections are numbered in the same order as the guide (the guide shows "scripts-and-templates.txt §N" on each block).
 
 Amounts are currency-neutral: "1,900" means 1,900 of your own currency.
-Maya Ortiz and Northfield Coffee are a fictional worked example.
+Maya Ortiz, Northfield Coffee and Theo (Chapter 6) are fictional worked examples.
 Disclaimer: templates and planning tools only. This is not tax, legal or financial advice.
 For large contracts, have a lawyer review your terms.
 
@@ -16,8 +16,9 @@ CONTENTS
 §5  Change log (Chapter 3)
 §6  Reply scripts for new requests, A to F (Chapter 3)
 §7  Price pushback replies, 1 to 8 (Chapter 4)
-§8  Rate increase emails, A and B (Chapter 5)
-§9  Replies when clients respond to a rate increase, 1 to 3 (Chapter 5)
+§8  Rate increase emails, A, B and C (Chapter 5)
+§9  Replies when clients respond to a rate increase, 1 to 6 (Chapter 5)
+§10 Monthly retainer offer email + per-word and retainer math (Chapter 6)
 
 
 ======================================================================
@@ -281,9 +282,33 @@ Nothing changes for the work we already have planned. Thank you for being one of
 Best,
 [Your name]
 
+--- §8C  Email C: retainer or regular client ---
+
+Subject: Your monthly fee from [April 1]
+
+Hi [Name],
+
+A heads-up on fees: from [April 1], the monthly fee for [4 articles a month] will be [1,750] (currently [1,500]). The work stays the same: [same deliverables, same turnaround, same monthly call].
+
+If you'd rather keep the fee where it is, we can move to [3 articles a month] at [1,500] instead. Just reply with which you prefer by [March 15]. Thanks for [two years] of good work together.
+
+Best,
+[Your name]
+
 Maya's numbers (Rate Increase tab): 90 -> 100, 88 billable hours a month, expected loss 5% of client hours.
 Current monthly revenue 90 x 88 = 7,920. New monthly revenue 100 x 83.6 = 8,360 (+440).
 Break-even client loss = 1 - 90 / 100 = 10%.
+
+12-month cash-flow stress test (pricing-calculator.html, Step 5):
+Maya loses 15% of client hours (13.2 h) and refills them evenly over 4 months (3.3 h a month) at 100.
+Hours in month m = kept hours (74.8) + 3.3 x (m - 1), capped at 88.
+Month 1: 74.8 h, 7,480 (-440, running -440)
+Month 2: 78.1 h, 7,810 (-110, running -550)
+Month 3: 81.4 h, 8,140 (+220, running -330)
+Month 4: 84.7 h, 8,470 (+550, running +220)
+Month 5: 88.0 h, 8,800 (+880, running +1,100)
+Months 6 to 12: 8,800 (+880 each), running total +7,260 after 12 months.
+Cash cushion needed: 550. Worst case with no refill: -440 a month, -5,280 over 12 months.
 
 
 ======================================================================
@@ -299,8 +324,56 @@ Break-even client loss = 1 - 90 / 100 = 10%.
 3. CLIENT: "We'll have to find someone cheaper."
    SAY THIS: "I understand, and thanks for telling me. If it helps the handover, I'll send the final files and my notes from our projects. If you'd like to work together again later, my door's open."
 
+4. CLIENT: "Can you phase it in?"
+   SAY THIS: "Yes. The rate goes to [95] from [February 1] and to [100] from [May 1]. Both dates are fixed, so you can budget for them now."
+
+5. CLIENT: "Will you lock our rate if we sign for a year?"
+   SAY THIS: "Yes. With a 12-month agreement, paid monthly in advance, I'll hold [100] for the whole term. Without it, I review rates once a year with [30] days' notice."
+
+6. CLIENT: (No reply after a week.)
+   SAY THIS: "Hi [Name], just checking that my note about rates from [February 1] reached you. You don't need to do anything unless you'd like to book work at the current rate before then. Happy to answer any questions."
+
 Stick to it: once the email is sent, don't negotiate the rate itself. Change the scope, the timing or the package, the same way as in Chapter 4.
 
+
+======================================================================
+§10  MONTHLY RETAINER OFFER EMAIL (Chapter 6)
+======================================================================
+
+Subject: A simpler way to work together each month
+
+Hi [Name],
+
+Since we're doing [about 4 posts] a month, I'd like to offer a fixed monthly package instead of per-word invoices: [4 posts a month], research, one round of edits and a [30]-minute planning call, for [1,750] a month, invoiced on the 1st. It runs for [3] months to start, then month to month with [30] days' notice.
+
+You get a fixed budget and guaranteed slots in my calendar. Shall I send the agreement?
+
+Best,
+[Your name]
+
+--- The math behind it (Theo, fictional content writer, floor rate 70) ---
+
+Per-word to hourly:
+  effective hourly = price per piece / total hours per piece
+  minimum per piece = total hours x floor rate
+  minimum per word = minimum per piece / words
+Theo: 1,500 words x 0.12 = 180 per post; 6 hours per post (research 1.5, draft 3, edits 1, admin 0.5).
+  180 / 6 = 30 per hour. At his floor: 6 x 70 = 420 per post = 0.28 per word.
+
+Monthly retainer:
+  monthly hours = pieces x hours per piece + fixed monthly hours (planning call, reporting)
+  monthly fee = monthly hours x rate x (1 - commitment discount), rounded up to 50
+Theo (6 h per post, 2 fixed hours, rate 70, 5% off for a 3-month minimum paid in advance):
+  Starter, 2 posts: 14 h x 70 = 980, -5% = 931 -> 950 a month (475 per post)
+  Growth, 4 posts:  26 h x 70 = 1,820, -5% = 1,729 -> 1,750 a month (437.50 per post)
+  Full, 6 posts:    38 h x 70 = 2,660, -5% = 2,527 -> 2,550 a month (425 per post)
+
+Retainer terms to write down:
+- Billing: invoiced on the 1st, paid before the month's work starts.
+- Term: 3-month minimum, then [30] days' notice from either side.
+- Unused pieces: roll over one month at most, then expire.
+- Extra pieces: 420 each (6 h x 70), quoted before work starts.
+- Rate review: once a year, with [30] days' notice (Email C, §8C).
+
 ----------------------------------------------------------------------
-Questions or problems: chenphien@gmail.com
 Not tax, legal or financial advice.
