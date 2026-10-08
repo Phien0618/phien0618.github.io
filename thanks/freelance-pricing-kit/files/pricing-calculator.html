@@ -87,10 +87,11 @@ F.forEach(function(f){$(f).oninput=upd});
 $('add').onclick=function(){row('New task',1,1);upd()};
 $('copy').onclick=function(){$('quote').select();navigator.clipboard?navigator.clipboard.writeText($('quote').value):document.execCommand('copy')};
 $('reset').onclick=function(){if(confirm('Reset all fields to the example?')){localStorage.removeItem('fpk3');location.reload()}};
-// Click a field = its value is selected, so typing replaces it.
-var justFocused=null;
-document.addEventListener('focusin',function(e){var t=e.target;if(t.tagName==='INPUT'&&t.type!=='color'){justFocused=t;try{t.select()}catch(x){}setTimeout(function(){try{t.select()}catch(x){}},0)}});
-document.addEventListener('mouseup',function(e){if(e.target===justFocused){e.preventDefault();justFocused=null}});
+// Click a field = it empties (old value shown greyed as a hint), so typing replaces it.
+// Leave it without typing and the old value comes back. Backspace on an empty field keeps it empty.
+document.addEventListener('focusin',function(e){var t=e.target;if(t.tagName!=='INPUT'||t.type==='color')return;t._old=t.value;t._ph=t.placeholder;t._keep=false;if(t.value!==''){t.placeholder=t.value;t.value=''}});
+document.addEventListener('keydown',function(e){var t=e.target;if(t.tagName==='INPUT'&&(e.key==='Backspace'||e.key==='Delete')&&t.value==='')t._keep=true});
+document.addEventListener('focusout',function(e){var t=e.target;if(t.tagName!=='INPUT'||t._old===undefined)return;var old=t._old;t.placeholder=t._ph||'';t._old=undefined;if(t.value===''&&old!==''&&!t._keep){t.value=old}upd()});
 upd();
 </script>
 </body>

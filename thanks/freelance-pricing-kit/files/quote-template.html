@@ -18,6 +18,8 @@ body{font-family:Inter,Arial,sans-serif;color:#16233A;background:#E9E5DD;-webkit
 .page:last-of-type{break-after:auto;page-break-after:auto}
 [contenteditable]{background:#FFF4C2;border-radius:2px;padding:0 2px;outline:none}
 [contenteditable]:focus{box-shadow:0 0 0 2px #EE6B57}
+[data-ph]:empty::before{content:attr(data-ph);color:#A9A399}
+[data-ph]:empty{display:inline-block;min-width:1.5em}
 body.printstate [contenteditable]{background:none!important}
 @media print{
   body{background:#fff}
@@ -171,10 +173,9 @@ document.addEventListener('input',function(e){if(e.target.id==='acc'){document.d
 if(window.QT_SIZE)setSize(window.QT_SIZE);
 if(window.QT_PRINTSTATE)document.body.className='printstate';
 load();
-// Short fields (names, prices, dates): clicking selects the whole field, so typing replaces it.
-var qtJust=null;
-function qtSelect(el){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
-document.addEventListener('focusin',function(e){var el=e.target;if(!el.isContentEditable||!el.hasAttribute('data-k'))return;if(/^(P|UL)$/.test(el.tagName)||el.textContent.length>60)return;qtJust=el;qtSelect(el);setTimeout(function(){qtSelect(el);},0);});
-document.addEventListener('mouseup',function(e){if(qtJust&&qtJust.contains(e.target)){setTimeout(function(){if(qtJust){qtSelect(qtJust);qtJust=null;}},0);}});
+// Short fields (names, prices, dates): clicking empties the field (old text shown greyed as a hint),
+// so typing replaces it. Click away without typing and the old text comes back.
+document.addEventListener('focusin',function(e){var el=e.target;if(!el.isContentEditable||!el.hasAttribute('data-k'))return;if(/^(P|UL)$/.test(el.tagName)||el.textContent.length>60)return;el._old=el.innerHTML;el.setAttribute('data-ph',el.textContent);el.innerHTML='';});
+document.addEventListener('focusout',function(e){var el=e.target;if(el._old===undefined)return;if(el.textContent.replace(/\s/g,'')===''){el.innerHTML=el._old;}el._old=undefined;el.removeAttribute('data-ph');save();});
 </script>
 </body></html>
