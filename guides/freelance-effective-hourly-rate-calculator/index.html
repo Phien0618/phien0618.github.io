@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freelance Effective Hourly Rate Calculator: What a Fixed-Price Project Really Paid</title>
+<meta name="description" content="Free effective hourly rate calculator for freelancers. Enter a project fee, costs and every hour you spent (including revisions, calls and email) to see your real hourly rate, where the time went, and what to quote next time.">
+<link rel="stylesheet" href="../../style.css">
+<style>
+.calc{background:#F6F2EA;border-radius:8px;padding:1rem 1.2rem;margin:1rem 0}
+.calc label{display:block;margin:.6rem 0 .2rem}
+.calc input{padding:.4rem;width:12rem}
+.calc small{color:#6B6F7A}
+.calc fieldset{border:1px solid #e0d9cb;border-radius:8px;margin:.8rem 0;padding:.4rem .9rem .8rem}
+#eout{margin-top:1rem;font-variant-numeric:tabular-nums}
+#eout .big{font-size:1.6rem;color:#E8643A;font-weight:700}
+table{border-collapse:collapse;margin:1rem 0;font-variant-numeric:tabular-nums}
+td,th{border:1px solid #ccc;padding:.4rem .7rem;text-align:left}
+.tpl{background:#f6f6f4;border-left:4px solid #888;padding:1rem 1.2rem;white-space:pre-wrap;font-family:inherit;margin:1rem 0}
+</style>
+</head>
+<body>
+<header>
+  <a href="../../index.html">Hustle Studio</a>
+  <nav><a href="../index.html">Free guides</a><a href="../../index.html#products">Products</a></nav>
+</header>
+
+<h1>Freelance effective hourly rate calculator</h1>
+
+<p>You quoted a fixed price because you planned for a certain number of hours at a certain rate. The project ended, the invoice went out, and you never checked whether the plan held. Your <strong>effective hourly rate</strong> is the number that tells you: what you actually earned for every hour the project took, including the hours you never thought of as "work" (calls, email threads, the third round of revisions, chasing the invoice).</p>
+<p>Most rate calculators on the web work forwards: they tell you what to charge. This one works backwards on a finished (or running) project, shows which kind of hours ate your margin, and gives you the price you'd need to quote next time to hit your target.</p>
+
+<h2>The calculator</h2>
+<div class="calc">
+  <label for="fee">Project fee you were paid (or will be paid)</label>
+  <input id="fee" type="number" min="0" step="50" value="4200">
+  <label for="cost">Direct project costs <small>stock assets, fonts, subcontractors, software bought for this job, payment fees</small></label>
+  <input id="cost" type="number" min="0" step="10" value="150">
+  <label for="target">Your target hourly rate <small>the rate you priced the project on</small></label>
+  <input id="target" type="number" min="0" step="5" value="110">
+  <fieldset>
+    <legend>Hours you actually spent</legend>
+    <label for="h1">Core work (designing, building, writing)</label>
+    <input id="h1" type="number" min="0" step="0.5" value="26">
+    <label for="h2">Revisions and feedback rounds</label>
+    <input id="h2" type="number" min="0" step="0.5" value="7">
+    <label for="h3">Calls, meetings and email</label>
+    <input id="h3" type="number" min="0" step="0.5" value="5">
+    <label for="h4">Extra requests you did without charging</label>
+    <input id="h4" type="number" min="0" step="0.5" value="4">
+    <label for="h5">Proposal, admin, invoicing and chasing payment</label>
+    <input id="h5" type="number" min="0" step="0.5" value="3">
+  </fieldset>
+  <div id="eout" aria-live="polite"></div>
+</div>
+
+<h3>The formula</h3>
+<ol>
+  <li><strong>Net fee</strong> = project fee − direct project costs</li>
+  <li><strong>Total hours</strong> = every hour the project took, in all five categories</li>
+  <li><strong>Effective hourly rate</strong> = net fee ÷ total hours</li>
+  <li><strong>Price needed next time</strong> = total hours × target rate + direct costs</li>
+</ol>
+<p>With the default numbers: 4,200 − 150 = 4,050 net. 26 + 7 + 5 + 4 + 3 = 45 hours. 4,050 ÷ 45 = <strong>90.00 an hour</strong>, against a planned 110. If you'd only counted the 26 hours of core work you'd believe you made 155.77 an hour. The gap between those two numbers is the whole point of this exercise.</p>
+
+<h2>Why the effective rate is lower than you think</h2>
+<p>When freelancers estimate a project, they estimate the work they can picture: the pages, the screens, the words. The hours that sink a fixed price are the ones nobody pictures in advance:</p>
+<ul>
+  <li><strong>Revisions.</strong> "Two rounds of revisions" turns into two rounds plus a few "small tweaks" over email. Each tweak needs context switching, a re-export and a reply.</li>
+  <li><strong>Communication.</strong> A 30-minute call takes 45 minutes once you add prep and follow-up notes. Five of those is almost four hours.</li>
+  <li><strong>Unbilled extras.</strong> "Could you also just…" requests you said yes to because saying no felt awkward. These are pure margin loss.</li>
+  <li><strong>Admin.</strong> Writing the proposal, sending the invoice, and the reminder emails when it was paid late.</li>
+</ul>
+<p>None of this means you did anything wrong. It means your quote needs to price the whole project, not just the core work.</p>
+
+<h2>How to read your result</h2>
+<table>
+  <tr><th>Effective rate vs target</th><th>What it usually means</th><th>What to change</th></tr>
+  <tr><td>At or above target</td><td>Your estimate was right, or you worked faster than planned</td><td>Keep the price. Fixed fees reward speed, so don't discount it away</td></tr>
+  <tr><td>0–20% below</td><td>Normal estimating drift</td><td>Add a 15–20% contingency line to similar quotes</td></tr>
+  <tr><td>20–40% below</td><td>Revisions or communication weren't priced</td><td>Cap revision rounds in writing; price calls into the quote</td></tr>
+  <tr><td>More than 40% below</td><td>Scope creep: you did work that wasn't in the agreement</td><td>Use change orders for anything outside the written scope</td></tr>
+</table>
+<p>The calculator shows which category took the biggest share of non-core time. That's the one to fix first. If it's unbilled extras, the <a href="../freelance-scope-creep-email/index.html">scope creep email scripts</a> give you exact wording for "yes, and here's what that costs". If it's chasing payment, the <a href="../freelance-late-payment-email/index.html">late payment reminder sequence</a> will save you hours.</p>
+
+<h2>Track hours even on fixed-price work</h2>
+<p>You can't run this calculation without the hours, and memory is unreliable: people tend to remember the core work and forget the twenty-minute email threads. You don't need a time-tracking app. A row per work session with a date, the hours and one of the five categories above is enough. Do it for three projects and you'll know your real multiplier, for example "my projects take about 1.6× the core hours I estimate". Multiply your next estimate by that number before you price it.</p>
+
+<h2>Turn the result into your next quote</h2>
+<p>The "price needed next time" figure is the honest price for this project at your target rate. Use it when you quote the next similar job:</p>
+<ol>
+  <li>Estimate the core hours as you normally would.</li>
+  <li>Multiply by your real multiplier (total hours ÷ core hours from past projects).</li>
+  <li>Multiply by your target rate and add direct costs.</li>
+  <li>Round up to a clean number and present it as a project fee, not an hourly breakdown.</li>
+</ol>
+<p>The <a href="../how-to-quote-freelance-project/index.html">project quoting guide</a> covers the rest: writing the scope, adding contingency and offering three options. If you don't know your target rate yet, start with the <a href="../freelance-day-rate-calculator/index.html">day rate calculator</a>.</p>
+
+<h2>What to say if a long-term client is underpriced</h2>
+<p>If an ongoing client keeps landing far below your target, raise the price on the next piece of work rather than renegotiating a finished one:</p>
+<div class="tpl">Hi [Name], quick note before we start [next project]. Looking back at [last project], it took about [45] hours against the [30] I'd planned, mostly in [revisions and feedback]. For the next one I'll quote [5,000], which includes [two rounds of revisions and one review call]. Anything beyond that I'll flag and quote before I start, so there are no surprises on either side.</div>
+<p>For a full rate increase across all your work, use the <a href="../raise-freelance-rates-email/index.html">rate increase email templates</a>.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li><strong>Only counting core work.</strong> It flatters the number and hides the problem.</li>
+  <li><strong>Forgetting costs.</strong> A subcontractor or stock asset bill comes out of your rate.</li>
+  <li><strong>Checking once.</strong> One project can be an outlier. Run it on every project for a quarter and look at the average.</li>
+  <li><strong>Blaming the client.</strong> Most overruns come from a quote that didn't limit revisions or define the scope, and that's fixable on your side.</li>
+</ul>
+
+<h2>Related guides</h2>
+<ul>
+  <li><a href="../freelance-day-rate-calculator/index.html">Freelance day rate calculator: work out your rate from real billable days</a></li>
+  <li><a href="../how-to-quote-freelance-project/index.html">How to quote a freelance project (step by step, with a worked example and calculator)</a></li>
+  <li><a href="../freelance-scope-creep-email/index.html">Freelance scope creep emails: what to say in 6 common situations</a></li>
+  <li><a href="../freelance-late-payment-email/index.html">Freelance late payment emails: overdue invoice reminder sequence</a></li>
+  <li><a href="../raise-freelance-rates-email/index.html">How to tell existing clients you're raising your rates</a></li>
+</ul>
+
+<h2>Do this for every project automatically</h2>
+<p>This page checks one project at a time. The <a href="../../index.html#systems">Freelance Client &amp; Invoice Tracker</a> ($15, Excel + Google Sheets, pay once) does it for all of them: log hours against each project and it shows the effective hourly rate next to the rate you planned, plus who owes you money, which reminder to send, and a weighted pipeline for next month. Your data stays in your own file.</p>
+
+<script>
+(function(){
+  var ids=['fee','cost','target','h1','h2','h3','h4','h5'];
+  var names={h2:'Revisions',h3:'Calls and email',h4:'Unbilled extras',h5:'Admin and chasing payment'};
+  function v(id){var x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>0?x:0;}
+  function f(n){return n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+  function line(out,label,val,cls){
+    var p=document.createElement('p');
+    var s=document.createElement('strong');
+    s.textContent=label+': ';
+    p.appendChild(s);
+    var sp=document.createElement('span');
+    if(cls){sp.className=cls;}
+    sp.textContent=val;
+    p.appendChild(sp);
+    out.appendChild(p);
+  }
+  function calc(){
+    var out=document.getElementById('eout');
+    while(out.firstChild){out.removeChild(out.firstChild);}
+    var net=v('fee')-v('cost');
+    var hrs=v('h1')+v('h2')+v('h3')+v('h4')+v('h5');
+    var t=v('target');
+    if(hrs<=0){line(out,'Check your inputs','enter the hours you spent');return;}
+    var eff=net/hrs;
+    line(out,'Effective hourly rate',f(eff),'big');
+    if(t>0){
+      var d=(eff-t)/t*100;
+      line(out,'Versus your target of '+f(t),(d>=0?'+':'')+d.toFixed(0)+'%');
+    }
+    if(v('h1')>0){line(out,'Rate if you only counted core work',f(net/v('h1')));}
+    line(out,'Total hours',f(hrs).replace(/\.?0+$/,''));
+    if(v('h1')>0){line(out,'Your multiplier (total ÷ core hours)',(hrs/v('h1')).toFixed(2)+'×');}
+    var top='',tv=0;
+    ['h2','h3','h4','h5'].forEach(function(k){if(v(k)>tv){tv=v(k);top=k;}});
+    if(top){line(out,'Biggest non-core time sink',names[top]+' ('+(tv/hrs*100).toFixed(0)+'% of all hours)');}
+    if(t>0){line(out,'Price needed next time at your target',f(Math.ceil((hrs*t+v('cost'))/50)*50));}
+  }
+  ids.forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+  calc();
+})();
+</script>
+
+<footer>
+  © 2026 Hustle Studio · <a href="../../privacy.html">Privacy</a> · <a href="../../terms.html">Terms</a> · Support: <a href="mailto:chenphien@gmail.com">chenphien@gmail.com</a>
+</footer>
+</body>
+</html>
