@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freelance Day Rate Calculator: Work Out Your Day Rate From Real Billable Days</title>
+<meta name="description" content="Free freelance day rate calculator. Start from your target income and costs, subtract holidays, sick days and unbilled admin time, and get your day, half-day, hourly and weekly rate, with the formula shown.">
+<link rel="stylesheet" href="../../style.css">
+<style>
+.calc{background:#F6F2EA;border-radius:8px;padding:1rem 1.2rem;margin:1rem 0}
+.calc label{display:block;margin:.6rem 0 .2rem}
+.calc input{padding:.4rem;width:12rem}
+.calc small{color:#6B6F7A}
+#dout{margin-top:1rem;font-variant-numeric:tabular-nums}
+#dout .big{font-size:1.6rem;color:#E8643A;font-weight:700}
+table{border-collapse:collapse;margin:1rem 0;font-variant-numeric:tabular-nums}
+td,th{border:1px solid #ccc;padding:.4rem .7rem;text-align:left}
+.tpl{background:#f6f6f4;border-left:4px solid #888;padding:1rem 1.2rem;white-space:pre-wrap;font-family:inherit;margin:1rem 0}
+</style>
+</head>
+<body>
+<header>
+  <a href="../../index.html">Hustle Studio</a>
+  <nav><a href="../index.html">Free guides</a><a href="../../index.html#products">Products</a></nav>
+</header>
+
+<h1>Freelance day rate calculator</h1>
+
+<p>Most day rate calculators divide your target income by about 220 days and stop. The answer comes out too low because it ignores two things: the days you won't work at all (holidays, sick days, public holidays), and the days you'll work but can't bill (sales, admin, invoicing, learning). This calculator handles both, then gives you a day rate, a half-day rate, an hourly rate and a weekly rate you can quote. The formula is shown underneath, so you can check it yourself.</p>
+
+<h2>The calculator</h2>
+<div class="calc">
+  <label for="inc">Target yearly income before tax (what you'd want as a salary)</label>
+  <input id="inc" type="number" min="0" step="1000" value="60000">
+  <label for="exp">Yearly business costs (software, hardware, insurance, accountant, coworking)</label>
+  <input id="exp" type="number" min="0" step="100" value="6000">
+  <label for="buf">Profit buffer (%) <small>for slow months, late payers, equipment replacement</small></label>
+  <input id="buf" type="number" min="0" step="1" value="10">
+  <label for="hol">Holiday days per year</label>
+  <input id="hol" type="number" min="0" step="1" value="25">
+  <label for="pub">Public holidays per year</label>
+  <input id="pub" type="number" min="0" step="1" value="8">
+  <label for="sick">Sick / personal days per year</label>
+  <input id="sick" type="number" min="0" step="1" value="5">
+  <label for="nb">Share of working time you can't bill (%) <small>sales, admin, email, learning</small></label>
+  <input id="nb" type="number" min="0" max="90" step="1" value="25">
+  <label for="hpd">Hours in a billable day</label>
+  <input id="hpd" type="number" min="1" max="24" step="0.5" value="8">
+  <div id="dout" aria-live="polite"></div>
+</div>
+
+<h3>The formula</h3>
+<ol>
+  <li><strong>Revenue needed</strong> = (target income + business costs) × (1 + buffer %)</li>
+  <li><strong>Working days</strong> = 260 weekdays − holidays − public holidays − sick days</li>
+  <li><strong>Billable days</strong> = working days × (1 − non-billable %)</li>
+  <li><strong>Day rate</strong> = revenue needed ÷ billable days</li>
+</ol>
+<p>With the default numbers: (60,000 + 6,000) × 1.10 = 72,600 needed. 260 − 25 − 8 − 5 = 222 working days. 222 × 0.75 = 166.5 billable days. 72,600 ÷ 166.5 = <strong>436.04 a day</strong>, or about 54.50 an hour over an 8-hour day. The same inputs with the naive "divide by 220" method give 330 a day, which is roughly 25% short. That shortfall is the unbilled time.</p>
+
+<h2>Why the non-billable share matters most</h2>
+<p>Of all the inputs, the non-billable percentage moves the result the most, and it's the one people guess most optimistically. Think about an ordinary month. How many days went to finding work (proposals, calls, portfolio updates), running the business (invoices, chasing payments, bookkeeping, email) and getting better (courses, tool setup)? None of that is billable, and all of it is necessary.</p>
+<p>A quick way to estimate it: track one normal month in a simple spreadsheet, one row per day, marking each half-day as billable or not. If you can't track yet, start at 25–35% and adjust once you have real numbers. Newer freelancers with an empty pipeline usually sit at the high end, because more of their time goes to finding clients.</p>
+
+<h2>Day rate vs hourly: which to quote</h2>
+<table>
+  <tr><th>Quote by</th><th>Works well when</th><th>Watch out for</th></tr>
+  <tr><td>Day</td><td>Work happens in focused blocks (workshops, design sprints, on-site or embedded work)</td><td>Agree what a "day" means (e.g. 7.5 hours) and whether travel counts</td></tr>
+  <tr><td>Half-day</td><td>Short sessions, reviews, consulting calls with prep</td><td>Price it above half your day rate (see below)</td></tr>
+  <tr><td>Hour</td><td>Small, unpredictable tasks, retainers with a support component</td><td>Clients watch the clock; fast work earns you less</td></tr>
+  <tr><td>Project</td><td>Defined deliverables, when you can estimate the days</td><td>Needs a tight scope and a change-order process</td></tr>
+</table>
+<p>Even if you never quote a day rate to a client, you need to know it. A project price is just your day rate times your estimated days, plus contingency. The <a href="../how-to-quote-freelance-project/index.html">project quoting guide</a> walks through that step by step.</p>
+
+<h2>Half-day rates: don't just halve it</h2>
+<p>A half-day booking rarely leaves you with a usable second half. There's context switching, travel or call prep, and it's hard to sell the other half to someone else. A common approach is to set the half-day rate at around 60% of the day rate. The calculator above uses 60%. Change it in your own pricing if your work splits cleanly.</p>
+
+<h2>Sanity-check against the market</h2>
+<p>The calculator tells you what you <em>need</em> to charge, not what clients in your niche will pay. Check the result against public evidence: rates published by freelancers in your field, rate surveys from your industry association, or day rates in contract job ads for similar work. This page doesn't quote market rates, because they vary too much by country, skill and niche to be useful here.</p>
+<ul>
+  <li><strong>If your needed rate is below the market:</strong> charge the market rate. Your costs set a floor, not a ceiling.</li>
+  <li><strong>If it's above the market:</strong> lower costs, raise utilisation (by fixing your sales pipeline), specialise in a niche that pays more, or package work into fixed-price projects where speed earns you more.</li>
+</ul>
+
+<h2>How to state your day rate to a client</h2>
+<p>State it plainly, with what's included, and don't apologise for it.</p>
+<div class="tpl">My day rate is [440], which covers a working day of up to [7.5] hours, including [prep / a short summary at the end of the day]. Half-days are [265]. For this project I'd estimate [6] days, so [2,640], invoiced [50% up front and 50% on delivery]. Happy to talk through the estimate if useful.</div>
+<p>Round to a clean number (440, not 436.04). Odd numbers make the rate look negotiable. When you put your rate up later, use the <a href="../raise-freelance-rates-email/index.html">rate increase email templates</a>.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li><strong>Using your old salary as the target without adding costs.</strong> An employer also paid for your equipment, software, holidays and pension. Now you do.</li>
+  <li><strong>Assuming 100% billable time.</strong> Nobody bills every working day, so plan for the gaps.</li>
+  <li><strong>Forgetting tax timing.</strong> The target above is <em>before</em> tax, so set your tax aside as invoices are paid. How much depends on your country and setup, so check with an accountant.</li>
+  <li><strong>Never recalculating.</strong> Run the numbers again every year, or whenever your costs or utilisation change.</li>
+</ul>
+
+<h2>Related guides</h2>
+<ul>
+  <li><a href="../how-to-quote-freelance-project/index.html">How to quote a freelance project (step by step, with a worked example and calculator)</a></li>
+  <li><a href="../raise-freelance-rates-email/index.html">How to tell existing clients you're raising your rates (5 email templates + calculator)</a></li>
+  <li><a href="../freelance-scope-creep-email/index.html">Freelance scope creep emails: what to say in 6 common situations</a></li>
+  <li><a href="../freelance-late-payment-email/index.html">Freelance late payment emails: overdue invoice reminder sequence</a></li>
+</ul>
+
+<h2>Turn your day rate into quotes</h2>
+<p>Once you know your day rate, the next step is quoting projects with it. The <a href="../../index.html#products">Freelance Pricing &amp; Quote Kit</a> ($12) includes a pricing calculator, a three-tier quote builder and a scope &amp; change order pack, so every project price comes from your real numbers rather than a guess.</p>
+
+<script>
+(function(){
+  var ids=['inc','exp','buf','hol','pub','sick','nb','hpd'];
+  function v(id){var x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>0?x:0;}
+  function f(n){return n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+  function r5(n){return Math.ceil(n/5)*5;}
+  function line(out,label,val,cls){
+    var p=document.createElement('p');
+    var s=document.createElement('strong');
+    s.textContent=label+': ';
+    p.appendChild(s);
+    var sp=document.createElement('span');
+    if(cls){sp.className=cls;}
+    sp.textContent=val;
+    p.appendChild(sp);
+    out.appendChild(p);
+  }
+  function calc(){
+    var need=(v('inc')+v('exp'))*(1+v('buf')/100);
+    var work=260-v('hol')-v('pub')-v('sick');
+    var nb=Math.min(v('nb'),90);
+    var bill=work*(1-nb/100);
+    var hpd=v('hpd')||8;
+    var out=document.getElementById('dout');
+    while(out.firstChild){out.removeChild(out.firstChild);}
+    if(work<=0||bill<=0){line(out,'Check your inputs','no billable days left');return;}
+    var day=need/bill;
+    line(out,'Day rate',f(day),'big');
+    line(out,'Rounded to quote',f(r5(day)));
+    line(out,'Half-day (60%)',f(r5(day*0.6)));
+    line(out,'Hourly ('+hpd+' h day)',f(day/hpd));
+    line(out,'Weekly (5 days)',f(r5(day)*5));
+    line(out,'Revenue needed',f(need));
+    line(out,'Working days',f(work).replace('.00',''));
+    line(out,'Billable days',f(bill).replace(/\.?0+$/,''));
+  }
+  ids.forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+  calc();
+})();
+</script>
+
+<footer>
+  © 2026 Hustle Studio · <a href="../../privacy.html">Privacy</a> · <a href="../../terms.html">Terms</a> · Support: <a href="mailto:chenphien@gmail.com">chenphien@gmail.com</a>
+</footer>
+</body>
+</html>
