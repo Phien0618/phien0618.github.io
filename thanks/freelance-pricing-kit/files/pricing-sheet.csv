@@ -18,10 +18,10 @@ Contingency (%),15,edit
 Deposit (%),50,edit
 QUOTE LINES: task,Hours,Tier
 Discovery call & brief,2,1
-Core deliverable,12,1
+Core deliverable (logo refresh + palette),12,1
 Two revision rounds,4,1
-Extra deliverable / variant,6,2
-Handover documentation,2,2
+Extra deliverable (social media kit),6,2
+Handover documentation (mini brand guide),2,2
 Priority support (30 days),5,3
 Essential - hours,"=SUMIF(C20:C25,""<=1"",B20:B25)",formula
 Standard - hours,"=SUMIF(C20:C25,""<=2"",B20:B25)",formula

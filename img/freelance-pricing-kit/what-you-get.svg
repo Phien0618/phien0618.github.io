@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1320" width="1200" height="1320" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1200" height="1320" fill="#faf7f0"/>
+  <text x="70" y="95" font-size="22" font-weight="700" fill="#e0614a" letter-spacing="3">FREELANCE PRICING &amp; QUOTE KIT</text>
+  <text x="70" y="160" font-size="56" font-weight="700" fill="#1b2541" font-family="Georgia, 'Times New Roman', serif">What you get: 9 files</text>
+  <text x="70" y="205" font-size="24" fill="#4a5470">One ZIP (Freelance-Pricing-Kit-All-Files.zip), plus a separate download link for each file.</text>
+
+  <g font-size="22">
+    <rect x="70" y="240" width="1060" height="54" fill="#efe8da"/>
+    <text x="90" y="275" font-weight="700" fill="#1b2541">File</text>
+    <text x="520" y="275" font-weight="700" fill="#1b2541">Format</text>
+    <text x="680" y="275" font-weight="700" fill="#1b2541">What it is for</text>
+
+    <g fill="#1b2541">
+      <text x="90" y="340" font-weight="700">1. freelance-pricing-kit.xlsx</text>
+      <text x="520" y="340">Excel</text>
+      <text x="680" y="340">Main spreadsheet, 6 tabs: floor rate,</text>
+      <text x="680" y="368" fill="#4a5470">market check, 3-tier quote, change order, rate raise</text>
+      <line x1="70" y1="392" x2="1130" y2="392" stroke="#ddd5c4"/>
+
+      <text x="90" y="432" font-weight="700">2. freelance-pricing-kit-letter.pdf</text>
+      <text x="520" y="432">PDF</text>
+      <text x="680" y="432">29-page guide, US Letter: 6 chapters,</text>
+      <text x="680" y="460" fill="#4a5470">clickable contents, 2 printable worksheets</text>
+      <line x1="70" y1="484" x2="1130" y2="484" stroke="#ddd5c4"/>
+
+      <text x="90" y="524" font-weight="700">3. freelance-pricing-kit-a4.pdf</text>
+      <text x="520" y="524">PDF</text>
+      <text x="680" y="524">The same 29-page guide, A4</text>
+      <line x1="70" y1="552" x2="1130" y2="552" stroke="#ddd5c4"/>
+
+      <text x="90" y="592" font-weight="700">4. quote-template.html</text>
+      <text x="520" y="592">HTML</text>
+      <text x="680" y="592">2-page client quote, edit in your browser,</text>
+      <text x="680" y="620" fill="#4a5470">deposits update, save as PDF (Letter or A4)</text>
+      <line x1="70" y1="644" x2="1130" y2="644" stroke="#ddd5c4"/>
+
+      <text x="90" y="684" font-weight="700">5. quote-template.md</text>
+      <text x="520" y="684">Markdown</text>
+      <text x="680" y="684">The same quote as text for Google Docs,</text>
+      <text x="680" y="712" fill="#4a5470">Word or Notion</text>
+      <line x1="70" y1="736" x2="1130" y2="736" stroke="#ddd5c4"/>
+
+      <text x="90" y="776" font-weight="700">6. scripts-and-templates.txt</text>
+      <text x="520" y="776">Text</text>
+      <text x="680" y="776">Every email and script, §1 to §10: 8 pushback</text>
+      <text x="680" y="804" fill="#4a5470">replies, 6 scope replies, 3 rate-raise emails …</text>
+      <line x1="70" y1="828" x2="1130" y2="828" stroke="#ddd5c4"/>
+
+      <text x="90" y="868" font-weight="700">7. pricing-calculator.html</text>
+      <text x="520" y="868">HTML</text>
+      <text x="680" y="868">Offline calculator, 5 steps: floor rate, packages,</text>
+      <text x="680" y="896" fill="#4a5470">quote text, per-word/retainer, 12-month cash flow</text>
+      <line x1="70" y1="920" x2="1130" y2="920" stroke="#ddd5c4"/>
+
+      <text x="90" y="960" font-weight="700">8. pricing-sheet.csv</text>
+      <text x="520" y="960">CSV</text>
+      <text x="680" y="960">Fallback only, for apps that can't open .xlsx</text>
+      <text x="680" y="988" fill="#4a5470">(no formatting, single sheet)</text>
+      <line x1="70" y1="1012" x2="1130" y2="1012" stroke="#ddd5c4"/>
+
+      <text x="90" y="1052" font-weight="700">9. README.txt</text>
+      <text x="520" y="1052">Text</text>
+      <text x="680" y="1052">File list, which file to open first,</text>
+      <text x="680" y="1080" fill="#4a5470">how to open the .xlsx in Google Sheets</text>
+    </g>
+  </g>
+
+  <rect x="70" y="1130" width="1060" height="130" rx="14" fill="#1b2541"/>
+  <text x="100" y="1185" font-size="30" font-weight="700" fill="#ffffff">$12 one-time · instant download · any currency</text>
+  <text x="100" y="1230" font-size="22" fill="#d9deea">14-day refund: if the quote template or calculator doesn't work for you, full refund.</text>
+</svg>

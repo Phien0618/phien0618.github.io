@@ -7,7 +7,9 @@ Then read the guide (PDF) alongside it, Chapters 1 and 2.
 FILES (9 in the ZIP; the download page also links each one separately)
 - freelance-pricing-kit.xlsx ........ THE MAIN TOOL. Workbook, 6 tabs: Start Here, Floor Rate,
                                        Market Check, 3-Tier Quote, Change Order, Rate Increase.
-                                       Yellow = your input, blue = formula.
+                                       Yellow = your input, blue = formula (locked).
+                                       Sheets are protected WITHOUT a password; tier and
+                                       rush-multiplier cells have dropdowns.
 - freelance-pricing-kit-letter.pdf .. The guide (29 pages, 6 chapters), US Letter.
 - freelance-pricing-kit-a4.pdf ...... The same guide, A4. Print whichever matches your paper.
 - quote-template.html ............... Client-facing 2-page quote. Open in any browser, click a yellow
