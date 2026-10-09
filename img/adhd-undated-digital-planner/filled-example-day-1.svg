@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1500" width="1000" height="1500">
+  <image href="previews/04-day-1-top-3.png" xlink:href="previews/04-day-1-top-3.png" x="0" y="0" width="1000" height="1500"/>
+  <rect x="60" y="360" width="880" height="120" rx="14" fill="#f4ede1"/>
+  <text x="500" y="410" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#1f2a24" font-weight="bold">Filled-in example (example handwriting)</text>
+  <text x="500" y="452" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#4a5a50">The real Day 1 page from the planner. The pages you get are blank.</text>
+  <g font-family="'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive" fill="#2b4a8a" font-size="19">
+    <text x="660" y="612">Mon, Oct 5</text>
+    <text x="148" y="681">Email Prof. about thesis draft</text>
+    <text x="170" y="744" font-size="16">open the doc, write 2 lines</text>
+    <text x="148" y="809">Pay phone bill</text>
+    <text x="170" y="873" font-size="16">find the login</text>
+    <text x="148" y="938">Laundry</text>
+    <text x="170" y="1001" font-size="16">just start the washer</text>
+    <text x="232" y="1052">the thesis email</text>
+    <text x="582" y="720" font-size="17">thesis email (25 min)</text>
+    <text x="582" y="845" font-size="17">phone bill, lunch</text>
+    <text x="582" y="969" font-size="17">laundry + rest</text>
+    <text x="136" y="1124" font-size="16">Laundry: tomorrow</text>
+  </g>
+  <g stroke="#2b4a8a" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M510 735 l6 7 l12 -16"/>
+    <path d="M510 864 l6 7 l12 -16"/>
+    <path d="M106 1117 l6 7 l12 -16"/>
+  </g>
+</svg>
