@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1200" height="900" fill="#FBF8F2"/>
+  <text x="60" y="80" font-size="22" fill="#8A6D3B" letter-spacing="3">FREELANCE CLIENT &amp; INVOICE TRACKER</text>
+  <text x="60" y="135" font-size="46" font-weight="700" fill="#2B3D5C">What you get: 7 files (also as one ZIP)</text>
+
+  <text x="60" y="200" font-size="20" font-weight="700" fill="#8A6D3B" letter-spacing="2">THE TRACKER</text>
+  <rect x="60" y="215" width="1080" height="96" rx="10" fill="#fff" stroke="#E5DFD3"/>
+  <text x="84" y="252" font-size="26" font-weight="700" fill="#2B3D5C">1  freelance-client-invoice-tracker.xlsx</text>
+  <text x="84" y="290" font-size="21" fill="#444">8 tabs, 1,332 formulas: statuses, ready-written reminders, pipeline vs goal, real hourly rate</text>
+
+  <text x="60" y="355" font-size="20" font-weight="700" fill="#8A6D3B" letter-spacing="2">THE GUIDE</text>
+  <rect x="60" y="370" width="1080" height="150" rx="10" fill="#fff" stroke="#E5DFD3"/>
+  <text x="84" y="407" font-size="26" font-weight="700" fill="#2B3D5C">2  freelance-client-invoice-tracker-letter.pdf</text>
+  <text x="84" y="440" font-size="21" fill="#444">18-page guide, US Letter: setup, Monday check, reminder ladder, 6 excuse replies</text>
+  <text x="84" y="477" font-size="26" font-weight="700" fill="#2B3D5C">3  freelance-client-invoice-tracker-a4.pdf</text>
+  <text x="84" y="507" font-size="21" fill="#444">The same 18-page guide, A4</text>
+
+  <text x="60" y="565" font-size="20" font-weight="700" fill="#8A6D3B" letter-spacing="2">FOR YOUR CLIENTS</text>
+  <rect x="60" y="580" width="1080" height="150" rx="10" fill="#fff" stroke="#E5DFD3"/>
+  <text x="84" y="617" font-size="26" font-weight="700" fill="#2B3D5C">4  invoice-template.html</text>
+  <text x="84" y="650" font-size="21" fill="#444">1-page invoice that totals itself, up to 8 line items, Letter or A4, works offline</text>
+  <text x="84" y="687" font-size="26" font-weight="700" fill="#2B3D5C">5  invoice-template.md</text>
+  <text x="84" y="717" font-size="21" fill="#444">The same invoice as text for Google Docs, Word or Notion</text>
+
+  <text x="60" y="775" font-size="20" font-weight="700" fill="#8A6D3B" letter-spacing="2">PLAIN TEXT</text>
+  <rect x="60" y="790" width="1080" height="80" rx="10" fill="#fff" stroke="#E5DFD3"/>
+  <text x="84" y="825" font-size="22" fill="#2B3D5C"><tspan font-weight="700">6  reminders-and-replies.txt</tspan><tspan fill="#444">  4 reminder emails, 6 excuse replies, deposit and late-fee wording</tspan></text>
+  <text x="84" y="856" font-size="22" fill="#2B3D5C"><tspan font-weight="700">7  README.txt</tspan><tspan fill="#444">  which file to open first, Google Sheets import, support and refund</tspan></text>
+</svg>
