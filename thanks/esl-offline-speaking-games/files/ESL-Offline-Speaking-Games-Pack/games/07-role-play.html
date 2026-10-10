@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Role Play · ESL Offline Speaking Games</title>
+<style>
+/* ===== COMMON STYLE (shared by all 8 games) ===== */
+:root{--board:#163A3A;--board2:#1F4B4A;--board3:#2C5F5D;--chalk:#FFFDF6;--paper:#FFF6E5;--ink:#1E2030;--sun:#FFC83D;--sky:#5BB8F5;--mint:#3DD39A;--grape:#8E5BE8;--berry:#E8457A;--berryInk:#B8285A;--orange:#FF8A3D;--used:#2C5452;
+--fd:"Fredoka",ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito","Segoe UI",system-ui,sans-serif,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC";
+--fb:"Nunito",ui-rounded,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC";
+--fm:ui-monospace,Menlo,Consolas,"Courier New",monospace,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC"}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:clamp(10px,min(1.0417vw,1.852vh),26px)}
+body{background:var(--board);color:var(--chalk);font-family:var(--fb);font-weight:700;font-size:1.2rem;line-height:1.3;overflow-x:hidden;min-height:100vh}
+button{font-family:var(--fb);font-weight:800;cursor:pointer;border:0;border-radius:.9rem;min-height:3.2rem;min-width:3.2rem;padding:0 1.1rem;font-size:1.3rem;color:var(--chalk);background:var(--board3);box-shadow:0 .35rem 0 rgba(0,0,0,.28);display:inline-flex;align-items:center;justify-content:center;gap:.5rem;line-height:1.1}
+button:active{transform:translateY(.2rem);box-shadow:0 .15rem 0 rgba(0,0,0,.28)}
+button:focus-visible,a:focus-visible{outline:.25rem solid var(--sun);outline-offset:.2rem}
+button.pri{background:var(--sun);color:var(--ink)}
+button.ok{background:var(--mint);color:var(--ink)}
+button.bad{background:var(--berry);color:#fff}
+button:disabled{opacity:.45;cursor:default}
+.kc{display:inline-block;border:2px solid currentColor;border-bottom-width:5px;border-radius:.5rem;padding:0 .45rem;font-size:1.05rem;font-weight:900;line-height:1.5;opacity:.85;font-family:var(--fb)}
+svg.i{width:1.3em;height:1.3em;flex:none}
+header.top{background:var(--board2);box-shadow:0 .2rem 0 rgba(0,0,0,.18)}
+header.top .in{max-width:96rem;margin:0 auto;height:4.8rem;display:flex;align-items:center;gap:.9rem;padding:0 2rem}
+.top .ico{width:2.8rem;height:2.8rem;flex:none;display:block}
+.top h1{font-family:var(--fd);font-weight:700;font-size:1.9rem;white-space:nowrap}
+.top .ctx{font-size:1.2rem;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.top nav{display:flex;gap:.7rem;flex:none}
+.hb{height:3.2rem;min-width:3.2rem;padding:0 1rem;font-size:1.35rem;text-decoration:none;color:var(--chalk);background:var(--board3);border-radius:.9rem;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;box-shadow:0 .3rem 0 rgba(0,0,0,.28);font-weight:800}
+.hb.pri{background:var(--sun);color:var(--ink);font-family:var(--fd);font-size:1.6rem}
+#stage{max-width:96rem;margin:0 auto;height:49.2rem;display:flex;flex-direction:column;padding:1.4rem 5rem 1.1rem;gap:1.1rem}
+#play{flex:1;min-height:0;display:flex;flex-direction:column;gap:1.3rem;position:relative}
+.meta{display:flex;align-items:center;gap:.7rem;height:2.6rem;flex:none}
+.chip{height:2.6rem;border-radius:99rem;padding:0 1.2rem;display:inline-flex;align-items:center;font-weight:800;font-size:1.2rem;background:var(--chalk);color:var(--ink);white-space:nowrap}
+.chip.lv{background:var(--sky)}.chip.off{background:var(--board3);color:var(--chalk)}
+.chips{display:flex;gap:.6rem;min-width:0;overflow:hidden}
+.used{margin-left:auto;font-size:1.4rem;font-weight:800;white-space:nowrap}.used b{color:var(--sun);font-family:var(--fd);font-size:1.8rem}
+.bubble{position:relative;background:var(--chalk);color:var(--ink);border-radius:2rem;border-left:1.1rem solid var(--gc,var(--sky));box-shadow:0 .4rem 0 rgba(0,0,0,.28);padding:1.8rem 3.4rem 1.8rem 4.4rem;display:flex;flex-direction:column;min-height:0}
+.bubble.tail{margin-bottom:1.6rem}
+.bubble.tail:after{content:"";position:absolute;left:7rem;bottom:-2rem;border-style:solid;border-width:2.1rem 1.7rem 0 1.7rem;border-color:var(--chalk) transparent transparent transparent}
+.plabel{font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#2B6E9E;font-size:1.3rem;min-height:1.7rem;flex:none}
+.pbox{flex:1;min-height:0;display:flex;align-items:center;overflow:hidden}
+.ptext{display:block;width:100%;font-family:var(--fd);font-weight:600;line-height:1.15;font-size:3.8rem;overflow-wrap:anywhere}
+.ptext.ph{color:#5C6470;font-weight:600}
+.ctrl{display:flex;align-items:center;gap:1.1rem;flex:none}
+.grow{flex:1}
+.big{height:6rem;font-size:2rem;border-radius:1.4rem;padding:0 2rem}
+.huge{height:6rem;font-family:var(--fd);font-weight:700;font-size:2.5rem;border-radius:1.4rem;padding:0 3rem}
+.tmr{display:flex;align-items:center;gap:1rem}
+.tlbl{font-size:1.2rem;font-weight:800;opacity:.9;white-space:nowrap}
+.presets{display:flex;gap:.55rem}
+.presets button{min-width:4rem;height:3.2rem;font-size:1.35rem;padding:0 .7rem}
+.presets button.on{background:var(--mint);color:var(--ink)}
+.ring{position:relative;width:9.4rem;height:9.4rem;cursor:pointer;flex:none;border-radius:50%}
+.tmr.big .ring{width:15rem;height:15rem}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg);display:block}
+.ring .trk{fill:none;stroke:var(--used);stroke-width:11}
+.ring .prg{fill:none;stroke:var(--mint);stroke-width:11;stroke-linecap:round}
+.ring .dg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:2.9rem}
+.tmr.big .dg{font-size:4.6rem}
+.ring.off .dg{opacity:.55;font-size:2rem}
+.ring.paused .dg{opacity:.6}
+#teams{flex:none}
+.tbar{display:flex;gap:.6rem;align-items:center}
+.tbar button{height:3.2rem;font-size:1.2rem;border-radius:99rem;padding:0 1.2rem}
+.tgrid{display:grid;gap:.9rem;margin-top:.7rem}
+.tcard{border-radius:1.2rem;color:var(--ink);padding:.5rem .8rem .6rem 1rem;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:end;box-shadow:0 .35rem 0 rgba(0,0,0,.28);position:relative;min-width:0}
+.tcard.act{outline:.3rem solid var(--chalk);outline-offset:.2rem}
+.tname{grid-column:1/3;background:transparent;border:0;border-bottom:2px dashed rgba(30,32,48,.35);font:800 1.2rem var(--fb);color:var(--ink);width:100%;min-width:0;padding:.1rem 0}
+.tsc{font-family:var(--fd);font-weight:700;font-size:3rem;line-height:1.1}
+.tbtn{display:flex;gap:.4rem}
+.rnd{width:3.2rem;height:3.2rem;border-radius:50%;padding:0;background:rgba(255,253,246,.6);color:var(--ink);font-size:1.8rem;box-shadow:none}
+#scrim{position:fixed;inset:0;background:rgba(10,20,20,.45);display:none;z-index:40}#scrim.open{display:block}
+#panel{position:fixed;top:0;right:0;bottom:0;width:min(38rem,100vw);background:var(--paper);color:var(--ink);z-index:50;transform:translateX(105%);transition:transform .2s;overflow-y:auto;padding:1.2rem 1.8rem 3rem;font-size:1.2rem;visibility:hidden}
+#panel.open{transform:none;visibility:visible}
+#panel .ph{display:flex;align-items:center;justify-content:space-between}
+#panel h2{font-family:var(--fd);font-size:2rem}
+#panel h3{font-family:var(--fd);font-size:1.4rem;margin:1.1rem 0 .45rem}
+#panel .sm{font-family:var(--fb);font-size:1.2rem;opacity:.8}
+#panel button{background:#fff;color:var(--ink);box-shadow:0 .25rem 0 rgba(0,0,0,.15);border:2px solid #E6D7B8;font-size:1.2rem}
+#panel button.on{background:var(--sky);border-color:#2B6E9E}
+#panel button.pri{background:var(--sun);border-color:#C99A1E}
+#panel button.bad{background:var(--berry);color:#fff}
+.seg{display:flex;gap:.5rem;flex-wrap:wrap;margin:.3rem 0}
+.fmt{margin:.2rem 0 .4rem}
+.ex{background:#F5F1E8;border:2px dashed #C9B98F;border-radius:.6rem;padding:.5rem .8rem;font:1.2rem/1.35 var(--fm);white-space:pre-wrap;overflow-wrap:anywhere}
+#pText{width:100%;height:13rem;margin:.6rem 0 .3rem;font:1.2rem/1.4 var(--fm);border:2px solid #C9B98F;border-radius:.7rem;padding:.6rem;background:#fff;color:var(--ink);resize:vertical}
+.msg div{margin:.25rem 0}.msg .e{color:var(--berryInk)}.msg .g{color:#17643F}.msg .n{color:#3A4050}
+#pName,.li input{flex:1;min-width:0;height:3.2rem;font:700 1.2rem var(--fb);padding:0 .7rem;border:2px solid #E6D7B8;border-radius:.7rem;background:#fff;color:var(--ink)}
+.li{display:flex;gap:.4rem;align-items:center;margin:.45rem 0}
+.note{font-size:1.2rem;color:#3A4050;margin-top:.9rem}
+.modal{position:fixed;inset:0;background:rgba(10,20,20,.6);display:none;align-items:center;justify-content:center;z-index:60}
+.modal.open{display:flex}
+.mbox{background:var(--paper);color:var(--ink);border-radius:1.6rem;padding:1.8rem 2.4rem;width:min(64rem,94vw);max-height:92vh;overflow-y:auto;box-shadow:0 .5rem 0 rgba(0,0,0,.3)}
+.mbox h2{font-family:var(--fd);font-size:2.2rem;margin-bottom:.5rem}
+.mbox h3{font-family:var(--fd);font-size:1.5rem;margin:1rem 0 .3rem}
+.mbox p,.mbox li{font-size:1.25rem;margin:.35rem 0}
+.mbox ol,.mbox ul{padding-left:1.6rem}
+.mbox table{border-collapse:collapse;width:100%}
+.mbox td{padding:.35rem .6rem;border-bottom:2px solid #E6D7B8;font-size:1.25rem;vertical-align:middle}
+.mbox code{font:1.2rem var(--fm);background:#F5F1E8;padding:0 .3rem;border-radius:.3rem;overflow-wrap:anywhere}
+.mbox .list{columns:2;column-gap:2rem}
+.mbtns{display:flex;gap:.8rem;justify-content:flex-end;margin-top:1.2rem}
+.kcap{display:inline-block;min-width:2.4rem;text-align:center;border:2px solid var(--ink);border-bottom-width:5px;border-radius:.5rem;padding:0 .5rem;font-weight:900;white-space:nowrap}
+#flash{position:fixed;inset:0;pointer-events:none;box-shadow:inset 0 0 0 12px var(--sun);opacity:0;z-index:90}
+#flash.go{animation:fl .4s steps(1,end) 3}
+@keyframes fl{0%{opacity:1}50%{opacity:0}100%{opacity:0}}
+#toast{position:fixed;left:50%;bottom:4.5rem;transform:translateX(-50%);background:var(--ink);color:var(--chalk);padding:.8rem 1.6rem;border-radius:99rem;font-size:1.3rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:80;max-width:90vw;text-align:center}
+#toast.show{opacity:1}
+/* ===== GAME STYLE: 07 Role Play ===== */
+.scene{flex:none;background:var(--board2);border-radius:1.4rem;padding:.6rem 1.6rem;display:flex;align-items:center;gap:1rem;min-height:4.6rem}
+.scene small{font-weight:900;font-size:1.2rem;letter-spacing:.08em;color:var(--sun);flex:none}
+#scene{flex:1;min-width:0;font-family:var(--fd);font-weight:700;font-size:2.8rem;line-height:1.1;overflow-wrap:anywhere}
+.smeta{display:flex;align-items:center;gap:1rem;flex:none}
+.roles{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;min-height:0}
+.role{background:var(--chalk);color:var(--ink);border-radius:1.8rem;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 .4rem 0 rgba(0,0,0,.28);min-height:0}
+.rh{display:flex;align-items:center;justify-content:space-between;padding:.5rem .8rem .5rem 1.6rem;flex:none}
+.rA .rh{background:var(--grape);color:#fff}.rB .rh{background:var(--sun);color:var(--ink)}
+.rh b{font-family:var(--fd);font-size:1.8rem}
+.rh button{background:rgba(255,253,246,.9);color:var(--ink);font-size:1.25rem}
+.rbox{flex:1;min-height:0;display:flex;align-items:center;overflow:hidden;padding:.8rem 1.6rem}
+.rtext{display:block;width:100%;font-family:var(--fd);font-weight:600;font-size:3rem;line-height:1.15;overflow-wrap:anywhere}
+.role.hid .rbox{background:var(--board3);color:var(--chalk);justify-content:center;flex-direction:column;gap:.6rem}
+.role.hid .rtext{display:none}
+.role .hidmsg{display:none;font-size:1.6rem;font-weight:800;text-align:center;max-width:30rem;line-height:1.25}
+.scene .turns{height:3.2rem;font-size:1.2rem;border-radius:99rem;padding:0 1rem;white-space:nowrap;background:var(--board3);color:var(--chalk)}
+.scene .turns.on{background:var(--mint);color:var(--ink)}
+.role.hid .hidmsg{display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.ctrl{gap:.9rem}
+.ctrl>button,.ctrl>#timer{flex:none;white-space:nowrap}
+.ctrl>.huge{padding:0 2rem}
+.ctrl>.big{padding:0 1.5rem}
+.ctrl .presets button{white-space:nowrap;padding:0 .6rem}
+.ctrl .tmr{gap:.8rem}
+.ctrl .ring{width:8.4rem;height:8.4rem}
+.ctrl .ring .dg{font-size:2.6rem}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+<svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 4h30a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6H20l-10 9v-9H8a6 6 0 0 1-6-6V10a6 6 0 0 1 6-6z" fill="#8E5BE8"/><text x="23" y="27" font-family="Arial Rounded MT Bold,Arial,sans-serif" font-weight="700" font-size="20" text-anchor="middle" fill="#fff">A</text><path d="M28 26h28a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6h-2v8l-10-8H28a6 6 0 0 1-6-6V32a6 6 0 0 1 6-6z" fill="#FFC83D" stroke="#1F4B4A" stroke-width="3"/><text x="42" y="49" font-family="Arial Rounded MT Bold,Arial,sans-serif" font-weight="700" font-size="20" text-anchor="middle" fill="#1E2030">B</text></svg>
+<h1>Role Play</h1><span class="ctx" id="ctx"></span>
+<nav>
+<button class="hb" id="bPrompts" title="Prompts: level and your own scenes"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>Prompts</button>
+<button class="hb" id="bRestart" title="Restart this game (clears scores and timer)"><svg class="i" viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2.1-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M19 4v4.5h-4.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Restart</button>
+<button class="hb" id="bSound" title="Sound on / off"></button>
+<button class="hb" id="bFull" title="Full screen (F)"><svg class="i" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<a class="hb" id="bHome" href="../START-HERE.html" title="Back to START-HERE"><svg class="i" viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5M6 10v10h12V10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<button class="hb pri" id="bHelp" title="How to play and keyboard shortcuts">?</button>
+</nav></div></header>
+<div id="stage"><main id="play"></main><section id="teams"></section></div>
+<div id="scrim"></div>
+<aside id="panel" aria-label="Prompts panel">
+<div class="ph"><h2>Prompts</h2><button id="pClose">Close</button></div>
+<h3>Level <span class="sm">· for the built-in prompts</span></h3>
+<div class="seg" id="pLevel"><button data-l="A">A1–A2</button><button data-l="B">B1–B2</button><button data-l="all">All</button></div>
+<div id="pTopicsWrap" hidden><h3>Topics</h3><div class="seg" id="pTopics"></div><div class="seg"><button id="tAll">All topics</button><button id="tNone">Clear topics</button></div></div>
+<h3>Prompt source</h3>
+<div class="seg" id="pSrc"><button data-s="builtin">Built-in prompts</button><button data-s="mine">My prompts</button></div>
+<h3>My prompts</h3>
+<p class="fmt" id="pFmt"></p>
+<div class="ex" id="pEx"></div>
+<textarea id="pText" spellcheck="false" placeholder="Paste your prompts here"></textarea>
+<div class="seg"><button class="pri" id="pUse">Use my prompts</button><button id="pImp">Import .txt</button><button id="pExp">Export .txt</button></div>
+<input type="file" id="pFile" accept=".txt,text/plain" hidden>
+<div class="msg" id="pMsg"></div>
+<h3>Saved lists <span class="sm">· up to 20</span></h3>
+<div class="seg"><input id="pName" placeholder="List name" maxlength="40"><button id="pSave">Save list</button></div>
+<div id="pLists"></div>
+<p class="note">Built-in prompts are in English only. Your own prompts can be in any language, including Chinese, Japanese and Korean. Saved lists are kept only in this browser on this computer, and each game keeps its own lists. Use Export .txt to take a list to another computer.</p>
+</aside>
+<div class="modal" id="help"><div class="mbox"><div id="hBody"></div><div class="mbtns"><button class="pri" id="hClose">Close</button></div></div></div>
+<div class="modal" id="modal"><div class="mbox"><div id="mBody"></div><div class="mbtns" id="mBtns"></div></div></div>
+<div id="flash"></div><div id="toast" role="status"></div>
+<script>
+/* ===== BUILT-IN PROMPTS: 07 Role Play (40 = 20 A1-A2 + 20 B1-B2; scene | Role A | Role B) ===== */
+const DATA={A:`At the café | You are a customer. Order a drink and a snack, then ask how much it costs. | You work at the café. Take the order, say the price and ask if they want anything else.
+Buying a train ticket | You want a return ticket to the next town. Ask the time of the next train. | You sell tickets. Tell the customer the price and the time of the next train.
+At the doctor's | You feel ill. Tell the doctor where it hurts and how long you have felt ill. | You are the doctor. Ask three questions and give some simple advice.
+Asking for directions | You are lost. Ask how to get to the library. | You live here. Give clear directions using left, right and straight on.
+A new classmate | You are new at school. Introduce yourself and ask about the school. | You are a student. Welcome the new classmate and answer their questions.
+At the clothes shop | You want a jumper in a different size and colour. | You work in the shop. Help the customer and suggest something else they might like.
+Ordering food by phone | Call the restaurant. Order dinner for your family and give your address. | You work at the restaurant. Take the order and say when it will arrive.
+Planning a weekend | Invite your friend to do something on Saturday. Suggest two ideas. | You are busy on Saturday morning. Suggest a different time and choose one idea.
+A lost bag | You left your bag on the bus. Describe it to the staff. | You work at the lost property office. Ask what the bag looks like and where they left it.
+At the library | You want to borrow a book about animals. Ask how long you can keep it. | You are the librarian. Help find the book and explain the rules.
+Hotel check-in | You arrive at a hotel. Give your name and ask what time breakfast is. | You work at reception. Find the booking, give the room number and answer questions.
+A birthday present | You want to buy a present for your friend. Ask the shop assistant for ideas. | You work in a gift shop. Ask about the friend and suggest two presents.
+At the market | You want to buy fruit for a picnic. Ask about prices and choose. | You sell fruit. Tell the customer what is fresh today and the prices.
+Meeting a neighbour | You have just moved in. Introduce yourself to your neighbour. | You live next door. Welcome them and tell them about the street.
+At the cinema | Buy two tickets for the film at six o'clock and choose your seats. | You sell tickets. Tell the customer which seats are free and the price.
+Borrowing a book | Call your friend. Ask to borrow a book for your homework. | Your friend calls you. Agree to help and arrange when to meet.
+At the pet shop | You want a small pet. Ask which pet is easy to look after. | You work at the pet shop. Suggest a pet and explain how to care for it.
+Lunch plans | You are hungry. Suggest a place for lunch. | You don't like the first idea. Suggest another place and agree on a time.
+At the post office | You want to send a parcel to another country. Ask how long it will take. | You work at the post office. Weigh the parcel, say the price and how long it takes.
+Joining a sports club | You want to join the swimming club. Ask about days, times and the price. | You run the club. Answer the questions and ask about their swimming level.`,
+B:`A delayed flight | Your flight is delayed by five hours. Ask the airline staff what they can offer you. | You work for the airline. Explain the delay and offer two realistic options.
+Returning headphones | Your new headphones stopped working after two days. Ask for your money back. | You work in the shop. You can repair or exchange them, but refunds need a receipt.
+A job interview | You want a part-time job at a bookshop. Answer the questions and ask one question about the job. | You are the manager. Ask about experience, strengths and when they can work.
+A noisy neighbour | Your neighbour plays loud music late at night. Politely ask them to change this. | You didn't know the music was a problem. Explain your side and find a compromise.
+A group project problem | One person in your group is not doing their part. Talk to them about it. | You have been very busy at home. Explain and suggest how you will catch up.
+Booking a holiday | You want a relaxing week near the sea. Explain your budget and what you like. | You are a travel agent. Ask questions and recommend two different options.
+The wrong dish | The waiter brought the wrong dish and you are in a hurry. Complain politely. | You are the waiter. Apologise and offer a solution that works for the customer.
+Choosing a flatmate | You are looking for a flatmate. Ask about their habits and daily routine. | You want the room. Describe yourself and ask about the rules of the flat.
+More time for an essay | Ask your teacher for more time to finish an essay. Give a good reason. | You are the teacher. Ask questions and decide on fair conditions.
+Planning a class trip | Persuade the teacher to choose a science museum for the class trip. | You are the teacher. You prefer a nature park. Discuss and agree on a plan.
+Calling the help desk | Your internet has not worked for three days. Call the company and explain. | You work at the help desk. Ask questions, suggest some checks and arrange a visit.
+Trouble sleeping | You have been sleeping badly for weeks. Describe your daily routine to the doctor. | You are the doctor. Ask about their habits and suggest three changes.
+Lost in a new city | Your phone battery is dead and you are lost. Ask a stranger to help you find your hotel. | You live here, but you only know the streets near the station. Help as well as you can.
+Sharing the housework | You think you do more housework than your brother or sister. Suggest a new plan. | You have exams soon and little free time. Negotiate a fair deal.
+A hotel complaint | Your hotel room is noisy and the air conditioning is broken. Ask to change rooms. | You are the receptionist. The hotel is full tonight. Offer another solution.
+Buying a used bike | You want to buy a used bike. Ask about its condition and try to get a lower price. | You are selling the bike. Describe it well and decide on your lowest price.
+Volunteering | You want to volunteer at an animal shelter. Explain why you would be good at it. | You run the shelter. Ask about their free time, experience and what they hope to learn.
+Planning a surprise party | You want to plan a surprise party for a classmate. Suggest ideas and share the jobs. | You like the idea but have very little money. Suggest cheaper ways to do it.
+An exchange student | You are an exchange student. Ask your host about house rules and daily life. | You are the host. Explain the daily routine and ask about their food and hobbies.
+Leaving the gym | You want to cancel your gym membership early. Explain why. | You work at the gym. Explain the contract and try to keep the customer.`};
+/* ===== GAME DEFINITION: 07 Role Play ===== */
+const EYE='<svg width="56" height="40" viewBox="0 0 56 40"><path d="M3 20C10 8 18 3 28 3s18 5 25 17c-7 12-15 17-25 17S10 32 3 20z" fill="none" stroke="#FFFDF6" stroke-width="4"/><circle cx="28" cy="20" r="7" fill="#FFFDF6"/><path d="M8 37L48 3" stroke="#E8457A" stroke-width="5" stroke-linecap="round"/></svg>';
+const G={id:'07',name:'Role Play',unit:'scenes',teamsOpen:false,
+ fmt:'<b>Format:</b> one scene per line: <b>scene | Role A task | Role B task</b>. Empty lines and lines starting with # are skipped. 3–300 scenes.',
+ ex:'At the café | You are a customer. Order a drink. | You work at the café. Take the order.',
+ parse:t=>{const p=t.split('|').map(s=>s.trim());if(p.length<3||!p[0]||!p[1]||!p[2])return{err:'use the format  scene | Role A task | Role B task'};return{s:p[0],a:p[1],b:p.slice(2).join(' | '),t:t}},
+ timer:{presets:[60,120,180,0],def:120,label:'Talk time'},
+ spaceLabel:'Next scene',
+ keyHelp:[['A','Show / cover the Role A card (Take turns on: shows A only and covers B)'],['B','Show / cover the Role B card (Take turns on: shows B only and covers A)'],['H','Cover both cards / show both cards'],['M','Take turns mode on / off'],['?','Open this help']],
+ keys:{a:()=>g_tog(0),b:()=>g_tog(1),h:()=>g_both(),m:()=>g_mode()},
+ help:`<ol><li>Press <b>Next scene</b> or the Space bar. The scene title appears with two task cards: <b>Role A</b> and <b>Role B</b>.</li><li><b>Take turns</b> mode (on by default, button in the scene bar or key <b>M</b>) keeps each task private: every new scene starts with both cards covered. Student B turns away from the screen and you press <b>A</b>: only the Role A card opens. Press <b>A</b> again to cover it. Now student A turns away and you press <b>B</b>: only the Role B card opens. Press <b>B</b> again to cover it.</li><li>When Take turns is off, both cards are shown at once (the whole class can read them). You can still cover a card with <b>A</b>, <b>B</b> or <b>H</b>.</li><li>Pairs act out the conversation. Press <b>T</b> to start the talk timer (default 2 minutes). Press <b>H</b> afterwards to show both cards to the class.</li><li>Ask one or two pairs to perform for the class, then give feedback on useful phrases.</li></ol><p>Teams are optional: open <b>Teams</b> to give points for the best performances.</p>`,
+ html:()=>`<div class="scene"><small>SCENE</small><span id="scene"></span><div class="smeta"><button id="bTurns" class="turns"></button><div class="chips" id="chips"></div><div class="used">Used <b id="used">0</b> / <span id="tot">0</span></div></div></div>
+<div class="roles"><div class="role rA" id="r0"><div class="rh"><b>Role A</b><button id="h0">Hide <span class="kc">A</span></button></div><div class="rbox" id="rb0"><div class="rtext" id="rt0"></div><div class="hidmsg">${EYE}<span id="hm0"></span></div></div></div>
+<div class="role rB" id="r1"><div class="rh"><b>Role B</b><button id="h1">Hide <span class="kc">B</span></button></div><div class="rbox" id="rb1"><div class="rtext" id="rt1"></div><div class="hidmsg">${EYE}<span id="hm1"></span></div></div></div></div>
+<div class="ctrl"><button class="big" id="bBack">${ICON.back} Back</button><button class="huge pri" id="bNext">Next scene <span class="kc">Space</span></button><button class="big" id="bBoth">Hide both <span class="kc">H</span></button><div class="grow"></div><div id="timer"></div></div>`,
+ init(){$('#bNext').onclick=()=>G.next();$('#bBack').onclick=()=>G.back();$('#h0').onclick=()=>g_tog(0);$('#h1').onclick=()=>g_tog(1);$('#bBoth').onclick=()=>g_both();$('#bTurns').onclick=()=>g_mode()},
+ next(){const it=draw();if(it)g_show(it)},
+ back(){const it=back();if(it)g_show(it)},
+ reset(){g_live=false;g_hid=[false,false];g_draw();$('#scene').textContent='Press Next scene or the Space bar';g_ph();g_fit();g_hid=[true,true];g_draw()},
+ onCtx(){$('#chips').innerHTML='<span class="chip lv">'+(S.src==='mine'?'My prompts':LVN[S.level])+'</span>'}
+};
+let g_hid=[false,false];
+/* role text: 3.0rem max; under 20 words never below 2.8rem (56px at 1920x1080); 20+ words may go to 2.2rem (44px) */
+function g_fl(el){return (el.textContent.trim().match(/\S+/g)||[]).length>=20?2.2:2.8}
+function g_fit(){const r0=$('#rt0'),r1=$('#rt1');const a=fit($('#rb0'),r0,3,2.8,2.2),b=fit($('#rb1'),r1,3,2.8,2.2);const m=Math.min(a,b);r0.style.fontSize=Math.max(m,g_fl(r0))+'rem';r1.style.fontSize=Math.max(m,g_fl(r1))+'rem'}
+/* Take turns mode: every new scene starts with both cards covered; A / B open ONE card and cover the other */
+let g_turns=(function(){try{const v=localStorage.getItem('eslspeak_07_turns');return v==null?true:v==='1'}catch(e){return true}})(),g_live=false;
+function g_ph(){if(g_live)return;$('#rt0').textContent=g_turns?'Take turns is on. Each scene starts with both cards covered.':'Student A reads this card.';$('#rt1').textContent=g_turns?'Press A: only Role A opens while B turns away. Then press B.':'Student B reads this card.'}
+function g_show(it){const was=g_live;g_live=true;$('#scene').textContent=it.s;$('#rt0').textContent=it.a;$('#rt1').textContent=it.b;const h=was?g_hid.slice():[false,false];g_hid=[false,false];g_draw();g_fit();g_hid=g_turns?[true,true]:h;g_draw();if(TIMER)TIMER.reset()}
+function g_draw(){[0,1].forEach(i=>{const X='AB'[i],Y='BA'[i];$('#r'+i).classList.toggle('hid',g_hid[i]);$('#h'+i).innerHTML=(g_hid[i]?'Show':'Hide')+' <span class="kc">'+X+'</span>';$('#hm'+i).textContent=!g_live?'Press Next scene or Space to start':!g_turns?'Hidden · press '+X+' to show':(!g_hid[1-i]?'Role '+X+': turn away from the screen':'Covered · Role '+Y+' turns away, then press '+X)});$('#bBoth').innerHTML=(g_hid[0]&&g_hid[1]?'Show both':'Hide both')+' <span class="kc">H</span>';const t=$('#bTurns');if(t){t.innerHTML='Take turns: '+(g_turns?'On':'Off')+' <span class="kc">M</span>';t.classList.toggle('on',g_turns)}APP.hidden=g_hid.slice();APP.turns=g_turns}
+function g_tog(i){if(!g_live){toast('Press Next scene first. The cards open when a scene is on screen.');return}if(g_turns&&g_hid[i]){g_hid=[true,true];g_hid[i]=false}else g_hid[i]=!g_hid[i];g_draw();SFX.pop()}
+function g_both(){if(!g_live){toast('Press Next scene first. The cards open when a scene is on screen.');return}const v=!(g_hid[0]&&g_hid[1]);g_hid=[v,v];g_draw();SFX.pop()}
+function g_mode(){g_turns=!g_turns;try{localStorage.setItem('eslspeak_07_turns',g_turns?'1':'0')}catch(e){}g_ph();g_hid=[false,false];g_draw();g_fit();g_hid=!g_live||g_turns?[true,true]:[false,false];g_draw();SFX.pop();toast(g_turns?'Take turns on: each scene starts with both cards covered. Press A, then B.':'Take turns off: both cards are shown together.')}
+
+/* ===== ENGINE (shared by all 8 games) ===== */
+const APP=window.APP={beeps:0,flashes:0,bad:[],G:G};
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.prototype.slice.call((r||document).querySelectorAll(s));
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+const LSP='eslspeak_'+G.id+'_';
+const store={get(k,d){try{const v=localStorage.getItem(LSP+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(LSP+k,JSON.stringify(v))}catch(e){}}};
+const LVN={A:'A1–A2',B:'B1–B2',all:'All levels'};
+const ICON={back:'<svg class="i" viewBox="0 0 20 20"><path d="M14 3L4 10l10 7z" fill="currentColor"/></svg>',
+ sOn:'<svg class="i" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+ sOff:'<svg class="i" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'};
+const BUILT=[];
+['A','B'].forEach(lv=>{const d=DATA[lv];const add=(txt,tp)=>txt.split('\n').forEach(l=>{l=l.trim().replace(/\s+/g,' ');if(!l||l[0]==='#')return;const r=G.parse(l);if(!r||r.err){APP.bad.push(l);return}r.lv=lv;if(tp)r.tp=tp;BUILT.push(r)});if(typeof d==='string')add(d);else Object.keys(d).forEach(tp=>add(d[tp],tp))});
+APP.BUILT=BUILT;
+/* sound + effects (WebAudio only, no audio files) */
+let AC=null,soundOn=true;try{soundOn=localStorage.getItem('eslspeak_sound')!=='off'}catch(e){}
+function tone(f,d,t,type,v){if(!soundOn)return;APP.beeps++;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+(t||0);o.type=type||'sine';o.frequency.setValueAtTime(f,s);g.gain.setValueAtTime(0.0001,s);g.gain.exponentialRampToValueAtTime(v||0.25,s+0.02);g.gain.exponentialRampToValueAtTime(0.0001,s+d);o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+d+0.05)}catch(e){}}
+const SFX={tick:()=>tone(880,.04,0,'square',.05),pop:()=>tone(620,.09,0,'sine',.2),good:()=>{tone(660,.12);tone(880,.2,.11)},bad:()=>tone(190,.3,0,'sawtooth',.13),end:()=>{APP.endSounds=(APP.endSounds||0)+1;tone(880,.25,0,'square',.12);tone(660,.25,.3,'square',.12);tone(990,.5,.6,'square',.14)},done:()=>{tone(523,.15);tone(659,.15,.15);tone(784,.3,.3)}};
+let flashTo=null;
+function flash(){const f=$('#flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');APP.flashes++;clearTimeout(flashTo);flashTo=setTimeout(()=>f.classList.remove('go'),1300)}
+let toastTo=null;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');APP.lastToast=m;clearTimeout(toastTo);toastTo=setTimeout(()=>t.classList.remove('show'),2600)}
+function modal(html,btns){const m=$('#modal');$('#mBody').innerHTML=html;const b=$('#mBtns');b.innerHTML='';(btns||[{l:'OK',c:'pri'}]).forEach(x=>{const e=document.createElement('button');e.className=x.c||'';e.textContent=x.l;e.onclick=()=>{closeModal();if(x.f)x.f()};b.appendChild(e)});m.classList.add('open')}
+function closeModal(){$('#modal').classList.remove('open')}
+function openPanel(){renderPanel();$('#panel').classList.add('open');$('#scrim').classList.add('open')}
+function closePanel(){$('#panel').classList.remove('open');$('#scrim').classList.remove('open')}
+function openHelp(){$('#help').classList.add('open')}
+function closeAll(){closeModal();closePanel();$('#help').classList.remove('open')}
+function anyOpen(){return !!document.querySelector('.modal.open,#panel.open')}
+/* fit long prompts: shrink from max to floor (rem); 20+ words may go lower */
+function fit(box,el,max,floor,floorLong){const w=(el.textContent.trim().match(/\S+/g)||[]).length;const fl=w>=20?(floorLong||2.2):(floor||2.8);let s=max;el.style.fontSize=s+'rem';let n=0;while(n++<90&&s>fl&&(el.offsetHeight>box.clientHeight||el.scrollWidth>box.clientWidth+1)){s=Math.max(fl,Math.round((s-0.1)*10)/10);el.style.fontSize=s+'rem'}return s}
+/* state */
+const S=Object.assign({src:'builtin',level:'A',mine:'',listName:'',topics:null},store.get('state',{}));
+if(G.topics&&!Array.isArray(S.topics))S.topics=G.topics.slice();
+if(['A','B','all'].indexOf(S.level)<0)S.level='A';
+let MINE=[];
+function saveS(){store.set('state',S)}
+const isMain=x=>G.isMain?G.isMain(x):true;
+function parseList(text){const items=[],errs=[],seen=Object.create(null);let dup=0,com=0,blank=0;String(text||'').split(/\r?\n/).forEach((raw,i)=>{const t=raw.trim().replace(/\s+/g,' ');if(!t){blank++;return}if(t[0]==='#'){com++;return}if(seen[t]){dup++;return}seen[t]=1;const r=G.parse(t);if(!r||r.err){errs.push('Line '+(i+1)+': '+(r?r.err:'could not read this line')+' (skipped)');return}r.lv='mine';r.line=i+1;items.push(r)});return{items:items,main:items.filter(isMain),errs:errs,dup:dup,com:com,blank:blank}}
+function capItems(items){let k=0;return items.filter(x=>!isMain(x)||++k<=300)}
+function applyMine(text,quiet){const p=parseList(text);const out=[];let ok=true;
+ if(p.main.length<3){ok=false;out.push(['e','Need at least 3 '+G.unit+' to start a game. Found '+p.main.length+'. Still using the built-in prompts.'])}
+ else{MINE=capItems(p.items);if(p.main.length>300)out.push(['e','You added '+p.main.length+' '+G.unit+'. Only the first 300 were kept (maximum 300).']);S.src='mine';S.mine=text;saveS();out.unshift(['g','Using '+Math.min(300,p.main.length)+' of your '+G.unit+(G.countExtra?G.countExtra(MINE):'')+'.'])}
+ if(p.dup)out.push(['n',p.dup+' duplicate line'+(p.dup>1?'s':'')+' removed.']);
+ if(p.com)out.push(['n',p.com+' comment line'+(p.com>1?'s':'')+' (#) skipped.']);
+ p.errs.forEach(e=>out.push(['e',e]));
+ APP.lastMsg=out;showMsg(out);if(ok){restart(true);if(!quiet)toast('Using your prompts. New round started.')}renderPanel(true);return ok}
+function showMsg(out){$('#pMsg').innerHTML=out.map(x=>'<div class="'+x[0]+'">'+esc(x[1])+'</div>').join('')}
+/* deck: no repeats inside a round, Back = history */
+function pool(){if(S.src==='mine'&&MINE.length)return MINE.filter(isMain);return BUILT.filter(x=>isMain(x)&&(S.level==='all'||x.lv===S.level)&&(!G.topics||S.topics.indexOf(x.tp)>=0))}
+const D={items:[],order:[],pos:-1,max:-1,shown:[]};APP.D=D;
+function newDeck(){D.items=pool();D.order=shuffle(D.items.map((x,i)=>i));D.pos=-1;D.max=-1;D.shown=[];if(G.onDeck)G.onDeck();updUsed()}
+function draw(){if(D.pos<D.max){D.pos++;updUsed();return D.shown[D.pos]}if(!D.order.length){toast(G.topics?'Choose at least one topic in Prompts.':'No prompts available.');return null}if(D.max>=D.order.length-1){askReshuffle();return null}D.pos++;D.max=D.pos;const it=D.items[D.order[D.pos]];D.shown[D.pos]=G.compose?G.compose(it):it;updUsed();return D.shown[D.pos]}
+function back(){if(D.pos>0){D.pos--;updUsed();return D.shown[D.pos]}toast(D.pos<0?'Nothing to go back to yet.':'This is the first prompt of this round.');return null}
+function cur(){return D.pos>=0?D.shown[D.pos]:null}
+function askReshuffle(){if(G.stop)G.stop();if(TIMER)TIMER.pause();APP.reshuffleAsked=(APP.reshuffleAsked||0)+1;modal('<h2>All prompts used — reshuffle?</h2><p>You have used all '+D.order.length+' '+G.unit+' in this round. Reshuffle to start again. Scores are kept.</p>',[{l:'Not now'},{l:'Reshuffle',c:'pri',f:()=>{newDeck();G.next()}}])}
+function updUsed(){const u=$('#used'),t=$('#tot');if(u)u.textContent=Math.max(0,D.max+1);if(t)t.textContent=D.order.length}
+/* timer */
+let TIMER=null;
+function Timer(el,o){const C=2*Math.PI*42;const T={total:store.get('tsec',o.def),left:0,run:false,iv:null,last:0,elapsed:0,started:false};if(o.presets.indexOf(T.total)<0)T.total=o.def;T.left=T.total;
+ el.innerHTML='<div class="tmr'+(o.big?' big':'')+'">'+(o.label?'<div class="tlbl">'+o.label+'</div>':'')+'<div class="presets">'+o.presets.map(s=>'<button data-s="'+s+'" title="'+(s?s+' seconds':'Timer off')+'">'+(s===0?'Off':s>=120&&s%60===0?(s/60)+' min':s)+'</button>').join('')+'</div><div class="ring" title="Start / pause the timer (T)"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="42"/><circle class="prg" cx="50" cy="50" r="42" stroke-dasharray="'+C.toFixed(2)+'"/></svg><div class="dg"></div></div></div>';
+ const ring=$('.ring',el),prg=$('.prg',el),dg=$('.dg',el);
+ const fmtT=s=>{s=Math.ceil(s-0.001);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+ function drawT(){$$('.presets button',el).forEach(b=>b.classList.toggle('on',+b.dataset.s===T.total));ring.classList.toggle('off',!T.total);ring.classList.toggle('paused',T.started&&!T.run&&T.left>0);if(!T.total){dg.textContent='Off';prg.style.strokeDashoffset=C;return}const f=T.left/T.total;prg.style.strokeDashoffset=(C*(1-f)).toFixed(2);prg.style.stroke=T.left<=10?'var(--berry)':f<=.5?'var(--sun)':'var(--mint)';dg.textContent=fmtT(T.left)}
+ function tick(){const n=Date.now();const d=(n-T.last)/1000;T.last=n;T.left=Math.max(0,T.left-d);T.elapsed+=d;if(T.left<=0)T.finish();else drawT()}
+ T.set=s=>{T.pause();T.total=s;T.left=s;T.elapsed=0;T.started=false;store.set('tsec',s);drawT()};
+ T.start=()=>{if(!T.total||T.run)return;if(T.left<=0){T.left=T.total;T.elapsed=0}T.run=true;T.started=true;T.last=Date.now();clearInterval(T.iv);T.iv=setInterval(tick,100);drawT();if(o.onStart)o.onStart()};
+ T.pause=()=>{T.run=false;clearInterval(T.iv);T.iv=null;drawT()};
+ T.reset=()=>{T.pause();T.left=T.total;T.elapsed=0;T.started=false;drawT()};
+ T.toggle=()=>{if(T.run)T.pause();else T.start()};
+ T.finish=()=>{T.run=false;clearInterval(T.iv);T.iv=null;T.left=0;T.started=false;drawT();endFx();if(o.onEnd)o.onEnd()};
+ ring.onclick=()=>{if(G.timerKey)G.timerKey();else T.toggle()};
+ $('.presets',el).onclick=e=>{const b=e.target.closest('button');if(b){T.set(+b.dataset.s);if(o.onSet)o.onSet()}};
+ drawT();return T}
+function endFx(){SFX.end();flash()}
+/* teams: 2-6, rename, +1/-1, collapsible */
+const TCOL=['#FFC83D','#5BB8F5','#3DD39A','#B793F2','#E8457A','#FF8A3D'];
+const TM={n:Math.min(6,Math.max(2,store.get('tn',2))),names:store.get('tnames',null)||['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],sc:[0,0,0,0,0,0],act:0,open:store.get('topen',!!G.teamsOpen)};
+function renderTeams(){const w=$('#teams');let h='<div class="tbar"><button id="tToggle" title="Show or hide the team scores">Teams '+(TM.open?'▾':'▸ (hidden)')+'</button>';if(TM.open)h+='<button id="tLess" title="Remove a team">− Team</button><button id="tMore" title="Add a team">+ Team</button>'+(G.teamHint?'<span class="tlbl">'+G.teamHint+'</span>':'');h+='</div>';
+ if(TM.open){h+='<div class="tgrid" style="grid-template-columns:repeat('+TM.n+',minmax(0,1fr))">';for(let i=0;i<TM.n;i++)h+='<div class="tcard'+(G.activeTeam&&i===TM.act?' act':'')+'" style="background:'+TCOL[i]+'" data-i="'+i+'"><input class="tname" data-i="'+i+'" value="'+esc(TM.names[i])+'" maxlength="18" aria-label="Team name"><div class="tsc" id="tsc'+i+'">'+TM.sc[i]+'</div><div class="tbtn"><button class="rnd" data-d="-1" data-i="'+i+'" title="Minus 1">−</button><button class="rnd" data-d="1" data-i="'+i+'" title="Plus 1">+</button></div></div>';h+='</div>'}
+ w.innerHTML=h}
+function addScore(i,d){TM.sc[i]+=d;const e=$('#tsc'+i);if(e)e.textContent=TM.sc[i];if(d>0)SFX.pop();else SFX.bad();if(G.onScore)G.onScore(i,d)}
+function setActive(i){TM.act=i;$$('.tcard').forEach(c=>c.classList.toggle('act',G.activeTeam&&+c.dataset.i===i));if(G.onActive)G.onActive(i)}
+function wireTeams(){const w=$('#teams');w.addEventListener('click',e=>{const b=e.target.closest('button');if(b){if(b.id==='tToggle'){TM.open=!TM.open;store.set('topen',TM.open);renderTeams();if(G.onTeams)G.onTeams();return}if(b.id==='tLess'||b.id==='tMore'){TM.n=Math.min(6,Math.max(2,TM.n+(b.id==='tMore'?1:-1)));if(TM.act>=TM.n)setActive(0);store.set('tn',TM.n);renderTeams();if(G.onTeams)G.onTeams();return}if(b.dataset.d){addScore(+b.dataset.i,+b.dataset.d);return}}const c=e.target.closest('.tcard');if(c&&G.activeTeam&&e.target.tagName!=='INPUT')setActive(+c.dataset.i)});w.addEventListener('input',e=>{if(e.target.classList.contains('tname')){TM.names[+e.target.dataset.i]=e.target.value;store.set('tnames',TM.names);if(G.onTeams)G.onTeams(true)}})}
+function tName(i){return (TM.names[i]||'').trim()||('Team '+(i+1))}
+/* prompts panel */
+function lists(){return store.get('lists',[])}
+function renderLists(){const L=lists();$('#pLists').innerHTML=L.length?L.map((x,i)=>'<div class="li"><input data-i="'+i+'" value="'+esc(x.name)+'" maxlength="40" aria-label="List name"><button data-a="load" data-i="'+i+'">Load</button><button data-a="ren" data-i="'+i+'">Rename</button><button data-a="del" data-i="'+i+'">Delete</button></div>').join(''):'<p class="note">No saved lists yet.</p>'}
+function renderPanel(keepText){$$('#pLevel button').forEach(b=>b.classList.toggle('on',b.dataset.l===S.level));$$('#pSrc button').forEach(b=>b.classList.toggle('on',b.dataset.s===S.src));if(G.topics)$('#pTopics').innerHTML=G.topics.map(t=>'<button data-t="'+esc(t)+'" class="'+(S.topics.indexOf(t)>=0?'on':'')+'">'+esc(t)+'</button>').join('');if(!keepText&&!$('#pText').value&&S.mine)$('#pText').value=S.mine;renderLists()}
+function buildPanel(){$('#pFmt').innerHTML=G.fmt;$('#pEx').textContent='Example:\n'+G.ex;if(G.topics)$('#pTopicsWrap').hidden=false;
+ $('#pClose').onclick=closePanel;
+ $('#pLevel').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.level=b.dataset.l;saveS();renderPanel(true);if(S.src==='builtin'){restart(true);toast('Level: '+LVN[S.level]+'. New round started.')}else toast('The level filter applies to the built-in prompts.')};
+ if(G.topics){$('#pTopics').onclick=e=>{const b=e.target.closest('button');if(!b)return;const t=b.dataset.t,i=S.topics.indexOf(t);if(i>=0)S.topics.splice(i,1);else S.topics.push(t);S.topics=G.topics.filter(x=>S.topics.indexOf(x)>=0);saveS();renderPanel(true);if(S.src==='builtin')restart(true)};$('#tAll').onclick=()=>{S.topics=G.topics.slice();saveS();renderPanel(true);if(S.src==='builtin')restart(true)};$('#tNone').onclick=()=>{S.topics=[];saveS();renderPanel(true);if(S.src==='builtin')restart(true)}}
+ $('#pSrc').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.s==='builtin'){S.src='builtin';saveS();restart(true);renderPanel(true);showMsg([['g','Using the built-in prompts ('+LVN[S.level]+').']])}else{const t=$('#pText').value;if(!t.trim()){showMsg([['e','Paste or import at least 3 '+G.unit+' first, then press Use my prompts.']]);return}S.listName=$('#pName').value.trim();applyMine(t)}};
+ $('#pUse').onclick=()=>{S.listName=$('#pName').value.trim();applyMine($('#pText').value)};
+ $('#pImp').onclick=()=>$('#pFile').click();
+ $('#pFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#pText').value=String(r.result).replace(/^﻿/,'');$('#pName').value=f.name.replace(/\.txt$/i,'').slice(0,40);showMsg([['g','Imported "'+f.name+'". Press Use my prompts to play with it.']])};r.readAsText(f,'utf-8');e.target.value=''};
+ $('#pExp').onclick=()=>{let t=$('#pText').value,name=$('#pName').value.trim()||'my-prompts';if(!t.trim()){t=BUILT.filter(x=>S.level==='all'||x.lv===S.level).map(x=>x.t).join('\n');name='built-in-'+LVN[S.level]}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download='eslspeak-'+G.id+'-'+name.replace(/[^\w\-]+/g,'-')+'.txt';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800);showMsg([['g','Exported '+a.download+' to your downloads folder.']])};
+ $('#pSave').onclick=()=>{const L=lists();const text=$('#pText').value;if(!text.trim()){showMsg([['e','Paste some prompts before saving a list.']]);return}const name=($('#pName').value.trim()||('My list '+(L.length+1))).slice(0,40);const i=L.findIndex(x=>x.name===name);if(i>=0)L[i].text=text;else{if(L.length>=20){showMsg([['e','You already have 20 saved lists. Delete one first.']]);return}L.push({name:name,text:text})}store.set('lists',L);$('#pName').value=name;renderLists();showMsg([['g','Saved "'+name+'" ('+L.length+' of 20 lists).']])};
+ $('#pLists').onclick=e=>{const b=e.target.closest('button');if(!b)return;const L=lists(),i=+b.dataset.i,x=L[i];if(!x)return;
+  if(b.dataset.a==='load'){$('#pText').value=x.text;$('#pName').value=x.name;S.listName=x.name;applyMine(x.text)}
+  else if(b.dataset.a==='ren'){const v=$('#pLists input[data-i="'+i+'"]').value.trim().slice(0,40);if(!v){showMsg([['e','Type a new name in the box first.']]);return}if(S.listName===x.name){S.listName=v;saveS();updCtx()}x.name=v;store.set('lists',L);renderLists();showMsg([['g','Renamed to "'+v+'".']])}
+  else if(b.dataset.a==='del'){if(b.dataset.sure){L.splice(i,1);store.set('lists',L);renderLists();showMsg([['n','Deleted "'+x.name+'".']])}else{b.dataset.sure='1';b.textContent='Sure?';b.classList.add('bad');setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent='Delete';b.classList.remove('bad')}},3000)}}}}
+function buildHelp(){const keys=[['Space',G.spaceLabel]].concat([['T',G.tLabel||'Start / pause the timer']],[['F','Full screen on / off'],['Esc','Close the Prompts panel, this help or a message']],G.keyHelp||[]);$('#hBody').innerHTML='<h2>'+esc(G.name)+': how to play</h2>'+G.help+'<h3>Keyboard shortcuts</h3><table>'+keys.map(k=>'<tr><td style="width:9rem"><span class="kcap">'+k[0]+'</span></td><td>'+k[1]+'</td></tr>').join('')+'</table><h3>Your own prompts</h3><p>'+G.fmt+'</p><p>Example: <code>'+esc(G.ex)+'</code></p><p>The built-in prompts are in English. Your own prompts can be in any language. Saved lists stay in this browser on this computer, and each game keeps its own lists.</p>'}
+function updCtx(){const c=$('#ctx');if(c)c.textContent='· '+(S.src==='mine'?'My prompts'+(S.listName?': '+S.listName:''):'Built-in prompts · '+LVN[S.level])+(G.ctx?G.ctx():'');if(G.onCtx)G.onCtx()}
+function restart(keepScores){if(G.stop)G.stop();newDeck();if(!keepScores){TM.sc=[0,0,0,0,0,0];TM.act=0}renderTeams();if(TIMER)TIMER.reset();G.reset(keepScores);updCtx()}
+function toggleFS(){APP.fs=(APP.fs||0)+1;const d=document,el=d.documentElement;try{let r;if(!(d.fullscreenElement||d.webkitFullscreenElement)){const f=el.requestFullscreen||el.webkitRequestFullscreen;if(f)r=f.call(el)}else{const f=d.exitFullscreen||d.webkitExitFullscreen;if(f)r=f.call(d)}if(r&&r.catch)r.catch(()=>{})}catch(x){}}
+function setSoundIcon(){$('#bSound').innerHTML=soundOn?ICON.sOn:ICON.sOff;$('#bSound').title=soundOn?'Sound is on (click to mute)':'Sound is off (click to turn on)'}
+document.addEventListener('keydown',e=>{const tg=e.target;const typing=tg&&(/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName)||tg.isContentEditable);
+ if(e.key==='Escape'||e.key==='Esc'){APP.lastKey='esc';if(anyOpen()){e.preventDefault();closeAll()}return}
+ if(typing||e.ctrlKey||e.metaKey||e.altKey)return;
+ const k=(e.key||'').toLowerCase();
+ if(e.key===' '||e.code==='Space'){e.preventDefault();if(anyOpen()||e.repeat)return;APP.lastKey='space';G.next();return}
+ if(anyOpen())return;
+ if(k==='t'){APP.lastKey='t';if(G.timerKey)G.timerKey();else if(TIMER)TIMER.toggle();return}
+ if(k==='f'){APP.lastKey='f';toggleFS();return}
+ if(e.key==='?'){openHelp();return}
+ if(G.keys&&G.keys[k]){e.preventDefault();APP.lastKey=k;G.keys[k]()}});
+document.addEventListener('keyup',e=>{if((e.key===' '||e.code==='Space')&&e.target&&e.target.tagName==='BUTTON')e.preventDefault()},true);
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(b&&e.detail>0)b.blur()});
+function boot(){$('#play').innerHTML=G.html();if(G.timer)TIMER=Timer($('#timer'),G.timer);APP.TIMER=TIMER;
+ if(S.src==='mine'){const p=parseList(S.mine);if(p.main.length>=3)MINE=capItems(p.items);else S.src='builtin'}
+ buildPanel();buildHelp();renderTeams();wireTeams();
+ $('#bPrompts').onclick=openPanel;$('#bRestart').onclick=()=>{restart(false);toast('New game: scores, timer and used prompts cleared.')};$('#bSound').onclick=()=>{soundOn=!soundOn;try{localStorage.setItem('eslspeak_sound',soundOn?'on':'off')}catch(e){}setSoundIcon();if(soundOn)SFX.pop()};$('#bFull').onclick=toggleFS;$('#bHelp').onclick=openHelp;$('#scrim').onclick=closePanel;$('#hClose').onclick=()=>$('#help').classList.remove('open');setSoundIcon();
+ if(G.init)G.init();newDeck();G.reset();updCtx()}
+Object.assign(APP,{S:S,TM:TM,parseList:parseList,applyMine:applyMine,draw:draw,back:back,cur:cur,restart:restart,newDeck:newDeck,pool:pool,addScore:addScore,setActive:setActive,store:store,fit:fit,lists:lists,openPanel:openPanel,closeAll:closeAll,anyOpen:anyOpen});
+boot();
+</script>
+</body></html>

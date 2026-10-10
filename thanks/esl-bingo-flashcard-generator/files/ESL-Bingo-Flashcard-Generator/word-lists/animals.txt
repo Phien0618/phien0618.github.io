@@ -1,0 +1,21 @@
+# Animals
+cat = a small pet that says "meow"
+dog = a pet that barks and wags its tail
+fish = an animal that lives and swims in water
+bird = an animal with wings and feathers
+rabbit = a small animal with long ears that hops
+cow = a farm animal that gives us milk
+pig = a pink farm animal with a curly tail
+duck = a bird that swims and says "quack"
+frog = a small green animal that jumps
+lion = a big wild cat with a mane
+elephant = a big grey animal with a long nose
+monkey = an animal that climbs trees and eats bananas
+bear = a big strong animal that sleeps in winter
+sheep = a farm animal with soft wool
+snake = a long animal with no legs
+turtle = a slow animal with a hard shell
+mouse = a very small animal with a long tail
+chicken = a farm bird that lays eggs
+owl = a bird with big eyes that is awake at night
+bee = a small insect that makes honey

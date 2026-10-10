@@ -1,0 +1,21 @@
+# Weather
+sunny = the sun is shining
+cloudy = there are many clouds in the sky
+rainy = water is falling from the clouds
+snowy = snow is falling and it is white outside
+windy = the air is moving fast
+stormy = there is rain, wind and thunder
+foggy = the air is grey and you cannot see far
+rainbow = colored arcs in the sky after rain
+hot = a very high temperature
+cold = a very low temperature
+umbrella = it keeps you dry in the rain
+raincoat = a coat that keeps you dry
+boots = tall shoes for rain or snow
+scarf = you wear it around your neck when it is cold
+gloves = you wear them on your hands when it is cold
+snowman = a figure made of snow
+puddle = a small pool of water on the ground
+thermometer = it tells you the temperature
+lightning = a bright flash of light in a storm
+tornado = a very strong spinning wind

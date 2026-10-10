@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice INV-006</title>
+<style id="pagesize">@page{size:8.5in 11in;margin:0}</style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E9E6E0;font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:#16233A}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+#bar{position:sticky;top:0;z-index:5;background:#16233A;color:#fff;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;font-size:14px}
+#bar button,#bar label{background:#fff;color:#16233A;border:0;border-radius:6px;padding:6px 12px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
+#bar button.on{background:#EE6B57;color:#fff}
+#bar .hint{opacity:.8;font-size:12.5px}
+.page{width:816px;min-height:1056px;margin:20px auto;background:#fff;padding:58px 64px 56px;font-size:13.5px;line-height:1.45;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+body.a4 .page{width:794px;min-height:1123px}
+[contenteditable]{background:#FFF4C2;border-radius:3px;outline:none;min-width:12px;display:inline-block}
+div[contenteditable],.from div{display:block}.bill .v{display:block}
+[contenteditable]:focus{box-shadow:0 0 0 2px #EE6B57}
+[data-ph]:empty::before{content:attr(data-ph);color:inherit}
+[data-ph]:empty:focus::before{opacity:.45}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.logo{width:130px;height:52px;border:2px dashed #D9D3C7;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#9AA0AC;font-size:11px}
+.from{margin-top:14px;font-size:13px;color:#2B3D5C}
+.from .bn{color:#16233A;font-size:15px;font-weight:700}
+.ttl{text-align:right}
+.ttl h1{font-size:40px;font-weight:800;letter-spacing:.08em;line-height:1}
+.meta{margin-top:16px;border-collapse:collapse;margin-left:auto}
+.meta td{padding:3px 0 3px 18px;font-size:13px;text-align:right}
+.meta td:first-child{color:#6B6F7B}.meta td:last-child{font-weight:600}
+.bill{margin-top:28px;display:flex;gap:40px}
+.lbl{font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#6B6F7B}
+.bill .v{margin-top:4px}
+table.items{width:100%;border-collapse:collapse;margin-top:26px}
+.items th{font-size:10.5px;font-weight:800;letter-spacing:.12em;color:#6B6F7B;text-align:left;padding:8px 8px;border-bottom:2px solid #16233A}
+.items td{padding:8px 8px;border-bottom:1px solid #E6E1D8;height:36px}
+.items .r{text-align:right}
+.items td.d{width:54%}
+.tot{display:flex;justify-content:flex-end;margin-top:14px}
+.tot table{border-collapse:collapse;width:310px}
+.tot td{padding:6px 10px}.tot td:last-child{text-align:right}
+.tot .m td{color:#6B6F7B}
+.due td{background:#16233A;color:#fff;font-weight:800;font-size:16px;padding:11px 10px}
+.due td:first-child{border-left:6px solid #EE6B57}
+.lower{display:flex;gap:28px;margin-top:26px}.lower>div{flex:1}
+.lower .v{margin-top:6px;font-size:13px;color:#2B3D5C}
+#late{margin-top:18px;font-size:12px;color:#6B6F7B;border-top:1px solid #E6E1D8;padding-top:10px}
+.thanks{margin-top:26px;font-size:15px;font-weight:600}
+@media print{
+ body{background:#fff}#bar{display:none}
+ .page,body.a4 .page{margin:0;box-shadow:none;width:auto;min-height:0;height:auto}
+ [contenteditable]{background:none;box-shadow:none}
+ .noprint{display:none!important}
+}
+</style></head>
+<body>
+<div id="bar">
+ <button id="bLetter" class="on" type="button">Letter</button>
+ <button id="bA4" type="button">A4</button>
+ <button id="bPrint" type="button">Print / Save as PDF</button>
+ <label><input type="checkbox" id="lateOn"> Late-fee line</label>
+ <span class="hint">Click any yellow text to edit. Totals update as you type. Yellow highlights don't print.</span>
+</div>
+<div class="page" id="inv">
+ <div class="top">
+  <div>
+   <div class="logo">[Your logo]</div>
+   <div class="from"><div class="bn" contenteditable="true">Maya Ortiz Studio</div><div contenteditable="true">Maya Ortiz</div><div contenteditable="true">maya@example.com</div><div contenteditable="true">123 Example Street, Your City</div></div>
+  </div>
+  <div class="ttl"><h1>INVOICE</h1>
+   <table class="meta">
+    <tr><td>Invoice #</td><td><span class="mono" contenteditable="true" id="invno">INV-006</span></td></tr>
+    <tr><td>Issue date</td><td><span contenteditable="true">Sep 27, 2026</span></td></tr>
+    <tr><td>Payment terms</td><td><span contenteditable="true" id="terms">14</span> days</td></tr>
+    <tr><td>Due date</td><td><span contenteditable="true" id="duedate">Oct 11, 2026</span></td></tr>
+   </table></div>
+ </div>
+ <div class="bill">
+  <div><span class="lbl">BILL TO</span><div class="v"><b contenteditable="true">Quill Health</b><br><span contenteditable="true">Attn: Sam</span><br><span contenteditable="true">sam@example.com</span></div></div>
+  <div><span class="lbl">PROJECT</span><div class="v" contenteditable="true">Onboarding emails</div></div>
+ </div>
+ <table class="items" id="items">
+  <thead><tr><th>Description</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead>
+  <tbody></tbody>
+ </table>
+ <div class="tot"><table>
+  <tr><td>Subtotal</td><td class="mono" id="sub"></td></tr>
+  <tr class="m"><td>Tax (<span contenteditable="true" id="tax" data-ph="0"></span>%)</td><td class="mono" id="taxamt"></td></tr>
+  <tr class="m"><td>Deposit already paid</td><td class="mono"><span contenteditable="true" id="dep" data-ph="0.00"></span></td></tr>
+  <tr class="due"><td>Balance due</td><td class="mono" id="bal"></td></tr>
+ </table></div>
+ <div class="lower">
+  <div><span class="lbl">PAYMENT DETAILS</span><div class="v"><span contenteditable="true">Bank transfer to: Maya Ortiz Studio</span><br><span contenteditable="true">Account / IBAN: [your details]</span><br>Reference: <span id="ref">INV-006</span></div></div>
+  <div><span class="lbl">TERMS</span><div class="v"><span contenteditable="true">Payment is due within 14 days of the issue date, by Oct 11, 2026. Please include the invoice number with your payment.</span></div></div>
+ </div>
+ <div id="late" style="display:none"><span contenteditable="true">Late payments incur a late fee of 1.5% per month on the overdue balance, as set out in our agreed terms.</span></div>
+ <div class="thanks" contenteditable="true">Thank you for your business, Sam.</div>
+</div>
+<script>
+(function(){
+ var lines=[["Welcome email sequence (5 emails)",1,1500],["Subject line testing",1,300],["Strategy call",1,150],["","",""],["","",""],["","",""],["","",""],["","",""]];
+ var tb=document.querySelector('#items tbody');
+ lines.forEach(function(l,i){var tr=document.createElement('tr');
+  tr.innerHTML='<td class="d"><span contenteditable="true" class="desc"></span></td><td class="r"><span contenteditable="true" class="qty mono"></span></td><td class="r"><span contenteditable="true" class="rate mono"></span></td><td class="r mono amt"></td>';
+  tr.querySelector('.desc').textContent=l[0];tr.querySelector('.qty').textContent=l[1];tr.querySelector('.rate').textContent=l[2]===''?'':fmt(l[2]);tb.appendChild(tr);});
+ function num(t){t=(t||'').replace(/[^0-9.\-]/g,'');var v=parseFloat(t);return isNaN(v)?0:v;}
+ function fmt(v){return v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+ function calc(){var sub=0;tb.querySelectorAll('tr').forEach(function(tr){var q=tr.querySelector('.qty').textContent.trim(),r=tr.querySelector('.rate').textContent.trim(),a=tr.querySelector('.amt');
+   if(q===''&&r===''){a.textContent='';return;}var v=num(q)*num(r);sub+=v;a.textContent=fmt(v);});
+  var tax=sub*num(document.getElementById('tax').textContent)/100,dep=num(document.getElementById('dep').textContent);
+  document.getElementById('sub').textContent=fmt(sub);document.getElementById('taxamt').textContent=fmt(tax);
+  document.getElementById('bal').textContent=fmt(sub+tax-dep);
+  document.getElementById('ref').textContent=document.getElementById('invno').textContent;
+  document.title='Invoice '+document.getElementById('invno').textContent;}
+ document.addEventListener('input',calc);calc();
+ function size(a4){document.getElementById('pagesize').textContent=a4?'@page{size:210mm 297mm;margin:0}':'@page{size:8.5in 11in;margin:0}';
+  document.body.classList.toggle('a4',a4);document.getElementById('bA4').classList.toggle('on',a4);document.getElementById('bLetter').classList.toggle('on',!a4);}
+ document.getElementById('bLetter').onclick=function(){size(false);};
+ document.getElementById('bA4').onclick=function(){size(true);};
+ document.getElementById('bPrint').onclick=function(){window.print();};
+ document.getElementById('lateOn').onchange=function(){document.getElementById('late').style.display=this.checked?'block':'none';};
+ /* Number fields: clicking selects the whole value, so typing replaces it instead of adding to it */
+ var fresh=null;
+ function numEl(t){t=t&&t.nodeType===1?t:(t&&t.parentElement);t=t&&t.closest?t.closest('[contenteditable]'):null;return t&&t.matches('#tax,#dep,#terms,.qty,.rate')?t:null;}
+ function selAll(t){if(!t.firstChild)return;var r=document.createRange();r.selectNodeContents(t);var s=getSelection();s.removeAllRanges();s.addRange(r);}
+ function arm(e){var t=numEl(e.target);if(t){fresh=t;setTimeout(function(){if(document.activeElement===t&&fresh===t)selAll(t);},0);}}
+ document.addEventListener('focusin',arm);document.addEventListener('mousedown',arm);document.addEventListener('mouseup',arm);
+ document.addEventListener('keydown',function(e){if(/^(Shift|Control|Alt|Meta)$/.test(e.key))return;var a=document.activeElement;if(fresh&&fresh===a){if(e.key.length===1||e.key==='Backspace'||e.key==='Delete')selAll(a);}fresh=null;},true);
+})();
+</script>
+</body></html>

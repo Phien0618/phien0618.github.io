@@ -1,0 +1,1624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shorts Script Builder · Faceless Creator Kit</title>
+<style>
+:root{--ink:#0E1013;--panel:#171A20;--panel2:#1F232B;--line:#2C313B;--text:#F2F4F7;--muted:#9AA3B2;--lime:#C8F04A;--limeink:#141A05;--cyan:#5CD6E8;--violet:#A98BFF;--ok:#3DDC84;--over:#FF5A5F;--warn:#FFB547;
+--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--text);font-family:var(--sans);font-size:15px;line-height:22px}
+body{min-height:100vh;display:flex;flex-direction:column}
+button,input,select,textarea{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.glyphtxt{font-family:var(--mono);color:var(--lime);font-weight:700}
+.hd{border-bottom:1px solid var(--line)}
+.hd .in{max-width:1240px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 24px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.glyph{flex:none;width:36px;height:36px;border-radius:9px;background:var(--lime);color:var(--limeink);font-weight:800;display:grid;place-items:center;font-family:var(--mono)}
+.brand b{font-size:18px;display:block;line-height:22px}
+.brand small{color:var(--muted);font-size:12px;display:block;line-height:16px}
+.wpmpill{flex:none;border:1px solid #3a4210;color:var(--lime);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+nav.tabs{border-bottom:1px solid var(--line)}
+nav.tabs .in{max-width:1240px;margin:0 auto;display:flex;gap:4px;padding:0 24px;height:48px}
+nav.tabs button{background:none;border:0;border-bottom:2px solid transparent;display:flex;align-items:center;gap:8px;padding:0 16px;color:var(--muted);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+nav.tabs button.on{color:var(--text);border-color:var(--lime)}
+nav.tabs svg,.ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+nav.tabs .sm{display:none}
+main{flex:1;width:100%;max-width:1240px;margin:0 auto;padding:20px 24px 28px}
+section.tab{display:none}
+section.tab.on{display:block}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+label.lb{display:block;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:14px 0 6px}
+label.lb:first-child{margin-top:0}
+.selw{position:relative}
+.selw:after{content:"\25BE";position:absolute;right:12px;top:10px;color:var(--muted);pointer-events:none}
+select,input[type=text],input[type=number],textarea{width:100%;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--text)}
+select,input[type=text],input[type=number]{height:44px;padding:0 12px}
+select{appearance:none;-webkit-appearance:none;padding-right:30px;cursor:pointer}
+select:focus,input:focus,textarea:focus{outline:2px solid rgba(200,240,74,.55);outline-offset:1px}
+.dur{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.dur button,.chipbtn{height:44px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);cursor:pointer;font-weight:600}
+.dur button.on,.chipbtn.on{border-color:var(--lime);color:var(--lime)}
+.btn{min-height:44px;border-radius:10px;padding:0 18px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:transparent;color:var(--text)}
+.btn.primary{background:var(--lime);border-color:var(--lime);color:var(--limeink)}
+.btn.danger{color:var(--over)}
+.btn.block{width:100%;margin-top:8px}
+.btn.block.primary{margin-top:16px}
+.btn:hover{filter:brightness(1.08)}
+.helper{font-size:13px;line-height:18px;color:var(--muted)}
+.bgrid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;align-items:start}
+.ctrl{position:sticky;top:12px}
+.hooks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hook{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px;line-height:21px;cursor:pointer;min-width:0;overflow-wrap:anywhere}
+.hook.on{border:2px solid var(--lime);padding:11px 13px}
+.hook small{display:block;color:var(--muted);font-size:11px;letter-spacing:.06em;margin-bottom:4px;font-weight:700}
+.hook.on small{color:var(--lime)}
+.hx{display:block;margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);font-size:13px;line-height:18px;color:#C9D0DB}
+.hx i{font-style:normal;display:block;font-size:10.5px;letter-spacing:.06em;font-weight:700;color:var(--cyan);margin-bottom:2px}
+u{text-decoration:none;border-bottom:1.5px dashed var(--lime);color:#E6F7B0}
+u.tp{border-bottom-style:solid}
+.h2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin:16px 0 8px}
+.h2 b{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.h2 span{font-size:12px;color:var(--muted)}
+.tlbar{display:flex;height:10px;gap:2px;border-radius:5px;overflow:hidden;margin-bottom:10px}
+.seg,.ed{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px 12px 18px;margin-bottom:8px;position:relative;min-width:0}
+.seg:before,.ed:before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:3px;background:var(--c)}
+.top{display:flex;align-items:center;gap:12px;font-size:13px;flex-wrap:wrap}
+.top .t{color:var(--cyan);font-weight:600}
+.top .n{font-weight:700;letter-spacing:.08em;font-size:12px}
+.top .b{margin-left:auto;color:var(--lime);font-size:12px;border:1px solid #3a4210;padding:1px 9px;border-radius:999px;white-space:nowrap}
+.vo{margin:6px 0 7px;font-size:16px;line-height:23px;overflow-wrap:anywhere}
+.meta{display:flex;gap:8px 14px;font-size:13px;color:var(--muted);align-items:center;flex-wrap:wrap}
+.meta em{font-style:normal;color:var(--cyan);font-weight:700;letter-spacing:.05em;margin-right:5px;font-size:12px}
+.chip{padding:1px 10px;border-radius:999px;font-weight:600;font-size:12px;white-space:nowrap}
+.cap{background:rgba(169,139,255,.14);color:var(--violet)}
+.meta .tone{margin-left:auto}
+.ending{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+.ending .panel{padding:14px}
+.loopline{margin-top:6px;font-size:15px}
+.check{display:flex;gap:10px;align-items:center;margin-top:10px;font-size:14px;cursor:pointer;min-height:40px}
+.check input{width:20px;height:20px;accent-color:var(--lime)}
+/* Time & Edit */
+.bar{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 18px;position:sticky;top:0;z-index:5}
+.bar .lab{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.06em}
+.total{font-size:30px;line-height:36px;font-weight:700;color:var(--ok)}
+.total small{font-size:16px;color:var(--muted);font-weight:500}
+.total.over{color:var(--over)}
+.okchip{background:rgba(61,220,132,.14);color:var(--ok);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.05em}
+.okchip.over{background:rgba(255,90,95,.14);color:var(--over)}
+.presets{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.presets .chipbtn{padding:0 12px;font-size:13px}
+.presets input{width:86px;text-align:center}
+.metarow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end;margin:14px 0 4px}
+.egrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+.ed{margin-bottom:0}
+.ed .s{margin-left:auto;font-weight:600}
+.ed.over{border-color:rgba(255,90,95,.6)}
+.ed.over .s{color:var(--over)}
+.warn{color:var(--over);font-size:12px;font-weight:700;letter-spacing:.05em}
+.ed textarea{margin-top:7px;padding:9px 11px;font-size:15px;line-height:21px;min-height:76px;resize:vertical;display:block}
+.wc{font-size:12px;color:var(--muted);margin-top:6px}
+.prog{height:4px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}
+.prog div{height:4px;background:var(--lime);transform-origin:left center}
+.ed.over .prog div{background:var(--over)}
+.actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center}
+.hint{margin-left:auto;color:var(--muted);font-size:12px}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+/* Captions */
+.callout{background:var(--panel2);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:10px 14px;font-size:14px;line-height:20px}
+.cgrid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;align-items:start;margin-top:14px}
+.wpcs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.srtl{list-style:none}
+.srtl li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:4px 12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.srtl .i{color:var(--muted);font-weight:700}
+.srtl .tc{color:var(--cyan);font-size:13px}
+.srtl .tx{grid-column:2;font-weight:600;overflow-wrap:anywhere}
+/* Library */
+.ltool{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.ltool .f{width:200px}
+.ltool .sp{flex:1}
+.lrow{display:grid;grid-template-columns:minmax(0,1fr) 150px auto;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px}
+.lrow b{display:block;overflow-wrap:anywhere}
+.lrow .m{font-size:13px;color:var(--muted)}
+.lrow .acts{display:flex;gap:8px}
+.bgrid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.bgrid2 textarea{padding:10px 12px;line-height:21px;min-height:150px;resize:vertical;display:block}
+.bgrid2 h3{font-size:16px;margin-bottom:4px}
+.mylist{list-style:none;margin-top:10px;max-height:260px;overflow:auto}
+.mylist li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px;min-width:0}
+.mylist li span{flex:1;min-width:0;overflow-wrap:anywhere}
+.mylist li small{color:var(--muted);font-size:11px;display:block}
+.mylist .x{flex:none;min-height:36px;padding:0 10px}
+.voice{background:var(--panel2);border-left:3px solid var(--violet);border-radius:0 10px 10px 0;padding:8px 12px;font-size:13px;line-height:19px;margin-bottom:10px}
+.voice b{color:var(--violet);font-size:11px;letter-spacing:.08em;margin-right:6px}
+.st-Draft{color:var(--warn)}.st-Recorded{color:var(--cyan)}.st-Posted{color:var(--ok)}
+footer{border-top:1px solid var(--line);padding:14px 24px;text-align:center;font-size:13px;color:var(--muted)}
+.toast{position:fixed;left:0;right:0;margin:0 auto;width:max-content;bottom:24px;background:var(--lime);color:var(--limeink);font-weight:700;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+@media (max-width:860px){
+ .bgrid,.cgrid{grid-template-columns:minmax(0,1fr)}
+ .ctrl{position:static}
+ .egrid{grid-template-columns:minmax(0,1fr)}
+ .ending{grid-template-columns:minmax(0,1fr)}
+ .lrow{grid-template-columns:minmax(0,1fr)}
+ .bgrid2{grid-template-columns:minmax(0,1fr)}
+ .ltool .f{width:auto;flex:1 1 140px}
+}
+@media (max-width:600px){
+ .hd .in{padding:0 16px;height:60px}
+ .brand small{display:none}
+ .brand b{font-size:16px}
+ .wpmpill{padding:5px 10px;font-size:12px}
+ nav.tabs .in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:0;height:58px}
+ nav.tabs button{flex-direction:column;justify-content:center;gap:3px;padding:0 2px;font-size:10.5px;letter-spacing:.02em}
+ nav.tabs .lg{display:none}
+ nav.tabs .sm{display:inline}
+ main{padding:14px 16px 24px}
+ .hooks{grid-template-columns:minmax(0,1fr)}
+ .presets{margin-left:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+ .presets input{width:100%;grid-column:1/-1}
+ .metarow{grid-template-columns:minmax(0,1fr)}
+ .hint{margin-left:0}
+ .actions .btn{flex:1 1 140px}
+ .total{font-size:26px}
+ .meta .tone{margin-left:0}
+}
+</style>
+</head>
+<body>
+<header class="hd"><div class="in">
+ <div class="brand"><div class="glyph">//</div><div><b>Shorts Script Builder</b><small>Faceless Creator Kit · works offline</small></div></div>
+ <span class="wpmpill num" id="wpmPill">Natural · 150 wpm</span>
+</div></header>
+<nav class="tabs"><div class="in">
+ <button data-tab="build" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/><rect x="8" y="3" width="8" height="8" rx="1.5"/></svg><span class="lg">Build</span><span class="sm">Build</span></button>
+ <button data-tab="edit"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M10 2h4"/></svg><span class="lg">Time &amp; Edit</span><span class="sm">Time</span></button>
+ <button data-tab="captions"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 10.5a2 2 0 1 0 0 3M16.5 10.5a2 2 0 1 0 0 3"/></svg><span class="lg">Captions</span><span class="sm">Captions</span></button>
+ <button data-tab="library"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M6 5h12M8 2h8"/></svg><span class="lg">Library</span><span class="sm">Library</span></button>
+ <button data-tab="batch"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg><span class="lg">Batch &amp; My hooks</span><span class="sm">Batch</span></button>
+</div></nav>
+
+<main>
+<!-- BUILD -->
+<section class="tab on" id="tab-build">
+ <div class="bgrid">
+  <div class="panel ctrl">
+   <label class="lb" for="niche">Niche</label><div class="selw"><select id="niche"></select></div>
+   <label class="lb" for="hookType">Hook type</label><div class="selw"><select id="hookType"></select></div>
+   <label class="lb">Duration (seconds)</label><div class="dur num" id="durBtns"></div>
+   <label class="lb" for="topic">Topic</label><input type="text" id="topic" placeholder="e.g. Roman roads" autocomplete="off">
+   <button class="btn primary block" id="buildBtn">Build script</button>
+   <button class="btn block" id="shuffleBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Shuffle hooks</button>
+   <button class="btn block" id="sendBtn">Send to editor &rarr;</button>
+   <button class="btn block" id="exampleBtn">Load worked example</button>
+   <p class="helper" style="margin-top:6px">A fully written script for the selected niche and length (32 in total: every niche at 15, 30, 45 and 60 s), so you can see a finished result before writing your own.</p>
+   <p class="helper" style="margin-top:14px">Word budget = floor(seconds &times; wpm &divide; 60). Change wpm in Time &amp; Edit. Your topic replaces <u>[TOPIC]</u>; rewrite every other <u>[BRACKET]</u> in your own words.</p>
+  </div>
+  <div id="buildOut"></div>
+ </div>
+</section>
+
+<!-- TIME & EDIT -->
+<section class="tab" id="tab-edit">
+ <div class="bar">
+  <div><div class="lab">TOTAL / TARGET</div><div class="total num" id="totalBig">0.0 s <small>/ 30 s</small></div></div>
+  <span class="okchip" id="totalChip">UNDER TIME</span>
+  <div class="presets num" id="presets"></div>
+ </div>
+ <div class="metarow">
+  <div><label class="lb" for="title">Script title</label><input type="text" id="title" placeholder="Name this script (used in your library)" autocomplete="off"></div>
+  <div class="helper" id="edFrom"></div>
+ </div>
+ <div class="egrid" id="egrid"></div>
+ <div class="actions">
+  <button class="btn primary" id="copyTxt"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Copy as TXT</button>
+  <button class="btn" id="dlTxt"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download .txt</button>
+  <button class="btn" id="saveLib">Save to library</button>
+  <span class="hint num">seconds = words &divide; wpm &times; 60 · each <span class="glyphtxt">//</span> adds 0.4 s · red = segment over by more than 10 percent</span>
+ </div>
+</section>
+
+<!-- CAPTIONS -->
+<section class="tab" id="tab-captions">
+ <div class="callout"><b>Timings are estimates</b> from your words-per-minute setting. Nudge them in your editor after adding the voiceover.</div>
+ <div class="cgrid">
+  <div class="panel">
+   <label class="lb">Words per caption</label>
+   <div class="wpcs num" id="wpcBtns"></div>
+   <button class="chipbtn" id="bySentence" style="width:100%;margin-top:6px">By sentence</button>
+   <div class="helper" style="margin-top:14px" id="capSummary"></div>
+   <button class="btn primary block" id="dlSrt"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download .srt</button>
+   <p class="helper" style="margin-top:12px">Captions come from the text in Time &amp; Edit. Each caption lasts its words &divide; wpm &times; 60 seconds, plus 0.4 s per <span class="glyphtxt">//</span>, minimum 0.5 s. Each caption starts where the previous one ends. A caption always stops at the end of a sentence, so two sentences never share one caption.</p>
+  </div>
+  <div class="panel">
+   <div class="h2" style="margin-top:0"><b>SRT preview · first 20 captions</b><span class="num" id="capCount"></span></div>
+   <ol class="srtl num" id="srtList"></ol>
+  </div>
+ </div>
+</section>
+
+<!-- LIBRARY -->
+<section class="tab" id="tab-library">
+ <div class="ltool">
+  <div class="f"><label class="lb" for="fNiche">Niche</label><div class="selw"><select id="fNiche"></select></div></div>
+  <div class="f"><label class="lb" for="fStatus">Status</label><div class="selw"><select id="fStatus"><option value="">All statuses</option><option>Draft</option><option>Recorded</option><option>Posted</option></select></div></div>
+  <div class="sp"></div>
+  <button class="btn primary" id="expCsv">Export CSV</button>
+  <button class="btn" id="backup">Backup .json</button>
+  <button class="btn" id="restoreBtn">Restore .json</button>
+  <input type="file" id="restoreFile" accept=".json,application/json" hidden>
+ </div>
+ <div id="libList"></div>
+ <p class="helper" style="margin-top:14px">Your library lives only in this browser on this device. Use Backup .json to move it to another computer, then Restore .json there.</p>
+</section>
+
+<!-- BATCH & MY HOOKS -->
+<section class="tab" id="tab-batch">
+ <div class="bgrid2">
+  <div class="panel">
+   <h3>Batch build: one Draft per topic</h3>
+   <p class="helper">Paste up to 30 topics, one per line. Each becomes a Draft in your Library with its own timed skeleton and hook, ready to open, rewrite and time.</p>
+   <label class="lb" for="bNiche">Niche</label><div class="selw"><select id="bNiche"></select></div>
+   <label class="lb" for="bHook">Hook type</label><div class="selw"><select id="bHook"></select></div>
+   <label class="lb">Duration (seconds)</label><div class="dur num" id="bDur"></div>
+   <label class="lb" for="bTopics">Topics, one per line</label>
+   <textarea id="bTopics" placeholder="Roman roads&#10;medieval castles&#10;the Great Fire of London"></textarea>
+   <button class="btn primary block" id="bGo">Create drafts in Library</button>
+   <p class="helper" style="margin-top:8px" id="bNote">Skeletons only: the sample lines and [BRACKETS] are still there for you to rewrite. Your own hooks (right) are included in the rotation.</p>
+  </div>
+  <div class="panel">
+   <h3>My hooks</h3>
+   <p class="helper">Add your own hook templates (for example from your swipe file). They appear in the Build tab next to the built-in hooks for the same niche and hook type. Use [TOPIC] where the topic goes.</p>
+   <label class="lb" for="mNiche">Niche</label><div class="selw"><select id="mNiche"></select></div>
+   <label class="lb" for="mType">Hook type</label><div class="selw"><select id="mType"></select></div>
+   <label class="lb" for="mText">Hooks, one per line</label>
+   <textarea id="mText" placeholder="Nobody warned me about [TOPIC] until it was too late."></textarea>
+   <button class="btn primary block" id="mAdd">Add to my hooks</button>
+   <div class="actions" style="margin-top:8px">
+    <button class="btn" id="hExp">Export all hooks CSV</button>
+    <button class="btn" id="hImpBtn">Import hooks CSV</button>
+    <input type="file" id="hImpFile" accept=".csv,text/csv" hidden>
+   </div>
+   <p class="helper" style="margin-top:8px">Export gives every built-in hook plus yours: <span class="num">id, niche, hook_type, template, example, source</span>. Import reads any CSV with the columns <span class="num">niche, hook_type, template</span> (names or ids, like the export) and adds those rows as your hooks.</p>
+   <ul class="mylist" id="myList"></ul>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>No promise of views or income. Templates help you write original scripts.</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   DATA — all templates are original. Counts:
+   8 niches · 8 hook types · 128 hook templates (8 x 8 x 2)
+   32 segment structures (8 niches x 15/30/45/60 s)
+   16 CTA templates · 8 loop endings (one per niche)
+   Segment row: [start_s, end_s, name, sample_voice_line, visual, caption_focus, tone]
+   ============================================================ */
+const NICHES = [
+ {id:"reddit", name:"Reddit-Style Stories"},
+ {id:"history", name:"History Facts"},
+ {id:"science", name:"Science Facts"},
+ {id:"space", name:"Space Facts"},
+ {id:"psych", name:"Psychology Facts"},
+ {id:"money", name:"Money Basics"},
+ {id:"motivation", name:"Motivation"},
+ {id:"ai", name:"AI Tool Tips"}
+];
+const HOOK_TYPES = [
+ {id:"question", name:"Question"},
+ {id:"myth", name:"Myth vs Fact"},
+ {id:"countdown", name:"Countdown List"},
+ {id:"cold", name:"Cold Open Story"},
+ {id:"pov", name:"POV"},
+ {id:"mistake", name:"Mistake Warning"},
+ {id:"nobody", name:"Nobody Talks About"},
+ {id:"beforeafter", name:"Before/After"}
+];
+const TONE_LIST = ["calm","curious","urgent","warm"];
+/* Niche voice: how hooks and lines should sound in each niche (shown in Build and in the Hook Library PDF) */
+const VOICE = {
+ reddit: "Suspense. First person, short sentences, hold the reveal back until the payoff.",
+ history: "Curious storyteller. One vivid detail first, then the bigger picture.",
+ science: "Surprising fact first, then a calm, simple explanation.",
+ space: "Awe and scale. Slower lines, let each big idea land before the next.",
+ psych: "Relatable, then careful. 'You've felt this', then what research actually says.",
+ money: "Calm authority. Plain words, general info only, never personal advice.",
+ motivation: "Warm and direct. Talk to one person, small actions, no hype.",
+ ai: "Practical demo. Show the before, the one change, and the after."
+};
+
+const HOOKS = {
+ reddit: {
+  question: ["Would you tell your [RELATIVE] the truth after [EVENT]?", "Am I wrong for refusing to [ACTION] at [EVENT]?"],
+  myth: ["Everyone said I overreacted. Here's what they didn't know.", "Everyone thinks the quiet [ROLE] is harmless. Not this one."],
+  countdown: ["[NUMBER] red flags I ignored before [EVENT].", "[NUMBER] messages that ended my friendship with [NAME]."],
+  cold: ["The note on my car just said: [SHORT LINE].", "At [TIME] my phone lit up with a text from [NAME]."],
+  pov: ["POV: your [ROOMMATE] has been reading your [PRIVATE THING].", "POV: you overhear your [RELATIVE] planning [EVENT] without you."],
+  mistake: ["Never lend [ITEM] to a coworker. Here's why.", "Don't sign a lease with a friend until you hear this."],
+  nobody: ["Nobody talks about what happens after you win the argument.", "Nobody tells you how weird [EVENT] gets with in-laws."],
+  beforeafter: ["Before [EVENT], we were best friends. After, silence.", "Last year I said yes to everything. Then [EVENT] happened."]
+ },
+ history: {
+  question: ["Why did [EMPIRE] build [STRUCTURE] there of all places?", "What did people in [ERA] actually eat for breakfast?"],
+  myth: ["You were taught [TOPIC] started with one battle. It didn't.", "Myth: [TOPIC] happened overnight. Fact: it took generations."],
+  countdown: ["[NUMBER] things about [TOPIC] your history class skipped.", "Counting down the [NUMBER] strangest facts about [TOPIC]."],
+  cold: ["The messenger arrived at dawn with one sentence: [LINE].", "In [YEAR], a single letter changed [TOPIC] for good."],
+  pov: ["POV: you're a [ROLE] in [ERA] and [EVENT] just started.", "POV: you wake up in [CITY] the morning after [EVENT]."],
+  mistake: ["Stop repeating this [TOPIC] fact. It's mostly legend.", "Don't trust that famous quote about [TOPIC]. Check this first."],
+  nobody: ["Nobody talks about what happened the day after [EVENT].", "Nobody talks about the ordinary people behind [TOPIC]."],
+  beforeafter: ["Before [INVENTION], a trip to [PLACE] took [TIME SPAN].", "[CITY] before [EVENT] versus after. Look closely."]
+ },
+ science: {
+  question: ["Why does [EVERYDAY THING] do that? Here's the science.", "What actually happens inside [OBJECT] when you [ACTION]?"],
+  myth: ["Myth: [COMMON BELIEF]. Fact: [SHORT CORRECTION].", "You've heard [TOPIC] can be dangerous. The real story is stranger."],
+  countdown: ["[NUMBER] everyday things secretly powered by [TOPIC].", "Counting down [NUMBER] science facts about [TOPIC] that sound fake."],
+  cold: ["Someone left one dish unwashed over a summer break. It changed medicine.", "Someone dropped [OBJECT] in [LIQUID], and science got weird."],
+  pov: ["POV: you're a water molecule about to become [THING].", "POV: you shrink down to the size of [TINY THING]."],
+  mistake: ["Stop mixing [THING A] with [THING B]. Here's the chemistry.", "Don't believe the [TOPIC] video you saw yesterday. Watch this."],
+  nobody: ["Nobody talks about the boring science that keeps [THING] working.", "Nobody explains [TOPIC] like this, and they should."],
+  beforeafter: ["Before scientists understood [TOPIC], people blamed [OLD BELIEF].", "Here's [OBJECT] under normal light. Now under [CONDITION]."]
+ },
+ space: {
+  question: ["What would you see standing on [PLANET OR MOON]?", "Why can't we just fly straight to [DESTINATION]?"],
+  myth: ["Myth: [SPACE MYTH]. Fact: [WHAT IS REALLY TRUE].", "You've pictured [TOPIC] wrong your whole life. Here's why."],
+  countdown: ["[NUMBER] things about [TOPIC] that sound made up.", "Counting down [NUMBER] wild places in our solar system."],
+  cold: ["The signal came back from [PROBE] with one surprise.", "Mission control went quiet when [EVENT] appeared on screen."],
+  pov: ["POV: you're an astronaut and [PROBLEM] just happened.", "POV: you're watching sunrise on [PLANET OR MOON]."],
+  mistake: ["Stop calling [OBJECT] a [WRONG LABEL]. Here's the difference.", "Don't look up [TOPIC] facts before hearing this one."],
+  nobody: ["Nobody talks about how empty the asteroid belt really is.", "Nobody talks about what astronauts miss most about Earth."],
+  beforeafter: ["This is [OBJECT] from Earth. This is it up close.", "Before [DISCOVERY], we thought [OLD IDEA]. Then everything changed."]
+ },
+ psych: {
+  question: ["Why do you remember [EMBARRASSING MOMENT] for years?", "Ever notice you [HABIT] when you're nervous? Here's why."],
+  myth: ["Myth: [POP PSYCH CLAIM]. Fact: research is more careful.", "You've heard of left-brain and right-brain people? Not quite."],
+  countdown: ["[NUMBER] mind tricks your brain plays every morning.", "[NUMBER] signs you're dealing with [EFFECT NAME]."],
+  cold: ["Nobody in the meeting liked the plan. Everyone voted yes anyway.", "My friend swore she saw [THING]. Her memory had other plans."],
+  pov: ["POV: you always order the middle size, and the menu planned it that way.", "POV: you walk into a room and forget why."],
+  mistake: ["Stop trying to multitask on [TASK]. Your brain switches instead.", "Don't make big decisions when you're [STATE]. Here's why."],
+  nobody: ["Nobody talks about why rest feels so uncomfortable.", "Nobody talks about how [EFFECT NAME] shows up in group chats."],
+  beforeafter: ["Before I knew about [EFFECT NAME], I blamed myself.", "'You're late again' versus 'Is everything okay?' Same moment, two different fights."]
+ },
+ money: {
+  question: ["Where does [SMALL EXPENSE] actually go every month?", "Do you know what [MONEY TERM] really means?"],
+  myth: ["Myth: [MONEY MYTH]. Fact: it depends on [FACTOR].", "A budget isn't a diet for your wallet. It's a map of where it already goes."],
+  countdown: ["[NUMBER] money words everyone pretends to understand.", "[NUMBER] small bills hiding in your bank statement."],
+  cold: ["I opened my statement and found a charge for [THING].", "My first paycheck looked smaller than I expected. Here's why."],
+  pov: ["POV: you finally read the fine print on [PRODUCT].", "POV: you're explaining [MONEY TERM] to your younger self."],
+  mistake: ["Don't ignore the [FEE TYPE] line on your statement.", "Stop paying for [SUBSCRIPTION TYPE] you forgot about. Check this."],
+  nobody: ["Nobody talks about how [MONEY TERM] actually works.", "Nobody explains [TOPIC] in plain words. Let's fix that."],
+  beforeafter: ["Before I tracked spending, [SITUATION]. After one month: [CHANGE].", "Same paycheck, two Sundays: one opens the bank app, one doesn't."]
+ },
+ motivation: {
+  question: ["What would you start if nobody was watching?", "Be honest: how many half-finished projects are in your notes app right now?"],
+  myth: ["Myth: you need motivation to start. Fact: starting builds it.", "Everyone says wait until you're ready. Ready rarely shows up."],
+  countdown: ["[NUMBER] small habits that make hard days easier.", "[NUMBER] things I stopped doing to protect my mornings."],
+  cold: ["At [TIME], I almost quit [GOAL]. Then I wrote this.", "My notebook from last year said one thing: [LINE]."],
+  pov: ["POV: it's day one of [GOAL] and nobody knows yet.", "POV: it's raining, your alarm just went off, and you go anyway."],
+  mistake: ["Stop waiting for the perfect plan for [GOAL].", "Don't compare your first month to someone else's fifth year."],
+  nobody: ["Nobody talks about how boring progress feels in the middle.", "Nobody tells you the hardest part of [GOAL] is Tuesday."],
+  beforeafter: ["Before: endless plans for [GOAL]. After: ten quiet minutes daily.", "Me before I tried [HABIT]. Me after [TIME SPAN]."]
+ },
+ ai: {
+  question: ["Are you still writing [TASK] from scratch every time?", "Why does your [AI TOOL] answer sound so generic?"],
+  myth: ["Myth: longer prompts always work better. Fact: clearer ones do.", "You think [AI TOOL] knows today's news. Check first."],
+  countdown: ["[NUMBER] prompt tweaks that make [TASK] faster.", "[NUMBER] ways to use [AI TOOL] for [TASK]."],
+  cold: ["I asked [AI TOOL] for help with [TASK]. It got weird.", "My messy notes went into [AI TOOL]. This came out."],
+  pov: ["POV: you finally give [AI TOOL] a real example.", "POV: your [TASK] takes minutes instead of an evening."],
+  mistake: ["Don't paste private info into [AI TOOL]. Do this instead.", "Stop accepting the first answer from [AI TOOL]."],
+  nobody: ["Nobody talks about the editing after [AI TOOL] writes.", "Nobody shows the boring setup that makes [AI TOOL] useful."],
+  beforeafter: ["Before: vague prompt, vague answer. After: one added line.", "Same question, asked twice. The second time I added one line, and the answer finally fit."]
+ }
+};
+
+/* HOOK_EX: one filled-in example for every hook template, same order as HOOKS.
+   When the template has no [BLANKS], the example is the template itself ("ready as written"). */
+const HOOK_EX = {
+ reddit: {
+  question: ["Would you tell your brother the truth after his engagement party?", "Am I wrong for refusing to pay for dinner at my own birthday?"],
+  myth: ["Everyone said I overreacted. Here's what they didn't know.", "Everyone thinks the quiet roommate is harmless. Not this one."],
+  countdown: ["Four red flags I ignored before moving in with my best friend.", "Three messages that ended my friendship with Jess."],
+  cold: ["The note on my car just said: I know what you did.", "At three in the morning my phone lit up with a text from my ex."],
+  pov: ["POV: your roommate has been reading your journal.", "POV: you overhear your sister planning a family trip without you."],
+  mistake: ["Never lend your car to a coworker. Here's why.", "Don't sign a lease with a friend until you hear this."],
+  nobody: ["Nobody talks about what happens after you win the argument.", "Nobody tells you how weird the holidays get with in-laws."],
+  beforeafter: ["Before the wedding, we were best friends. After, silence.", "Last year I said yes to everything. Then the group trip happened."]
+ },
+ history: {
+  question: ["Why did the Romans build Hadrian's Wall there of all places?", "What did people in medieval England actually eat for breakfast?"],
+  myth: ["You were taught the Hundred Years' War started with one battle. It didn't.", "Myth: the fall of Rome happened overnight. Fact: it took generations."],
+  countdown: ["Three things about Roman roads your history class skipped.", "Counting down the four strangest facts about medieval castles."],
+  cold: ["The messenger arrived at dawn with one sentence: the bridge has fallen.", "In the year the harbor froze, a single letter changed the town for good."],
+  pov: ["POV: you're a baker in ancient Rome and the great fire just started.", "POV: you wake up in London the morning after the Great Fire."],
+  mistake: ["Stop repeating this Viking helmet fact. It's mostly legend.", "Don't trust that famous quote about the French Revolution. Check this first."],
+  nobody: ["Nobody talks about what happened the day after the Moon landing.", "Nobody talks about the ordinary people behind the pyramids."],
+  beforeafter: ["Before the railway, a trip to the coast took days.", "Paris before the new boulevards versus after. Look closely."]
+ },
+ science: {
+  question: ["Why does popcorn pop like that? Here's the science.", "What actually happens inside a microwave when you press start?"],
+  myth: ["Myth: bats are blind. Fact: they can see.", "You've heard cracking your knuckles can be dangerous. The real story is stranger."],
+  countdown: ["Four everyday things secretly powered by magnets.", "Counting down five science facts about octopuses that sound fake."],
+  cold: ["Someone left one dish unwashed over a summer break. It changed medicine.", "Someone dropped a raisin in soda, and science got weird."],
+  pov: ["POV: you're a water molecule about to become a snowflake.", "POV: you shrink down to the size of a red blood cell."],
+  mistake: ["Stop mixing bleach with vinegar. Here's the chemistry.", "Don't believe the quicksand video you saw yesterday. Watch this."],
+  nobody: ["Nobody talks about the boring science that keeps your fridge working.", "Nobody explains static electricity like this, and they should."],
+  beforeafter: ["Before scientists understood germs, people blamed bad air.", "Here's tonic water under normal light. Now under UV light."]
+ },
+ space: {
+  question: ["What would you see standing on Mars?", "Why can't we just fly straight to Mars?"],
+  myth: ["Myth: you can see the Great Wall from the Moon. Fact: you can't.", "You've pictured black holes wrong your whole life. Here's why."],
+  countdown: ["Three things about Venus that sound made up.", "Counting down five wild places in our solar system."],
+  cold: ["The signal came back from a deep-space probe with one surprise.", "Mission control went quiet when a warning light appeared on screen."],
+  pov: ["POV: you're an astronaut and the lights just went out.", "POV: you're watching sunrise on Mars."],
+  mistake: ["Stop calling a comet an asteroid. Here's the difference.", "Don't look up Saturn facts before hearing this one."],
+  nobody: ["Nobody talks about how empty the asteroid belt really is.", "Nobody talks about what astronauts miss most about Earth."],
+  beforeafter: ["This is the Moon from Earth. This is it up close.", "Before Galileo's telescope, we thought Jupiter traveled alone. Then everything changed."]
+ },
+ psych: {
+  question: ["Why do you remember tripping on stage for years?", "Ever notice you talk faster when you're nervous? Here's why."],
+  myth: ["Myth: you only use a small part of your brain. Fact: research is more careful.", "You've heard of left-brain and right-brain people? Not quite."],
+  countdown: ["Three mind tricks your brain plays every morning.", "Four signs you're dealing with decision fatigue."],
+  cold: ["Nobody in the meeting liked the plan. Everyone voted yes anyway.", "My friend swore she saw a red car. Her memory had other plans."],
+  pov: ["POV: you always order the middle size, and the menu planned it that way.", "POV: you walk into a room and forget why."],
+  mistake: ["Stop trying to multitask on homework. Your brain switches instead.", "Don't make big decisions when you're exhausted. Here's why."],
+  nobody: ["Nobody talks about why rest feels so uncomfortable.", "Nobody talks about how the spotlight effect shows up in group chats."],
+  beforeafter: ["Before I knew about impostor syndrome, I blamed myself.", "'You're late again' versus 'Is everything okay?' Same moment, two different fights."]
+ },
+ money: {
+  question: ["Where does your coffee money actually go every month?", "Do you know what APR really means?"],
+  myth: ["Myth: renting is always throwing money away. Fact: it depends on your situation.", "A budget isn't a diet for your wallet. It's a map of where it already goes."],
+  countdown: ["Five money words everyone pretends to understand.", "Three small bills hiding in your bank statement."],
+  cold: ["I opened my statement and found a charge for a gym I never visit.", "My first paycheck looked smaller than I expected. Here's why."],
+  pov: ["POV: you finally read the fine print on your phone contract.", "POV: you're explaining compound interest to your younger self."],
+  mistake: ["Don't ignore the late fee line on your statement.", "Stop paying for streaming apps you forgot about. Check this."],
+  nobody: ["Nobody talks about how a credit score actually works.", "Nobody explains APR in plain words. Let's fix that."],
+  beforeafter: ["Before I tracked spending, payday felt random. After one month: no surprises.", "Same paycheck, two Sundays: one opens the bank app, one doesn't."]
+ },
+ motivation: {
+  question: ["What would you start if nobody was watching?", "Be honest: how many half-finished projects are in your notes app right now?"],
+  myth: ["Myth: you need motivation to start. Fact: starting builds it.", "Everyone says wait until you're ready. Ready rarely shows up."],
+  countdown: ["Three small habits that make hard days easier.", "Four things I stopped doing to protect my mornings."],
+  cold: ["At midnight, I almost quit learning guitar. Then I wrote this.", "My notebook from last year said one thing: just start badly."],
+  pov: ["POV: it's day one of running and nobody knows yet.", "POV: it's raining, your alarm just went off, and you go anyway."],
+  mistake: ["Stop waiting for the perfect plan for your side project.", "Don't compare your first month to someone else's fifth year."],
+  nobody: ["Nobody talks about how boring progress feels in the middle.", "Nobody tells you the hardest part of a new routine is Tuesday."],
+  beforeafter: ["Before: endless plans for my novel. After: ten quiet minutes daily.", "Me before I tried journaling. Me after one month."]
+ },
+ ai: {
+  question: ["Are you still writing meal plans from scratch every time?", "Why does your chatbot answer sound so generic?"],
+  myth: ["Myth: longer prompts always work better. Fact: clearer ones do.", "You think your chatbot knows today's news. Check first."],
+  countdown: ["Three prompt tweaks that make email replies faster.", "Four ways to use a chatbot for trip planning."],
+  cold: ["I asked a chatbot for help with my cover letter. It got weird.", "My messy notes went into a chatbot. This came out."],
+  pov: ["POV: you finally give your chatbot a real example.", "POV: your weekly report takes minutes instead of an evening."],
+  mistake: ["Don't paste private info into any chatbot. Do this instead.", "Stop accepting the first answer from your chatbot."],
+  nobody: ["Nobody talks about the editing after the chatbot writes.", "Nobody shows the boring setup that makes a chatbot useful."],
+  beforeafter: ["Before: vague prompt, vague answer. After: one added line.", "Same question, asked twice. The second time I added one line, and the answer finally fit."]
+ }
+};
+
+/* WORKED EXAMPLES: 32 fully written scripts (no blanks), one per niche x length (15/30/45/60 s).
+   Lines map 1:1 to the segments of the matching structure. EXAMPLES[niche][dur]. */
+const EX_MORE = {
+ reddit: {
+  15: {title:"The journal note (fictional story)", hookType:"pov", topic:"a roommate and a journal", lines:[
+   "POV: your roommate has been reading your journal.",
+   "Fictional story. I found it moved.",
+   "Then a sticky note inside: // I'm sorry. Keep writing.",
+   "Follow for part two: the conversation."]},
+  45: {title:"The borrowed car (fictional story)", hookType:"mistake", topic:"lending a car", lines:[
+   "Never lend your car to a coworker. Here's why.",
+   "Fictional story. Dana sat next to me for two years.",
+   "Her car broke down on a Monday, so I handed her my keys. Just for one day, she said.",
+   "One day became a week. // The tank came back empty, and the seat smelled like someone else's perfume.",
+   "Then a speeding ticket arrived in my name, from a town Dana swore she never visited.",
+   "The camera photo showed my car. // My manager was driving.",
+   "Would you tell HR or talk to Dana first? Comment below."]},
+  60: {title:"The bachelorette boat (fictional story)", hookType:"beforeafter", topic:"a friendship and a wedding", lines:[
+   "Before the wedding, we were best friends. After, silence.",
+   "Fictional story, real feelings. Maya and I met in college and shared everything.",
+   "So when Maya asked me to plan her bachelorette weekend, I said yes without thinking. That was the first mistake.",
+   "The plans kept growing. A cabin, then a boat, then matching jackets. // Every time I hesitated, she said: it's once in a lifetime.",
+   "The night before the trip, I finally said no to the boat. Calmly, clearly, once. Maya hung up, and that was our last call.",
+   "Months later, a message arrived from her. // It just said: you were right about the boat.",
+   "Part two is the reply I sent. Follow so you see it."]}
+ },
+ history: {
+  15: {title:"Rome didn't fall overnight", hookType:"myth", topic:"the fall of Rome", lines:[
+   "Myth: Rome fell overnight. Fact: it took centuries.",
+   "Most people only know the last emperor.",
+   "The real story starts with money troubles. // Look closer.",
+   "Follow for more history hiding in plain sight."]},
+  45: {title:"The day after the Great Fire", hookType:"nobody", topic:"the Great Fire of London", lines:[
+   "Nobody talks about what happened the day after London burned.",
+   "To understand the Great Fire, picture London in the sixteen hundreds.",
+   "First, the setting: crowded wooden houses, narrow lanes, and families going about ordinary days, with no idea what was coming.",
+   "Then the turning point: a bakery fire spread for days. // When it stopped, thousands of families had nowhere to sleep.",
+   "Many camped in open fields outside the walls. Rebuilding rules soon favored brick and stone over timber.",
+   "That's why you still see brick in old London streets.",
+   "Follow for the next forgotten chapter of history."]},
+  60: {title:"Vikings and horned helmets", hookType:"mistake", topic:"Viking helmets", lines:[
+   "Stop repeating this Viking helmet fact. It's mostly legend.",
+   "Here's the version people share, and what the evidence actually says.",
+   "The popular version: Vikings charged into battle wearing horned helmets. It spread because it's simple, dramatic and easy to draw, which is exactly what makes a legend stick.",
+   "The finds tell a plainer story: the best-known Viking helmet found in Norway is a rounded iron cap. // No horns at all.",
+   "Here's the twist: the horns became popular in the eighteen hundreds, through paintings and opera costumes. Now the classic image looks more like stage design.",
+   "History is rarely one dramatic image. // It's usually many small details, stacked up.",
+   "Which history legend should I check next? Comment below."]}
+ },
+ science: {
+  15: {title:"Why popcorn pops", hookType:"question", topic:"popcorn", lines:[
+   "Why does popcorn pop like that? Here's the science.",
+   "It comes down to trapped water.",
+   "Heat turns it to steam. // The shell bursts open.",
+   "Save this for the next time someone asks."]},
+  45: {title:"Three things powered by magnets", hookType:"countdown", topic:"magnets", lines:[
+   "Three everyday things secretly powered by magnets.",
+   "You run into magnets more often than you think.",
+   "First: your fridge door. A magnetic strip hides inside the rubber seal, holding the door tightly closed.",
+   "Next: your headphones. A magnet and a coil push air to make sound. // Without magnets, they'd stay silent.",
+   "The surprising one: your microwave. Its heating part uses strong magnets to make the waves.",
+   "One principle, showing up in very different places.",
+   "Follow for more science hiding in your house."]},
+  60: {title:"Inside a boiling kettle", hookType:"question", topic:"a boiling kettle", lines:[
+   "What happens inside a kettle when you switch it on?",
+   "Let's slow the boil down and follow it step by step.",
+   "Step one: the heating element warms the water at the bottom. Warm water rises, cooler water sinks, and a slow loop starts moving through the kettle.",
+   "Step two: tiny steam bubbles form on the hot base, rise into cooler water and collapse. That's the rumbling noise, and it's often loudest before the boil.",
+   "Step three: once all the water is hot enough, the bubbles survive the trip up. // That's the rolling boil you actually notice.",
+   "So one switch sets off a whole chain you never see.",
+   "What everyday thing should I break down next?"]}
+ },
+ space: {
+  15: {title:"Black sky at noon on the Moon", hookType:"question", topic:"the Moon", lines:[
+   "What would you see standing on the Moon?",
+   "Here's the quick version: look up.",
+   "Even at noon, the sky is black. // No air.",
+   "Comment where in space I should go next."]},
+  45: {title:"Why we can't fly straight to Mars", hookType:"question", topic:"getting to Mars", lines:[
+   "Why can't we just fly straight to Mars?",
+   "Here's the simple version of space travel, without the jargon.",
+   "Start with the basics: everything is moving. Earth and Mars both circle the Sun, at different speeds.",
+   "Now add distance. You don't aim at Mars. You aim at where Mars will be months later.",
+   "The tricky part: fuel. A curved path saves fuel, but it only lines up about every two years.",
+   "Simple rules, enormous distances, careful timing.",
+   "Want another space question answered? Comment it."]},
+  60: {title:"Sunset on Mars", hookType:"pov", topic:"Mars", lines:[
+   "POV: you're watching sunset on Mars.",
+   "Let's take a trip to Mars and see what it's really like.",
+   "Getting there takes many months. The ride is quiet, the view barely changes, and the hardest part is simply waiting.",
+   "When you arrive, look up. The daytime sky is a dusty butterscotch, and the Sun looks smaller than it does from home.",
+   "Now take a step. With a bit more than a third of Earth's gravity, every movement feels floaty. // Even standing still takes getting used to.",
+   "And the strangest part? As the Sun sets, the sky around it turns blue.",
+   "Where should we travel next? Comment a destination."]}
+ },
+ psych: {
+  15: {title:"The doorway effect", hookType:"question", topic:"the doorway effect", lines:[
+   "Ever walk into a room and forget why?",
+   "That's the doorway effect at work.",
+   "Your brain treats a doorway as a scene change.",
+   "Send this to a friend who does this."]},
+  45: {title:"Big decisions on no sleep", hookType:"mistake", topic:"tired decisions", lines:[
+   "Don't make big decisions when you're exhausted. Here's why.",
+   "This is about tired brains, and it affects nearly everyone.",
+   "What happens: when you're short on sleep, your brain leans on shortcuts and quick feelings. You rarely notice it.",
+   "Where it shows up: late-night shopping carts and angry replies to texts. // That's when it quietly steers your choices.",
+   "What helps: name it, pause, and look again tomorrow before you decide.",
+   "Same situation, rested brain, clearer choice.",
+   "Save this for the next tough day."]},
+  60: {title:"Left brain vs right brain", hookType:"myth", topic:"left-brain and right-brain types", lines:[
+   "Myth: you're either left-brained or right-brained. Fact: not quite.",
+   "Let's look at this idea the way a careful researcher would.",
+   "The popular idea: logical people use the left side, creative people use the right. It spreads because it's relatable, and almost everyone can picture which one they are.",
+   "What studies suggest: some tasks lean more on one side, like much of language. // But brain scans don't sort people into left or right types.",
+   "Why it matters for you: skills grow with practice, whichever side gets the credit. That's more useful than any label, because you can try it this week.",
+   "Your brain is complicated. // Be a little suspicious of anything that sounds too neat.",
+   "Follow for more of why your brain does that."]}
+ },
+ money: {
+  15: {title:"Net pay in plain words", hookType:"question", topic:"net pay", lines:[
+   "Do you know what net pay really means?",
+   "Here's net pay in plain words.",
+   "In short: your pay after deductions. // What actually lands.",
+   "Follow for more money basics, explained simply."]},
+  45: {title:"The monthly subscription check", hookType:"question", topic:"subscriptions", lines:[
+   "Where does your subscription money actually go every month?",
+   "A simple look at subscriptions, no judgment and no advice.",
+   "Step one: find them. Open last month's bank statement and look for repeating charges, line by line.",
+   "Step two: name them. Write down each one and whether you used it this month. // Be honest, nobody's watching.",
+   "Step three: decide on purpose. Keep it, change it or drop it. Any choice is fine.",
+   "The goal is simple: know where it goes.",
+   "Save this as your monthly reminder."]},
+  60: {title:"Does checking your score lower it?", hookType:"myth", topic:"credit score checks", lines:[
+   "Myth: checking your score lowers it. Fact: depends who checks.",
+   "Quick note: this is general information about credit scores, not personal advice.",
+   "First, the basics. A credit score is a number lenders use to judge how you've handled borrowing. Think of it like a report card, just with money.",
+   "The common mix-up: soft checks versus hard checks. // Checking your own score is a soft check. Applying for a new loan usually means a hard one.",
+   "The question worth asking: is this a hard or soft check? Asking it out loud is completely normal, and it saves confusion later.",
+   "Understanding the words is the first step. // The rest gets easier.",
+   "Follow for the next money word, explained simply."]}
+ },
+ motivation: {
+  15: {title:"Stop waiting for the perfect plan", hookType:"mistake", topic:"a side project", lines:[
+   "Stop waiting for the perfect plan for your side project.",
+   "Here's the truth about side projects.",
+   "Do the smallest real step today. // Then repeat.",
+   "Save this for tomorrow morning."]},
+  45: {title:"The ten-minute promise", hookType:"cold", topic:"learning guitar", lines:[
+   "At midnight, I almost quit guitar. Then I wrote this.",
+   "Here's what finally helped me keep practicing.",
+   "I stopped waiting to feel ready. I just promised to pick up the guitar for ten minutes.",
+   "Some nights ten minutes became an hour. // Some nights it stayed ten minutes. Both counted.",
+   "I stopped asking whether I felt like it. I only asked: did I show up?",
+   "That one question changed how I see progress.",
+   "Write your own ten-minute promise in the comments."]},
+  60: {title:"The boring middle", hookType:"nobody", topic:"learning a language", lines:[
+   "Nobody talks about how boring progress feels in the middle.",
+   "The first week is exciting. The finish is exciting. The middle is just Tuesday.",
+   "Take learning a language. In the middle, nobody's cheering. You can't hold a conversation yet, and the flashcards stop feeling new.",
+   "That's a common place to quit. Not because it failed, but because it got quiet. Progress is still happening, just too slowly to feel.",
+   "So make the middle visible. Mark a calendar, keep a tally of new words, or record one sentence each week and compare.",
+   "Boring isn't a sign you're failing. // Often it means you're finally consistent.",
+   "Follow if you're in your middle right now."]}
+ },
+ ai: {
+  15: {title:"Fix generic chatbot emails", hookType:"question", topic:"chatbot emails", lines:[
+   "Why does your chatbot's answer sound so generic?",
+   "Here's a quick fix for emails.",
+   "Paste an email you wrote. // Ask for that style.",
+   "Save this before your next prompt."]},
+  45: {title:"Use a chatbot without leaking client info", hookType:"mistake", topic:"client email summaries", lines:[
+   "Don't paste private info into any chatbot. Do this instead.",
+   "Here's a cleaner way to summarize client emails with a chatbot.",
+   "Step one: swap names, emails and account numbers for placeholders like CLIENT A. The tool doesn't need them.",
+   "Step two: describe the goal, the audience and the format you want. // One clear sentence each.",
+   "Step three: paste the summary into your own notes, then put the real names back yourself.",
+   "Faster summaries, and your private details stay private.",
+   "Follow for more AI habits that save time."]},
+  60: {title:"Same task, two prompts", hookType:"beforeafter", topic:"a packing list", lines:[
+   "Same task, two prompts. Look at the difference.",
+   "The task: a packing list for a weekend trip. Prompt one is the quick version.",
+   "Prompt one just says: write a packing list. The result is fine, but it could be for anyone, going anywhere.",
+   "Prompt two adds three things: a rainy coastal town, a carry-on bag only, and traveling with a toddler.",
+   "Now the list can include rain boots, snacks and a bag for wet clothes. // Fewer edits, faster finish, and it fits your actual trip.",
+   "The tool didn't change. The instructions did.",
+   "Comment a task and I'll rewrite the prompt."]}
+ }
+};
+const EXAMPLES30 = {
+ reddit: {title:"The note on my windshield (fictional story)", hookType:"cold", topic:"a note from a neighbor", lines:[
+  "The note on my windshield said: we need to talk.",
+  "Fictional story. My neighbor and I had never even spoken.",
+  "For months, his dog sat by my fence every evening. I never asked why.",
+  "Then the note appeared. Under it, a leash, folded neatly, and his phone number.",
+  "He was moving overseas. // Could I keep the dog?",
+  "Would you have said yes? Tell me below."]},
+ history: {title:"Three things about Roman roads", hookType:"countdown", topic:"Roman roads", lines:[
+  "Three things about Roman roads your history class skipped.",
+  "Everyone knows they were straight. Here's what sits underneath.",
+  "First: many were built in layers, with packed stone and gravel under the paving.",
+  "Next: the surface curved slightly, so rain ran off into ditches at the sides.",
+  "The twist: stone milestones marked the distance. // Sound familiar?",
+  "Which detail surprised you most? Tell me below."]},
+ science: {title:"Lightning does strike twice", hookType:"myth", topic:"lightning", lines:[
+  "Myth: lightning never strikes twice. Fact: it often does.",
+  "Here's what's actually happening with lightning.",
+  "What most people notice first: a flash that seems totally random.",
+  "Zoom in, and you find tall, pointed objects giving the charge an easier path.",
+  "So remember: // tall towers get hit again and again.",
+  "Tell me what science question I should answer next."]},
+ space: {title:"Three things about Venus", hookType:"countdown", topic:"Venus", lines:[
+  "Three things about Venus that sound made up.",
+  "Space is stranger than most movies show it.",
+  "First: a day on Venus lasts longer than its whole year.",
+  "Next: it spins backwards, so the Sun rises in the west.",
+  "My favorite: the ground is hot enough to melt lead.",
+  "Follow for more space facts that sound fake."]},
+ psych: {title:"Why awkward moments stick", hookType:"question", topic:"negativity bias", lines:[
+  "Why do you remember one awkward moment for years?",
+  "Psychologists have a name for part of this: negativity bias.",
+  "Here's how it works: your brain gives bad moments extra attention. It does it automatically.",
+  "You've probably felt it when one critical comment outweighed a day of praise. // Sound familiar?",
+  "Once you can name it, it loses some power.",
+  "Which brain habit should I explain next?"]},
+ money: {title:"APR in plain words", hookType:"nobody", topic:"APR", lines:[
+  "Nobody explains APR in plain words. Let's fix that.",
+  "General info only, not advice for your situation.",
+  "What it is: the yearly cost of borrowing. Think of it as a loan's price tag.",
+  "Where you'll see it: on a credit card statement, usually near the interest section.",
+  "Now you know the word. // That's half the battle.",
+  "Which money word should I explain next?"]},
+ motivation: {title:"Three habits for hard days", hookType:"countdown", topic:"hard days", lines:[
+  "Three small habits that make hard days easier.",
+  "Here's what actually helps with a heavy week.",
+  "First: write tomorrow's first task tonight, so the morning starts with a decision already made.",
+  "Next: shrink the goal. One email, one page, one walk around the block.",
+  "Then finish something small. // Momentum is real.",
+  "Which one are you trying first?"]},
+ ai: {title:"Stop taking the first answer", hookType:"mistake", topic:"better prompts", lines:[
+  "Stop accepting the first answer from your AI chatbot.",
+  "Works with most chat-style AI tools. No tricks.",
+  "First: tell it who the answer is for, like busy parents or new runners.",
+  "Next: ask for a format, like five bullet points or a short table.",
+  "Then ask what it missed. // Check it yourself too.",
+  "Which tweak are you trying first?"]}
+};
+const EXAMPLES = {};
+NICHES.forEach(n => { EXAMPLES[n.id] = Object.assign({30: EXAMPLES30[n.id]}, EX_MORE[n.id]); });
+
+const STRUCTURES = {
+ reddit: {
+  15: [
+   [0,4,"Hook","Would you tell your [RELATIVE] the truth after [EVENT]?","Text-message style card, slow push-in","the truth","curious"],
+   [4,7,"Setup","Context: [NAME] and I go way back.","Two coffee cups on a table, slow pan","way back","calm"],
+   [7,11,"Payoff","Then [TURNING POINT]. // Nobody saw it coming.","Screen shake, notification burst","nobody saw","urgent"],
+   [11,15,"CTA","Follow for part two.","Text card: PART TWO, arrow wipe","part two","warm"]
+  ],
+  30: [
+   [0,4,"Hook","Am I wrong for refusing to [ACTION] at [EVENT]?","Bold question text over blurred party lights","am I wrong","curious"],
+   [4,8,"Setup","Some context: [NAME] and I have been close for years.","Two mugs on a kitchen counter, slow drift","close for years","calm"],
+   [8,15,"Point 1","Everything was normal until [FIRST STRANGE THING]. I brushed it off.","Phone on a desk lights up, rack focus","until","curious"],
+   [15,22,"Point 2","Then [SECOND THING] happened, and I couldn't ignore it anymore.","Quick cuts: door, clock, unread messages","couldn't ignore","urgent"],
+   [22,26,"Payoff","So I said it: // [WHAT YOU SAID].","Black screen, single line of white text","I said it","urgent"],
+   [26,30,"CTA","Comment what you would have done.","Comment bubble icon animates in","what would you","warm"]
+  ],
+  45: [
+   [0,4,"Hook","Everyone said I overreacted. Here's what they didn't know.","Word OVERREACTED? on screen, then struck through","overreacted","urgent"],
+   [4,9,"Setup","Context: [NAME] is my [RELATIONSHIP], and we rarely fight.","Quiet street at dusk, slow drift","rarely fight","calm"],
+   [9,18,"Point 1","It started small. [FIRST SMALL THING], then a weird excuse. I told myself it was nothing.","Hands typing, then deleting a message","started small","curious"],
+   [18,27,"Point 2","Then at [EVENT], I saw [WHAT YOU SAW]. // Everyone else was too busy to notice.","Crowded room from above, motion blur, no faces","I saw","urgent"],
+   [27,35,"Point 3","So I asked [NAME] directly, in front of everyone. The room went completely silent.","Sound drops out, slow zoom on a glass on the table","silent","urgent"],
+   [35,40,"Payoff","Turns out [THE REVEAL]. // I still think about that moment.","Reveal text card, hard cut","turns out","calm"],
+   [40,45,"CTA","Would you have asked? Tell me below.","Poll-style YES / NO cards","tell me","warm"]
+  ],
+  60: [
+   [0,4,"Hook","Before [EVENT], we were best friends. After, silence.","Split screen: busy group chat vs empty chat","silence","calm"],
+   [4,10,"Setup","Fictional story, real feelings. [NAME] and I met at [PLACE] years ago.","Old photo-style frame of an empty place","fictional story","warm"],
+   [10,22,"Point 1","We did everything together. So when [NAME] asked me to help with [EVENT], I said yes without thinking. That was the first mistake.","Calendar pages flipping, sticky notes","first mistake","curious"],
+   [22,34,"Point 2","The plans kept growing. More money, more time, more favors. // Every time I hesitated, I heard the same line: [WHAT THEY SAID].","Receipts and to-do lists piling up","same line","urgent"],
+   [34,46,"Point 3","The night before [EVENT], I finally said no. Calmly, clearly, once. [NAME] hung up, and that was the last call.","Phone screen: call ended, dark room","said no","urgent"],
+   [46,54,"Payoff","Months later, a message arrived. // It just said: [SHORT MESSAGE].","Single notification on a lock screen","a message","calm"],
+   [54,60,"CTA","Part two is the reply I sent. Follow so you see it.","Text card: PART TWO · THE REPLY","part two","warm"]
+  ]
+ },
+ history: {
+  15: [
+   [0,4,"Hook","Myth: [COMMON BELIEF]. Fact: [WHAT REALLY HAPPENED].","MYTH / FACT split card over an old map","fact","urgent"],
+   [4,7,"Setup","Most people only know [FAMOUS PART].","Public-domain painting, slow pan","only know","calm"],
+   [7,11,"Payoff","The real story starts with [OVERLOOKED DETAIL]. // Look closer.","Zoom into a detail of an old document","look closer","curious"],
+   [11,15,"CTA","Follow for more history hiding in plain sight.","Map fades to a text card","plain sight","warm"]
+  ],
+  30: [
+   [0,4,"Hook","[NUMBER] things about [TOPIC] your history class skipped.","Countdown number card over a parchment texture","skipped","curious"],
+   [4,8,"Setup","Everyone knows the headline. Here's what sits underneath it.","Old newspaper-style headline, camera tilts down","underneath","calm"],
+   [8,15,"Point 1","First: [DETAIL ONE]. It sounds small, but [WHY IT MATTERED].","Museum-style object close-up, side light","sounds small","curious"],
+   [15,22,"Point 2","Next: [DETAIL TWO]. Picture [EVERYDAY SCENE] and it suddenly makes sense.","Engraving or illustration, slow pan","makes sense","calm"],
+   [22,26,"Payoff","And the twist: [DETAIL THREE]. // That one still matters.","Hard cut to a modern-day equivalent object","still matters","urgent"],
+   [26,30,"CTA","Which detail surprised you most? Tell me below.","Recap list, tick marks appear","tell me","warm"]
+  ],
+  45: [
+   [0,4,"Hook","Nobody talks about what happened the day after [EVENT].","Calendar page turning, title text","the day after","curious"],
+   [4,9,"Setup","To understand [TOPIC], picture [PLACE] in [ERA].","Old map, pin drops on the place","picture","calm"],
+   [9,18,"Point 1","First, the setting: [WHO LIVED THERE] going about ordinary days, with no idea what was coming.","Street-scene engraving, slow drift","no idea","calm"],
+   [18,27,"Point 2","Then the turning point: [KEY MOMENT]. // At the time, [HOW PEOPLE REACTED].","Close-up of an object from that moment, slow push-in","turning point","urgent"],
+   [27,35,"Point 3","What followed: [CONSEQUENCE]. Ordinary people felt it first in [EVERYDAY CHANGE].","Daily-life illustration from the era, slow pan","felt it first","curious"],
+   [35,40,"Payoff","That's why you still see [TOPIC] in [MODERN THING].","Match cut: old object to modern object","still see","warm"],
+   [40,45,"CTA","Follow for the next forgotten chapter of history.","Book spine text card: NEXT CHAPTER","next chapter","warm"]
+  ],
+  60: [
+   [0,4,"Hook","Stop repeating this [TOPIC] fact. It's mostly legend.","Stamp LEGEND? over a quote card","mostly legend","urgent"],
+   [4,10,"Setup","Here's the version people share, and what the sources actually say.","Two columns: SHARED vs SOURCES","the sources","calm"],
+   [10,22,"Point 1","The popular version: [POPULAR CLAIM]. It spread because it's simple, dramatic and easy to repeat, which is exactly what makes a legend stick.","Mock social post card (no real accounts), then crumple","easy to repeat","curious"],
+   [22,34,"Point 2","The sources tell a slower story: [WHAT SOURCES SAY]. // Less exciting, but it explains far more about the people involved.","Archive shelves, document close-ups","slower story","calm"],
+   [34,46,"Point 3","And here's the detail that changes everything: [SURPRISING DETAIL]. Once you know it, the popular version starts to feel strange.","Slow zoom on one highlighted line of a document","changes everything","urgent"],
+   [46,54,"Payoff","History is rarely one dramatic moment. // It's usually many small decisions, stacked up.","Bricks stacking, time-lapse","small decisions","warm"],
+   [54,60,"CTA","Which history legend should I check next? Comment below.","Comment prompt card over the old map","comment below","warm"]
+  ]
+ },
+ science: {
+  15: [
+   [0,4,"Hook","Why does [EVERYDAY THING] do that? Here's the science.","Macro shot of the everyday thing, slow motion","why","curious"],
+   [4,7,"Setup","It comes down to [CONCEPT].","Simple diagram, one label pops in","comes down to","calm"],
+   [7,11,"Payoff","[SIMPLE EXPLANATION]. // Once you see it, you can't unsee it.","Animated arrows over the macro shot","can't unsee","urgent"],
+   [11,15,"CTA","Save this for the next time someone asks.","Bookmark icon animation","save this","warm"]
+  ],
+  30: [
+   [0,4,"Hook","Myth: [COMMON BELIEF]. Fact: [SHORT CORRECTION].","MYTH crossed out, FACT slides in","fact","urgent"],
+   [4,8,"Setup","Here's what's actually happening with [TOPIC].","Kitchen or lab setup, push-in","actually","curious"],
+   [8,15,"Point 1","What most people notice first: [OBSERVATION]. It looks simple from the outside.","Real-time footage of the effect","looks simple","calm"],
+   [15,22,"Point 2","Zoom in, and you find [REAL MECHANISM] doing the real work.","Zoom transition into a particle-style animation","zoom in","curious"],
+   [22,26,"Payoff","So next time, remember: // [ONE-LINE TAKEAWAY].","Takeaway text card, bold","remember","warm"],
+   [26,30,"CTA","Tell me what science question I should answer next.","Question-mark card, comment icon","next","warm"]
+  ],
+  45: [
+   [0,4,"Hook","[NUMBER] everyday things secretly powered by [TOPIC].","Quick montage of household objects","secretly powered","curious"],
+   [4,9,"Setup","You run into [TOPIC] more often than you think.","Kitchen counter, top-down shot","more often","calm"],
+   [9,18,"Point 1","First: [EXAMPLE ONE]. It works because [SHORT REASON], and you can see it if you look closely.","Macro close-up of example one","look closely","curious"],
+   [18,27,"Point 2","Next: [EXAMPLE TWO]. Same idea, different setting. // Without it, [WHAT WOULD CHANGE].","Wider shot of example two, simple diagram overlay","same idea","calm"],
+   [27,35,"Point 3","The surprising one: [EXAMPLE THREE]. Most people never connect it to [TOPIC] at all.","Reveal shot, quick zoom","surprising","urgent"],
+   [35,40,"Payoff","One principle, showing up in very different places.","Grid of all examples side by side","one principle","warm"],
+   [40,45,"CTA","Follow for more science hiding in your house.","House outline animation, follow arrow","your house","warm"]
+  ],
+  60: [
+   [0,4,"Hook","What actually happens inside [OBJECT] when you [ACTION]?","Slow-motion action shot, freeze frame","inside","curious"],
+   [4,10,"Setup","Let's slow [TOPIC] down and follow it step by step.","Timeline graphic with three step markers","step by step","calm"],
+   [10,22,"Point 1","Step one: [FIRST CHANGE]. You can't see it yet, but [WHAT IS QUIETLY HAPPENING].","Cutaway diagram, first stage highlighted","can't see it","curious"],
+   [22,34,"Point 2","Step two: [SECOND CHANGE]. This is the part most explanations skip, and it's where the interesting science lives.","Animated diagram, highlight the hidden stage","most skip","curious"],
+   [34,46,"Point 3","Step three: [VISIBLE RESULT]. That's the bit you actually notice. // Everything before it happened out of sight.","Back to real footage, result in close-up","out of sight","urgent"],
+   [46,54,"Payoff","So one simple moment sets off a whole chain you never see.","Domino-style chain animation","whole chain","warm"],
+   [54,60,"CTA","What everyday thing should I break down next?","Comment prompt card","break down","warm"]
+  ]
+ },
+ space: {
+  15: [
+   [0,4,"Hook","What would you see standing on [PLANET OR MOON]?","Slow push toward a planet render (your own or public domain)","standing on","curious"],
+   [4,7,"Setup","Here's the quick version about [TOPIC].","Star field drift","quick version","calm"],
+   [7,11,"Payoff","[KEY SPACE FACT]. // Sit with that for a second.","Hold on a single wide space image","sit with that","calm"],
+   [11,15,"CTA","Comment where in space I should go next.","Solar system map, pointer moves","go next","warm"]
+  ],
+  30: [
+   [0,4,"Hook","[NUMBER] things about [TOPIC] that sound made up.","Glitch text over a planet image","made up","curious"],
+   [4,8,"Setup","Space is stranger than most movies show it.","Film-strip frame dissolving into real imagery","stranger","calm"],
+   [8,15,"Point 1","First: [STRANGE FACT ONE]. Try picturing that from the surface.","Surface-level render, low horizon","picture that","curious"],
+   [15,22,"Point 2","Next: [STRANGE FACT TWO]. Compared with Earth, that's [YOUR VERIFIED COMPARISON].","Scale comparison graphic, Earth vs object","compared with Earth","urgent"],
+   [22,26,"Payoff","And my favorite: [STRANGE FACT THREE].","Slow reveal of the object, music swell","my favorite","warm"],
+   [26,30,"CTA","Follow for more space facts that sound fake.","Star field with follow arrow","sound fake","warm"]
+  ],
+  45: [
+   [0,4,"Hook","Why can't we just fly straight to [DESTINATION]?","Dotted line from Earth bends into a curve","fly straight","curious"],
+   [4,9,"Setup","Here's the simple version of [TOPIC], without the jargon.","Clean diagram background, title text","without the jargon","calm"],
+   [9,18,"Point 1","Start with the basics: [BASIC IDEA]. Everything else builds on this one simple rule.","Simple animated diagram of the rule","basics","calm"],
+   [18,27,"Point 2","Now add distance. Out there, [SCALE COMPARISON], and that changes how everything has to be planned.","Zoom-out scale animation","distance","curious"],
+   [27,35,"Point 3","The tricky part: [MAIN CHALLENGE]. That's where the real problem solving happens.","Mission-style checklist graphic","tricky part","urgent"],
+   [35,40,"Payoff","So the short answer: [ONE-LINE ANSWER].","Answer text card, bold","short answer","warm"],
+   [40,45,"CTA","Want another space question answered? Comment it.","Question card over star field","comment it","warm"]
+  ],
+  60: [
+   [0,4,"Hook","POV: you're watching sunrise on [PLANET OR MOON].","Horizon render, light creeping in","sunrise","calm"],
+   [4,10,"Setup","Let's take a trip to [DESTINATION] and see what it's really like.","Launch-style countdown text, star field","take a trip","curious"],
+   [10,22,"Point 1","Getting there takes [TRAVEL TIME]. The ride is quiet, the view barely changes, and the hardest part is simply waiting.","Slow drift through empty space, timer overlay","simply waiting","calm"],
+   [22,34,"Point 2","When you arrive, look up. The sky is [SKY COLOR], and the Sun looks [SUN SIZE] compared with home.","Sky color render, Sun size comparison","look up","curious"],
+   [34,46,"Point 3","Now take a step. With [GRAVITY COMPARISON], every movement feels different. // Even standing still takes getting used to.","Bouncing-step animation, gravity label","every movement","curious"],
+   [46,54,"Payoff","And the strangest part? Looking for Earth in a completely different sky.","Tiny Earth marker in a wide sky shot","strangest part","warm"],
+   [54,60,"CTA","Where should we travel next? Comment a destination.","Destination list card","travel next","warm"]
+  ]
+ },
+ psych: {
+  15: [
+   [0,4,"Hook","Ever [RELATABLE MOMENT] and wonder why?","B-roll that matches your hook, no faces","wonder why","curious"],
+   [4,7,"Setup","That's [EFFECT NAME] at work.","Label pops in over a simple brain icon","at work","calm"],
+   [7,11,"Payoff","In short: [ONE-LINE EXPLANATION]. // Totally normal.","Simple two-step diagram","totally normal","warm"],
+   [11,15,"CTA","Send this to a friend who does this.","Share-arrow animation","send this","warm"]
+  ],
+  30: [
+   [0,4,"Hook","Why do you remember [EMBARRASSING MOMENT] for years?","Rewind effect on a blurry memory clip","remember","curious"],
+   [4,8,"Setup","Psychologists have a name for this: [EFFECT NAME].","Name card typed out letter by letter","a name","calm"],
+   [8,15,"Point 1","Here's how it works: [SIMPLE MECHANISM]. Your brain does it automatically.","Simple flowchart, arrows animate","automatically","calm"],
+   [15,22,"Point 2","You've probably seen it when [EVERYDAY EXAMPLE]. // Sound familiar?","Everyday B-roll: hands, phone, desk","familiar","curious"],
+   [22,26,"Payoff","Once you can name it, it loses some power.","Label shrinks and fades","name it","warm"],
+   [26,30,"CTA","Which brain habit should I explain next?","Comment prompt card","explain next","warm"]
+  ],
+  45: [
+   [0,4,"Hook","Don't make big decisions when you're [STATE]. Here's why.","Hand hovering over a pen and a contract","big decisions","urgent"],
+   [4,9,"Setup","This is about [TOPIC], and it affects nearly everyone.","Crowd from above, blurred, no faces","nearly everyone","calm"],
+   [9,18,"Point 1","What happens: [WHAT THE BRAIN DOES]. It usually happens automatically, so you rarely notice it.","Simple shortcut diagram","rarely notice","curious"],
+   [18,27,"Point 2","Where it shows up: [EVERYDAY SITUATION]. // That's when it quietly steers your choices.","Everyday B-roll: shopping cart, phone, calendar","steers","curious"],
+   [27,35,"Point 3","What helps: name it, pause, and look again tomorrow before you decide.","Notebook, pen writes PAUSE","pause","calm"],
+   [35,40,"Payoff","Same situation, calmer brain, clearer choice.","Split screen: messy desk vs tidy desk","clearer choice","warm"],
+   [40,45,"CTA","Save this for the next tough day.","Bookmark icon animation","save this","warm"]
+  ],
+  60: [
+   [0,4,"Hook","Myth: [POP PSYCH CLAIM]. Fact: research is more careful.","MYTH stamp over a quote card","more careful","urgent"],
+   [4,10,"Setup","Let's look at [TOPIC] the way a careful researcher would.","Notebook and magnifying glass flat lay","careful","calm"],
+   [10,22,"Point 1","The popular idea: [POPULAR VERSION]. It spreads because it's relatable, and almost everyone can think of a moment that seems to fit.","Mock social post card (no real accounts)","relatable","curious"],
+   [22,34,"Point 2","What studies actually suggest: [CAREFUL VERSION]. // Usually it depends on the situation, the person and the setting.","Simple chart outline with no numbers","it depends","calm"],
+   [34,46,"Point 3","Why it matters for you: [PRACTICAL TAKEAWAY]. That's more useful than any label, because you can actually try it this week.","Checklist animation, one box ticked","try it","warm"],
+   [46,54,"Payoff","Your brain is complicated. // Be a little suspicious of anything that sounds too neat.","Tangled string slowly straightening","too neat","curious"],
+   [54,60,"CTA","Follow for more of why your brain does that.","Brain icon outline, follow arrow","follow","warm"]
+  ]
+ },
+ money: {
+  15: [
+   [0,4,"Hook","Do you know what [MONEY TERM] really means?","Term in bold over a blurred mock statement (fake data)","really means","curious"],
+   [4,7,"Setup","Here's [TOPIC] in plain words.","Plain card, word underlined","plain words","calm"],
+   [7,11,"Payoff","In short: [PLAIN EXPLANATION]. // No jargon needed.","Definition card, simple icon","in short","calm"],
+   [11,15,"CTA","Follow for more money basics, explained simply.","Coin icon outline, follow arrow","money basics","warm"]
+  ],
+  30: [
+   [0,4,"Hook","Nobody explains [TOPIC] in plain words. Let's fix that.","Jargon words fading out one by one","plain words","curious"],
+   [4,8,"Setup","General info only, not advice for your situation.","Small disclaimer card, calm background","general info","calm"],
+   [8,15,"Point 1","What it is: [PLAIN DEFINITION]. Think of it like [EVERYDAY COMPARISON].","Everyday object that matches the comparison","think of it","calm"],
+   [15,22,"Point 2","Where you'll see it: on [DOCUMENT], usually near [SECTION].","Mock document (fake data), highlight box","where","curious"],
+   [22,26,"Payoff","Now you know the word. // That's half the battle.","Word stamps onto screen","now you know","warm"],
+   [26,30,"CTA","Which money word should I explain next?","Comment prompt card","next","warm"]
+  ],
+  45: [
+   [0,4,"Hook","Where does [SMALL EXPENSE] actually go every month?","Coins sliding off a table, slow motion","every month","curious"],
+   [4,9,"Setup","A simple look at [TOPIC], no judgment and no advice.","Notebook and calculator flat lay","no judgment","calm"],
+   [9,18,"Point 1","Step one: find it. Open [WHERE TO LOOK] and look for [WHAT TO LOOK FOR], line by line.","Mock statement (fake data), highlighter moving down","find it","calm"],
+   [18,27,"Point 2","Step two: name it. Write down what it is and whether you still use it. // Be honest, nobody's watching.","Hand writing a short list","name it","warm"],
+   [27,35,"Point 3","Step three: decide on purpose. Keep it, change it or drop it. Any choice is fine.","Three labeled boxes: KEEP · CHANGE · DROP","on purpose","calm"],
+   [35,40,"Payoff","The goal is simple: know where it goes.","Arrow path from wallet to labels","know","warm"],
+   [40,45,"CTA","Save this as your monthly reminder.","Calendar icon, bookmark","monthly reminder","warm"]
+  ],
+  60: [
+   [0,4,"Hook","Myth: [MONEY MYTH]. Fact: it depends on [FACTOR].","MYTH / FACT split card","it depends","urgent"],
+   [4,10,"Setup","Quick note: this is general information about [TOPIC], not personal advice.","Calm disclaimer card","general information","calm"],
+   [10,22,"Point 1","First, the basics, in plain words: [PLAIN DEFINITION]. Think of it like [EVERYDAY COMPARISON], just with money.","Everyday comparison object, then coin icon","the basics","calm"],
+   [22,34,"Point 2","The common mix-up: people confuse it with [SIMILAR TERM]. // They sound alike, but they work differently, and the difference matters in real life.","Two term cards side by side, swap animation","mix-up","curious"],
+   [34,46,"Point 3","The question worth asking: [GOOD QUESTION]. Asking it out loud is completely normal, and it saves confusion later.","Question typed into a notes app (mock screen)","worth asking","warm"],
+   [46,54,"Payoff","Understanding the words is the first step. // The rest gets easier.","Staircase graphic, first step lights up","first step","warm"],
+   [54,60,"CTA","Follow for the next money word, explained simply.","Word card flips to NEXT","next money word","warm"]
+  ]
+ },
+ motivation: {
+  15: [
+   [0,4,"Hook","Stop waiting for the perfect plan for [GOAL].","Crumpled plan pages, slow motion","stop waiting","urgent"],
+   [4,7,"Setup","Here's the truth about [GOAL].","Sunrise time-lapse through a window","the truth","calm"],
+   [7,11,"Payoff","Do the smallest real step today. // Then do it again.","Shoes by the door, hand ticks a box","smallest step","warm"],
+   [11,15,"CTA","Save this for tomorrow morning.","Alarm clock close-up","tomorrow","warm"]
+  ],
+  30: [
+   [0,4,"Hook","[NUMBER] small habits that make hard days easier.","Rainy window, warm desk lamp","hard days","calm"],
+   [4,8,"Setup","Here's what actually helps with [GOAL].","Notebook opens to a blank page","actually helps","calm"],
+   [8,15,"Point 1","First: [HABIT ONE], so [WHY IT HELPS].","Hand writes one line on a sticky note","first","warm"],
+   [15,22,"Point 2","Next: [HABIT TWO]. When everything feels heavy, [HOW IT HELPS].","Big box shrinking to a tiny box","feels heavy","curious"],
+   [22,26,"Payoff","Then finish something small. // Momentum is real.","Checkbox ticked, ball starts rolling","momentum","urgent"],
+   [26,30,"CTA","Which one are you trying first?","Comment prompt card","first","warm"]
+  ],
+  45: [
+   [0,4,"Hook","At [TIME], I almost quit [GOAL]. Then I wrote this.","Clock on a dark desk, pen ready","almost quit","calm"],
+   [4,9,"Setup","Here's what finally helped me keep going with [GOAL].","Notebook close-up, page turn","keep going","calm"],
+   [9,18,"Point 1","I stopped waiting to feel ready. I just promised to show up for ten minutes.","Ten-minute timer starts","ten minutes","warm"],
+   [18,27,"Point 2","Some days ten minutes became an hour. // Some days it stayed ten minutes. Both counted.","Desk time-lapse, light changing","both counted","calm"],
+   [27,35,"Point 3","I stopped asking whether I felt like it. I only asked: did I show up?","Calendar with a row of ticks","show up","urgent"],
+   [35,40,"Payoff","That one question changed how I see progress.","Single question on a sticky note","one question","warm"],
+   [40,45,"CTA","Write your own ten-minute promise in the comments.","Comment prompt card, pen icon","your promise","warm"]
+  ],
+  60: [
+   [0,4,"Hook","Nobody talks about how boring progress feels in the middle.","Long empty road, slow drive-through","the middle","calm"],
+   [4,10,"Setup","The start is exciting. The finish is exciting. The middle is just Tuesday.","Three cards: START · MIDDLE · FINISH","just Tuesday","curious"],
+   [10,22,"Point 1","In the middle, nobody's cheering. The results are too small to show off, and the routine stops feeling new.","Empty stadium seats or a quiet gym","nobody's cheering","calm"],
+   [22,34,"Point 2","That's usually where people quit [GOAL]. Not because it failed, but because it got quiet.","Paused progress bar on screen","got quiet","curious"],
+   [34,46,"Point 3","So make the middle visible. Mark a calendar, keep a tally, write one line each night about what you did.","Calendar ticks, tally marks, notebook line","make it visible","warm"],
+   [46,54,"Payoff","Boring isn't a sign you're failing. // Often it means you're finally consistent.","Steady metronome or dripping tap","consistent","warm"],
+   [54,60,"CTA","Follow if you're in your middle right now.","Road sign graphic: MIDDLE","right now","warm"]
+  ]
+ },
+ ai: {
+  15: [
+   [0,4,"Hook","Why does your [AI TOOL] answer sound so generic?","Screen recording of a chat window from your own account","so generic","curious"],
+   [4,7,"Setup","Here's a quick fix for [TASK].","Cursor clicks into the prompt box","quick fix","calm"],
+   [7,11,"Payoff","[ONE CLEAR TIP]. // Try it on your next prompt.","Before/after answers side by side","try it","urgent"],
+   [11,15,"CTA","Save this before your next prompt.","Bookmark icon animation","save this","warm"]
+  ],
+  30: [
+   [0,4,"Hook","[NUMBER] prompt tweaks that make [TASK] faster.","Keyboard close-up, fast typing","faster","urgent"],
+   [4,8,"Setup","Works with most chat-style AI tools. No tricks.","Generic chat window mockup, no brand logos","no tricks","calm"],
+   [8,15,"Point 1","First: tell it who the answer is for, like [AUDIENCE].","Prompt text, audience line highlighted","who it's for","curious"],
+   [15,22,"Point 2","Next: give it the format, like a short list or table.","Answer reflows into a neat list","the format","calm"],
+   [22,26,"Payoff","Finally: ask it to double-check. // Then check yourself.","Checkmark animation, magnifier icon","check yourself","urgent"],
+   [26,30,"CTA","Which tweak are you trying first?","Comment prompt card","which tweak","warm"]
+  ],
+  45: [
+   [0,4,"Hook","Don't paste private info into [AI TOOL]. Do this instead.","Blurred document with a lock icon","private info","urgent"],
+   [4,9,"Setup","Here's a cleaner way to handle [TASK] with [AI TOOL].","Clean desk, laptop screen glow, no logos","cleaner way","calm"],
+   [9,18,"Point 1","Step one: swap names, emails and account numbers for placeholders like [CLIENT]. The tool doesn't need them.","Redaction animation: names become [CLIENT]","placeholders","calm"],
+   [18,27,"Point 2","Step two: describe the goal, the audience and the format you want. // One clear sentence each.","Three short lines typed into a prompt box","one sentence each","curious"],
+   [27,35,"Point 3","Step three: paste the answer into your own document, then edit and add real details yourself.","Paste into a blank document, edits appear","edit","calm"],
+   [35,40,"Payoff","Faster drafts, and your private details stay private.","Lock icon closes","stay private","warm"],
+   [40,45,"CTA","Follow for more AI habits that save time.","Clock icon, follow arrow","save time","warm"]
+  ],
+  60: [
+   [0,4,"Hook","Same task, two prompts. Look at the difference.","Split screen: PROMPT ONE vs PROMPT TWO","the difference","curious"],
+   [4,10,"Setup","The task: [TASK]. Prompt one is what most people type.","Typing a short, vague prompt","most people","calm"],
+   [10,22,"Point 1","Prompt one just says: write [TASK]. The result is fine, but it could be for anyone, about anything.","Generic answer scrolls by, bland lines highlighted","for anyone","calm"],
+   [22,34,"Point 2","Prompt two adds three things: who it's for, the tone you want, and one example you like.","Three added lines glow one by one","three things","curious"],
+   [34,46,"Point 3","Now the answer sounds like it was written for your situation. // Fewer edits, faster finish, and it actually sounds like you.","Side-by-side answers, second one highlighted","sounds like you","urgent"],
+   [46,54,"Payoff","The tool didn't change. The instructions did.","Text card, two lines","instructions","warm"],
+   [54,60,"CTA","Comment a task and I'll rewrite the prompt.","Comment prompt card","comment a task","warm"]
+  ]
+ }
+};
+
+const CTAS = [
+ "Follow for part two.",
+ "Follow if you want the next one.",
+ "Comment what you would have done.",
+ "Comment your guess before the next video.",
+ "Check the comments for the follow-up.",
+ "Save this so you can find it later.",
+ "Share this with the friend who needs it.",
+ "Watch it again. The clue was in the first line.",
+ "The next video picks up right here.",
+ "Follow so you don't miss what happens next.",
+ "Which one surprised you most? Comment below.",
+ "Drop a question below for a future video.",
+ "Follow for more [NICHE TOPIC] like this.",
+ "Rewatch and see if you catch it now.",
+ "Part two is up next on my profile.",
+ "Now go back to the start and listen again."
+];
+
+const LOOPS = {
+ reddit: "And that's why I still think about that night...",
+ history: "And it all traces back to the very first detail...",
+ science: "Which brings us right back to the question at the start...",
+ space: "And that's what you'd see, if you were standing there...",
+ psych: "Now notice what your brain did at the very start...",
+ money: "So next time you check your statement, start here...",
+ motivation: "So tomorrow, start with the first thing I said...",
+ ai: "Try it now, starting with the very first prompt..."
+};
+
+/* ============================================================
+   APP
+   ============================================================ */
+const SEG_COLORS = {"Hook":"#C8F04A","Setup":"#5CD6E8","Point 1":"#A98BFF","Point 2":"#8E70F0","Point 3":"#7556E0","Payoff":"#FFB547","CTA":"#FF8A4C"};
+const TONE_COLORS = {calm:"92,214,232",curious:"169,139,255",urgent:"255,138,76",warm:"255,181,71"};
+const PRESETS = [["Slow",130],["Natural",150],["Fast",170],["TTS",180]];
+const DURS = [15,30,45,60];
+const nicheName = id => (NICHES.find(n => n.id === id) || {name:id}).name;
+const hookName = id => (HOOK_TYPES.find(h => h.id === id) || {name:id}).name;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+
+/* storage: localStorage only, keys start with ssb_ */
+const store = {
+ get(k, d){ try { const v = localStorage.getItem("ssb_" + k); return v == null ? d : JSON.parse(v); } catch(e){ return d; } },
+ set(k, v){ try { localStorage.setItem("ssb_" + k, JSON.stringify(v)); } catch(e){} }
+};
+
+/* ---- formulas ---- */
+function budget(sec, wpm){ return Math.floor(sec * wpm / 60); }
+function tokens(text){ return String(text || "").replace(/\/\//g, " // ").split(/\s+/).filter(Boolean); }
+function countWords(text){ return tokens(text).filter(t => t !== "//").length; }
+function countPauses(text){ return tokens(text).filter(t => t === "//").length; }
+function secondsFor(text, wpm){
+ const words = countWords(text), pauses = countPauses(text);
+ return Math.round((words / wpm * 60 + pauses * 0.4) * 10) / 10;
+}
+function clampWpm(v){ v = Math.round(Number(v)); if (!isFinite(v)) return 150; return Math.min(220, Math.max(100, v)); }
+
+/* ---- state ---- */
+let S = Object.assign({niche:"history", hookType:"countdown", dur:45, topic:"", hookIdx:0, cta:-1, useLoop:false}, store.get("build", {}));
+let W = clampWpm(store.get("wpm", 150));
+let ED = store.get("current", null);
+let CAPMODE = store.get("capmode", 3);
+let currentTab = "build";
+
+function fillTopic(t, topic){ topic = (topic || "").trim(); return topic ? t.replace(/\[TOPIC\]/g, topic) : t; }
+function hl(text, topic){
+ topic = (topic || "").trim();
+ let t = topic ? text.replace(/\[TOPIC\]/g, "\u0001") : text;
+ t = esc(t).replace(/\[[^\]]+\]/g, m => "<u>" + m + "</u>");
+ return topic ? t.replace(/\u0001/g, "<u class=\"tp\">" + esc(topic) + "</u>") : t;
+}
+function tc(s, e){ return s.toFixed(1) + "–" + e.toFixed(1) + " s"; }
+function ctaText(){
+ const st = STRUCTURES[S.niche][S.dur];
+ if (S.useLoop) return LOOPS[S.niche];
+ if (S.cta >= 0 && S.cta < CTAS.length) return CTAS[S.cta];
+ return st[st.length - 1][3];
+}
+/* caption focus for a swapped-in hook or CTA: its two longest plain words */
+function keyPhrase(t){
+ const w = t.replace(/\[[^\]]*\]/g, " ").split(/\s+/).map(x => x.replace(/[^A-Za-z'-]/g, "")).filter(x => x.length > 3);
+ const top = w.slice().sort((a, b) => b.length - a.length).slice(0, 2);
+ return w.filter(x => top.includes(x)).slice(0, 2).join(" · ").toLowerCase() || "key line";
+}
+function builtSegments(){
+ const st = STRUCTURES[S.niche][S.dur];
+ const hooks = allHooks(S.niche, S.hookType);
+ return st.map(r => {
+  let vo = r[3], cap = r[5];
+  if (r[2] === "Hook") { vo = (hooks[S.hookIdx] || hooks[0]).t; cap = keyPhrase(vo); }
+  if (r[2] === "CTA" && (S.useLoop || S.cta >= 0)) { vo = ctaText(); cap = keyPhrase(vo); }
+  return {s:r[0], e:r[1], n:r[2], vo:vo, visual:r[4], cap:cap, tone:r[6]};
+ });
+}
+function saveBuild(){ store.set("build", S); }
+function saveCurrent(){ store.set("current", ED); }
+
+/* ---- header ---- */
+function presetName(w){ const p = PRESETS.find(p => p[1] === w); return p ? p[0] : "Custom"; }
+function renderPill(){ $("#wpmPill").textContent = presetName(W) + " · " + W + " wpm"; }
+
+/* ---- BUILD ---- */
+function initBuildControls(){
+ $("#niche").innerHTML = NICHES.map(n => "<option value=\"" + n.id + "\">" + esc(n.name) + "</option>").join("");
+ $("#hookType").innerHTML = HOOK_TYPES.map(h => "<option value=\"" + h.id + "\">" + esc(h.name) + "</option>").join("");
+ $("#durBtns").innerHTML = DURS.map(d => "<button data-d=\"" + d + "\">" + d + "</button>").join("");
+ $("#niche").value = S.niche; $("#hookType").value = S.hookType; $("#topic").value = S.topic;
+ $("#niche").onchange = e => { S.niche = e.target.value; S.hookIdx = 0; renderBuild(); };
+ $("#hookType").onchange = e => { S.hookType = e.target.value; S.hookIdx = 0; renderBuild(); };
+ $("#durBtns").onclick = e => { const b = e.target.closest("button"); if (!b) return; S.dur = +b.dataset.d; renderBuild(); };
+ $("#topic").onkeydown = e => { if (e.key === "Enter") { S.topic = e.target.value; renderBuild(); } };
+ $("#buildBtn").onclick = () => { S.topic = $("#topic").value; renderBuild(); toast("Script built"); };
+ $("#shuffleBtn").onclick = () => { S.hookIdx = (S.hookIdx + 1) % allHooks(S.niche, S.hookType).length; renderBuild(); };
+ $("#sendBtn").onclick = sendToEditor;
+ $("#exampleBtn").onclick = () => { loadExample(S.niche, S.dur); renderEdit(); showTab("edit"); window.scrollTo(0, 0); toast("Worked example loaded: " + nicheName(S.niche) + " · " + S.dur + " s"); };
+}
+function exampleEditor(niche, dur){
+ dur = dur || 30;
+ const ex = EXAMPLES[niche][dur], st = STRUCTURES[niche][dur];
+ return {id:null, title:ex.title, niche:niche, hookType:ex.hookType, dur:dur, segs:st.map((r, i) => ({s:r[0], e:r[1], n:r[2], text:ex.lines[i]}))};
+}
+function loadExample(niche, dur){ ED = exampleEditor(niche, dur); saveCurrent(); }
+/* your own hook templates (Batch & My hooks tab), stored in ssb_myhooks */
+function loadMy(){ const l = store.get("myhooks", []); return Array.isArray(l) ? l : []; }
+function saveMy(l){ store.set("myhooks", l); }
+function allHooks(niche, type){
+ return HOOKS[niche][type].map((t, i) => ({t:t, ex:HOOK_EX[niche][type][i], mine:false}))
+  .concat(loadMy().filter(h => h.niche === niche && h.type === type).map(h => ({t:h.text, ex:null, mine:true})));
+}
+function renderBuild(){
+ saveBuild();
+ document.querySelectorAll("#durBtns button").forEach(b => b.classList.toggle("on", +b.dataset.d === S.dur));
+ const segs = builtSegments();
+ const hooks = allHooks(S.niche, S.hookType);
+ if (S.hookIdx >= hooks.length) S.hookIdx = 0;
+ const total = budget(S.dur, W);
+ let h = "<div class=\"voice\"><b>NICHE VOICE</b>" + esc(VOICE[S.niche]) + "</div>";
+ h += "<div class=\"hooks\">" + hooks.map((k, i) =>
+  "<button class=\"hook" + (i === S.hookIdx ? " on" : "") + "\" data-h=\"" + i + "\"><small>" + (k.mine ? "MY HOOK " + (i - 1) : "HOOK " + "AB"[i]) + " · " + esc(hookName(S.hookType).toUpperCase()) + (i === S.hookIdx ? " · SELECTED" : "") + "</small>" + hl(k.t, S.topic) +
+  "<span class=\"hx\">" + (k.mine ? "<i>YOUR TEMPLATE</i>Added in Batch &amp; My hooks." : k.ex === k.t ? "<i>READY AS WRITTEN</i>No blanks to fill." : "<i>FILLED EXAMPLE</i>" + esc(k.ex)) + "</span></button>").join("") + "</div>";
+ h += "<div class=\"h2\"><b>Segments · " + S.dur + " s · " + segs.length + " parts · " + esc(nicheName(S.niche)) + "</b><span class=\"num\">total budget ≤ " + total + " words @ " + W + " wpm</span></div>";
+ h += "<p class=\"helper\" style=\"margin:0 0 8px\">Sample lines are examples only: rewrite each one for your topic. Words in [BRACKETS] are blanks to fill.</p>";
+ h += "<div class=\"tlbar\">" + segs.map(g => "<div style=\"flex:" + (g.e - g.s) + ";background:" + SEG_COLORS[g.n] + "\" title=\"" + g.n + "\"></div>").join("") + "</div>";
+ h += segs.map(g => {
+  const rgb = TONE_COLORS[g.tone];
+  return "<div class=\"seg\" style=\"--c:" + SEG_COLORS[g.n] + "\"><div class=\"top num\"><span class=\"t\">" + tc(g.s, g.e) + "</span><span class=\"n\">" + g.n.toUpperCase() + "</span><span class=\"b\">≤ " + budget(g.e - g.s, W) + " words</span></div>" +
+   "<div class=\"vo\">" + hl(g.vo, S.topic) + "</div>" +
+   "<div class=\"meta\"><span><em>VISUAL</em>" + esc(g.visual) + "</span><span class=\"chip cap\">" + esc(g.cap) + "</span><span class=\"chip tone\" style=\"background:rgba(" + rgb + ",.14);color:rgb(" + rgb + ")\">" + g.tone + "</span></div></div>";
+ }).join("");
+ h += "<div class=\"ending\"><div class=\"panel\"><label class=\"lb\" for=\"ctaSel\">CTA (16 templates)</label><div class=\"selw\"><select id=\"ctaSel\"><option value=\"-1\">Sample CTA from this structure</option>" +
+  CTAS.map((c, i) => "<option value=\"" + i + "\">" + (i + 1) + ". " + esc(c) + "</option>").join("") + "</select></div>" +
+  "<p class=\"helper\" style=\"margin-top:8px\">The CTA segment uses your pick. No CTA promises results.</p></div>" +
+  "<div class=\"panel\"><label class=\"lb\">Loop ending · " + esc(nicheName(S.niche)) + "</label><div class=\"loopline\">" + esc(LOOPS[S.niche]) + "</div>" +
+  "<label class=\"check\"><input type=\"checkbox\" id=\"useLoop\"" + (S.useLoop ? " checked" : "") + "> Use the loop line instead of a CTA</label></div></div>";
+ $("#buildOut").innerHTML = h;
+ $("#ctaSel").value = String(S.cta);
+ $("#ctaSel").onchange = e => { S.cta = +e.target.value; S.useLoop = false; renderBuild(); };
+ $("#useLoop").onchange = e => { S.useLoop = e.target.checked; renderBuild(); };
+ document.querySelectorAll("#buildOut .hook").forEach(b => b.onclick = () => { S.hookIdx = +b.dataset.h; renderBuild(); });
+}
+function editorFromBuild(){
+ return {id:null, title:(S.topic || "").trim(), niche:S.niche, hookType:S.hookType, dur:S.dur,
+  segs: builtSegments().map(g => ({s:g.s, e:g.e, n:g.n, text:fillTopic(g.vo, S.topic)}))};
+}
+function sendToEditor(){
+ S.topic = $("#topic").value;
+ ED = editorFromBuild(); saveCurrent(); renderEdit(); showTab("edit"); toast("Sent to Time & Edit");
+}
+
+/* ---- TIME & EDIT ---- */
+function initEditControls(){
+ $("#presets").innerHTML = PRESETS.map(p => "<button class=\"chipbtn\" data-w=\"" + p[1] + "\">" + p[0] + " " + p[1] + "</button>").join("") +
+  "<input type=\"number\" id=\"wpmCustom\" min=\"100\" max=\"220\" step=\"1\" aria-label=\"Custom words per minute (100 to 220)\" title=\"Custom wpm, 100 to 220\">";
+ $("#presets").onclick = e => { const b = e.target.closest("button"); if (b) setWpm(+b.dataset.w); };
+ const ci = $("#wpmCustom");
+ ci.oninput = () => { const v = Number(ci.value); if (ci.value !== "" && v >= 100 && v <= 220) setWpm(v, true); };
+ ci.onchange = () => { if (ci.value === "") { ci.value = W; return; } setWpm(clampWpm(ci.value)); };
+ $("#title").oninput = e => { if (ED) { ED.title = e.target.value; saveCurrent(); } };
+ $("#egrid").oninput = e => {
+  const ta = e.target.closest("textarea"); if (!ta || !ED) return;
+  ED.segs[+ta.dataset.i].text = ta.value; saveCurrent(); updateMeters();
+ };
+ $("#copyTxt").onclick = () => { if (ED) copyText(toTxt(), "Script copied as TXT"); };
+ $("#dlTxt").onclick = () => { if (ED) download(fileBase() + ".txt", toTxt(), "text/plain"); };
+ $("#saveLib").onclick = saveToLibrary;
+}
+function setWpm(v, fromInput){
+ W = clampWpm(v); store.set("wpm", W); renderPill();
+ document.querySelectorAll("#presets .chipbtn").forEach(b => b.classList.toggle("on", +b.dataset.w === W));
+ if (!fromInput) $("#wpmCustom").value = W;
+ updateMeters(); renderBuild(); if (currentTab === "captions") renderCaptions();
+}
+function renderEdit(){
+ document.querySelectorAll("#presets .chipbtn").forEach(b => b.classList.toggle("on", +b.dataset.w === W));
+ $("#wpmCustom").value = W;
+ if (!ED) { $("#egrid").innerHTML = "<div class=\"empty panel\" style=\"grid-column:1/-1\">Build a script first, then press <b>Send to editor</b>.</div>"; $("#edFrom").textContent = ""; updateMeters(); return; }
+ $("#title").value = ED.title || "";
+ $("#edFrom").textContent = nicheName(ED.niche) + " · " + hookName(ED.hookType) + " · " + ED.dur + " s";
+ $("#egrid").innerHTML = ED.segs.map((g, i) =>
+  "<div class=\"ed\" id=\"ed" + i + "\" style=\"--c:" + (SEG_COLORS[g.n] || "#5CD6E8") + "\"><div class=\"top num\"><span class=\"t\">" + tc(g.s, g.e) + "</span><span class=\"n\">" + esc(g.n.toUpperCase()) + "</span><span class=\"s\" id=\"s" + i + "\"></span><span class=\"warn\" id=\"w" + i + "\"></span></div>" +
+  "<textarea data-i=\"" + i + "\" rows=\"3\" aria-label=\"" + esc(g.n) + " text\">" + esc(g.text) + "</textarea>" +
+  "<div class=\"wc num\" id=\"wc" + i + "\"></div><div class=\"prog\"><div id=\"pb" + i + "\"></div></div></div>").join("");
+ updateMeters();
+}
+function totalSeconds(){ return ED ? Math.round(ED.segs.reduce((a, g) => a + secondsFor(g.text, W), 0) * 10) / 10 : 0; }
+function updateMeters(){
+ if (!ED) { $("#totalBig").innerHTML = "0.0 s <small>/ – s</small>"; return; }
+ ED.segs.forEach((g, i) => {
+  const used = secondsFor(g.text, W), len = g.e - g.s, over = used > len * 1.1;
+  const box = document.getElementById("ed" + i); if (!box) return;
+  box.classList.toggle("over", over);
+  document.getElementById("s" + i).textContent = used.toFixed(1) + " / " + len.toFixed(1) + " s";
+  document.getElementById("w" + i).textContent = over ? "OVER" : "";
+  document.getElementById("wc" + i).textContent = countWords(g.text) + " words · " + countPauses(g.text) + (countPauses(g.text) === 1 ? " pause" : " pauses") + " · budget ≤ " + budget(len, W);
+  document.getElementById("pb" + i).style.transform = "scaleX(" + Math.min(1, used / len).toFixed(3) + ")";
+ });
+ const tot = totalSeconds(), over = tot > ED.dur;
+ $("#totalBig").innerHTML = tot.toFixed(1) + " s <small>/ " + ED.dur + " s</small>";
+ $("#totalBig").classList.toggle("over", over);
+ $("#totalChip").textContent = over ? "OVER TIME" : "UNDER TIME";
+ $("#totalChip").classList.toggle("over", over);
+}
+function toTxt(){
+ return ED.segs.map(g => "[" + g.s.toFixed(1) + "–" + g.e.toFixed(1) + "s] " + g.n.toUpperCase() + ": " + g.text.replace(/\s*\n\s*/g, " ").trim()).join("\n") + "\n";
+}
+function fileBase(){
+ const t = (ED && ED.title ? ED.title : "script").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+ return (t || "script") + "-" + (ED ? ED.dur : "") + "s";
+}
+
+/* ---- CAPTIONS ---- */
+function makeCaptions(segs, wpm, mode){
+ const chunks = [];
+ segs.forEach(g => {
+  const local = []; let cur = {w:[], p:0};
+  tokens(g.text).forEach(t => {
+   if (t === "//") {
+    if (cur.w.length) cur.p++;
+    else if (local.length) local[local.length - 1].p++;
+    else cur.p++;
+    return;
+   }
+   cur.w.push(t);
+   /* a caption never runs across a sentence end: a word ending in . ! or ? always closes the caption */
+   const sentenceEnd = /[.!?]["'”’)\]]*$/.test(t);
+   const end = sentenceEnd || (mode !== "sentence" && cur.w.length >= mode);
+   if (end) { local.push(cur); cur = {w:[], p:0}; }
+  });
+  if (cur.w.length) local.push(cur);
+  else if (cur.p && local.length) local[local.length - 1].p += cur.p;
+  chunks.push.apply(chunks, local);
+ });
+ let t = 0;
+ return chunks.map((c, i) => {
+  const ms = Math.max(500, Math.round(c.w.length / wpm * 60000 + c.p * 400));
+  const r = {i:i + 1, start:t, end:t + ms, text:c.w.join(" ")};
+  t += ms; return r;
+ });
+}
+function srtTime(ms){
+ const p = (n, l) => String(n).padStart(l, "0");
+ const h = Math.floor(ms / 3600000), m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60, x = ms % 1000;
+ return p(h, 2) + ":" + p(m, 2) + ":" + p(s, 2) + "," + p(x, 3);
+}
+function toSrt(caps){ return caps.map(c => c.i + "\n" + srtTime(c.start) + " --> " + srtTime(c.end) + "\n" + c.text + "\n").join("\n"); }
+function initCaptionControls(){
+ $("#wpcBtns").innerHTML = [1,2,3,4,5].map(n => "<button class=\"chipbtn\" data-n=\"" + n + "\">" + n + "</button>").join("");
+ $("#wpcBtns").onclick = e => { const b = e.target.closest("button"); if (!b) return; CAPMODE = +b.dataset.n; store.set("capmode", CAPMODE); renderCaptions(); };
+ $("#bySentence").onclick = () => { CAPMODE = "sentence"; store.set("capmode", CAPMODE); renderCaptions(); };
+ $("#dlSrt").onclick = () => { if (!ED) return toast("Build a script first"); download(fileBase() + ".srt", toSrt(makeCaptions(ED.segs, W, CAPMODE)), "application/x-subrip"); };
+}
+function renderCaptions(){
+ document.querySelectorAll("#wpcBtns .chipbtn").forEach(b => b.classList.toggle("on", +b.dataset.n === CAPMODE));
+ $("#bySentence").classList.toggle("on", CAPMODE === "sentence");
+ if (!ED) { $("#srtList").innerHTML = "<li class=\"empty\" style=\"display:block\">Build a script first.</li>"; $("#capSummary").textContent = ""; $("#capCount").textContent = ""; return; }
+ const caps = makeCaptions(ED.segs, W, CAPMODE);
+ const end = caps.length ? caps[caps.length - 1].end : 0;
+ $("#capSummary").innerHTML = "<b style=\"color:var(--text)\">" + caps.length + " captions</b> · ends at <span class=\"num\" style=\"color:var(--cyan)\">" + srtTime(end) + "</span> · " + W + " wpm · " + (CAPMODE === "sentence" ? "by sentence" : CAPMODE + " word" + (CAPMODE > 1 ? "s" : "") + " each");
+ $("#capCount").textContent = "showing " + Math.min(20, caps.length) + " of " + caps.length;
+ $("#srtList").innerHTML = caps.slice(0, 20).map(c => "<li><span class=\"i\">" + c.i + "</span><span class=\"tc\">" + srtTime(c.start) + " --> " + srtTime(c.end) + "</span><span class=\"tx\">" + esc(c.text) + "</span></li>").join("");
+}
+
+/* ---- LIBRARY ---- */
+const STATUSES = ["Draft","Recorded","Posted"];
+function loadLib(){ const l = store.get("library", []); return Array.isArray(l) ? l : []; }
+function saveLib(l){ store.set("library", l); }
+function today(){ const d = new Date(), p = n => String(n).padStart(2, "0"); return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
+function saveToLibrary(){
+ if (!ED) return toast("Build a script first");
+ const lib = loadLib();
+ const old = ED.id ? lib.find(r => r.id === ED.id) : null;
+ const rec = {
+  id: ED.id || ("s" + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36)),
+  title: (ED.title || "").trim() || "Untitled script",
+  niche: ED.niche, hook_type: ED.hookType, duration_s: ED.dur, wpm: W,
+  segments: ED.segs.map(g => ({s:g.s, e:g.e, n:g.n, text:g.text})),
+  word_count: ED.segs.reduce((a, g) => a + countWords(g.text), 0),
+  est_seconds: totalSeconds(),
+  status: old ? old.status : "Draft",
+  date: today()
+ };
+ ED.id = rec.id; saveCurrent();
+ if (old) lib[lib.indexOf(old)] = rec; else lib.unshift(rec);
+ saveLib(lib); toast(old ? "Library entry updated" : "Saved to library"); renderLibrary();
+}
+function initLibraryControls(){
+ $("#fNiche").innerHTML = "<option value=\"\">All niches</option>" + NICHES.map(n => "<option value=\"" + n.id + "\">" + esc(n.name) + "</option>").join("");
+ $("#fNiche").onchange = renderLibrary; $("#fStatus").onchange = renderLibrary;
+ $("#expCsv").onclick = exportCsv;
+ $("#backup").onclick = () => download("shorts-script-library-" + today() + ".json", JSON.stringify({app:"Shorts Script Builder", version:1, exported:today(), library:loadLib()}, null, 2), "application/json");
+ $("#restoreBtn").onclick = () => $("#restoreFile").click();
+ $("#restoreFile").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+   try {
+    const data = JSON.parse(r.result);
+    const items = Array.isArray(data) ? data : (data && Array.isArray(data.library) ? data.library : null);
+    if (!items) throw new Error("bad");
+    const valid = items.filter(x => x && Array.isArray(x.segments) && x.id);
+    const lib = loadLib();
+    valid.forEach(x => { const i = lib.findIndex(r => r.id === x.id); if (i >= 0) lib[i] = x; else lib.push(x); });
+    saveLib(lib); renderLibrary(); toast("Restored " + valid.length + " scripts");
+   } catch(err) { toast("That file is not a Shorts Script Builder backup"); }
+   e.target.value = "";
+  };
+  r.readAsText(f);
+ };
+ $("#libList").onclick = e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  const lib = loadLib(), rec = lib.find(r => r.id === b.dataset.id); if (!rec) return;
+  if (b.dataset.act === "open") {
+   ED = {id:rec.id, title:rec.title, niche:rec.niche, hookType:rec.hook_type, dur:rec.duration_s, segs:rec.segments.map(g => Object.assign({}, g))};
+   saveCurrent(); setWpm(rec.wpm || W); renderEdit(); showTab("edit"); toast("Opened: " + rec.title);
+  } else if (b.dataset.act === "del") {
+   if (!confirm("Delete \"" + rec.title + "\" from your library?")) return;
+   saveLib(lib.filter(r => r.id !== rec.id)); if (ED && ED.id === rec.id) { ED.id = null; saveCurrent(); } renderLibrary();
+  }
+ };
+ $("#libList").onchange = e => {
+  const s = e.target.closest("select[data-id]"); if (!s) return;
+  const lib = loadLib(), rec = lib.find(r => r.id === s.dataset.id); if (!rec) return;
+  rec.status = s.value; saveLib(lib); renderLibrary();
+ };
+}
+function renderLibrary(){
+ const fn = $("#fNiche").value, fs = $("#fStatus").value;
+ const all = loadLib();
+ const list = all.filter(r => (!fn || r.niche === fn) && (!fs || r.status === fs));
+ if (!all.length) { $("#libList").innerHTML = "<div class=\"panel empty\" style=\"margin-top:12px\">No saved scripts yet. In Time &amp; Edit, press <b>Save to library</b>.</div>"; return; }
+ if (!list.length) { $("#libList").innerHTML = "<div class=\"panel empty\" style=\"margin-top:12px\">No scripts match these filters.</div>"; return; }
+ $("#libList").innerHTML = "<div class=\"helper\" style=\"margin-top:12px\">" + list.length + " of " + all.length + " scripts</div>" + list.map(r =>
+  "<div class=\"lrow\"><div><b>" + esc(r.title) + "</b><div class=\"m num\">" + esc(nicheName(r.niche)) + " · " + esc(hookName(r.hook_type)) + " · " + r.duration_s + " s · " + r.wpm + " wpm · " + r.word_count + " words · est " + Number(r.est_seconds).toFixed(1) + " s · " + esc(r.date) + "</div></div>" +
+  "<div class=\"selw\"><select data-id=\"" + esc(r.id) + "\" class=\"st-" + esc(r.status) + "\" aria-label=\"Status\">" + STATUSES.map(s => "<option" + (s === r.status ? " selected" : "") + ">" + s + "</option>").join("") + "</select></div>" +
+  "<div class=\"acts\"><button class=\"btn\" data-act=\"open\" data-id=\"" + esc(r.id) + "\">Open</button><button class=\"btn danger\" data-act=\"del\" data-id=\"" + esc(r.id) + "\">Delete</button></div></div>").join("");
+}
+function csvField(v){ return "\"" + String(v == null ? "" : v).replace(/"/g, "\"\"") + "\""; }
+function toCsv(lib){
+ const head = "title,niche,hook_type,duration_s,wpm,word_count,est_seconds,status,date,script";
+ const rows = lib.map(r => [csvField(r.title), csvField(nicheName(r.niche)), csvField(hookName(r.hook_type)), r.duration_s, r.wpm, r.word_count, Number(r.est_seconds).toFixed(1), csvField(r.status), csvField(r.date), csvField(r.segments.map(g => g.text.replace(/\s*\n\s*/g, " ").trim()).join(" | "))].join(","));
+ return [head].concat(rows).join("\r\n") + "\r\n";
+}
+function exportCsv(){
+ const fn = $("#fNiche").value, fs = $("#fStatus").value;
+ const list = loadLib().filter(r => (!fn || r.niche === fn) && (!fs || r.status === fs));
+ if (!list.length) return toast("Nothing to export yet");
+ download("shorts-scripts-" + today() + ".csv", toCsv(list), "text/csv");
+}
+
+/* ---- BATCH & MY HOOKS ---- */
+let BDUR = 30;
+function findId(list, v){ v = String(v || "").trim().toLowerCase(); const f = list.find(x => x.id.toLowerCase() === v || x.name.toLowerCase() === v); return f ? f.id : null; }
+function batchRecords(topics, niche, type, dur, wpm){
+ const st = STRUCTURES[niche][dur], stamp = Date.now().toString(36);
+ return topics.map((topic, i) => {
+  const ht = type === "rotate" ? HOOK_TYPES[i % HOOK_TYPES.length].id : type;
+  const hs = allHooks(niche, ht), hk = hs[Math.floor(i / (type === "rotate" ? HOOK_TYPES.length : 1)) % hs.length].t;
+  const segs = st.map(r => ({s:r[0], e:r[1], n:r[2], text:fillTopic(r[2] === "Hook" ? hk : r[3], topic)}));
+  return {id:"b" + stamp + i, title:topic, niche:niche, hook_type:ht, duration_s:dur, wpm:wpm, segments:segs,
+   word_count:segs.reduce((a, g) => a + countWords(g.text), 0),
+   est_seconds:Math.round(segs.reduce((a, g) => a + secondsFor(g.text, wpm), 0) * 10) / 10, status:"Draft", date:today()};
+ });
+}
+function parseCsv(text){
+ const rows = []; let row = [], f = "", q = false;
+ text = String(text).replace(/^﻿/, "");
+ for (let i = 0; i < text.length; i++) {
+  const c = text[i];
+  if (q) { if (c === "\"") { if (text[i + 1] === "\"") { f += "\""; i++; } else q = false; } else f += c; }
+  else if (c === "\"") q = true;
+  else if (c === ",") { row.push(f); f = ""; }
+  else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+  else f += c;
+ }
+ if (f !== "" || row.length) { row.push(f); rows.push(row); }
+ return rows.filter(r => r.some(x => x.trim() !== ""));
+}
+function hooksCsv(){
+ const pad = (n, l) => String(n).padStart(l, "0");
+ const rows = [];
+ NICHES.forEach((n, ni) => HOOK_TYPES.forEach((h, ti) => HOOKS[n.id][h.id].forEach((t, i) => {
+  const x = HOOK_EX[n.id][h.id][i];
+  rows.push([csvField("H-" + pad(ni * 16 + ti * 2 + i + 1, 3)), csvField(n.name), csvField(h.name), csvField(t), csvField(x === t ? "Ready as written" : x), csvField("built-in")].join(","));
+ })));
+ loadMy().forEach((m, i) => rows.push([csvField("M-" + pad(i + 1, 3)), csvField(nicheName(m.niche)), csvField(hookName(m.type)), csvField(m.text), csvField(""), csvField("mine")].join(",")));
+ return ["id,niche,hook_type,template,example,source"].concat(rows).join("\r\n") + "\r\n";
+}
+function initBatchControls(){
+ const nOpts = NICHES.map(n => "<option value=\"" + n.id + "\">" + esc(n.name) + "</option>").join("");
+ const tOpts = HOOK_TYPES.map(h => "<option value=\"" + h.id + "\">" + esc(h.name) + "</option>").join("");
+ $("#bNiche").innerHTML = nOpts; $("#mNiche").innerHTML = nOpts;
+ $("#bHook").innerHTML = "<option value=\"rotate\">Rotate all 8 hook types</option>" + tOpts; $("#mType").innerHTML = tOpts;
+ $("#bNiche").value = S.niche; $("#mNiche").value = S.niche;
+ $("#bDur").innerHTML = DURS.map(d => "<button data-d=\"" + d + "\">" + d + "</button>").join("");
+ $("#bDur").onclick = e => { const b = e.target.closest("button"); if (!b) return; BDUR = +b.dataset.d; renderBatch(); };
+ $("#bGo").onclick = () => {
+  const topics = $("#bTopics").value.split(/\n/).map(s => s.trim()).filter(Boolean).slice(0, 30);
+  if (!topics.length) return toast("Paste at least one topic");
+  const recs = batchRecords(topics, $("#bNiche").value, $("#bHook").value, BDUR, W);
+  const lib = loadLib(); saveLib(recs.concat(lib));
+  toast("Created " + recs.length + " drafts in Library");
+  $("#fNiche").value = ""; $("#fStatus").value = ""; showTab("library"); window.scrollTo(0, 0);
+ };
+ $("#mAdd").onclick = () => {
+  const lines = $("#mText").value.split(/\n/).map(s => s.trim()).filter(Boolean);
+  if (!lines.length) return toast("Type at least one hook");
+  const my = loadMy(), niche = $("#mNiche").value, type = $("#mType").value;
+  lines.forEach((t, i) => my.push({id:"m" + Date.now().toString(36) + i, niche:niche, type:type, text:t}));
+  saveMy(my); $("#mText").value = ""; renderBatch(); renderBuild(); toast("Added " + lines.length + " hook" + (lines.length > 1 ? "s" : ""));
+ };
+ $("#myList").onclick = e => { const b = e.target.closest("button[data-m]"); if (!b) return; saveMy(loadMy().filter(h => h.id !== b.dataset.m)); renderBatch(); renderBuild(); };
+ $("#hExp").onclick = () => download("shorts-hook-templates-" + today() + ".csv", hooksCsv(), "text/csv");
+ $("#hImpBtn").onclick = () => $("#hImpFile").click();
+ $("#hImpFile").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+   const rows = parseCsv(r.result); e.target.value = "";
+   if (!rows.length) return toast("That CSV is empty");
+   const head = rows[0].map(x => x.trim().toLowerCase());
+   const ci = head.indexOf("niche"), ti = head.indexOf("hook_type"), xi = head.indexOf("template"), si = head.indexOf("source");
+   if (ci < 0 || ti < 0 || xi < 0) return toast("Need columns: niche, hook_type, template");
+   const my = loadMy(); let added = 0, skipped = 0;
+   rows.slice(1).forEach((row, i) => {
+    if (si >= 0 && String(row[si] || "").trim().toLowerCase() === "built-in") { skipped++; return; }
+    const n = findId(NICHES, row[ci]), t = findId(HOOK_TYPES, row[ti]), x = String(row[xi] || "").trim();
+    if (!n || !t || !x || my.some(h => h.niche === n && h.type === t && h.text === x)) { skipped++; return; }
+    my.push({id:"m" + Date.now().toString(36) + "i" + i, niche:n, type:t, text:x}); added++;
+   });
+   saveMy(my); renderBatch(); renderBuild(); toast("Imported " + added + " hooks" + (skipped ? " · skipped " + skipped : ""));
+  };
+  r.readAsText(f);
+ };
+}
+function renderBatch(){
+ document.querySelectorAll("#bDur button").forEach(b => b.classList.toggle("on", +b.dataset.d === BDUR));
+ const my = loadMy();
+ $("#myList").innerHTML = my.length ? my.map(h => "<li><span>" + esc(h.text) + "<small>" + esc(nicheName(h.niche)) + " · " + esc(hookName(h.type)) + "</small></span><button class=\"btn x danger\" data-m=\"" + esc(h.id) + "\" aria-label=\"Remove hook\">Remove</button></li>").join("")
+  : "<li><span class=\"helper\">No hooks of your own yet.</span></li>";
+}
+
+/* ---- utilities ---- */
+function download(name, text, mime){
+ const blob = new Blob([text], {type:mime + ";charset=utf-8"});
+ const a = document.createElement("a");
+ a.href = URL.createObjectURL(blob); a.download = name;
+ document.body.appendChild(a); a.click();
+ setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+ toast("Downloaded " + name);
+}
+function copyText(t, msg){
+ const fallback = () => {
+  const ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); toast(msg); } catch(e) { toast("Copy blocked: use Download .txt"); }
+  ta.remove();
+ };
+ if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(() => toast(msg), fallback); else fallback();
+}
+let toastTimer;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 1800); }
+
+/* ---- tabs (also reachable as #build, #edit, #captions, #library) ---- */
+function showTab(id){
+ if (!["build","edit","captions","library","batch"].includes(id)) id = "build";
+ currentTab = id;
+ document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === id));
+ document.querySelectorAll("section.tab").forEach(s => s.classList.toggle("on", s.id === "tab-" + id));
+ if (id === "captions") renderCaptions();
+ if (id === "library") renderLibrary();
+ if (id === "batch") { if (!$("#bTopics").value) { $("#bNiche").value = S.niche; $("#mNiche").value = S.niche; BDUR = S.dur; } renderBatch(); }
+ if (id === "edit") updateMeters();
+ if (location.hash !== "#" + id) { try { history.replaceState(null, "", "#" + id); } catch(e) {} }
+}
+document.querySelector("nav.tabs").onclick = e => { const b = e.target.closest("button[data-tab]"); if (b) { showTab(b.dataset.tab); window.scrollTo(0, 0); } };
+window.addEventListener("hashchange", () => showTab(location.hash.slice(1)));
+
+/* ---- sample data for screenshots: only runs when the file is opened as ...html?demo=1 ----
+   Loads the History 30 s worked example and, only if the library is empty, adds the 8 worked 30 s examples to it.
+   ?demo=2 starts clean: empty topic and editor fields (for screen recordings), no library seeding. */
+(function demoSeed(){
+ let q = null; try { q = new URLSearchParams(location.search).get("demo"); } catch(e) {}
+ if (!q) return;
+ if (q === "2") {
+  S = Object.assign(S, {niche:"history", hookType:"countdown", dur:30, topic:"", hookIdx:0, cta:-1, useLoop:false});
+  W = 150; store.set("wpm", W); CAPMODE = 3; store.set("capmode", 3); ED = null; saveCurrent(); saveLib([]); saveMy([]);
+  return;
+ }
+ S = Object.assign(S, {niche:"history", hookType:"countdown", dur:30, topic:"Roman roads", hookIdx:0, cta:-1, useLoop:false});
+ W = 150; store.set("wpm", W); CAPMODE = 3; store.set("capmode", 3);
+ loadExample("history", 30);
+ window.DEMO_TOPICS = "Roman roads\nmedieval castles\nthe Great Fire of London\nVikings and longships\nthe printing press";
+ if (!loadMy().length) saveMy([
+  {id:"demo-m1", niche:"history", type:"countdown", text:"[NUMBER] jobs from [TOPIC] that no longer exist."},
+  {id:"demo-m2", niche:"history", type:"question", text:"Would you have survived a week in [TOPIC]?"},
+  {id:"demo-m3", niche:"money", type:"mistake", text:"Don't sign up for [PRODUCT] before you read this line."}]);
+ if (loadLib().length) return;
+ const st = ["Posted","Posted","Recorded","Draft","Recorded","Draft","Draft","Posted"];
+ const dates = ["2026-09-22","2026-09-24","2026-09-29","2026-10-02","2026-10-03","2026-10-05","2026-10-06","2026-09-26"];
+ const order = ["history","reddit","space","psych","science","money","ai","motivation"];
+ saveLib(order.map((n, i) => { const e = exampleEditor(n); return {id:"demo" + i, title:e.title, niche:n, hook_type:e.hookType, duration_s:30, wpm:150,
+  segments:e.segs, word_count:e.segs.reduce((a, g) => a + countWords(g.text), 0),
+  est_seconds:Math.round(e.segs.reduce((a, g) => a + secondsFor(g.text, 150), 0) * 10) / 10, status:st[i], date:dates[i]}; }));
+})();
+
+/* ---- start ---- */
+initBuildControls(); initEditControls(); initCaptionControls(); initLibraryControls(); initBatchControls();
+renderPill(); renderBuild();
+if (!ED || !Array.isArray(ED.segs)) { ED = editorFromBuild(); saveCurrent(); }
+renderEdit();
+if (window.DEMO_TOPICS) { $("#bTopics").value = window.DEMO_TOPICS; $("#bNiche").value = "history"; $("#mNiche").value = "history"; }
+showTab((location.hash || "#build").slice(1));
+
+/* ---- QA hook: only answers when this file is embedded in a test page; does nothing otherwise ---- */
+window.addEventListener("message", e => {
+ if (e.data && e.data.ssb === "srt" && ED) {
+  const w = clampWpm(e.data.wpm || W), m = e.data.mode || CAPMODE;
+  e.source.postMessage({ssb:"srtText", srt:toSrt(makeCaptions(ED.segs, w, m)), name:fileBase() + ".srt", wpm:w}, "*");
+  return;
+ }
+ if (e.data && e.data.ssb === "data") {
+  e.source.postMessage({ssb:"dataReply", niches:NICHES, hookTypes:HOOK_TYPES, hooks:HOOKS, hookEx:HOOK_EX, ctas:CTAS, loops:LOOPS, voice:VOICE, examples:EXAMPLES, structures:STRUCTURES}, "*");
+  return;
+ }
+ if (!e.data || e.data.ssb !== "selftest") return;
+ const report = {niches:NICHES.map(n => n.name), hookTypes:HOOK_TYPES.map(h => h.name), ctas:CTAS.length, loops:Object.keys(LOOPS).length, hookCombos:[], structures:[], tests:{}, overflow:{}, width:document.documentElement.clientWidth};
+ let hookTotal = 0;
+ NICHES.forEach(n => HOOK_TYPES.forEach(h => { const a = (HOOKS[n.id] || {})[h.id] || []; hookTotal += a.length; if (a.length !== 2) report.hookCombos.push(n.id + "/" + h.id + "=" + a.length); }));
+ report.hookTotal = hookTotal;
+ let exTotal = 0, exFilled = 0; report.exBad = [];
+ NICHES.forEach(n => HOOK_TYPES.forEach(h => { const a = (HOOK_EX[n.id] || {})[h.id] || [], t = HOOKS[n.id][h.id];
+  a.forEach((x, i) => { exTotal++; if (x !== t[i]) exFilled++; if (/\[/.test(x)) report.exBad.push(n.id + "/" + h.id + "#" + i); });
+  if (a.length !== 2) report.exBad.push(n.id + "/" + h.id + " count " + a.length); }));
+ report.hookExamples = exTotal; report.hookExamplesFilled = exFilled;
+ report.examples = [];
+ NICHES.forEach(n => DURS.forEach(d => { const e = exampleEditor(n.id, d), ex = EXAMPLES[n.id][d];
+  report.examples.push({niche:n.name, dur:d, title:e.title, hook:hookName(e.hookType), lines:ex.lines.length, segsN:STRUCTURES[n.id][d].length, words:e.segs.reduce((a, g) => a + countWords(g.text), 0), sec150:Math.round(e.segs.reduce((a, g) => a + secondsFor(g.text, 150), 0) * 10) / 10,
+   segOver:e.segs.filter(g => secondsFor(g.text, 150) > (g.e - g.s)).map(g => g.n + ":" + secondsFor(g.text, 150) + ">" + (g.e - g.s)), brackets:e.segs.some(g => /\[/.test(g.text))}); }));
+ report.tests.batch = batchRecords(["Roman roads", "the Great Fire of London"], "history", "rotate", 45, 150).map(r => r.hook_type + " | " + r.segments[0].text + " | " + r.segments[5].text);
+ report.tests.hooksCsvRows = hooksCsv().trim().split("\r\n").length;
+ report.tests.csvParse = JSON.stringify(parseCsv("niche,hook_type,template\r\nHistory Facts,POV,\"POV: you, [TOPIC]\"\n"));
+ report.tests.grammar = ["Roman roads", "the Colosseum"].map(t => fillTopic(STRUCTURES.history[45][5][3], t) + " / " + fillTopic(STRUCTURES.space[45][1][3], t) + " / " + fillTopic(HOOKS.science.myth[1], t));
+ report.tests.noCrossSentence = makeCaptions([{text:"Three things about Roman roads your history class skipped. Everyone knows they were straight."}], 150, 3).map(c => c.text);
+ NICHES.forEach(n => DURS.forEach(d => {
+  const st = (STRUCTURES[n.id] || {})[d] || [];
+  const words = st.reduce((a, r) => a + countWords(r[3]), 0);
+  let cont = st.length && st[0][0] === 0 && st[st.length - 1][1] === d;
+  st.forEach((r, i) => { if (i && r[0] !== st[i - 1][1]) cont = false; });
+  const fieldsOk = st.every(r => r[2] && r[3] && r[4] && r[5] && TONE_LIST.includes(r[6]));
+  const segOver = st.filter(r => countWords(r[3]) > budget(r[1] - r[0], 150)).map(r => r[2] + ":" + countWords(r[3]) + ">" + budget(r[1] - r[0], 150));
+  report.structures.push({niche:n.name, dur:d, segs:st.length, words:words, limit:budget(d, 150), ok:words <= budget(d, 150) && st.length >= 3 && st.length <= 7 && cont && fieldsOk, cont:cont, fieldsOk:fieldsOk, segOver:segOver, names:st.map(r => r[2]).join(" / ")});
+ }));
+ const allText = [].concat(...NICHES.map(n => [].concat(...HOOK_TYPES.map(h => HOOKS[n.id][h.id].concat(HOOK_EX[n.id][h.id]))))).concat([].concat(...NICHES.map(n => [].concat(...DURS.map(d => EXAMPLES[n.id][d].lines.concat([EXAMPLES[n.id][d].title]))))), Object.values(VOICE), CTAS, Object.values(LOOPS), [].concat(...NICHES.map(n => [].concat(...DURS.map(d => STRUCTURES[n.id][d].map(r => r[3] + " " + r[4] + " " + r[5]))))));
+ report.tests.digitsInData = allText.filter(t => /[0-9]/.test(t));
+ const banned = new RegExp(String.fromCharCode(37) + "|guar" + "antee", "i");
+ report.tests.percentOrPromiseWord = allText.filter(t => banned.test(t));
+ report.tests.timing30plus1 = secondsFor(Array(30).fill("word").join(" ") + " //", 150);
+ report.tests.hookMock180 = secondsFor("Rome didn't fall in a day. // Here's why.", 180);
+ report.tests.srtExample = toSrt(makeCaptions([{text:"one two three four five six"}], 150, 3));
+ report.tests.srtPause = toSrt(makeCaptions([{text:"a b c // d"}], 150, 3));
+ report.tests.srtMin = toSrt(makeCaptions([{text:"one"}], 220, 1));
+ report.tests.srtSentence = toSrt(makeCaptions([{text:"Short one. Then a longer sentence here!"}], 150, "sentence"));
+ report.tests.budgets = [budget(4,150), budget(9,150), budget(12,150), budget(15,150), budget(30,150), budget(45,150), budget(60,150)];
+ report.tests.clamp = [clampWpm(90), clampWpm(250), clampWpm(175)];
+ report.tests.csvHeader = toCsv([]).split("\r\n")[0];
+ report.tests.csvSample = toCsv([{title:"Roman \"roads\", part 1", niche:"history", hook_type:"countdown", duration_s:45, wpm:150, word_count:3, est_seconds:1.2, status:"Draft", date:"2026-10-09", segments:[{text:"a, b"},{text:"c"}]}]);
+ report.tests.txt = ED ? toTxt().split("\n")[0] : "";
+ const prev = currentTab;
+ ["build","edit","captions","library","batch"].forEach(t => { showTab(t); report.overflow[t] = document.documentElement.scrollWidth - document.documentElement.clientWidth; });
+ showTab(prev);
+ e.source.postMessage({ssb:"report", report:report}, "*");
+});
+</script>
+</body>
+</html>

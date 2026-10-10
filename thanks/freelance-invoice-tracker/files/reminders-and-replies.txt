@@ -1,0 +1,79 @@
+FREELANCE CLIENT & INVOICE TRACKER
+Reminders and replies: plain text, ready to copy
+==================================================
+
+Tracking tool, not accounting, tax or legal advice. The wording below is an
+example to adapt to your contract and the rules where you and your client are.
+
+In the workbook these 4 templates live on the Settings tab. The tracker fills in
+the placeholders for you on the Reminders Today tab:
+  {first}   client's first name ("there" if missing)
+  {inv}     invoice number
+  {amount}  balance, with your currency symbol
+  {due}     due date
+  {days}    days overdue
+  {paydate} today + reply window (5 days by default)
+  {me}      your name, business name
+  {latefee} empty when Late fee = No; with Yes:
+            " and add [your late-fee wording] as set out in my terms"
+
+
+THE REMINDER LADDER (4 TEMPLATES)
+--------------------------------------------------
+
+STEP 1 · HEADS-UP (due in 3 days or less)
+Subject: Invoice {inv} is due on {due}
+Hi {first}, a quick heads-up that invoice {inv} for {amount} is due on {due}. Everything you need to pay is on the invoice. Thanks, {me}
+
+STEP 2 · FRIENDLY NUDGE (1-7 days late)
+Subject: Quick reminder: invoice {inv}
+Hi {first}, invoice {inv} for {amount} was due on {due}, {days} days ago. Could you let me know when it's scheduled? If it's already on its way, thank you, and please ignore this. Best, {me}
+
+STEP 3 · FIRM REMINDER (8-21 days late)
+Subject: Invoice {inv} is now {days} days overdue
+Hi {first}, invoice {inv} for {amount} was due on {due} and is now {days} days overdue. Please pay the balance of {amount} by {paydate}, or reply with the date it will be paid. Thank you, {me}
+
+STEP 4 · FINAL NOTICE (22+ days late)
+Subject: Final notice: invoice {inv}
+Hi {first}, invoice {inv} is now {days} days overdue and I haven't had a reply to my earlier reminders. If the balance of {amount} isn't paid by {paydate}, I'll pause any further work{latefee}. If there's a problem with the invoice, please reply today so we can sort it out. Regards, {me}
+
+
+REPLIES TO 6 PAYMENT EXCUSES ("SAY THIS")
+Words in [brackets] are yours to fill in.
+--------------------------------------------------
+
+1. "We're waiting on finance to approve it."
+Thanks for letting me know. Could you tell me who in finance is handling it and the date it's expected to be approved? I'll note it on my side and check back on [date] if I haven't seen the payment.
+
+2. "The payment is on its way."
+Thank you. Could you send me the payment date and reference once it's processed? I'll confirm as soon as it arrives. If it hasn't landed by [date], I'll get back in touch.
+
+3. No reply at all.
+Hi [name], I haven't heard back about invoice [inv] for [amount], now [days] days overdue. Could you reply with a payment date by [date]? If someone else handles invoices, please point me to them and I'll take it from there.
+
+4. A partial payment, with no date for the rest.
+Thanks, I've received [amount paid] toward invoice [inv]. The remaining balance is [balance]. Could you confirm the date the rest will be paid? If it helps, we can split it into two payments with fixed dates.
+
+5. "We weren't happy with the work." (after delivery)
+I'm sorry to hear that, and I want to understand. Could you list the specific points that don't match the brief we agreed on? Let's go through them on a short call this week. Anything within the agreed scope, I'll fix. The invoice covers the work delivered on [date], so please let me know when it will be paid.
+
+6. "Can we pay in 60 days instead?"
+I understand cash flow can be tight. My terms are [terms] days, as agreed. What I can offer is two payments: half by [date] and the rest by [date]. Does that work for you?
+
+
+DEPOSIT AND TERMS WORDING
+--------------------------------------------------
+
+Deposit wording:
+To book your start date, I ask for a 50% deposit. The deposit is credited against the final invoice.
+
+Terms wording:
+Payment terms: 50% deposit due before work starts. The balance is due within 14 days of the invoice date. Invoices are sent on delivery of each milestone.
+
+
+LATE-FEE CLAUSE (EXAMPLE)
+--------------------------------------------------
+
+Late payments: invoices not paid within [terms] days of the invoice date incur a late fee of 1.5% per month on the overdue balance, starting the day after the due date.
+
+Check local rules. Check that late fees are allowed where you and your client are, and what rate is allowed. Some places set a maximum rate or a fixed statutory amount. This is an example, not legal advice.

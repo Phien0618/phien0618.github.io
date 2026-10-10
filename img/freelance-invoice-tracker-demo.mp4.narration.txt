@@ -1,0 +1,7 @@
+0.3 This is the real tracker file, calculated live with its own formulas.
+4.2 Invoice 003 is twenty-six days overdue. The client just paid. Type the paid date and amount.
+11.0 The status flips from Overdue to Paid.
+15.0 Reminders Today drops it and re-sorts the rest.
+20.0 Copy the email cell for invoice 005.
+24.0 Paste it into a new message. Name, invoice number, amount and dates are already filled in.
+30.0 Send it from your own inbox. Copy, paste, send.

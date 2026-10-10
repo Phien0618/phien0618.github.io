@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Invitation Maker · Murder at the Blue Lantern Club · Clue &amp; Candle Games</title>
+<style>
+body{margin:0;background:#0C1529;color:#FAF6EC;font-family:"Trebuchet MS",Arial,sans-serif}
+.top{text-align:center;padding:18px 16px 6px}
+.top h1{font-family:Georgia,"Times New Roman",serif;color:#E3C77A;font-size:28px;margin:0;letter-spacing:.02em}
+.top p{margin:6px 0 0;font-size:14px;color:#D9D2BF}
+.wrap{max-width:1120px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.form{flex:1 1 320px;background:#14213D;border:1px solid #C9A54C;padding:18px 18px 20px}
+label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#C9A54C;margin:12px 0 5px}
+input,select{width:100%;box-sizing:border-box;padding:10px;font-size:16px;border:1px solid #C9A54C;background:#FAF6EC;color:#1A1A1A;border-radius:0}
+.btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button{flex:1;padding:12px 14px;font-size:15px;background:#C9A54C;color:#14213D;border:0;font-weight:bold;letter-spacing:.06em;cursor:pointer}
+button.alt{background:#6E1E2F;color:#FAF6EC;border:1px solid #C9A54C}
+#msg{color:#E3C77A;font-size:14px;min-height:20px;margin-top:10px}
+textarea{width:100%;height:150px;margin-top:6px;box-sizing:border-box;font:13px/1.4 Georgia,serif;background:#FAF6EC;color:#1A1A1A;border:1px solid #C9A54C;padding:8px}
+.prev{flex:1 1 380px;text-align:center}
+canvas{width:100%;max-width:520px;height:auto;display:inline-block;border:1px solid #C9A54C}
+.note{font-size:12px;color:#B9B2A0;margin-top:8px}
+</style></head><body>
+<div class="top"><h1>Invitation Maker</h1><p>Murder at the Blue Lantern Club · Type your party details once, pick a character, then download a phone-ready picture or copy the message. Works offline.</p></div>
+<div class="wrap">
+<div class="form">
+<label for="ch">Character</label><select id="ch"></select>
+<label for="dt">Party date</label><input id="dt" placeholder="e.g. Thursday, December 31">
+<label for="tm">Time</label><input id="tm" placeholder="e.g. 8:30 pm">
+<label for="pl">Place</label><input id="pl" placeholder="e.g. 12 Harbor Lane">
+<label for="hs">Host name</label><input id="hs" placeholder="e.g. Sam">
+<label for="rv">RSVP</label><input id="rv" placeholder="e.g. text Sam by December 20">
+<div class="btns"><button id="dl" type="button">Download PNG</button><button id="cp" class="alt" type="button">Copy text</button></div>
+<div id="msg"></div>
+<label for="tx">Message text (copy into email or chat)</label><textarea id="tx" readonly></textarea>
+<div class="note">Nothing is uploaded anywhere: the picture is drawn in your browser. Clue &amp; Candle Games.</div>
+</div>
+<div class="prev"><canvas id="cv" width="1080" height="1350" aria-label="Invitation preview"></canvas></div>
+</div>
+<script>
+var CH=[
+["Remy Quill","The Art Dealer","A charcoal three-piece suit, a peacock-blue silk tie, white evening gloves and a peacock-feather lapel pin.","A peacock-blue beaded dress, long white evening gloves and a peacock-feather pin or hair clip."],
+["Avery Lark","The Resident Singer","A midnight-blue tuxedo with satin lapels, a silver bow tie and a sparkly lapel pin.","A sequined drop-waist dress, a long string of pearls and a feathered headband."],
+["Jordan Pierce","The Club Partner","A black dinner jacket, a gold waistcoat, a pocket watch and slicked-back hair.","A gold fringe dress, a black velvet wrap and a pocket watch on a long chain."],
+["Sidney Hart","Gus’s Ward and Heir","A tweed jacket, a cream sweater vest, a bow tie and a flower in the buttonhole.","A pale green tea dress, a cardigan, round spectacles and a lily corsage."],
+["Morgan Bellamy","Owner of The Gilded Owl","A white dinner jacket, a black bow tie and a gold star pin.","A black-and-gold beaded gown, long gloves and a star hair clip."],
+["Frankie Dade","The Bandleader","A pinstripe suit, two-tone shoes, a skinny tie and a conductor’s baton.","A dark velvet dress, a pinstripe jacket over the shoulders and a conductor’s baton."],
+["Charlie Ashby","The Society Columnist","A grey suit, a fedora with a press card in the band, and a notebook.","A grey drop-waist dress, a cloche hat, a press card and a notebook."],
+["Dana Rook","The Caterer","A white waiter’s jacket, black trousers, a bow tie and a silver tray.","A black dress, a white apron, a bow at the collar and a silver tray."],
+["Leslie Croft","Gus’s Lawyer","A dark three-piece suit, wire spectacles and a leather briefcase.","A tailored skirt suit, a high-collared blouse, wire spectacles and a briefcase."],
+["Billie Sable","The Coat-Check Attendant","A burgundy bellhop-style jacket with brass buttons and a pillbox cap.","A burgundy uniform dress with brass buttons and a pillbox cap."],
+["Robin Vale","The Aviator","A leather flying jacket over evening wear, a silk scarf and goggles on your head.","A leather flying jacket over a beaded dress, a silk scarf and goggles."],
+["Jesse Monroe","The Photographer","A flat cap, braces, rolled shirtsleeves and a camera on a strap.","A flat cap, a long cardigan over a simple dress, and a camera on a strap."],
+["Kit Haverford","The Shipping Heir","A cream linen suit, a silk cravat and a gold signet ring.","A cream silk dress, long pearls and a velvet evening wrap."],
+["Taylor Moss","The Stage Magician","A tailcoat, a top hat, a red silk handkerchief and a deck of cards.","A sequined jacket over a black dress, a top hat and a deck of cards."],
+["Emery Fontaine","The Dance Instructor","High-waisted trousers, braces, a crisp shirt and polished dancing shoes.","A fringe dress made for the Charleston, a beaded headband and T-strap shoes."],
+["Marion Kettle","The Club Chef","Chef’s whites, a tall toque and a tea towel over one shoulder.","A white chef’s jacket over a dark skirt, a neat headscarf and a wooden spoon."],
+["A Mystery Guest","Your character will be revealed soon","",""]];
+var $=function(i){return document.getElementById(i)},sel=$("ch");
+CH.forEach(function(c,i){var o=document.createElement("option");o.value=i;o.textContent=i<16?c[0]+" · "+c[1]:"Mystery Guest (generic)";sel.appendChild(o)});
+var cv=$("cv"),x=cv.getContext("2d"),W=1080,H=1350,GOLD="#C9A54C",LG="#E3C77A",IV="#FAF6EC";
+var MP="M0 -40 C-30 -75 -90 -88 -165 -72 C-205 -63 -220 -30 -212 10 C-202 62 -150 84 -100 74 C-55 64 -25 36 0 26 C25 36 55 64 100 74 C150 84 202 62 212 10 C220 -30 205 -63 165 -72 C90 -88 30 -75 0 -40Z M-160 -6 C-135 -38 -80 -40 -48 -6 C-78 16 -132 18 -160 -6Z M160 -6 C135 -38 80 -40 48 -6 C78 16 132 18 160 -6Z";
+function sp(v){try{x.letterSpacing=v}catch(e){}}
+function txt(s,y,font,col,ls){x.font=font;x.fillStyle=col;sp(ls||"0px");x.textAlign="center";x.fillText(s,W/2,y);sp("0px")}
+function wrap(s,y,font,col,maxW,lh){x.font=font;var w=s.split(" "),line="",lines=[];w.forEach(function(t){var tt=line?line+" "+t:t;if(x.measureText(tt).width>maxW&&line){lines.push(line);line=t}else line=tt});if(line)lines.push(line);lines.forEach(function(l,i){txt(l,y+i*lh,font,col)});return y+lines.length*lh}
+function frame(){var s=24,P=function(a,b,c,d){x.beginPath();x.moveTo(a+s,b);x.lineTo(c-s,b);x.lineTo(c-s,b+s);x.lineTo(c,b+s);x.lineTo(c,d-s);x.lineTo(c-s,d-s);x.lineTo(c-s,d);x.lineTo(a+s,d);x.lineTo(a+s,d-s);x.lineTo(a,d-s);x.lineTo(a,b+s);x.lineTo(a+s,b+s);x.closePath();x.stroke()};
+x.strokeStyle=GOLD;x.lineWidth=3;P(2,2,W-2,H-2);x.lineWidth=1;P(10,10,W-10,H-10);
+[[34,34,1,1],[W-34,34,-1,1],[34,H-34,1,-1],[W-34,H-34,-1,-1]].forEach(function(c){x.save();x.translate(c[0],c[1]);x.scale(c[2],c[3]);x.fillStyle=GOLD;x.beginPath();x.moveTo(0,0);x.lineTo(32,0);x.arc(0,0,32,0,Math.PI/2);x.closePath();x.fill();x.beginPath();x.arc(0,0,46,0,Math.PI/2);x.stroke();x.restore()})}
+function art(cx,cy,k){x.save();x.translate(cx,cy);var g=x.createRadialGradient(0,0,0,0,0,280*k);g.addColorStop(0,"rgba(201,165,76,.28)");g.addColorStop(1,"rgba(201,165,76,0)");x.fillStyle=g;x.beginPath();x.arc(0,0,280*k,0,7);x.fill();
+x.strokeStyle="rgba(201,165,76,.35)";x.lineWidth=1.4;for(var i=0;i<23;i++){var a=i*2*Math.PI/23;x.beginPath();x.moveTo(0,0);x.lineTo(270*k*Math.sin(a),-270*k*Math.cos(a));x.stroke()}
+x.strokeStyle="rgba(201,165,76,.6)";x.lineWidth=2;x.beginPath();x.arc(0,0,200*k,0,7);x.stroke();
+x.save();x.rotate(-8*Math.PI/180);x.scale(k*1.05,k*1.05);
+x.strokeStyle=GOLD;x.lineWidth=9;x.lineCap="round";x.beginPath();x.moveTo(196,50);x.lineTo(250,230);x.stroke();
+x.fillStyle="#6E1E2F";x.strokeStyle=GOLD;x.lineWidth=1.5;["M250 -215 C230 -190 190 -140 165 -80 C195 -120 245 -170 250 -215Z","M285 -170 C250 -160 205 -125 170 -75 C215 -105 265 -140 285 -170Z","M195 -245 C185 -210 165 -150 158 -85 C180 -140 195 -200 195 -245Z"].forEach(function(d){var p=new Path2D(d);x.fill(p);x.stroke(p)});
+var gg=x.createLinearGradient(-200,-90,200,90);gg.addColorStop(0,"#E9D08C");gg.addColorStop(.5,GOLD);gg.addColorStop(1,"#9C7A2E");x.fillStyle=gg;var m=new Path2D(MP);x.fill(m,"evenodd");x.strokeStyle="#7A5C1E";x.lineWidth=2;x.stroke(m);
+x.fillStyle="#6E1E2F";x.fill(new Path2D("M0 -34 L10 -14 L0 6 L-10 -14Z"));x.restore();
+x.save();x.translate(-125*k,110*k);x.rotate(-35*Math.PI/180);x.scale(k*.7,k*.7);x.fillStyle="#6E1E2F";x.fillRect(-15,96,30,100);x.fillStyle=GOLD;x.fillRect(-20,88,40,22);x.beginPath();x.arc(0,0,92,0,7);x.fillStyle="rgba(250,246,236,.14)";x.fill();x.lineWidth=16;x.strokeStyle=GOLD;x.stroke();x.restore();x.restore()}
+function data(){var c=CH[+sel.value];return{c:c,d:$("dt").value.trim(),t:$("tm").value.trim(),p:$("pl").value.trim(),h:$("hs").value.trim(),r:$("rv").value.trim()}}
+function draw(){var D=data(),c=D.c;var g=x.createRadialGradient(W/2,560,40,W/2,560,820);g.addColorStop(0,"#22345C");g.addColorStop(.55,"#14213D");g.addColorStop(1,"#0C1529");x.fillStyle=g;x.fillRect(0,0,W,H);frame();
+txt("YOU ARE INVITED TO",128,"bold 20px 'Trebuchet MS',Arial",GOLD,"6px");txt("The Midnight",190,"bold 62px Georgia,serif",IV);txt("Moon Masquerade",258,"bold 62px Georgia,serif",IV);
+txt("A 1920s murder mystery party at the Blue Lantern Club",310,"italic 28px Georgia,serif",LG);art(W/2,545,.85);
+txt("YOU WILL BE PLAYING",765,"bold 18px 'Trebuchet MS',Arial",GOLD,"6px");var nf=c[0].length>13?"bold 70px Georgia,serif":"bold 80px Georgia,serif";txt(c[0],845,nf,IV);txt(c[1].toUpperCase(),900,"26px 'Trebuchet MS',Arial",GOLD,"5px");
+var y=950;if(c[2]){y=wrap("Suit style: "+c[2],y,"italic 25px Georgia,serif",IV,840,32);y=wrap("Dress style: "+c[3],y+4,"italic 25px Georgia,serif",IV,840,32)}else y=wrap("Come dressed for a 1920s masquerade: sequins, pearls, suits, feathers, and a mask.",y,"italic 25px Georgia,serif",IV,840,32);
+var parts=[D.d,D.t,D.p].filter(Boolean),line=parts.length?parts.join(" · "):"Date · Time · Place";x.font="bold 24px 'Trebuchet MS',Arial";var bw=Math.min(900,x.measureText(line).width+70);x.strokeStyle=GOLD;x.lineWidth=2;x.strokeRect(W/2-bw/2,1112,bw,58);
+wrap(line,1150,"bold 24px 'Trebuchet MS',Arial",IV,860,30);var sub=[D.h?"Hosted by "+D.h:"",D.r?"RSVP: "+D.r:""].filter(Boolean).join(" · ");if(sub)txt(sub,1204,"18px 'Trebuchet MS',Arial","#D9D2BF","1px");
+txt("MURDER AT THE BLUE LANTERN CLUB · CLUE & CANDLE GAMES",1262,"bold 16px 'Trebuchet MS',Arial",GOLD,"3px");$("tx").value=message()}
+function message(){var D=data(),c=D.c,m=["You are invited to The Midnight Moon Masquerade at the Blue Lantern Club, 1926: a murder mystery party!",""];m.push("Date: "+(D.d||"[DATE]")+" · Time: "+(D.t||"[TIME]")+" · Place: "+(D.p||"[PLACE]"));
+if(+sel.value<16){m.push("You will be playing: "+c[0]+", "+c[1]+".");m.push("What to wear (pick either): Suit style: "+c[2]+" Dress style: "+c[3]+" Plus a mask!")}else{m.push("Your character will be revealed soon. Come dressed for a 1920s masquerade, with a mask!")}
+m.push("Bring your best poker face. Someone at this party has a secret…");m.push("RSVP: "+(D.r||"[RSVP]")+(D.h?" · "+D.h:""));return m.join("\n")}
+function say(s){$("msg").textContent=s;setTimeout(function(){$("msg").textContent=""},2600)}
+["ch","dt","tm","pl","hs","rv"].forEach(function(i){$(i).addEventListener("input",draw);$(i).addEventListener("change",draw)});
+$("dl").addEventListener("click",function(){var n="Invitation-"+CH[+sel.value][0].replace(/[^A-Za-z]+/g,"-")+".png";cv.toBlob(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove();say("Saved "+n)},"image/png")});
+$("cp").addEventListener("click",function(){var t=message(),done=function(){say("Message copied. Paste it into your email or chat.")};function fb(){var a=$("tx");a.value=t;a.select();try{document.execCommand("copy");done()}catch(e){say("Select the text below and copy it.")}}if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(done,fb);else fb()});
+sel.value="1";draw();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+</script>
+</body></html>

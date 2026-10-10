@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Odd One Out · ESL Offline Speaking Games</title>
+<style>
+/* ===== COMMON STYLE (shared by all 8 games) ===== */
+:root{--board:#163A3A;--board2:#1F4B4A;--board3:#2C5F5D;--chalk:#FFFDF6;--paper:#FFF6E5;--ink:#1E2030;--sun:#FFC83D;--sky:#5BB8F5;--mint:#3DD39A;--grape:#8E5BE8;--berry:#E8457A;--berryInk:#B8285A;--orange:#FF8A3D;--used:#2C5452;
+--fd:"Fredoka",ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito","Segoe UI",system-ui,sans-serif,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC";
+--fb:"Nunito",ui-rounded,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC";
+--fm:ui-monospace,Menlo,Consolas,"Courier New",monospace,"PingFang SC","Hiragino Sans","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC"}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:clamp(10px,min(1.0417vw,1.852vh),26px)}
+body{background:var(--board);color:var(--chalk);font-family:var(--fb);font-weight:700;font-size:1.2rem;line-height:1.3;overflow-x:hidden;min-height:100vh}
+button{font-family:var(--fb);font-weight:800;cursor:pointer;border:0;border-radius:.9rem;min-height:3.2rem;min-width:3.2rem;padding:0 1.1rem;font-size:1.3rem;color:var(--chalk);background:var(--board3);box-shadow:0 .35rem 0 rgba(0,0,0,.28);display:inline-flex;align-items:center;justify-content:center;gap:.5rem;line-height:1.1}
+button:active{transform:translateY(.2rem);box-shadow:0 .15rem 0 rgba(0,0,0,.28)}
+button:focus-visible,a:focus-visible{outline:.25rem solid var(--sun);outline-offset:.2rem}
+button.pri{background:var(--sun);color:var(--ink)}
+button.ok{background:var(--mint);color:var(--ink)}
+button.bad{background:var(--berry);color:#fff}
+button:disabled{opacity:.45;cursor:default}
+.kc{display:inline-block;border:2px solid currentColor;border-bottom-width:5px;border-radius:.5rem;padding:0 .45rem;font-size:1.05rem;font-weight:900;line-height:1.5;opacity:.85;font-family:var(--fb)}
+svg.i{width:1.3em;height:1.3em;flex:none}
+header.top{background:var(--board2);box-shadow:0 .2rem 0 rgba(0,0,0,.18)}
+header.top .in{max-width:96rem;margin:0 auto;height:4.8rem;display:flex;align-items:center;gap:.9rem;padding:0 2rem}
+.top .ico{width:2.8rem;height:2.8rem;flex:none;display:block}
+.top h1{font-family:var(--fd);font-weight:700;font-size:1.9rem;white-space:nowrap}
+.top .ctx{font-size:1.2rem;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.top nav{display:flex;gap:.7rem;flex:none}
+.hb{height:3.2rem;min-width:3.2rem;padding:0 1rem;font-size:1.35rem;text-decoration:none;color:var(--chalk);background:var(--board3);border-radius:.9rem;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;box-shadow:0 .3rem 0 rgba(0,0,0,.28);font-weight:800}
+.hb.pri{background:var(--sun);color:var(--ink);font-family:var(--fd);font-size:1.6rem}
+#stage{max-width:96rem;margin:0 auto;height:49.2rem;display:flex;flex-direction:column;padding:1.4rem 5rem 1.1rem;gap:1.1rem}
+#play{flex:1;min-height:0;display:flex;flex-direction:column;gap:1.3rem;position:relative}
+.meta{display:flex;align-items:center;gap:.7rem;height:2.6rem;flex:none}
+.chip{height:2.6rem;border-radius:99rem;padding:0 1.2rem;display:inline-flex;align-items:center;font-weight:800;font-size:1.2rem;background:var(--chalk);color:var(--ink);white-space:nowrap}
+.chip.lv{background:var(--sky)}.chip.off{background:var(--board3);color:var(--chalk)}
+.chips{display:flex;gap:.6rem;min-width:0;overflow:hidden}
+.used{margin-left:auto;font-size:1.4rem;font-weight:800;white-space:nowrap}.used b{color:var(--sun);font-family:var(--fd);font-size:1.8rem}
+.bubble{position:relative;background:var(--chalk);color:var(--ink);border-radius:2rem;border-left:1.1rem solid var(--gc,var(--sky));box-shadow:0 .4rem 0 rgba(0,0,0,.28);padding:1.8rem 3.4rem 1.8rem 4.4rem;display:flex;flex-direction:column;min-height:0}
+.bubble.tail{margin-bottom:1.6rem}
+.bubble.tail:after{content:"";position:absolute;left:7rem;bottom:-2rem;border-style:solid;border-width:2.1rem 1.7rem 0 1.7rem;border-color:var(--chalk) transparent transparent transparent}
+.plabel{font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#2B6E9E;font-size:1.3rem;min-height:1.7rem;flex:none}
+.pbox{flex:1;min-height:0;display:flex;align-items:center;overflow:hidden}
+.ptext{display:block;width:100%;font-family:var(--fd);font-weight:600;line-height:1.15;font-size:3.8rem;overflow-wrap:anywhere}
+.ptext.ph{color:#5C6470;font-weight:600}
+.ctrl{display:flex;align-items:center;gap:1.1rem;flex:none}
+.grow{flex:1}
+.big{height:6rem;font-size:2rem;border-radius:1.4rem;padding:0 2rem}
+.huge{height:6rem;font-family:var(--fd);font-weight:700;font-size:2.5rem;border-radius:1.4rem;padding:0 3rem}
+.tmr{display:flex;align-items:center;gap:1rem}
+.tlbl{font-size:1.2rem;font-weight:800;opacity:.9;white-space:nowrap}
+.presets{display:flex;gap:.55rem}
+.presets button{min-width:4rem;height:3.2rem;font-size:1.35rem;padding:0 .7rem}
+.presets button.on{background:var(--mint);color:var(--ink)}
+.ring{position:relative;width:9.4rem;height:9.4rem;cursor:pointer;flex:none;border-radius:50%}
+.tmr.big .ring{width:15rem;height:15rem}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg);display:block}
+.ring .trk{fill:none;stroke:var(--used);stroke-width:11}
+.ring .prg{fill:none;stroke:var(--mint);stroke-width:11;stroke-linecap:round}
+.ring .dg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:2.9rem}
+.tmr.big .dg{font-size:4.6rem}
+.ring.off .dg{opacity:.55;font-size:2rem}
+.ring.paused .dg{opacity:.6}
+#teams{flex:none}
+.tbar{display:flex;gap:.6rem;align-items:center}
+.tbar button{height:3.2rem;font-size:1.2rem;border-radius:99rem;padding:0 1.2rem}
+.tgrid{display:grid;gap:.9rem;margin-top:.7rem}
+.tcard{border-radius:1.2rem;color:var(--ink);padding:.5rem .8rem .6rem 1rem;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:end;box-shadow:0 .35rem 0 rgba(0,0,0,.28);position:relative;min-width:0}
+.tcard.act{outline:.3rem solid var(--chalk);outline-offset:.2rem}
+.tname{grid-column:1/3;background:transparent;border:0;border-bottom:2px dashed rgba(30,32,48,.35);font:800 1.2rem var(--fb);color:var(--ink);width:100%;min-width:0;padding:.1rem 0}
+.tsc{font-family:var(--fd);font-weight:700;font-size:3rem;line-height:1.1}
+.tbtn{display:flex;gap:.4rem}
+.rnd{width:3.2rem;height:3.2rem;border-radius:50%;padding:0;background:rgba(255,253,246,.6);color:var(--ink);font-size:1.8rem;box-shadow:none}
+#scrim{position:fixed;inset:0;background:rgba(10,20,20,.45);display:none;z-index:40}#scrim.open{display:block}
+#panel{position:fixed;top:0;right:0;bottom:0;width:min(38rem,100vw);background:var(--paper);color:var(--ink);z-index:50;transform:translateX(105%);transition:transform .2s;overflow-y:auto;padding:1.2rem 1.8rem 3rem;font-size:1.2rem;visibility:hidden}
+#panel.open{transform:none;visibility:visible}
+#panel .ph{display:flex;align-items:center;justify-content:space-between}
+#panel h2{font-family:var(--fd);font-size:2rem}
+#panel h3{font-family:var(--fd);font-size:1.4rem;margin:1.1rem 0 .45rem}
+#panel .sm{font-family:var(--fb);font-size:1.2rem;opacity:.8}
+#panel button{background:#fff;color:var(--ink);box-shadow:0 .25rem 0 rgba(0,0,0,.15);border:2px solid #E6D7B8;font-size:1.2rem}
+#panel button.on{background:var(--sky);border-color:#2B6E9E}
+#panel button.pri{background:var(--sun);border-color:#C99A1E}
+#panel button.bad{background:var(--berry);color:#fff}
+.seg{display:flex;gap:.5rem;flex-wrap:wrap;margin:.3rem 0}
+.fmt{margin:.2rem 0 .4rem}
+.ex{background:#F5F1E8;border:2px dashed #C9B98F;border-radius:.6rem;padding:.5rem .8rem;font:1.2rem/1.35 var(--fm);white-space:pre-wrap;overflow-wrap:anywhere}
+#pText{width:100%;height:13rem;margin:.6rem 0 .3rem;font:1.2rem/1.4 var(--fm);border:2px solid #C9B98F;border-radius:.7rem;padding:.6rem;background:#fff;color:var(--ink);resize:vertical}
+.msg div{margin:.25rem 0}.msg .e{color:var(--berryInk)}.msg .g{color:#17643F}.msg .n{color:#3A4050}
+#pName,.li input{flex:1;min-width:0;height:3.2rem;font:700 1.2rem var(--fb);padding:0 .7rem;border:2px solid #E6D7B8;border-radius:.7rem;background:#fff;color:var(--ink)}
+.li{display:flex;gap:.4rem;align-items:center;margin:.45rem 0}
+.note{font-size:1.2rem;color:#3A4050;margin-top:.9rem}
+.modal{position:fixed;inset:0;background:rgba(10,20,20,.6);display:none;align-items:center;justify-content:center;z-index:60}
+.modal.open{display:flex}
+.mbox{background:var(--paper);color:var(--ink);border-radius:1.6rem;padding:1.8rem 2.4rem;width:min(64rem,94vw);max-height:92vh;overflow-y:auto;box-shadow:0 .5rem 0 rgba(0,0,0,.3)}
+.mbox h2{font-family:var(--fd);font-size:2.2rem;margin-bottom:.5rem}
+.mbox h3{font-family:var(--fd);font-size:1.5rem;margin:1rem 0 .3rem}
+.mbox p,.mbox li{font-size:1.25rem;margin:.35rem 0}
+.mbox ol,.mbox ul{padding-left:1.6rem}
+.mbox table{border-collapse:collapse;width:100%}
+.mbox td{padding:.35rem .6rem;border-bottom:2px solid #E6D7B8;font-size:1.25rem;vertical-align:middle}
+.mbox code{font:1.2rem var(--fm);background:#F5F1E8;padding:0 .3rem;border-radius:.3rem;overflow-wrap:anywhere}
+.mbox .list{columns:2;column-gap:2rem}
+.mbtns{display:flex;gap:.8rem;justify-content:flex-end;margin-top:1.2rem}
+.kcap{display:inline-block;min-width:2.4rem;text-align:center;border:2px solid var(--ink);border-bottom-width:5px;border-radius:.5rem;padding:0 .5rem;font-weight:900;white-space:nowrap}
+#flash{position:fixed;inset:0;pointer-events:none;box-shadow:inset 0 0 0 12px var(--sun);opacity:0;z-index:90}
+#flash.go{animation:fl .4s steps(1,end) 3}
+@keyframes fl{0%{opacity:1}50%{opacity:0}100%{opacity:0}}
+#toast{position:fixed;left:50%;bottom:4.5rem;transform:translateX(-50%);background:var(--ink);color:var(--chalk);padding:.8rem 1.6rem;border-radius:99rem;font-size:1.3rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:80;max-width:90vw;text-align:center}
+#toast.show{opacity:1}
+/* ===== GAME STYLE: 05 Odd One Out ===== */
+.q5{font-family:var(--fd);font-weight:700;font-size:2rem;margin-left:1rem}
+.grid4{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1.2rem;min-height:0}
+.tile{border-radius:1.6rem;display:flex;align-items:center;gap:1.4rem;padding:0 2rem;color:var(--ink);font-family:var(--fd);font-weight:700;font-size:3.2rem;line-height:1.1;box-shadow:0 .4rem 0 rgba(0,0,0,.28);transition:opacity .25s;min-height:0;overflow:hidden;overflow-wrap:anywhere}
+.tile svg{width:3.4rem;height:3.4rem;flex:none}
+.tile.dim{opacity:.35}
+.tile .qm{font-size:4.4rem;opacity:.55;flex:1;text-align:center;padding-right:3.4rem}
+.tile.odd{outline:.5rem solid var(--chalk);outline-offset:-.5rem;box-shadow:0 0 0 .5rem var(--sun),0 0 2.6rem .8rem var(--sun)}
+.why{background:var(--chalk);color:var(--ink);border-radius:1.2rem;border-left:.7rem solid var(--sun);padding:.6rem 1.4rem;font-size:1.6rem;font-weight:800;min-height:4.2rem;display:flex;align-items:center;flex:none}
+.why.hide{visibility:hidden}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+<svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="17" cy="17" r="12" fill="#5BB8F5"/><circle cx="47" cy="17" r="12" fill="#5BB8F5"/><circle cx="17" cy="47" r="12" fill="#5BB8F5"/><rect x="33" y="33" width="28" height="28" rx="6" fill="#FFC83D" stroke="#FFFDF6" stroke-width="3"/><path d="M47 40l6 11H41z" fill="#1E2030"/></svg>
+<h1>Odd One Out</h1><span class="ctx" id="ctx"></span>
+<nav>
+<button class="hb" id="bPrompts" title="Prompts: level and your own word sets"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>Prompts</button>
+<button class="hb" id="bRestart" title="Restart this game (clears scores and timer)"><svg class="i" viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2.1-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M19 4v4.5h-4.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Restart</button>
+<button class="hb" id="bSound" title="Sound on / off"></button>
+<button class="hb" id="bFull" title="Full screen (F)"><svg class="i" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<a class="hb" id="bHome" href="../START-HERE.html" title="Back to START-HERE"><svg class="i" viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5M6 10v10h12V10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<button class="hb pri" id="bHelp" title="How to play and keyboard shortcuts">?</button>
+</nav></div></header>
+<div id="stage"><main id="play"></main><section id="teams"></section></div>
+<div id="scrim"></div>
+<aside id="panel" aria-label="Prompts panel">
+<div class="ph"><h2>Prompts</h2><button id="pClose">Close</button></div>
+<h3>Level <span class="sm">· for the built-in prompts</span></h3>
+<div class="seg" id="pLevel"><button data-l="A">A1–A2</button><button data-l="B">B1–B2</button><button data-l="all">All</button></div>
+<div id="pTopicsWrap" hidden><h3>Topics</h3><div class="seg" id="pTopics"></div><div class="seg"><button id="tAll">All topics</button><button id="tNone">Clear topics</button></div></div>
+<h3>Prompt source</h3>
+<div class="seg" id="pSrc"><button data-s="builtin">Built-in prompts</button><button data-s="mine">My prompts</button></div>
+<h3>My prompts</h3>
+<p class="fmt" id="pFmt"></p>
+<div class="ex" id="pEx"></div>
+<textarea id="pText" spellcheck="false" placeholder="Paste your prompts here"></textarea>
+<div class="seg"><button class="pri" id="pUse">Use my prompts</button><button id="pImp">Import .txt</button><button id="pExp">Export .txt</button></div>
+<input type="file" id="pFile" accept=".txt,text/plain" hidden>
+<div class="msg" id="pMsg"></div>
+<h3>Saved lists <span class="sm">· up to 20</span></h3>
+<div class="seg"><input id="pName" placeholder="List name" maxlength="40"><button id="pSave">Save list</button></div>
+<div id="pLists"></div>
+<p class="note">Built-in prompts are in English only. Your own prompts can be in any language, including Chinese, Japanese and Korean. Saved lists are kept only in this browser on this computer, and each game keeps its own lists. Use Export .txt to take a list to another computer.</p>
+</aside>
+<div class="modal" id="help"><div class="mbox"><div id="hBody"></div><div class="mbtns"><button class="pri" id="hClose">Close</button></div></div></div>
+<div class="modal" id="modal"><div class="mbox"><div id="mBody"></div><div class="mbtns" id="mBtns"></div></div></div>
+<div id="flash"></div><div id="toast" role="status"></div>
+<script>
+/* ===== BUILT-IN PROMPTS: 05 Odd One Out (60 sets = 30 A1-A2 + 30 B1-B2; 4 words | odd word | reason) ===== */
+const DATA={A:`apple, banana, carrot, grape | carrot | A carrot is a vegetable. The others are fruits.
+dog, cat, rabbit, table | table | A table is furniture. The others are animals.
+red, blue, green, happy | happy | Happy is a feeling. The others are colours.
+bus, train, car, bed | bed | A bed is furniture. The others are ways to travel.
+Monday, Friday, Sunday, March | March | March is a month. The others are days of the week.
+hat, shirt, shoes, spoon | spoon | A spoon is for eating. The others are clothes.
+milk, juice, water, bread | bread | Bread is food. The others are drinks.
+two, seven, ten, green | green | Green is a colour. The others are numbers.
+eyes, nose, mouth, sock | sock | A sock is clothing. The others are parts of the face.
+lion, tiger, leopard, cow | cow | A cow is a farm animal. The others are big wild cats.
+summer, winter, spring, morning | morning | Morning is a time of day. The others are seasons.
+pen, pencil, crayon, pillow | pillow | You cannot write or draw with a pillow.
+kitchen, bedroom, bathroom, garden | garden | A garden is outside. The others are rooms in a house.
+doctor, teacher, farmer, hospital | hospital | A hospital is a place. The others are jobs.
+run, jump, swim, chair | chair | Chair is a thing. The others are actions.
+sun, moon, star, tree | tree | A tree grows on the ground. The others are in the sky.
+piano, guitar, drum, ball | ball | A ball is a toy. The others are musical instruments.
+fish, shark, whale, horse | horse | A horse lives on land. The others live in the sea.
+small, big, tall, quickly | quickly | Quickly tells us how we do something. The others describe size.
+orange, lemon, lime, potato | potato | A potato is a vegetable. The others are fruits.
+plate, cup, bowl, sofa | sofa | A sofa is furniture. You eat or drink from the others.
+rain, snow, wind, mountain | mountain | A mountain is a place. The others are kinds of weather.
+bee, butterfly, ant, snake | snake | A snake is not an insect.
+mother, father, sister, friend | friend | A friend is not a family member.
+square, circle, triangle, yellow | yellow | Yellow is a colour. The others are shapes.
+head, arm, leg, hat | hat | A hat is clothing. The others are parts of the body.
+cheese, butter, yoghurt, rice | rice | Rice does not come from milk.
+plane, helicopter, bird, boat | boat | A boat cannot fly.
+happy, sad, angry, tall | tall | Tall describes how someone looks. The others are feelings.
+football, tennis, basketball, chess | chess | Chess is not played with a ball.`,
+B:`enormous, tiny, huge, gigantic | tiny | Tiny means very small. The others mean very big.
+breakfast, lunch, dinner, kitchen | kitchen | A kitchen is a room. The others are meals.
+doctor, nurse, dentist, lawyer | lawyer | A lawyer does not work in health care.
+quickly, slowly, carefully, friendly | friendly | Friendly is an adjective, even though it ends in -ly. The others are adverbs.
+went, saw, ate, play | play | Play is in the present tense. The others are past simple forms.
+happy, glad, cheerful, miserable | miserable | Miserable means very unhappy. The others mean happy.
+Mercury, Mars, Venus, Moon | Moon | The Moon is not a planet. It moves around the Earth.
+violin, cello, guitar, trumpet | trumpet | A trumpet has no strings. You blow into it.
+children, women, mice, boys | boys | Boys is a regular plural. The others are irregular plurals.
+desert, jungle, forest, ocean | ocean | An ocean is water. The others are places on land.
+ruler, scale, thermometer, umbrella | umbrella | An umbrella does not measure anything.
+bake, boil, fry, wash | wash | You do not cook food by washing it.
+bicycle, tricycle, unicycle, motorbike | motorbike | A motorbike has an engine. You pedal the others.
+bored, interested, excited, interesting | interesting | Interesting describes a thing. The others describe how a person feels.
+author, poet, novelist, painter | painter | A painter makes pictures. The others write.
+north, south, east, up | up | Up is not a compass direction.
+eagle, owl, penguin, parrot | penguin | A penguin cannot fly.
+rice, wheat, corn, potato | potato | A potato is a vegetable. The others are grains.
+dolphin, whale, shark, seal | shark | A shark is a fish. The others are mammals.
+century, decade, minute, kilometre | kilometre | A kilometre measures distance. The others measure time.
+always, often, never, yesterday | yesterday | Yesterday tells us when. The others tell us how often.
+cardboard, paper, newspaper, glass | glass | Glass is not made from wood.
+brave, honest, generous, lazy | lazy | Lazy is a negative quality. The others are positive.
+swam, ran, sang, walked | walked | Walked is a regular past form. The others are irregular.
+carpenter, plumber, electrician, accountant | accountant | An accountant works with numbers in an office. The others build or repair things.
+spinach, lettuce, cabbage, mushroom | mushroom | A mushroom is a fungus, not a leafy plant.
+Arctic, Pacific, Atlantic, Sahara | Sahara | The Sahara is a desert. The others are oceans.
+laptop, tablet, smartphone, envelope | envelope | An envelope is not an electronic device.
+whisper, shout, mumble, listen | listen | Listen is about hearing. The others are ways of speaking.
+tulip, rose, daisy, oak | oak | An oak is a tree. The others are flowers.`};
+/* ===== GAME DEFINITION: 05 Odd One Out ===== */
+const SH=[['#FF8A3D','<path d="M17 3l14 26H3z" fill="#1E2030"/>'],['#5BB8F5','<circle cx="17" cy="17" r="14" fill="#1E2030"/>'],['#3DD39A','<rect x="4" y="4" width="26" height="26" rx="3" fill="#1E2030"/>'],['#B793F2','<path d="M17 2l15 15-15 15L2 17z" fill="#1E2030"/>']];
+const G={id:'05',name:'Odd One Out',unit:'word sets',teamsOpen:true,
+ fmt:'<b>Format:</b> one set per line: <b>word 1, word 2, word 3, word 4 | the odd word | reason (optional)</b>. The odd word must be one of the 4 words, or the line is skipped and its line number is shown. Lines starting with # are skipped. 3–300 sets.',
+ ex:'apple, banana, carrot, grape | carrot | A carrot is a vegetable.',
+ parse:t=>{const p=t.split('|').map(s=>s.trim());const w=(p[0]||'').split(',').map(s=>s.trim()).filter(Boolean);if(w.length!==4)return{err:'list exactly 4 words, separated by commas'};const o=p[1]||'';const oi=w.findIndex(x=>x.toLowerCase()===o.toLowerCase());if(!o)return{err:'add the odd word after a |'};if(oi<0)return{err:'the odd word "'+o+'" is not one of the 4 words'};return{w:w,oi:oi,r:p.slice(2).join(' | '),t:t}},
+ timer:{presets:[15,30,60,0],def:30,label:'Think time'},
+ spaceLabel:'Next set of 4 words',
+ keyHelp:[['R','Reveal the odd one and the reason'],['?','Open this help']],
+ keys:{r:()=>g_reveal()},
+ help:`<ol><li>Press <b>Next</b> or the Space bar to show 4 words. Each tile has its own shape and colour (▲ ● ■ ◆), so students can answer with the shape.</li><li>Teams talk and decide which word does not belong, and why. Press <b>T</b> to start the think timer.</li><li>Ask each team for its answer <b>and a reason</b>. Then press <b>Reveal</b> (or R): the odd tile lights up and a sample reason appears.</li><li>Give points with the team cards. Accept other answers if the reason is good: there is often more than one right answer.</li></ol>`,
+ html:()=>`<div class="meta"><div class="chips" id="chips"></div><span class="q5" id="q5">Which one doesn't belong? Why?</span><div class="used">Used <b id="used">0</b> / <span id="tot">0</span></div></div>
+<div class="grid4" id="grid4"></div>
+<div class="why hide" id="why"></div>
+<div class="ctrl"><button class="big" id="bBack">${ICON.back} Back</button><button class="huge" id="bNext">Next <span class="kc">Space</span></button><button class="huge pri" id="bRev">Reveal <span class="kc">R</span></button><div class="grow"></div><div id="timer"></div></div>`,
+ init(){$('#bNext').onclick=()=>G.next();$('#bBack').onclick=()=>G.back();$('#bRev').onclick=()=>g_reveal()},
+ next(){const it=draw();if(it)g_show(it)},
+ back(){const it=back();if(it)g_show(it)},
+ reset(){g_cur=null;$('#grid4').innerHTML=SH.map((s,i)=>'<div class="tile" style="background:'+s[0]+'"><svg viewBox="0 0 34 34">'+s[1]+'</svg><span class="qm">?</span></div>').join('');$('#q5').textContent='Press Next or the Space bar to show 4 words.';$('#why').className='why hide'},
+ onCtx(){$('#chips').innerHTML='<span class="chip lv">'+(S.src==='mine'?'My prompts':LVN[S.level])+'</span>'},
+ compose(it){const ord=shuffle([0,1,2,3]);return{w:ord.map(i=>it.w[i]),oi:ord.indexOf(it.oi),r:it.r,t:it.t,lv:it.lv}}
+};
+let g_cur=null;
+function g_show(it){g_cur=it;$('#q5').textContent="Which one doesn't belong? Why?";$('#grid4').innerHTML=it.w.map((w,i)=>'<div class="tile" style="background:'+SH[i][0]+'"><svg viewBox="0 0 34 34">'+SH[i][1]+'</svg><span>'+esc(w)+'</span></div>').join('');$('#why').className='why hide';$('#why').textContent='';if(TIMER)TIMER.reset();APP.revealed=false}
+function g_reveal(){if(!g_cur){toast('Press Next first.');return}$$('#grid4 .tile').forEach((t,i)=>{t.classList.toggle('odd',i===g_cur.oi);t.classList.toggle('dim',i!==g_cur.oi)});const w=$('#why');w.className='why';w.textContent='Odd one out: '+g_cur.w[g_cur.oi]+'. '+(g_cur.r||'No reason was given. Ask the class why!');APP.revealed=true;if(TIMER)TIMER.pause();SFX.good()}
+
+/* ===== ENGINE (shared by all 8 games) ===== */
+const APP=window.APP={beeps:0,flashes:0,bad:[],G:G};
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.prototype.slice.call((r||document).querySelectorAll(s));
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+const LSP='eslspeak_'+G.id+'_';
+const store={get(k,d){try{const v=localStorage.getItem(LSP+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(LSP+k,JSON.stringify(v))}catch(e){}}};
+const LVN={A:'A1–A2',B:'B1–B2',all:'All levels'};
+const ICON={back:'<svg class="i" viewBox="0 0 20 20"><path d="M14 3L4 10l10 7z" fill="currentColor"/></svg>',
+ sOn:'<svg class="i" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+ sOff:'<svg class="i" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'};
+const BUILT=[];
+['A','B'].forEach(lv=>{const d=DATA[lv];const add=(txt,tp)=>txt.split('\n').forEach(l=>{l=l.trim().replace(/\s+/g,' ');if(!l||l[0]==='#')return;const r=G.parse(l);if(!r||r.err){APP.bad.push(l);return}r.lv=lv;if(tp)r.tp=tp;BUILT.push(r)});if(typeof d==='string')add(d);else Object.keys(d).forEach(tp=>add(d[tp],tp))});
+APP.BUILT=BUILT;
+/* sound + effects (WebAudio only, no audio files) */
+let AC=null,soundOn=true;try{soundOn=localStorage.getItem('eslspeak_sound')!=='off'}catch(e){}
+function tone(f,d,t,type,v){if(!soundOn)return;APP.beeps++;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+(t||0);o.type=type||'sine';o.frequency.setValueAtTime(f,s);g.gain.setValueAtTime(0.0001,s);g.gain.exponentialRampToValueAtTime(v||0.25,s+0.02);g.gain.exponentialRampToValueAtTime(0.0001,s+d);o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+d+0.05)}catch(e){}}
+const SFX={tick:()=>tone(880,.04,0,'square',.05),pop:()=>tone(620,.09,0,'sine',.2),good:()=>{tone(660,.12);tone(880,.2,.11)},bad:()=>tone(190,.3,0,'sawtooth',.13),end:()=>{APP.endSounds=(APP.endSounds||0)+1;tone(880,.25,0,'square',.12);tone(660,.25,.3,'square',.12);tone(990,.5,.6,'square',.14)},done:()=>{tone(523,.15);tone(659,.15,.15);tone(784,.3,.3)}};
+let flashTo=null;
+function flash(){const f=$('#flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');APP.flashes++;clearTimeout(flashTo);flashTo=setTimeout(()=>f.classList.remove('go'),1300)}
+let toastTo=null;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');APP.lastToast=m;clearTimeout(toastTo);toastTo=setTimeout(()=>t.classList.remove('show'),2600)}
+function modal(html,btns){const m=$('#modal');$('#mBody').innerHTML=html;const b=$('#mBtns');b.innerHTML='';(btns||[{l:'OK',c:'pri'}]).forEach(x=>{const e=document.createElement('button');e.className=x.c||'';e.textContent=x.l;e.onclick=()=>{closeModal();if(x.f)x.f()};b.appendChild(e)});m.classList.add('open')}
+function closeModal(){$('#modal').classList.remove('open')}
+function openPanel(){renderPanel();$('#panel').classList.add('open');$('#scrim').classList.add('open')}
+function closePanel(){$('#panel').classList.remove('open');$('#scrim').classList.remove('open')}
+function openHelp(){$('#help').classList.add('open')}
+function closeAll(){closeModal();closePanel();$('#help').classList.remove('open')}
+function anyOpen(){return !!document.querySelector('.modal.open,#panel.open')}
+/* fit long prompts: shrink from max to floor (rem); 20+ words may go lower */
+function fit(box,el,max,floor,floorLong){const w=(el.textContent.trim().match(/\S+/g)||[]).length;const fl=w>=20?(floorLong||2.2):(floor||2.8);let s=max;el.style.fontSize=s+'rem';let n=0;while(n++<90&&s>fl&&(el.offsetHeight>box.clientHeight||el.scrollWidth>box.clientWidth+1)){s=Math.max(fl,Math.round((s-0.1)*10)/10);el.style.fontSize=s+'rem'}return s}
+/* state */
+const S=Object.assign({src:'builtin',level:'A',mine:'',listName:'',topics:null},store.get('state',{}));
+if(G.topics&&!Array.isArray(S.topics))S.topics=G.topics.slice();
+if(['A','B','all'].indexOf(S.level)<0)S.level='A';
+let MINE=[];
+function saveS(){store.set('state',S)}
+const isMain=x=>G.isMain?G.isMain(x):true;
+function parseList(text){const items=[],errs=[],seen=Object.create(null);let dup=0,com=0,blank=0;String(text||'').split(/\r?\n/).forEach((raw,i)=>{const t=raw.trim().replace(/\s+/g,' ');if(!t){blank++;return}if(t[0]==='#'){com++;return}if(seen[t]){dup++;return}seen[t]=1;const r=G.parse(t);if(!r||r.err){errs.push('Line '+(i+1)+': '+(r?r.err:'could not read this line')+' (skipped)');return}r.lv='mine';r.line=i+1;items.push(r)});return{items:items,main:items.filter(isMain),errs:errs,dup:dup,com:com,blank:blank}}
+function capItems(items){let k=0;return items.filter(x=>!isMain(x)||++k<=300)}
+function applyMine(text,quiet){const p=parseList(text);const out=[];let ok=true;
+ if(p.main.length<3){ok=false;out.push(['e','Need at least 3 '+G.unit+' to start a game. Found '+p.main.length+'. Still using the built-in prompts.'])}
+ else{MINE=capItems(p.items);if(p.main.length>300)out.push(['e','You added '+p.main.length+' '+G.unit+'. Only the first 300 were kept (maximum 300).']);S.src='mine';S.mine=text;saveS();out.unshift(['g','Using '+Math.min(300,p.main.length)+' of your '+G.unit+(G.countExtra?G.countExtra(MINE):'')+'.'])}
+ if(p.dup)out.push(['n',p.dup+' duplicate line'+(p.dup>1?'s':'')+' removed.']);
+ if(p.com)out.push(['n',p.com+' comment line'+(p.com>1?'s':'')+' (#) skipped.']);
+ p.errs.forEach(e=>out.push(['e',e]));
+ APP.lastMsg=out;showMsg(out);if(ok){restart(true);if(!quiet)toast('Using your prompts. New round started.')}renderPanel(true);return ok}
+function showMsg(out){$('#pMsg').innerHTML=out.map(x=>'<div class="'+x[0]+'">'+esc(x[1])+'</div>').join('')}
+/* deck: no repeats inside a round, Back = history */
+function pool(){if(S.src==='mine'&&MINE.length)return MINE.filter(isMain);return BUILT.filter(x=>isMain(x)&&(S.level==='all'||x.lv===S.level)&&(!G.topics||S.topics.indexOf(x.tp)>=0))}
+const D={items:[],order:[],pos:-1,max:-1,shown:[]};APP.D=D;
+function newDeck(){D.items=pool();D.order=shuffle(D.items.map((x,i)=>i));D.pos=-1;D.max=-1;D.shown=[];if(G.onDeck)G.onDeck();updUsed()}
+function draw(){if(D.pos<D.max){D.pos++;updUsed();return D.shown[D.pos]}if(!D.order.length){toast(G.topics?'Choose at least one topic in Prompts.':'No prompts available.');return null}if(D.max>=D.order.length-1){askReshuffle();return null}D.pos++;D.max=D.pos;const it=D.items[D.order[D.pos]];D.shown[D.pos]=G.compose?G.compose(it):it;updUsed();return D.shown[D.pos]}
+function back(){if(D.pos>0){D.pos--;updUsed();return D.shown[D.pos]}toast(D.pos<0?'Nothing to go back to yet.':'This is the first prompt of this round.');return null}
+function cur(){return D.pos>=0?D.shown[D.pos]:null}
+function askReshuffle(){if(G.stop)G.stop();if(TIMER)TIMER.pause();APP.reshuffleAsked=(APP.reshuffleAsked||0)+1;modal('<h2>All prompts used — reshuffle?</h2><p>You have used all '+D.order.length+' '+G.unit+' in this round. Reshuffle to start again. Scores are kept.</p>',[{l:'Not now'},{l:'Reshuffle',c:'pri',f:()=>{newDeck();G.next()}}])}
+function updUsed(){const u=$('#used'),t=$('#tot');if(u)u.textContent=Math.max(0,D.max+1);if(t)t.textContent=D.order.length}
+/* timer */
+let TIMER=null;
+function Timer(el,o){const C=2*Math.PI*42;const T={total:store.get('tsec',o.def),left:0,run:false,iv:null,last:0,elapsed:0,started:false};if(o.presets.indexOf(T.total)<0)T.total=o.def;T.left=T.total;
+ el.innerHTML='<div class="tmr'+(o.big?' big':'')+'">'+(o.label?'<div class="tlbl">'+o.label+'</div>':'')+'<div class="presets">'+o.presets.map(s=>'<button data-s="'+s+'" title="'+(s?s+' seconds':'Timer off')+'">'+(s===0?'Off':s>=120&&s%60===0?(s/60)+' min':s)+'</button>').join('')+'</div><div class="ring" title="Start / pause the timer (T)"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="42"/><circle class="prg" cx="50" cy="50" r="42" stroke-dasharray="'+C.toFixed(2)+'"/></svg><div class="dg"></div></div></div>';
+ const ring=$('.ring',el),prg=$('.prg',el),dg=$('.dg',el);
+ const fmtT=s=>{s=Math.ceil(s-0.001);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+ function drawT(){$$('.presets button',el).forEach(b=>b.classList.toggle('on',+b.dataset.s===T.total));ring.classList.toggle('off',!T.total);ring.classList.toggle('paused',T.started&&!T.run&&T.left>0);if(!T.total){dg.textContent='Off';prg.style.strokeDashoffset=C;return}const f=T.left/T.total;prg.style.strokeDashoffset=(C*(1-f)).toFixed(2);prg.style.stroke=T.left<=10?'var(--berry)':f<=.5?'var(--sun)':'var(--mint)';dg.textContent=fmtT(T.left)}
+ function tick(){const n=Date.now();const d=(n-T.last)/1000;T.last=n;T.left=Math.max(0,T.left-d);T.elapsed+=d;if(T.left<=0)T.finish();else drawT()}
+ T.set=s=>{T.pause();T.total=s;T.left=s;T.elapsed=0;T.started=false;store.set('tsec',s);drawT()};
+ T.start=()=>{if(!T.total||T.run)return;if(T.left<=0){T.left=T.total;T.elapsed=0}T.run=true;T.started=true;T.last=Date.now();clearInterval(T.iv);T.iv=setInterval(tick,100);drawT();if(o.onStart)o.onStart()};
+ T.pause=()=>{T.run=false;clearInterval(T.iv);T.iv=null;drawT()};
+ T.reset=()=>{T.pause();T.left=T.total;T.elapsed=0;T.started=false;drawT()};
+ T.toggle=()=>{if(T.run)T.pause();else T.start()};
+ T.finish=()=>{T.run=false;clearInterval(T.iv);T.iv=null;T.left=0;T.started=false;drawT();endFx();if(o.onEnd)o.onEnd()};
+ ring.onclick=()=>{if(G.timerKey)G.timerKey();else T.toggle()};
+ $('.presets',el).onclick=e=>{const b=e.target.closest('button');if(b){T.set(+b.dataset.s);if(o.onSet)o.onSet()}};
+ drawT();return T}
+function endFx(){SFX.end();flash()}
+/* teams: 2-6, rename, +1/-1, collapsible */
+const TCOL=['#FFC83D','#5BB8F5','#3DD39A','#B793F2','#E8457A','#FF8A3D'];
+const TM={n:Math.min(6,Math.max(2,store.get('tn',2))),names:store.get('tnames',null)||['Team 1','Team 2','Team 3','Team 4','Team 5','Team 6'],sc:[0,0,0,0,0,0],act:0,open:store.get('topen',!!G.teamsOpen)};
+function renderTeams(){const w=$('#teams');let h='<div class="tbar"><button id="tToggle" title="Show or hide the team scores">Teams '+(TM.open?'▾':'▸ (hidden)')+'</button>';if(TM.open)h+='<button id="tLess" title="Remove a team">− Team</button><button id="tMore" title="Add a team">+ Team</button>'+(G.teamHint?'<span class="tlbl">'+G.teamHint+'</span>':'');h+='</div>';
+ if(TM.open){h+='<div class="tgrid" style="grid-template-columns:repeat('+TM.n+',minmax(0,1fr))">';for(let i=0;i<TM.n;i++)h+='<div class="tcard'+(G.activeTeam&&i===TM.act?' act':'')+'" style="background:'+TCOL[i]+'" data-i="'+i+'"><input class="tname" data-i="'+i+'" value="'+esc(TM.names[i])+'" maxlength="18" aria-label="Team name"><div class="tsc" id="tsc'+i+'">'+TM.sc[i]+'</div><div class="tbtn"><button class="rnd" data-d="-1" data-i="'+i+'" title="Minus 1">−</button><button class="rnd" data-d="1" data-i="'+i+'" title="Plus 1">+</button></div></div>';h+='</div>'}
+ w.innerHTML=h}
+function addScore(i,d){TM.sc[i]+=d;const e=$('#tsc'+i);if(e)e.textContent=TM.sc[i];if(d>0)SFX.pop();else SFX.bad();if(G.onScore)G.onScore(i,d)}
+function setActive(i){TM.act=i;$$('.tcard').forEach(c=>c.classList.toggle('act',G.activeTeam&&+c.dataset.i===i));if(G.onActive)G.onActive(i)}
+function wireTeams(){const w=$('#teams');w.addEventListener('click',e=>{const b=e.target.closest('button');if(b){if(b.id==='tToggle'){TM.open=!TM.open;store.set('topen',TM.open);renderTeams();if(G.onTeams)G.onTeams();return}if(b.id==='tLess'||b.id==='tMore'){TM.n=Math.min(6,Math.max(2,TM.n+(b.id==='tMore'?1:-1)));if(TM.act>=TM.n)setActive(0);store.set('tn',TM.n);renderTeams();if(G.onTeams)G.onTeams();return}if(b.dataset.d){addScore(+b.dataset.i,+b.dataset.d);return}}const c=e.target.closest('.tcard');if(c&&G.activeTeam&&e.target.tagName!=='INPUT')setActive(+c.dataset.i)});w.addEventListener('input',e=>{if(e.target.classList.contains('tname')){TM.names[+e.target.dataset.i]=e.target.value;store.set('tnames',TM.names);if(G.onTeams)G.onTeams(true)}})}
+function tName(i){return (TM.names[i]||'').trim()||('Team '+(i+1))}
+/* prompts panel */
+function lists(){return store.get('lists',[])}
+function renderLists(){const L=lists();$('#pLists').innerHTML=L.length?L.map((x,i)=>'<div class="li"><input data-i="'+i+'" value="'+esc(x.name)+'" maxlength="40" aria-label="List name"><button data-a="load" data-i="'+i+'">Load</button><button data-a="ren" data-i="'+i+'">Rename</button><button data-a="del" data-i="'+i+'">Delete</button></div>').join(''):'<p class="note">No saved lists yet.</p>'}
+function renderPanel(keepText){$$('#pLevel button').forEach(b=>b.classList.toggle('on',b.dataset.l===S.level));$$('#pSrc button').forEach(b=>b.classList.toggle('on',b.dataset.s===S.src));if(G.topics)$('#pTopics').innerHTML=G.topics.map(t=>'<button data-t="'+esc(t)+'" class="'+(S.topics.indexOf(t)>=0?'on':'')+'">'+esc(t)+'</button>').join('');if(!keepText&&!$('#pText').value&&S.mine)$('#pText').value=S.mine;renderLists()}
+function buildPanel(){$('#pFmt').innerHTML=G.fmt;$('#pEx').textContent='Example:\n'+G.ex;if(G.topics)$('#pTopicsWrap').hidden=false;
+ $('#pClose').onclick=closePanel;
+ $('#pLevel').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.level=b.dataset.l;saveS();renderPanel(true);if(S.src==='builtin'){restart(true);toast('Level: '+LVN[S.level]+'. New round started.')}else toast('The level filter applies to the built-in prompts.')};
+ if(G.topics){$('#pTopics').onclick=e=>{const b=e.target.closest('button');if(!b)return;const t=b.dataset.t,i=S.topics.indexOf(t);if(i>=0)S.topics.splice(i,1);else S.topics.push(t);S.topics=G.topics.filter(x=>S.topics.indexOf(x)>=0);saveS();renderPanel(true);if(S.src==='builtin')restart(true)};$('#tAll').onclick=()=>{S.topics=G.topics.slice();saveS();renderPanel(true);if(S.src==='builtin')restart(true)};$('#tNone').onclick=()=>{S.topics=[];saveS();renderPanel(true);if(S.src==='builtin')restart(true)}}
+ $('#pSrc').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.s==='builtin'){S.src='builtin';saveS();restart(true);renderPanel(true);showMsg([['g','Using the built-in prompts ('+LVN[S.level]+').']])}else{const t=$('#pText').value;if(!t.trim()){showMsg([['e','Paste or import at least 3 '+G.unit+' first, then press Use my prompts.']]);return}S.listName=$('#pName').value.trim();applyMine(t)}};
+ $('#pUse').onclick=()=>{S.listName=$('#pName').value.trim();applyMine($('#pText').value)};
+ $('#pImp').onclick=()=>$('#pFile').click();
+ $('#pFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#pText').value=String(r.result).replace(/^﻿/,'');$('#pName').value=f.name.replace(/\.txt$/i,'').slice(0,40);showMsg([['g','Imported "'+f.name+'". Press Use my prompts to play with it.']])};r.readAsText(f,'utf-8');e.target.value=''};
+ $('#pExp').onclick=()=>{let t=$('#pText').value,name=$('#pName').value.trim()||'my-prompts';if(!t.trim()){t=BUILT.filter(x=>S.level==='all'||x.lv===S.level).map(x=>x.t).join('\n');name='built-in-'+LVN[S.level]}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download='eslspeak-'+G.id+'-'+name.replace(/[^\w\-]+/g,'-')+'.txt';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800);showMsg([['g','Exported '+a.download+' to your downloads folder.']])};
+ $('#pSave').onclick=()=>{const L=lists();const text=$('#pText').value;if(!text.trim()){showMsg([['e','Paste some prompts before saving a list.']]);return}const name=($('#pName').value.trim()||('My list '+(L.length+1))).slice(0,40);const i=L.findIndex(x=>x.name===name);if(i>=0)L[i].text=text;else{if(L.length>=20){showMsg([['e','You already have 20 saved lists. Delete one first.']]);return}L.push({name:name,text:text})}store.set('lists',L);$('#pName').value=name;renderLists();showMsg([['g','Saved "'+name+'" ('+L.length+' of 20 lists).']])};
+ $('#pLists').onclick=e=>{const b=e.target.closest('button');if(!b)return;const L=lists(),i=+b.dataset.i,x=L[i];if(!x)return;
+  if(b.dataset.a==='load'){$('#pText').value=x.text;$('#pName').value=x.name;S.listName=x.name;applyMine(x.text)}
+  else if(b.dataset.a==='ren'){const v=$('#pLists input[data-i="'+i+'"]').value.trim().slice(0,40);if(!v){showMsg([['e','Type a new name in the box first.']]);return}if(S.listName===x.name){S.listName=v;saveS();updCtx()}x.name=v;store.set('lists',L);renderLists();showMsg([['g','Renamed to "'+v+'".']])}
+  else if(b.dataset.a==='del'){if(b.dataset.sure){L.splice(i,1);store.set('lists',L);renderLists();showMsg([['n','Deleted "'+x.name+'".']])}else{b.dataset.sure='1';b.textContent='Sure?';b.classList.add('bad');setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent='Delete';b.classList.remove('bad')}},3000)}}}}
+function buildHelp(){const keys=[['Space',G.spaceLabel]].concat([['T',G.tLabel||'Start / pause the timer']],[['F','Full screen on / off'],['Esc','Close the Prompts panel, this help or a message']],G.keyHelp||[]);$('#hBody').innerHTML='<h2>'+esc(G.name)+': how to play</h2>'+G.help+'<h3>Keyboard shortcuts</h3><table>'+keys.map(k=>'<tr><td style="width:9rem"><span class="kcap">'+k[0]+'</span></td><td>'+k[1]+'</td></tr>').join('')+'</table><h3>Your own prompts</h3><p>'+G.fmt+'</p><p>Example: <code>'+esc(G.ex)+'</code></p><p>The built-in prompts are in English. Your own prompts can be in any language. Saved lists stay in this browser on this computer, and each game keeps its own lists.</p>'}
+function updCtx(){const c=$('#ctx');if(c)c.textContent='· '+(S.src==='mine'?'My prompts'+(S.listName?': '+S.listName:''):'Built-in prompts · '+LVN[S.level])+(G.ctx?G.ctx():'');if(G.onCtx)G.onCtx()}
+function restart(keepScores){if(G.stop)G.stop();newDeck();if(!keepScores){TM.sc=[0,0,0,0,0,0];TM.act=0}renderTeams();if(TIMER)TIMER.reset();G.reset(keepScores);updCtx()}
+function toggleFS(){APP.fs=(APP.fs||0)+1;const d=document,el=d.documentElement;try{let r;if(!(d.fullscreenElement||d.webkitFullscreenElement)){const f=el.requestFullscreen||el.webkitRequestFullscreen;if(f)r=f.call(el)}else{const f=d.exitFullscreen||d.webkitExitFullscreen;if(f)r=f.call(d)}if(r&&r.catch)r.catch(()=>{})}catch(x){}}
+function setSoundIcon(){$('#bSound').innerHTML=soundOn?ICON.sOn:ICON.sOff;$('#bSound').title=soundOn?'Sound is on (click to mute)':'Sound is off (click to turn on)'}
+document.addEventListener('keydown',e=>{const tg=e.target;const typing=tg&&(/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName)||tg.isContentEditable);
+ if(e.key==='Escape'||e.key==='Esc'){APP.lastKey='esc';if(anyOpen()){e.preventDefault();closeAll()}return}
+ if(typing||e.ctrlKey||e.metaKey||e.altKey)return;
+ const k=(e.key||'').toLowerCase();
+ if(e.key===' '||e.code==='Space'){e.preventDefault();if(anyOpen()||e.repeat)return;APP.lastKey='space';G.next();return}
+ if(anyOpen())return;
+ if(k==='t'){APP.lastKey='t';if(G.timerKey)G.timerKey();else if(TIMER)TIMER.toggle();return}
+ if(k==='f'){APP.lastKey='f';toggleFS();return}
+ if(e.key==='?'){openHelp();return}
+ if(G.keys&&G.keys[k]){e.preventDefault();APP.lastKey=k;G.keys[k]()}});
+document.addEventListener('keyup',e=>{if((e.key===' '||e.code==='Space')&&e.target&&e.target.tagName==='BUTTON')e.preventDefault()},true);
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(b&&e.detail>0)b.blur()});
+function boot(){$('#play').innerHTML=G.html();if(G.timer)TIMER=Timer($('#timer'),G.timer);APP.TIMER=TIMER;
+ if(S.src==='mine'){const p=parseList(S.mine);if(p.main.length>=3)MINE=capItems(p.items);else S.src='builtin'}
+ buildPanel();buildHelp();renderTeams();wireTeams();
+ $('#bPrompts').onclick=openPanel;$('#bRestart').onclick=()=>{restart(false);toast('New game: scores, timer and used prompts cleared.')};$('#bSound').onclick=()=>{soundOn=!soundOn;try{localStorage.setItem('eslspeak_sound',soundOn?'on':'off')}catch(e){}setSoundIcon();if(soundOn)SFX.pop()};$('#bFull').onclick=toggleFS;$('#bHelp').onclick=openHelp;$('#scrim').onclick=closePanel;$('#hClose').onclick=()=>$('#help').classList.remove('open');setSoundIcon();
+ if(G.init)G.init();newDeck();G.reset();updCtx()}
+Object.assign(APP,{S:S,TM:TM,parseList:parseList,applyMine:applyMine,draw:draw,back:back,cur:cur,restart:restart,newDeck:newDeck,pool:pool,addScore:addScore,setActive:setActive,store:store,fit:fit,lists:lists,openPanel:openPanel,closeAll:closeAll,anyOpen:anyOpen});
+boot();
+</script>
+</body></html>

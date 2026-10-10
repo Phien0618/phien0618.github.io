@@ -1,0 +1,21 @@
+# Body Parts
+head = the top part of your body
+hair = it grows on your head
+face = the front of your head
+eye = you see with it
+ear = you hear with it
+nose = you smell with it
+mouth = you eat and talk with it
+teeth = white and hard; you bite with them
+tongue = it is in your mouth; you taste with it
+neck = it is between your head and your body
+shoulder = it is at the top of your arm
+arm = it is between your shoulder and your hand
+elbow = the middle part of your arm that bends
+hand = it has five fingers
+finger = there are five on each hand
+leg = you walk with it
+knee = the middle part of your leg that bends
+foot = it is at the end of your leg
+toe = there are five on each foot
+tummy = the front part of your body under your chest

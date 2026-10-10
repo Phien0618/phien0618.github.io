@@ -1,0 +1,21 @@
+# Food
+apple = a round red or green fruit
+banana = a long yellow fruit
+orange = a round orange fruit with a thick skin
+grapes = small round fruits that grow in bunches
+strawberry = a small red fruit with tiny seeds outside
+watermelon = a big green fruit that is red inside
+carrot = a long orange vegetable
+tomato = a soft red fruit we use in salads
+corn = a yellow vegetable with many small seeds
+bread = food made from flour that we use for sandwiches
+cheese = a yellow food made from milk
+egg = food that comes from a chicken
+milk = a white drink that comes from cows
+juice = a drink made from fruit
+rice = small white grains we cook and eat in a bowl
+noodles = long thin food we often eat with soup
+pizza = flat bread with cheese and tomato on top
+cake = a sweet food for birthdays
+cookie = a small sweet baked snack
+candy = a small very sweet food

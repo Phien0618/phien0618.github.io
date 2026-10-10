@@ -1,0 +1,21 @@
+# Transport
+bus = a big vehicle that carries many people
+car = a vehicle with four wheels for a family
+taxi = a car you pay to ride in
+train = it runs on tracks and has many carriages
+plane = it flies in the sky
+boat = a small vehicle that moves on water
+ship = a very big boat
+bike = it has two wheels and pedals
+motorbike = a bike with an engine
+truck = a big vehicle that carries things
+helicopter = it flies and has a big spinning blade on top
+rocket = it flies into space
+tractor = a farm vehicle with big wheels
+scooter = you stand on it and push with one foot
+van = a vehicle bigger than a car for carrying things
+ambulance = it takes sick people to the hospital
+submarine = a boat that goes under the water
+balloon = a big bag of hot air that flies with a basket
+tram = a train that runs on the street in a city
+skateboard = a board with four small wheels

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Invitation Maker · The Last Countdown · Clue &amp; Candle Games</title>
+<style>
+:root{--mid:#14213D;--gold:#C9A227;--gd:#8A6D12;--cream:#FBF7EF;--cream2:#F1EBDD;--ink:#1A1A1A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif;font-size:17px}
+header{background:var(--mid);color:var(--cream);padding:22px 20px;text-align:center}
+header small{display:block;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:13px}
+header h1{margin:6px 0 0;font-size:30px}
+main{max-width:980px;margin:0 auto;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:760px){main{grid-template-columns:1fr}}
+label{display:block;font-family:Arial,Helvetica,sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gd);margin:12px 0 4px;font-weight:bold}
+input,select{width:100%;padding:10px;font-size:16px;border:1px solid var(--mid);border-radius:4px;background:#fff;font-family:inherit}
+.btns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+button{background:var(--mid);color:var(--cream);border:0;border-radius:4px;padding:11px 18px;font-size:15px;cursor:pointer;font-family:Arial,Helvetica,sans-serif;letter-spacing:.06em}
+button.alt{background:var(--gold);color:var(--mid)}
+#out{width:100%;min-height:250px;padding:12px;font-size:15px;line-height:1.5;border:1px solid var(--mid);border-radius:4px;font-family:inherit;background:#fff}
+.card{border:2px solid var(--mid);border-radius:6px;padding:6px;background:var(--cream);margin-top:14px}
+.card .in{border:1px solid var(--gold);border-radius:4px;padding:18px;text-align:center}
+.card .band{background:var(--mid);color:var(--cream);font-family:Arial,Helvetica,sans-serif;letter-spacing:.14em;font-size:13px;padding:8px;border-radius:3px;text-transform:uppercase}
+.card h2{margin:12px 0 2px;font-size:24px;color:var(--mid)}
+.card h3{margin:10px 0 0;font-size:26px;color:var(--mid)}
+.card .role{font-style:italic;color:var(--gd)}
+.card p{margin:8px 0;line-height:1.45}
+.card .meta{border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:8px 0;margin-top:10px;font-family:Arial,Helvetica,sans-serif;font-size:14px;letter-spacing:.04em}
+.note{font-size:14px;color:#4A4A4A;font-style:italic}
+#msg{font-family:Arial,Helvetica,sans-serif;font-size:14px;color:var(--gd);min-height:18px;margin-top:6px}
+footer{text-align:center;font-size:13px;color:#4A4A4A;padding:16px;font-family:Arial,Helvetica,sans-serif}
+@media print{header,form,footer,.editor>label,#out,.btns,#msg,.note{display:none!important}.editor,#card{display:block!important}body{background:#fff}main{display:block;padding:0;max-width:none}.card{margin:0.6in auto;max-width:6.5in;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<header><small>Clue &amp; Candle Games · The Last Countdown</small><h1>Invitation Maker</h1></header>
+<main>
+<form id="f" onsubmit="return false">
+<label for="role">Character</label><select id="role"></select>
+<label for="guest">Guest name</label><input id="guest" placeholder="e.g. Sam">
+<label for="date">Date</label><input id="date" value="December 31">
+<label for="time">Start time</label><input id="time" placeholder="e.g. 9:00 pm">
+<label for="place">Address</label><input id="place" placeholder="e.g. 12 Willow Lane">
+<label for="host">Host name</label><input id="host" placeholder="e.g. Alex">
+<label for="rsvp">How to RSVP</label><input id="rsvp" placeholder="e.g. text 555-0100 by Dec 20">
+<p class="note">Works offline. Nothing you type leaves this page.</p>
+</form>
+<section class="editor">
+<label for="out">Invitation text</label>
+<textarea id="out" readonly></textarea>
+<div class="btns"><button type="button" id="copy">Copy text</button><button type="button" class="alt" id="print">Print card</button></div>
+<div id="msg"></div>
+<div class="card" id="card"></div>
+</section>
+</main>
+<footer>The Last Countdown · Clue &amp; Candle Games · for your own party use</footer>
+<script>
+var R=[
+["Avery Vale","Apprentice Clockmaker","A waistcoat or work apron, rolled-up sleeves, and a jeweller's loupe or magnifier on a cord."],
+["Parker Brightwell","Mayor of Larkhaven","A sash or ribbon across the chest, a smart suit or dress, and an oversized ceremonial key."],
+["Reese Calloway","Rival Watchmaker from the City","A sleek black outfit, a wristwatch worn over a glove, and slicked-back hair."],
+["Emerson Quill","Reporter, The Larkhaven Ledger","A trench coat, a press card tucked into the hat band, a notebook and a pencil."],
+["Harper Lune","The Clockmaker's Long-Lost Relative","A travel coat, a vintage suitcase or hatbox, and a locket on a chain."],
+["Devon Ashby","Gala Party Planner","A sparkly top, a headset or clipboard, and a fistful of party poppers."],
+["Kit Sterling","Antique Dealer","Tweed, a pocket square, and a monocle or magnifying glass."],
+["Sage Whitfield","Gala Pianist & Bandleader","A bow tie or velvet, a touch of sequins, and sheet music under one arm."],
+["Rory Penhallow","Keeper of the Clock Tower","A flat cap, a scarf, a big ring of keys and a lantern."],
+["Blair Okafor","Town Historian","A cardigan, reading glasses, and a rolled-up old map."],
+["Dakota Fenwick","Fireworks Master","A utility vest, goggles pushed up on the forehead, and work gloves."],
+["Marley Ashgrove","Society Photographer","A beret, a camera on a strap, and bold lipstick or a bow tie."],
+["Mystery Guest","Character to be revealed at the party","New Year's Eve sparkle, with a touch of old clock-shop glamour."]];
+var $=function(i){return document.getElementById(i)};
+R.forEach(function(r,i){var o=document.createElement('option');o.value=i;o.textContent=r[0]+' · '+r[1];$('role').appendChild(o)});
+function v(id){var s=$(id).value.trim();return s?s:'[ ]'}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function build(){var r=R[+$('role').value]||R[12];var g=v('guest'),d=v('date'),t=v('time'),p=v('place'),h=v('host'),rs=v('rsvp');
+$('out').value='Dear '+g+',\n\nYou are invited to The Pendleworth Countdown Gala, a cozy New Year\'s Eve murder mystery that ends just before midnight.\n\nWhen: '+d+' at '+t+'\nWhere: '+p+'\n\nYour character: '+r[0]+', '+r[1]+'.\nCome dressed as: '+r[2]+'\n\nPlease keep your character a secret until the party. No acting experience needed, and nobody has to drink anything.\n\nRSVP: '+rs+'\n\nSee you at the countdown!\n'+h;
+$('card').innerHTML='<div class="in"><div class="band">You are invited · New Year\'s Eve</div><h2>The Pendleworth Countdown Gala</h2><p>a cozy murder mystery that ends just before midnight</p><p>Dear <b>'+esc(g)+'</b>, you will be playing</p><h3>'+esc(r[0])+'</h3><div class="role">'+esc(r[1])+'</div><p><b>Come dressed as:</b> '+esc(r[2])+'</p><div class="meta">'+esc(d)+' · '+esc(t)+'<br>'+esc(p)+'</div><p>RSVP: '+esc(rs)+'<br>Hosted by '+esc(h)+'</p><p style="font-size:13px;color:#4A4A4A">Clue &amp; Candle Games · keep your character a secret until the party</p></div>'}
+['role','guest','date','time','place','host','rsvp'].forEach(function(id){$(id).addEventListener('input',build);$(id).addEventListener('change',build)});
+$('copy').addEventListener('click',function(){var ta=$('out');ta.removeAttribute('readonly');ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(function(){$('msg').textContent='Copied! Paste it into a text, email or group chat.'},function(){$('msg').textContent=ok?'Copied!':'Select the text and copy it manually.'})}else{$('msg').textContent=ok?'Copied!':'Select the text and copy it manually.'}ta.setAttribute('readonly','')});
+$('print').addEventListener('click',function(){window.print()});
+build();
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+# Classroom Objects
+pencil = you write and draw with it, and you can erase it
+pen = you write with it in ink
+eraser = it removes pencil marks
+ruler = you measure and draw straight lines with it
+book = you read it; it has many pages
+notebook = you write your notes in it
+bag = you carry your books to school in it
+desk = a table where a student works
+chair = you sit on it
+scissors = you cut paper with them
+glue = it sticks paper together
+crayon = a colored wax stick for drawing
+clock = it tells you the time
+board = the teacher writes on it at the front of the class
+computer = a machine with a screen and a keyboard
+door = you open it to go into the room
+window = glass in the wall that lets light in
+paper = thin white sheets you write on
+marker = a thick pen with bright colors
+globe = a round map of the world

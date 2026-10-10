@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shorts Script Builder Lite (free) · Faceless Creator Kit</title>
+<style>
+:root{--ink:#0E1013;--panel:#171A20;--panel2:#1F232B;--line:#2C313B;--text:#F2F4F7;--muted:#9AA3B2;--lime:#C8F04A;--limeink:#141A05;--cyan:#5CD6E8;--violet:#A98BFF;--ok:#3DDC84;--over:#FF5A5F;
+--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--text);font-family:var(--sans);font-size:15px;line-height:22px}
+button,select,input{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+.hd{border-bottom:1px solid var(--line)}
+.hd .in{max-width:1240px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 24px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.glyph{flex:none;width:36px;height:36px;border-radius:9px;background:var(--lime);color:var(--limeink);font-weight:800;display:grid;place-items:center;font-family:var(--mono)}
+.brand b{font-size:18px;display:block}.brand small{color:var(--muted);font-size:12px;display:block;line-height:16px}
+.pill{flex:none;border:1px solid #3a4210;color:var(--lime);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+main{max-width:1240px;margin:0 auto;padding:20px 24px 28px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.lb{display:block;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:14px 0 6px}
+.lb:first-child{margin-top:0}
+.selw{position:relative}.selw:after{content:"\25BE";position:absolute;right:12px;top:10px;color:var(--muted);pointer-events:none}
+select,input{width:100%;min-width:0;height:44px;padding:0 12px;background:var(--panel2);border:1px solid var(--line);border-radius:10px}
+select{appearance:none;-webkit-appearance:none}
+.fixed{height:44px;display:flex;align-items:center;padding:0 12px;border:1px solid var(--lime);color:var(--lime);border-radius:10px;font-weight:600}
+.btn{min-height:44px;border-radius:10px;padding:0 18px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:transparent;width:100%;margin-top:8px}
+.btn.primary{background:var(--lime);border-color:var(--lime);color:var(--limeink);margin-top:16px}
+.helper{font-size:13px;line-height:18px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;align-items:start}
+.hooks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hook{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;min-width:0;overflow-wrap:anywhere}
+.hook.on{border:2px solid var(--lime);padding:11px 13px}
+.hook small{display:block;color:var(--muted);font-size:11px;letter-spacing:.06em;font-weight:700;margin-bottom:4px}
+u{text-decoration:none;border-bottom:1.5px dashed var(--lime);color:#E6F7B0}
+.h2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;margin:16px 0 8px;font-size:13px;color:var(--muted)}
+.h2 b{letter-spacing:.06em;text-transform:uppercase}
+.total{font-weight:700;color:var(--ok)}.total.over{color:var(--over)}
+.seg{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px 12px 18px;margin-bottom:8px;position:relative}
+.seg:before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:3px;background:var(--c)}
+.top{display:flex;gap:12px;font-size:13px;flex-wrap:wrap;align-items:center}
+.top .t{color:var(--cyan);font-weight:600}.top .n{font-weight:700;font-size:12px;letter-spacing:.08em}
+.top .r{margin-left:auto;color:var(--lime);font-size:12px;border:1px solid #3a4210;padding:1px 9px;border-radius:999px}
+.vo{margin:6px 0;font-size:16px;line-height:23px;overflow-wrap:anywhere}
+.meta{font-size:13px;color:var(--muted)}.meta em{font-style:normal;color:var(--cyan);font-weight:700;font-size:12px;margin-right:5px}
+.full{margin-top:28px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.y{color:var(--lime);font-weight:700}td.no{color:var(--muted)}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:10px;background:var(--lime);color:var(--limeink);font-weight:700;text-decoration:none;margin-top:16px}
+footer{border-top:1px solid var(--line);padding:14px 24px;text-align:center;font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+.toast{position:fixed;left:0;right:0;margin:0 auto;width:max-content;max-width:90vw;bottom:24px;background:var(--lime);color:var(--limeink);font-weight:700;padding:10px 18px;border-radius:999px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){.hd .in{padding:0 16px}.brand small{display:none}.brand b{font-size:16px}.pill{font-size:12px;padding:5px 10px}main{padding:14px 16px 24px}.hooks{grid-template-columns:minmax(0,1fr)}th,td{padding:9px 6px;font-size:13px}}
+</style>
+</head>
+<body>
+<header class="hd"><div class="in">
+ <div class="brand"><div class="glyph">//</div><div><b>Shorts Script Builder Lite</b><small>Faceless Creator Kit · free version · works offline</small></div></div>
+ <span class="pill num">Fixed · 150 wpm</span>
+</div></header>
+<main>
+ <div class="grid">
+  <div class="panel">
+   <label class="lb" for="niche">Niche (2 in Lite)</label><div class="selw"><select id="niche"><option value="reddit">Reddit-Style Stories</option><option value="history">History Facts</option></select></div>
+   <label class="lb" for="hookType">Hook type (3 in Lite)</label><div class="selw"><select id="hookType"><option value="question">Question</option><option value="myth">Myth vs Fact</option><option value="cold">Cold Open Story</option></select></div>
+   <label class="lb">Duration</label><div class="fixed num">30 seconds</div>
+   <label class="lb" for="topic">Topic</label><input type="text" id="topic" placeholder="e.g. Roman roads" autocomplete="off">
+   <button class="btn primary" id="build">Build script</button>
+   <button class="btn" id="copy">Copy as TXT</button>
+   <p class="helper" style="margin-top:12px">Timer is read-only at 150 words per minute: seconds = words &divide; 150 &times; 60, plus 0.4 s per //. Your topic replaces [TOPIC].</p>
+  </div>
+  <div id="out"></div>
+ </div>
+
+ <section class="full panel" id="compare">
+  <h2 style="font-size:20px;margin-bottom:6px">Lite vs Full version</h2>
+  <p class="helper" style="margin-bottom:12px">The full version is one offline HTML file you keep. No AI, no sign-up, no usage limits.</p>
+  <table>
+   <tr><th>Feature</th><th>Lite (this page)</th><th>Full version</th></tr>
+   <tr><td>Niches</td><td class="no">2 (Reddit-Style Stories, History Facts)</td><td class="y">8 (adds Science, Space, Psychology, Money Basics, Motivation, AI Tool Tips)</td></tr>
+   <tr><td>Hook types</td><td class="no">3 (Question, Myth vs Fact, Cold Open Story)</td><td class="y">8 (adds Countdown List, POV, Mistake Warning, Nobody Talks About, Before/After)</td></tr>
+   <tr><td>Hook templates</td><td class="no">12</td><td class="y">128 (16 per niche), each with a filled-in example or marked ready as written</td></tr>
+   <tr><td>Worked example scripts</td><td class="no">—</td><td class="y">32 fully written scripts: every niche at 15, 30, 45 and 60 s (also as a 17-page printable PDF)</td></tr>
+   <tr><td>Your own hooks</td><td class="no">—</td><td class="y">Paste or import a CSV of your hooks; they show up next to the built-in ones. Export all hooks as CSV</td></tr>
+   <tr><td>Batch drafts</td><td class="no">—</td><td class="y">Paste up to 30 topics, get one timed Draft skeleton per topic in your Library</td></tr>
+   <tr><td>Niche voice guide</td><td class="no">—</td><td class="y">A tone note per niche (suspense, calm authority, awe and scale…)</td></tr>
+   <tr><td>Durations</td><td class="no">30 s only</td><td class="y">15 / 30 / 45 / 60 s (32 timed structures)</td></tr>
+   <tr><td>CTA templates and loop endings</td><td class="no">Sample CTA only</td><td class="y">16 CTAs + 8 loop endings</td></tr>
+   <tr><td>Rewrite each segment with a live timer</td><td class="no">—</td><td class="y">Yes, Time &amp; Edit tab, red when a segment runs long</td></tr>
+   <tr><td>Words per minute</td><td class="no">Fixed 150</td><td class="y">Presets 130 / 150 / 170 / 180 or custom 100–220</td></tr>
+   <tr><td>Export</td><td class="no">Copy as TXT</td><td class="y">Copy TXT, Download .txt, .srt captions, CSV</td></tr>
+   <tr><td>SRT captions (1–5 words or by sentence)</td><td class="no">—</td><td class="y">Yes</td></tr>
+   <tr><td>Script library (Draft / Recorded / Posted, filters, JSON backup)</td><td class="no">—</td><td class="y">Yes</td></tr>
+   <tr><td>Hook Library Printable PDF (11 pages, incl. 8 hook-writing formulas)</td><td class="no">—</td><td class="y">Yes</td></tr>
+   <tr><td>Where it runs</td><td class="y">Any browser, phone included (web page)</td><td class="y">Downloaded HTML file, offline, made for desktop/laptop browsers</td></tr>
+   <tr><td>Quick-Start PDF (Letter + A4)</td><td class="no">—</td><td class="y">Yes</td></tr>
+  </table>
+  <a class="cta" href="../products/faceless-shorts-script-timer/index.html">Get the full version ($12)</a>
+ </section>
+</main>
+<footer>No promise of views or income. Templates help you write original scripts. · <a href="../products/faceless-shorts-script-timer/index.html">Full version</a></footer>
+<div class="toast" id="toast"></div>
+<script>
+const HOOKS = {
+ reddit: {
+  question: ["Would you tell your [RELATIVE] the truth after [EVENT]?", "Am I wrong for refusing to [ACTION] at [EVENT]?"],
+  myth: ["Everyone said I overreacted. Here's what they didn't know.", "Everyone thinks the quiet [ROLE] is harmless. Not this one."],
+  cold: ["The note on my car just said: [SHORT LINE].", "At [TIME] my phone lit up with a text from [NAME]."]
+ },
+ history: {
+  question: ["Why did [EMPIRE] build [STRUCTURE] there of all places?", "What did people in [ERA] actually eat for breakfast?"],
+  myth: ["You were taught [TOPIC] started with one battle. It didn't.", "Myth: [TOPIC] happened overnight. Fact: it took generations."],
+  cold: ["The messenger arrived at dawn with one sentence: [LINE].", "In [YEAR], a single letter changed [TOPIC] for good."]
+ }
+};
+const STRUCTURES = {
+ reddit: [
+  [0,4,"Hook","","Bold question text over blurred party lights"],
+  [4,8,"Setup","Some context: [NAME] and I have been close for years.","Two mugs on a kitchen counter, slow drift"],
+  [8,15,"Point 1","Everything was normal until [FIRST STRANGE THING]. I brushed it off.","Phone on a desk lights up, rack focus"],
+  [15,22,"Point 2","Then [SECOND THING] happened, and I couldn't ignore it anymore.","Quick cuts: door, clock, unread messages"],
+  [22,26,"Payoff","So I said it: // [WHAT YOU SAID].","Black screen, single line of white text"],
+  [26,30,"CTA","Comment what you would have done.","Comment bubble icon animates in"]
+ ],
+ history: [
+  [0,4,"Hook","","Countdown number card over a parchment texture"],
+  [4,8,"Setup","Everyone knows the headline. Here's what sits underneath it.","Old newspaper-style headline, camera tilts down"],
+  [8,15,"Point 1","First: [DETAIL ONE]. It sounds small, but [WHY IT MATTERED].","Museum-style object close-up, side light"],
+  [15,22,"Point 2","Next: [DETAIL TWO]. Picture [EVERYDAY SCENE] and it suddenly makes sense.","Engraving or illustration, slow pan"],
+  [22,26,"Payoff","And the twist: [DETAIL THREE]. // That one still matters.","Hard cut to a modern-day equivalent object"],
+  [26,30,"CTA","Which detail surprised you most? Tell me below.","Recap list, tick marks appear"]
+ ]
+};
+const COLORS = {"Hook":"#C8F04A","Setup":"#5CD6E8","Point 1":"#A98BFF","Point 2":"#8E70F0","Payoff":"#FFB547","CTA":"#FF8A4C"};
+const WPM = 150;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const tokens = t => String(t).replace(/\/\//g, " // ").split(/\s+/).filter(Boolean);
+const words = t => tokens(t).filter(x => x !== "//").length;
+const secs = t => Math.round((words(t) / WPM * 60 + tokens(t).filter(x => x === "//").length * 0.4) * 10) / 10;
+let hookIdx = 0, segs = [];
+function fill(t){ const tp = $("#topic").value.trim(); return tp ? t.replace(/\[TOPIC\]/g, tp) : t; }
+function hl(t){ return esc(fill(t)).replace(/\[[^\]]+\]/g, m => "<u>" + m + "</u>"); }
+function build(){
+ const n = $("#niche").value, h = $("#hookType").value, hooks = HOOKS[n][h];
+ segs = STRUCTURES[n].map(r => ({s:r[0], e:r[1], n:r[2], vo:fill(r[2] === "Hook" ? hooks[hookIdx] : r[3]), v:r[4]}));
+ const tot = Math.round(segs.reduce((a, g) => a + secs(g.vo), 0) * 10) / 10;
+ let o = "<div class=\"hooks\">" + hooks.map((t, i) => "<button class=\"hook" + (i === hookIdx ? " on" : "") + "\" data-i=\"" + i + "\"><small>HOOK " + "AB"[i] + (i === hookIdx ? " · SELECTED" : "") + "</small>" + hl(t) + "</button>").join("") + "</div>";
+ o += "<div class=\"h2\"><b>Segments · 30 s · " + segs.length + " parts</b><span class=\"num\">estimated <span class=\"total" + (tot > 30 ? " over" : "") + "\">" + tot.toFixed(1) + " s / 30 s</span> @ 150 wpm</span></div>";
+ o += segs.map(g => "<div class=\"seg\" style=\"--c:" + COLORS[g.n] + "\"><div class=\"top num\"><span class=\"t\">" + g.s.toFixed(1) + "–" + g.e.toFixed(1) + " s</span><span class=\"n\">" + g.n.toUpperCase() + "</span><span class=\"r\">≈ " + secs(g.vo).toFixed(1) + " s · " + words(g.vo) + " words</span></div><div class=\"vo\">" + hl(g.vo) + "</div><div class=\"meta\"><em>VISUAL</em>" + esc(g.v) + "</div></div>").join("");
+ $("#out").innerHTML = o;
+ document.querySelectorAll("#out .hook").forEach(b => b.onclick = () => { hookIdx = +b.dataset.i; build(); });
+}
+function toast(m){ const t = $("#toast"); t.textContent = m; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800); }
+function copy(){
+ const txt = segs.map(g => "[" + g.s.toFixed(1) + "–" + g.e.toFixed(1) + "s] " + g.n.toUpperCase() + ": " + g.vo).join("\n") + "\n";
+ const fb = () => { const ta = document.createElement("textarea"); ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); toast("Script copied as TXT"); } catch(e) { toast("Copy blocked by the browser"); } ta.remove(); };
+ if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(() => toast("Script copied as TXT"), fb); else fb();
+}
+$("#niche").onchange = () => { hookIdx = 0; build(); };
+$("#hookType").onchange = () => { hookIdx = 0; build(); };
+$("#build").onclick = build;
+$("#topic").onkeydown = e => { if (e.key === "Enter") build(); };
+$("#copy").onclick = copy;
+build();
+</script>
+</body>
+</html>

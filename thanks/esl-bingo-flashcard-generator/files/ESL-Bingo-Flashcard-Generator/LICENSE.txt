@@ -1,0 +1,22 @@
+ESL Bingo & Flashcard Generator — Single Teacher License
+
+Thank you for buying this product.
+
+WHAT YOU MAY DO
+- One teacher (the buyer) may use the generator and the ready-to-print PDFs in all of their own classes, lessons and tutoring sessions.
+- You may copy the files onto every computer, laptop and USB stick that you use for your own teaching.
+- You may print as many bingo cards, calling cards and flashcards as you need, and give the printed cards to your own students.
+- You may edit the word lists and make as many of your own lists and projects as you like.
+
+WHAT YOU MAY NOT DO
+- Do not resell, sublicense or give away the files, in full or in part. Do not sell the printed cards.
+- Do not upload the files to a public website, shared drive, learning platform or file-sharing service where other people can download them.
+- Do not share the files with other teachers. Each teacher needs their own copy. (School and multi-teacher licenses are not available yet.)
+
+PRIVACY
+The generator runs entirely in your web browser. It does not connect to the internet, does not upload anything, does not collect data and does not use cookies. Your word list text and settings are stored only in your browser on your computer (localStorage, keys starting with "eslprint_"). Pictures you add from your computer are only saved when you click "Save project .json".
+
+NO WARRANTY
+The files are provided "as is". You may use them for as long as you like; there is no subscription.
+
+Copyright © 2026 ESL Bingo & Flashcard Generator. All rights reserved. All pictures and layouts are original.
