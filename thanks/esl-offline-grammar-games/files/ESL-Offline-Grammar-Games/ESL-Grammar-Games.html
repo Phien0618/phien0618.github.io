@@ -1,0 +1,1568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESL Grammar Games Offline</title>
+<style>
+:root{--board:#163A3A;--board2:#1F4B4A;--btn2:#2B5C5A;--chalk:#FFFDF6;--paper:#FFF6E5;--ink:#1E2030;--sun:#FFC83D;--sky:#5BB8F5;--mint:#3DD39A;--grape:#8E5BE8;--lilac:#B596F2;--berry:#E8457A;--orange:#FF8A3D;--wrong:#C8102E;--wtint:#FCE3E8;--right:#0B7A53;--used:#2C5452;--line:#E6D7B8;
+--fd:"Fredoka",ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito","Segoe UI",system-ui,sans-serif,"PingFang SC","Hiragino Sans","Hiragino Kaku Gothic ProN","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC";
+--fb:"Nunito",ui-rounded,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif,"PingFang SC","Hiragino Sans","Hiragino Kaku Gothic ProN","Microsoft YaHei","Malgun Gothic","Noto Sans CJK SC"}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#0E2626}
+body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:var(--paper)}
+.scr{position:absolute;left:0;top:0;width:1920px;height:1080px;display:none}
+.scr.on{display:block}
+.btn{min-height:64px;min-width:64px;border-radius:18px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:900;font-size:24px;padding:0 22px;box-shadow:0 6px 0 rgba(0,0,0,.28);background:var(--btn2);color:var(--chalk);white-space:nowrap;text-decoration:none}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.28)}
+.btn svg{width:30px;height:30px;flex:none}
+.btn.sun,.btn.pri{background:var(--sun);color:var(--ink)}
+.btn.sec{background:#E7E0CF;color:var(--ink)}
+.btn.pap{background:#fff;color:var(--ink);border:2px solid var(--ink);box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.btn[disabled]{opacity:.55;cursor:default;transform:none}
+.big{min-height:76px;border-radius:20px;padding:0 30px;font-size:30px}
+.k{display:inline-block;border:2px solid currentColor;border-bottom-width:4px;border-radius:8px;padding:0 8px;font-size:24px;line-height:1.25;opacity:.8;font-weight:900}
+/* start */
+#start{background:var(--paper)}
+.head{background:var(--board);color:var(--chalk);height:178px;padding:26px 48px 0}
+.head .t{display:flex;align-items:center;gap:22px}
+.head h1{font-family:var(--fd);font-weight:700;font-size:56px;line-height:1;white-space:nowrap}
+.head h1 span{color:var(--sun)}
+.off{display:flex;align-items:center;gap:10px;background:var(--board2);border:2px solid rgba(255,253,246,.25);border-radius:999px;padding:8px 18px;font-weight:900;font-size:22px;white-space:nowrap}
+.demo{background:var(--berry);color:#fff;border-radius:999px;padding:8px 18px;font-weight:900;font-size:22px}
+.tbar{margin-left:auto;display:flex;gap:14px}
+.steps{display:flex;gap:40px;margin-top:22px;font-weight:800;font-size:25px}
+.steps span{display:flex;align-items:center;gap:12px}
+.steps b{width:42px;height:42px;border-radius:50%;background:var(--sun);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:26px}
+.main{display:grid;grid-template-columns:930px 1fr;gap:34px;padding:24px 48px 0}
+.panel{background:#fff;border:2px solid var(--line);border-radius:28px;padding:18px 24px;box-shadow:0 6px 0 #EADBB9;height:766px;display:flex;flex-direction:column}
+.ph{display:flex;align-items:center;gap:14px;font-family:var(--fd);font-weight:700;font-size:34px;min-height:64px}
+.ph .n{width:46px;height:46px;border-radius:50%;background:var(--board);color:var(--chalk);display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.count{margin-left:auto;background:var(--board);color:var(--chalk);border-radius:999px;padding:6px 20px;font-family:var(--fb);font-weight:900;font-size:24px;white-space:nowrap}
+.count b{color:var(--sun);font-family:var(--fd);font-size:30px}
+.clr{font-weight:900;font-size:22px;border:2px solid var(--ink);border-radius:14px;padding:0 18px;height:64px;background:#fff;font-family:var(--fb)}
+.lv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:12px}
+.box{border-radius:20px;padding:6px 16px 10px;border:3px solid transparent;min-width:0}
+.box.on{border-color:var(--ink)}
+.bh{display:flex;align-items:center;gap:10px;height:66px}
+.tag{font-family:var(--fd);font-weight:700;font-size:26px;border-radius:10px;padding:0 12px;color:var(--ink)}
+.bh small{font-weight:800;font-size:20px;color:#4A4C5C;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.bh .tag{flex:none}
+.all{flex:none;margin-left:auto;font-weight:900;font-size:20px;border:2px solid var(--ink);border-radius:12px;padding:0 14px;background:#fff;height:64px}
+.ck{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font-weight:800;font-size:22px;height:44px;line-height:1.15;color:var(--ink)}
+.ck i{flex:none;width:30px;height:30px;border-radius:8px;border:3px solid var(--ink);background:#fff;display:flex;align-items:center;justify-content:center}
+.ck.x i{background:var(--ink)}
+.ck.x i::after{content:"";width:12px;height:7px;border-left:4px solid #fff;border-bottom:4px solid #fff;transform:rotate(-45deg) translate(1px,-2px)}
+.ck span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ck em{flex:none;white-space:nowrap;font-style:normal;font-weight:800;font-size:20px;color:#5A5C6B}
+.ck.lock{color:#8A8C99}.ck.lock i{border-color:#B9BBC6}
+.mine{margin-top:12px;flex:1;display:flex;align-items:center;gap:14px;border:2px dashed #C9B98F;border-radius:18px;padding:6px 14px;min-height:0}
+.mine .ml{font-weight:900;font-size:22px;flex:none}
+.msets{flex:1;display:flex;flex-wrap:wrap;gap:0 18px;overflow:auto;max-height:84px;align-content:flex-start}
+.msets .ck{width:auto;max-width:380px}
+.none{font-weight:700;font-size:21px;color:#5A5C6B}
+.games{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px;margin-top:16px;height:686px}
+.g{background:#fff;border:2px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 6px 0 #EADBB9;display:flex;flex-direction:column;position:relative}
+.g .band{height:10px}
+.g .in{padding:16px 20px 18px;display:flex;flex-direction:column;flex:1}
+.gt{display:flex;align-items:flex-start;justify-content:space-between}
+.ic{width:76px;height:76px;border-radius:22px;display:flex;align-items:center;justify-content:center}
+.ic svg{width:56px;height:56px}
+.num{font-family:var(--fd);font-weight:700;font-size:20px;background:#F3ECDC;border-radius:10px;padding:2px 10px;color:#5A5C6B}
+.gn{font-family:var(--fd);font-weight:700;font-size:30px;line-height:1.08;margin-top:12px}
+.gd{font-weight:700;font-size:21px;color:#4A4C5C;margin-top:8px;line-height:1.3;flex:1}
+.play{align-self:flex-start}
+.veil{position:absolute;inset:0;background:rgba(255,255,255,.72);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+.fv{background:var(--sun);border-radius:999px;padding:6px 18px;font-weight:900;font-size:22px}
+.teamrow{position:absolute;left:48px;right:48px;bottom:14px;height:72px;display:flex;align-items:center;gap:14px}
+.teamrow .lbl{font-family:var(--fd);font-weight:700;font-size:30px;white-space:nowrap}
+.seg{display:flex;gap:8px}
+.seg button{min-width:64px;height:64px;border-radius:16px;background:#fff;border:2px solid var(--ink);font-family:var(--fd);font-weight:700;font-size:26px;color:var(--ink);padding:0 10px}
+.seg button.on{background:var(--ink);color:var(--chalk)}
+.tnames{display:flex;gap:10px;flex:1}
+.tnames input{flex:1;min-width:0;height:64px;border-radius:16px;border:3px solid var(--ink);padding:0 14px;font:inherit;font-weight:900;font-size:22px;color:var(--ink)}
+/* game */
+#game{background:var(--board);color:var(--chalk)}
+.top{position:absolute;left:0;right:0;top:0;height:96px;background:var(--board2);display:flex;align-items:center;padding:0 24px;gap:14px}
+.gname{font-family:var(--fd);font-weight:700;font-size:38px;display:flex;align-items:center;gap:14px;white-space:nowrap}
+.gname svg{width:54px;height:54px}
+.gchip{background:var(--chalk);color:var(--ink);border-radius:999px;padding:8px 20px;font-weight:900;font-size:24px;display:flex;align-items:center;gap:10px;max-width:520px;white-space:nowrap;overflow:hidden}
+.gchip .nm{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.gchip .more{flex:none;color:#4A4C5C}
+.lvc{border-radius:8px;padding:0 10px;font-family:var(--fd);font-weight:700;font-size:24px;color:var(--ink);flex:none}
+.sp{flex:1}
+#area{position:absolute;left:80px;right:80px;top:110px;bottom:206px;display:flex;flex-direction:column;overflow:hidden;--fs:76px}
+.teams{position:absolute;left:80px;right:80px;bottom:56px;height:96px;display:grid;gap:20px}
+.team{border-radius:999px;display:flex;align-items:center;padding:0 12px 0 28px;color:var(--ink);box-shadow:0 6px 0 rgba(0,0,0,.28);min-width:0;cursor:pointer}
+.team.wt{color:#fff}
+.team .ns{flex:1;min-width:0;display:flex;align-items:center;gap:10px}
+.team .n{font-weight:900;font-size:30px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;outline:none}
+.team .n[contenteditable=true]{background:rgba(255,255,255,.9);color:var(--ink);border-radius:8px;padding:0 6px;text-overflow:clip}
+.team .s{font-family:var(--fd);font-weight:700;font-size:58px;line-height:1;margin-right:6px}
+.team .gl{width:44px;height:44px;flex:none}
+.pm{width:64px;height:64px;border-radius:50%;background:rgba(255,253,246,.85);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:40px;color:var(--ink);margin-left:6px;flex:none}
+.team.cur{outline:6px solid var(--chalk);outline-offset:4px}
+.teams.tight .team{padding-left:20px}
+.teams.tight .team .ns{flex-direction:column;align-items:flex-start;gap:0}
+.teams.tight .team .n{font-size:24px;width:100%}
+.teams.tight .team .s{font-size:44px}
+.foot{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-weight:800;font-size:24px;opacity:.78}
+.taskrow{display:flex;align-items:center;gap:24px;min-height:150px;flex:none}
+.taskrow.short{min-height:120px}
+.task{font-family:var(--fd);font-weight:600;font-size:40px;display:flex;align-items:center;gap:16px;flex:1;min-width:0}
+.task svg{width:46px;height:46px;flex:none}
+.task u{text-decoration:none;border-bottom:4px solid rgba(255,253,246,.35)}
+.buzz{border-radius:999px;padding:10px 30px;font-family:var(--fb);font-weight:900;font-size:36px;color:var(--ink)}
+.turn{border-radius:999px;padding:10px 26px;font-weight:900;font-size:30px;white-space:nowrap}
+.tact{display:flex;gap:16px}
+.timer{display:flex;align-items:center;gap:12px;flex:none}
+.tadj{display:flex;flex-direction:column;gap:10px}
+.short .tadj{flex-direction:row}
+.tadj button{width:64px;height:64px;border-radius:50%;background:var(--btn2);color:var(--chalk);font-family:var(--fd);font-size:24px;font-weight:700;box-shadow:0 4px 0 rgba(0,0,0,.28)}
+.ring{width:150px;height:150px;position:relative;cursor:pointer;flex:none}
+.ring svg{width:150px;height:150px;display:block}
+.ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:58px;font-weight:700;color:var(--chalk)}
+.short .ring,.short .ring svg{width:120px;height:120px}
+.short .ring b{font-size:48px}
+.ring.run b{color:var(--sun)}
+.ring.zero b{color:var(--berry)}
+.qcard .ring b,.qcard .ring.run b{color:var(--ink)}
+.qcard .ring.zero b{color:var(--wrong)}.card{background:var(--chalk);color:var(--ink);border-radius:32px;box-shadow:0 10px 0 rgba(0,0,0,.3);overflow:hidden;position:relative;display:flex;flex-direction:column;flex:none}
+.card>.band{height:18px;background:var(--band,var(--mint));flex:none}
+.sent{font-family:var(--fd);font-weight:600;font-size:var(--fs);line-height:1.18;text-align:center;padding:34px 60px}
+.sent.rev{line-height:2.6;padding-top:60px;padding-bottom:10px}
+.fix{position:relative;display:inline-block;line-height:1.18}
+.del{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:7px;text-decoration-color:var(--wrong);background:var(--wtint);border-radius:14px;padding:0 10px}
+.cor{position:absolute;left:50%;bottom:100%;transform:translate(calc(-50% + var(--dx,0px)),-22px);white-space:nowrap;background:var(--mint);color:var(--ink);border-radius:18px;padding:6px 22px;font-size:min(64px,var(--fs));line-height:1.15;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.cor::after{content:"";position:absolute;left:calc(50% - var(--dx,0px));bottom:-24px;transform:translateX(-50%);border:12px solid transparent;border-top:14px solid var(--mint)}
+.legend{display:flex;justify-content:center;gap:28px;font-weight:800;font-size:26px;color:#4A4C5C;visibility:hidden}
+.legend.on{visibility:visible}
+.legend span{display:flex;align-items:center;gap:10px}
+.sw{width:26px;height:26px;border-radius:7px;display:inline-block}
+.actions{display:flex;justify-content:center;gap:20px;padding:22px 30px 34px;flex-wrap:wrap}
+.gap{display:inline-block;min-width:3em;height:1em;border-bottom:6px solid var(--ink);vertical-align:-0.1em}
+.gap.fill{min-width:0;height:auto;border-bottom-color:var(--right);color:var(--right);padding:0 6px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px;flex:none}
+.opt{min-height:110px;border-radius:24px;display:flex;align-items:center;gap:20px;padding:10px 28px;font-family:var(--fd);font-weight:600;font-size:52px;color:var(--ink);box-shadow:0 8px 0 rgba(0,0,0,.3);text-align:left;line-height:1.1}
+.opt .shp{width:60px;height:60px;flex:none}
+.opt .L{font-family:var(--fb);font-weight:900;font-size:30px;width:52px;height:52px;border-radius:12px;background:rgba(255,253,246,.92);color:var(--ink);display:flex;align-items:center;justify-content:center;flex:none}
+.opt .ot{flex:1}
+.opt .mk{font-size:56px;font-weight:700}
+.o0{background:var(--berry);color:#fff}.o1{background:var(--sky)}.o2{background:var(--sun)}.o3{background:var(--mint)}
+.opt.right{background:var(--mint);color:var(--ink);outline:6px solid var(--chalk)}
+.opt.wrongc{background:var(--berry);color:#fff}
+.opt.dim{opacity:.45}
+/* scramble */
+.scw{padding:26px 40px 0}
+.ans{min-height:110px;border:4px dashed #C9B98F;border-radius:24px;padding:12px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;transition:background .2s}
+.ans.ok{background:#C9F2DF;border-color:var(--right);border-style:solid}
+.ans.rev{background:#FFF1C9;border-color:var(--sun);border-style:solid}
+.ans .ph{font-weight:800;font-size:28px;color:#7A7C8A}
+.pool{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;padding:26px 0 4px;min-height:110px}
+.tile{min-width:64px;min-height:64px;background:#fff;border:3px solid var(--ink);border-radius:18px;padding:6px 20px;font-family:var(--fd);font-weight:600;font-size:var(--fs);line-height:1.15;color:var(--ink);box-shadow:0 6px 0 var(--sun)}
+.ans .tile{box-shadow:0 6px 0 var(--sky)}
+.shake{animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-18px)}40%{transform:translateX(16px)}60%{transform:translateX(-12px)}80%{transform:translateX(8px)}}
+/* auction */
+.lotrow{display:flex;align-items:center;gap:18px;flex:none}
+.lotrow .card{flex:1}
+.arrow{width:76px;height:120px;font-size:36px;padding:0}
+.lothd{display:flex;justify-content:center;padding-top:14px}
+.lotno{background:var(--orange);border-radius:999px;padding:4px 22px;font-weight:900;font-size:26px}
+.lotrow .sent{padding:14px 40px 26px}
+.ledger{background:var(--paper);color:var(--ink);border-radius:24px;margin-top:20px;flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.lhead{display:flex;align-items:center;gap:16px;padding:12px 20px;font-weight:900;font-size:26px}
+.lrows{overflow:auto;flex:1;min-height:0}
+table.lt{width:100%;border-collapse:collapse;font-size:26px}
+.lt td,.lt th{padding:5px 12px;border-bottom:2px solid var(--line);text-align:left;vertical-align:middle}
+.lt th{background:var(--board);color:var(--chalk);position:sticky;top:0;font-size:24px;z-index:1}
+.lt tr.act td{background:#FFE9A8}
+.lt .ls{max-width:980px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.lt .ln{font-weight:900;width:50px}
+.lt select,.lt input{height:58px;font:inherit;font-weight:800;border:2px solid var(--ink);border-radius:12px;padding:0 10px;background:#fff;color:var(--ink)}
+.lt input{width:150px}
+.lt input.bad{border-color:var(--wrong);outline:3px solid var(--wrong)}
+.hint{color:var(--wrong);font-weight:900;font-size:24px;display:inline-block;margin-left:8px}
+.chip{display:inline-block;border-radius:10px;padding:0 10px;font-weight:900;font-size:24px;margin-right:10px;white-space:nowrap}
+.chip.ok{background:var(--mint);color:var(--ink)}.chip.no{background:var(--berry);color:#fff}
+.delS{color:var(--wrong);text-decoration:line-through;text-decoration-thickness:4px;background:var(--wtint);border-radius:6px;padding:0 4px}
+.corS{background:var(--mint);border-radius:6px;padding:0 6px;margin-left:6px}
+.res .ls{white-space:normal;max-width:none;line-height:1.3}
+.resw{display:flex;gap:24px;flex:1;min-height:0}
+.resw .ledger{margin-top:0}
+.wbox{width:520px;flex:none;background:var(--chalk);color:var(--ink);border-radius:28px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.wname{font-family:var(--fd);font-weight:700;font-size:44px;text-align:center}
+.rank{list-style:none;width:100%;font-size:28px;font-weight:900}
+.rank li{display:flex;justify-content:space-between;padding:8px 16px;border-radius:14px;margin-top:6px}
+.setup{background:var(--paper);color:var(--ink);border-radius:28px;padding:30px 44px;margin:auto;width:1160px}
+.setup h2{font-family:var(--fd);font-size:46px}
+.setup p{font-size:26px;font-weight:700;margin:10px 0 14px;line-height:1.35}
+.srow{display:flex;align-items:center;gap:16px;margin:14px 0;font-size:28px}
+.srow b{width:330px}
+.srow input{width:180px;height:64px;font:inherit;font-weight:900;border:2px solid var(--ink);border-radius:14px;padding:0 14px}
+/* quiz board */
+.qb{flex:1;min-height:0;display:grid;gap:14px;grid-template-rows:100px repeat(5,1fr)}
+.qh{border-radius:18px;padding:6px 12px;font-weight:900;font-size:30px;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.08}
+.qh small{font-family:var(--fd);font-size:24px}
+.qt{border-radius:18px;font-family:var(--fd);font-weight:700;font-size:64px;color:var(--ink);box-shadow:0 6px 0 rgba(0,0,0,.28);min-height:64px}
+.qt.used{background:var(--used)!important;color:rgba(255,253,246,.4)!important;box-shadow:none;font-size:40px}
+.qnote{font-weight:800;font-size:24px;color:var(--sun);max-width:420px}
+#qov{position:absolute;left:0;right:0;top:96px;bottom:196px;background:rgba(14,38,38,.9);display:none;align-items:center;justify-content:center;padding:16px 60px;z-index:20}
+#qov.on{display:flex}
+.qcard{width:100%;max-height:100%;--fs:68px}
+.qhd{display:flex;align-items:center;gap:18px;padding:16px 30px 0;font-weight:900;font-size:28px}
+.qhd .qt2{margin-left:auto;background:#F3ECDC;border-radius:10px;padding:2px 12px}
+.qtask{font-family:var(--fd);font-weight:600;font-size:34px;text-align:center;padding-top:10px;color:#4A4C5C}
+.qcard .sent{padding:20px 50px 10px}
+.qcard .sent.rev{padding-top:60px}
+.qcard .opts{margin:10px 40px 0}
+.qcard .opt{min-height:96px;font-size:46px}
+.wl{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:20px 40px 0}
+.wl span{border:3px solid var(--ink);border-radius:16px;padding:4px 16px;font-family:var(--fd);font-weight:600;font-size:var(--fs);box-shadow:0 5px 0 var(--sun)}
+.qsol{text-align:center;font-family:var(--fd);font-weight:600;font-size:calc(var(--fs)*.8);color:var(--right);padding:16px 40px 0}
+#qTimer{position:absolute;right:24px;top:14px}
+/* ttt */
+.tttw{flex:1;display:flex;align-items:center;justify-content:center;gap:50px;min-height:0}
+.tttL{width:440px;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.turnb{display:flex;align-items:center;gap:14px;border-radius:999px;padding:12px 30px;font-weight:900;font-size:40px;color:#fff}
+.turnb svg{width:56px;height:56px}
+.tres{font-family:var(--fd);font-weight:700;font-size:40px;color:var(--sun)}
+.tbw{position:relative}
+.tbd{display:grid;gap:16px}
+.cell{width:200px;height:200px;border-radius:24px;background:var(--chalk);box-shadow:0 8px 0 rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+.n4 .cell{width:150px;height:150px}
+.cell svg{width:72%;height:72%}
+.cell.win{background:var(--sun)}
+.wline{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.tttR{width:300px;display:flex;justify-content:flex-end}
+/* overlays */
+.ov{position:absolute;inset:0;background:rgba(14,38,38,.72);display:none;align-items:center;justify-content:center;z-index:40}
+.ov.on{display:flex}
+.dlg{background:var(--paper);color:var(--ink);border-radius:28px;padding:32px 40px;box-shadow:0 10px 0 rgba(0,0,0,.3);max-width:1640px;max-height:1010px;overflow:auto}
+.dlg h2{font-family:var(--fd);font-weight:700;font-size:44px}
+.dlg h3{font-family:var(--fd);font-weight:700;font-size:30px;margin:14px 0 6px}
+.dlg p,.dlg li,.dlg td{font-size:24px;line-height:1.4;font-weight:700}
+.dlg ol,.dlg ul{padding-left:34px}
+.dlg .acts{display:flex;gap:16px;justify-content:flex-end;margin-top:24px}
+.hcols{display:grid;grid-template-columns:1fr 600px;gap:36px}
+.keys td{padding:5px 10px;border-bottom:2px solid var(--line);vertical-align:top}
+.keys td:first-child{white-space:nowrap}
+.mine-dlg{width:1760px;height:1010px;display:flex;flex-direction:column;padding:26px 36px}
+.dh{display:flex;align-items:center;gap:16px}
+.fmt{font-size:22px!important;margin-top:4px}
+.fmt code{font-family:var(--fb);font-weight:900;background:#fff;border:2px dashed #C9B98F;border-radius:10px;padding:2px 10px;display:inline-block}
+.mcols{display:grid;grid-template-columns:1fr 540px;gap:28px;margin-top:12px;flex:1;min-height:0}
+.mleft{display:flex;flex-direction:column;min-height:0}
+.nml{display:flex;align-items:center;gap:14px;font-weight:900;font-size:24px}
+.nml input{flex:1;height:60px;border:2px solid var(--ink);border-radius:14px;padding:0 16px;font:inherit;font-size:24px;font-weight:800;color:var(--ink)}
+.ed{flex:1;min-height:0;display:flex;margin-top:12px;border:2px solid var(--ink);border-radius:16px;background:#fff;overflow:hidden}
+.gut{width:66px;flex:none;background:#F3ECDC;color:#6B6D7A;text-align:right;padding:12px 10px 12px 0;font-weight:800;font-size:22px;line-height:34px;overflow:hidden;white-space:pre}
+.ed textarea{flex:1;border:0;outline:0;resize:none;padding:12px 16px;font-family:var(--fb);font-weight:700;font-size:22px;line-height:34px;white-space:pre;overflow:auto;color:var(--ink);background:#fff}
+.mbtns{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
+.mright{display:flex;flex-direction:column;min-height:0}
+.chk{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px 18px;max-height:430px;overflow:auto;flex:none}
+.okc{font-family:var(--fd);font-weight:700;font-size:34px;color:var(--right)}
+.okc.zero{color:#6B6D7A}
+.msgs div{font-weight:800;font-size:22px;margin-top:6px}
+.msgs .e{color:var(--wrong)}
+.msgs .n{color:#4A4C5C}
+.slist{flex:1;min-height:0;overflow:auto}
+.srow2{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:4px 6px 4px 14px;margin-top:8px}
+.srow2 .snm{flex:1;min-width:0;font-weight:900;font-size:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow2 em{font-style:normal;font-weight:800;font-size:20px;color:#5A5C6B}
+.srow2 button{min-width:64px;height:64px;border-radius:14px;background:#F3ECDC;font-weight:900;font-size:22px;padding:0 10px}
+#toast{position:absolute;left:50%;top:116px;transform:translateX(-50%);background:var(--sun);color:var(--ink);border-radius:999px;padding:12px 34px;font-weight:900;font-size:32px;box-shadow:0 6px 0 rgba(0,0,0,.25);display:none;z-index:70;white-space:nowrap}
+#toast.on{display:block}
+#flash{position:absolute;inset:0;border:10px solid var(--berry);pointer-events:none;opacity:0;z-index:80}
+#flash.go{animation:fl 1.3s linear}
+@keyframes fl{0%{opacity:1}16%{opacity:0}33%{opacity:1}50%{opacity:0}66%{opacity:1}83%{opacity:0}100%{opacity:0}}
+.conf{position:absolute;top:-40px;width:22px;height:22px;z-index:30;pointer-events:none;animation:fall 1.8s ease-in forwards}
+@keyframes fall{to{transform:translateY(1150px) rotate(540deg)}}
+.doodle{position:absolute;opacity:.28;pointer-events:none}
+</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div id="stage">
+<div id="start" class="scr on">
+ <div class="head">
+  <div class="t"><h1>ESL Grammar Games <span>Offline</span></h1>
+   <div class="off"><svg width="28" height="28" viewBox="0 0 40 40"><g fill="none" stroke="#FFFDF6" stroke-width="4" stroke-linecap="round"><path d="M5 16a22 22 0 0 1 30 0"/><path d="M11 22a13 13 0 0 1 18 0"/><circle cx="20" cy="29" r="2.5" fill="#FFFDF6"/><path d="M6 6l28 28" stroke="#E8457A"/></g></svg>No internet needed</div>
+   <span id="demoTag"></span>
+   <div class="tbar"><span id="buyBox"></span><button class="btn" id="bMine"><svg viewBox="0 0 40 40"><g fill="none" stroke="#FFFDF6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h18l6 6v22H8z"/><path d="M14 18h12M14 25h12"/></g></svg>My Sentences</button><button class="btn sun" id="bHelpS" style="font-family:var(--fd);font-size:32px">?</button></div>
+  </div>
+  <div class="steps"><span><b>1</b>Tick grammar points (or your own set)</span><span><b>2</b>Pick a game</span><span><b>3</b>Press F for full screen and play in teams</span></div>
+ </div>
+ <div class="main">
+  <div class="panel"><div class="ph"><span class="n">1</span>Choose grammar<span class="count" id="cnt"></span><button class="clr" id="bClear">Clear</button></div><div class="lv" id="lvBoxes"></div><div class="mine" id="mineRow"></div></div>
+  <div><div class="ph"><span class="n">2</span>Pick a game</div><div class="games" id="cards"></div></div>
+ </div>
+ <div class="teamrow" id="teamRow"></div>
+</div>
+<div id="game" class="scr">
+ <svg class="doodle" style="left:24px;top:112px" width="50" height="50" viewBox="0 0 60 60"><path d="M30 6l6 16 17 1-13 11 4 17-14-9-14 9 4-17L7 23l17-1z" fill="none" stroke="#FFFDF6" stroke-width="3" stroke-linejoin="round"/></svg>
+ <div class="top">
+  <div class="gname" id="gName"></div><div class="gchip" id="gChip"></div><div class="sp"></div>
+  <button class="btn" id="bHome"><svg viewBox="0 0 40 40"><path d="M6 20L20 7l14 13M10 17v16h20V17" fill="none" stroke="#FFFDF6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>Home</button>
+  <button class="btn" id="bChange"><svg viewBox="0 0 40 40"><g fill="none" stroke="#FFFDF6" stroke-width="4" stroke-linecap="round"><rect x="6" y="6" width="11" height="11" rx="2"/><rect x="23" y="6" width="11" height="11" rx="2"/><rect x="6" y="23" width="11" height="11" rx="2"/><path d="M24 29l4 4 7-8" stroke="#3DD39A"/></g></svg>Change grammar</button>
+  <button class="btn" id="bRestart"><svg viewBox="0 0 40 40"><g fill="none" stroke="#FFFDF6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M33 20a13 13 0 1 1-4-9.4"/><path d="M30 4v8h-8"/></g></svg>Restart</button>
+  <button class="btn" id="bSound" title="Sound on / off"></button>
+  <button class="btn" id="bFull" title="Full screen (F)"><svg viewBox="0 0 40 40"><g fill="none" stroke="#FFFDF6" stroke-width="4" stroke-linecap="round"><path d="M6 14V6h8M26 6h8v8M34 26v8h-8M14 34H6v-8"/></g></svg></button>
+  <button class="btn sun" id="bHelp" style="font-family:var(--fd);font-size:34px">?</button>
+ </div>
+ <div id="area"></div>
+ <div id="qov"></div>
+ <div class="teams" id="teams"></div>
+ <div class="foot" id="foot"></div>
+</div>
+<div class="ov" id="ovMine"><div class="dlg mine-dlg">
+ <div class="dh"><h2>My Sentences</h2><span class="sp"></span><button class="btn pap" id="mClose">Close <span class="k">Esc</span></button></div>
+ <p class="fmt">One sentence per line. Mark the answer with *stars*, then type | and 1–3 wrong options separated by commas. The 1st wrong option becomes the mistake in Fix the Mistake. Optional first line: ## Set name. Lines starting with # are ignored.<br><code>She *has lived* here since 2019. | lived, has live, is living</code></p>
+ <div class="mcols"><div class="mleft">
+  <label class="nml">Set name <input id="mName" maxlength="60" placeholder="e.g. Unit 7 – Homework errors"></label>
+  <div class="ed"><div class="gut" id="mGut">1</div><textarea id="mTxt" spellcheck="false" wrap="off" placeholder="## Unit 7&#10;She *has lived* here since 2019. | lived, has live, is living&#10;We *went* to the beach last weekend. | goed, go, have gone"></textarea></div>
+  <div class="mbtns"><button class="btn big pri" id="mUse">Use these sentences ✓</button><button class="btn pap" id="mSave">Save set</button><button class="btn pap" id="mImp">Import .txt</button><button class="btn pap" id="mExp">Export .txt</button><button class="btn pap" id="mClr">Clear box</button><input type="file" id="mFile" accept=".txt,text/plain" hidden></div>
+ </div><div class="mright"><div class="chk" id="mChk"></div><h3 id="mSetsH">Saved sets</h3><div class="slist" id="mSets"></div></div></div>
+</div></div>
+<div class="ov" id="ovHelp"><div class="dlg" id="helpBox"></div></div>
+<div class="ov" id="ovMsg"><div class="dlg" id="msgBox" style="max-width:1200px"></div></div>
+<div id="toast"></div>
+<div id="flash"></div>
+</div>
+<script>
+var POINTS=[
+{id:1,lv:"A1",n:"Verb to be (am / is / are)",sel:"Verb to be (am / is / are)",sh:"Verb to be",r:"Use am with I, is with he / she / it and one thing, and are with you / we / they and plural nouns. Negative: am not, isn't, aren't.",
+life:`My office *is* on the third floor. | are, am, be
+The shops *are* closed on Sunday evening. | is, am, be
+I *am* a nurse at the city hospital. | is, are, be
+The bus station *is* next to the bank. | are, am, be
+These shoes *are* too small for me. | is, am, be
+We *are* on holiday in Spain this week. | is, am, be
+The train *is* late again today. | are, am, be
+My manager *is* very friendly. | are, am, be
+The tickets *are* in my bag. | is, am, be
+*Is* the pharmacy open now? | Are, Am, Be
+*Are* you tired after work? | Is, Am, Be
+I *am not* hungry right now. | is not, are not, not
+The hotel rooms *are* clean and quiet. | is, am, be
+My flat *is* small but nice. | are, am, be
+Our neighbours *are* from Canada. | is, am, be
+The coffee *is* hot, so be careful. | are, am, be
+*Are* the apples fresh today? | Is, Am, Be
+My keys *aren't* on the table. | isn't, don't, not
+The doctor *is* busy this morning. | are, am, be
+Taxis *are* expensive in this city. | is, am, be`,
+school:`Our English teacher *is* from Ireland. | are, am, be
+I *am* in Class 7B. | is, are, be
+The students *are* in the library. | is, am, be
+My pencil case *is* blue. | are, am, be
+*Is* your homework finished? | Are, Am, Be
+We *are* ready for the test. | is, am, be
+The exam *isn't* difficult. | aren't, doesn't, not
+My best friend *is* twelve years old. | are, am, be
+You *are* late for class again! | is, am, be
+The science books *are* on the shelf. | is, am, be
+*Am* I in your team today? | Is, Are, Be
+Maths *is* my favourite subject. | are, am, be`,
+other:`It *is* very cold today. | are, am, be
+My grandparents *are* seventy years old. | is, am, be
+The cat *is* under the bed. | are, am, be
+My sister *is* a good cook. | are, am, be
+*Are* your parents at home? | Is, Am, Be
+The flowers in the garden *are* beautiful. | is, am, be
+I *am* happy to see you. | is, are, be
+The sky *isn't* blue today. | aren't, doesn't, not`},
+{id:2,lv:"A1",n:"Present simple (he/she/it -s, do/does)",sel:"Present simple",sh:"Present simple",r:"Add -s or -es to the verb after he / she / it (she works, he watches). Use do / does + base verb in questions and don't / doesn't + base verb in negatives.",
+life:`She *works* in a bank. | work, working, is work
+My father *drives* to work every day. | drive, driving, is drive
+The shop *opens* at nine o'clock. | open, opening, does opens
+*Does* your brother live in the city? | Do, Is, Are
+I *don't eat* meat. | doesn't eat, not eat, don't eats
+He *doesn't like* cooking. | don't like, not likes, doesn't likes
+The train *leaves* at 7:30. | leave, leaving, is leave
+My mother *watches* the news every evening. | watch, watchs, watching
+*Do* you take the bus to work? | Does, Are, Is
+Tom *goes* to the gym twice a week. | go, gos, going
+We *buy* fresh bread every morning. | buys, buying, are buy
+My neighbour *washes* her car on Saturdays. | wash, washs, washing
+The pharmacy *closes* at eight. | close, closing, closeing
+Where *does* she work? | do, is, are
+He *studies* English online. | study, studys, studying
+My boss *doesn't drink* coffee. | don't drink, not drinks, doesn't drinks
+I *clean* the kitchen every Sunday. | cleans, cleaning, am clean
+The museum ticket *costs* ten dollars. | cost, costing, is cost
+Mia *has* two jobs. | have, haves, having
+Does this bus *go* to the airport? | goes, going, went`,
+school:`My teacher *gives* us homework every day. | give, giving, is give
+Our class *starts* at eight. | start, starting, is start
+He *doesn't understand* the question. | don't understand, not understand, doesn't understands
+*Do* your friends play football? | Does, Are, Is
+She *speaks* three languages. | speak, speaking, is speak
+I *play* the guitar in the school band. | plays, playing, am play
+The bell *rings* at 3:15. | ring, ringing, is ring
+My brother *does* his homework after dinner. | do, dos, doing
+Does Sara *like* history? | likes, liking, liked
+We *don't have* lessons on Saturday. | doesn't have, not have, don't has
+Leo *catches* the school bus at 7:10. | catch, catchs, catching
+They *practise* basketball every Friday. | practises, practising, are practise`,
+other:`My cat *sleeps* all day. | sleep, sleeping, is sleep
+It *rains* a lot in April. | rain, raining, is rain
+My grandmother *knits* scarves for everyone. | knit, knitting, is knit
+Dogs *love* long walks. | loves, loving, are love
+Does your sister *have* a pet? | has, having, haves
+My uncle *fixes* old bikes. | fix, fixs, fixing
+Birds *fly* south in winter. | flies, flying, are fly
+He *tries* new recipes at the weekend. | try, trys, trying`},
+{id:3,lv:"A1",n:"There is / There are",sel:"There is / There are",sh:"There is / are",r:"Use there is with one thing or an uncountable noun and there are with plural nouns. Questions: Is there…? / Are there…? Negatives: there isn't / there aren't.",
+life:`*There is* a bank on the corner. | There are, It is, Have
+*There are* two supermarkets near my flat. | There is, They are, Have
+*Is there* a pharmacy near here? | Are there, Is it, Has there
+*Are there* any taxis at the station? | Is there, Are they, Have
+*There isn't* any milk in the fridge. | There aren't, It isn't, There not
+*There aren't* many people on the train today. | There isn't, They aren't, There not
+*There is* a lot of traffic in the city centre. | There are, It has, They are
+In my office, *there are* six desks. | there is, it has, they are
+*There is* a new café in our street. | There are, Have, Has
+*There are* three bedrooms in the flat. | There is, Have, It is
+*There is* a long queue at the post office. | There are, Have, They are
+*Is there* a lift in this building? | Are there, Has, Have
+*There are* some towels in the bathroom. | There is, Have, It is
+*There isn't* a hospital in my village. | There aren't, It isn't, There not
+*There are* forty rooms in the hotel. | There is, Have, They is
+*There is* some bread on the table. | There are, Have, It is
+*Are there* any shops at the airport? | Is there, Have, Has
+*There are* five buses every hour. | There is, Have, It is
+*There is* a gym in our office building. | There are, Have, It is
+*There aren't* any eggs left. | There isn't, There not, They aren't`,
+school:`*There are* thirty students in my class. | There is, Have, It is
+*There is* a computer room on the second floor. | There are, Have, It is
+*Is there* a test on Friday? | Are there, Has, Have
+*There aren't* any chairs in the hall. | There isn't, There not, Have not
+*There is* a map on the classroom wall. | There are, Have, It is
+*There are* two new teachers this year. | There is, Have, It is
+*Are there* any questions? | Is there, Have, Has
+*There isn't* a lesson after lunch. | There aren't, There not, It isn't
+*There is* a basketball court behind the school. | There are, Have, It is
+*There are* many books in the library. | There is, Have, It is
+*There is* a new student in our class. | There are, Have, It is
+*There are* ten questions on the test. | There is, Have, It is`,
+other:`*There is* a big tree in our garden. | There are, Have, It is
+*There are* four people in my family. | There is, Have, It is
+*There is* a bird on the roof. | There are, Have, It is
+*There aren't* any clouds in the sky. | There isn't, There not, Have not
+*Is there* any juice in the bottle? | Are there, Has, Have
+*There are* lots of fish in the lake. | There is, Have, It is
+*There is* snow on the mountains. | There are, Have, It is
+*There are* two cats in my street. | There is, Have, It is`},
+{id:4,lv:"A1",n:"Prepositions of place (in, on, under, next to, between, behind)",sel:"Prepositions of place",sh:"Prepositions of place",r:"in = inside; on = on a surface; under = below; next to = beside; between = in the middle of two things; behind = at the back of; in front of = before something.",
+life:`The milk is *in* the fridge. | into, at, between
+The clock is *on* the wall. | at, between, next
+The bank is *next to* the post office. | next, near of, beside of
+The pharmacy is *between* the bakery and the bank. | next, behind of, in
+The meeting room is *on* the second floor. | in, at, under
+The car park is *behind* the supermarket. | behind of, back, between
+My shoes are *under* the bed. | under of, below of, between
+The taxi is waiting *in front of* the hotel. | in front, front of, before of
+The towels are *in* the bathroom. | on, into, between
+Your passport is *on* the desk. | at, into, between
+The bus stop is *next to* the park. | next, next of, beside to
+I sit *between* Tom and Mia at work. | next, behind of, among of
+The keys are *under* the newspaper. | under of, below of, between
+The garden is *behind* the house. | behind of, between, next
+The cups are *in* the cupboard. | into, at, between
+The museum is *in* the city centre. | on, into, between
+The dog is sleeping *under* the table. | under of, between, into
+There is a lamp *next to* the sofa. | next, next of, between
+The café is *between* the cinema and the gym. | next, between of, behind of
+Please put the plates *on* the table. | in, into, between`,
+school:`My books are *in* my bag. | into, at, between
+The teacher's desk is *in front of* the board. | in front, front of, between
+I sit *next to* my best friend. | next, near of, between
+The poster is *on* the classroom wall. | at, between, under
+The gym is *behind* the main building. | behind of, between, back
+My phone is *under* my books. | under of, between, into
+The library is *between* the music room and the art room. | next, between of, behind of
+The pens are *in* the box. | into, at, between
+Lily sits *behind* me in maths. | behind of, between, back
+My jacket is *on* my chair. | at, between, into
+The school is *next to* a small park. | next, next of, near of
+The ball is *under* the bench. | under of, between, into`,
+other:`The cat is sleeping *on* the sofa. | at, between, into
+The birds are *in* the tree. | at, into, between
+My grandparents live *next to* us. | next, near of, beside of
+The moon is *behind* the clouds. | behind of, between, under of
+The fish are *in* the water. | at, into, between
+Our house is *between* two big trees. | next, between of, behind of
+The ball is *under* the car. | under of, between, into
+The photo is *on* the fridge. | at, between, into`},
+
+{id:5,lv:"A2",n:"Past simple (regular + irregular)",sel:"Past simple",sh:"Past simple",r:"Regular verbs add -ed (work → worked, study → studied); irregular verbs have their own form (go → went). Questions and negatives use did / didn't + base verb.",
+life:`We *went* to the beach last weekend. | goed, go, have gone
+I *bought* new shoes yesterday. | buyed, buy, have bought
+Did you *see* the bus this morning? | saw, seen, sees
+The new café *opened* two weeks ago. | has opened, opens, open
+She *cooked* dinner for the whole family on Sunday. | cook, cooking, was cook
+We *were* very tired after the long flight. | was, are, been
+Where *did you stay* on holiday? | you stayed, did you stayed, do you stay
+I *wrote* three emails before lunch. | writed, write, have wrote
+Mia *lost* her phone on the bus. | losed, loses, was lose
+I *was* at the dentist at ten o'clock. | were, am, be
+He *forgot* his keys at work. | forgetted, forget, forgets
+When *did you start* this job? | you started, did you started, do you start
+I *didn't go* to the gym last week. | didn't went, not go, don't went
+My parents *moved* to this city in 2005. | have moved, move, moves
+The meeting *finished* at five o'clock. | finish, finishes, was finish
+I *paid* for the tickets online. | payed, pay, have paid
+She *took* a taxi to the airport. | taked, take, has took
+We *didn't buy* anything at the market. | didn't bought, not bought, don't bought
+He *felt* sick after lunch, so he went home. | feeled, feel, has felt
+Our plane *left* on time. | leaved, leave, was leave`,
+school:`Tom *didn't finish* his homework yesterday. | didn't finished, not finished, don't finish
+Did your team *win* the match on Saturday? | won, wins, winned
+We *studied* for the test all weekend. | studyed, study, studies
+The students *ate* lunch in the classroom. | eated, eat, eats
+Our teacher *gave* us a lot of homework. | gived, give, has gave
+I *did* my project last night. | doed, do, have did
+Ben *came* to school late yesterday. | comed, come, has came
+We *read* a short story in class on Monday. | readed, reads, have read
+*Did you pass* the maths test last week? | Did you passed, Do you passed, Passed you
+She *won* first prize in the art competition. | winned, win, was win
+The class *visited* a museum last month. | visit, visits, has visited
+I *didn't understand* the last lesson. | didn't understood, not understood, don't understood`,
+other:`My brother *didn't call* me last night. | didn't called, not called, doesn't call
+Yesterday it *rained* all afternoon. | rain, rains, raining
+My grandmother *made* a big cake for my birthday. | maked, make, has made
+We *saw* a beautiful rainbow yesterday. | seed, see, have seen
+The dog *ran* into the garden. | runned, run, has ran
+I *slept* for ten hours last night. | sleeped, sleep, have slept
+My cousins *stayed* with us in July. | stay, stays, have stayed
+It *was* very windy last night. | were, is, be`},
+{id:6,lv:"A2",n:"Present continuous vs present simple",sel:"Present continuous vs simple",sh:"Present cont. vs simple",r:"Present simple for habits and facts (every day, usually, never). Present continuous (am / is / are + -ing) for actions happening now or around now (now, at the moment, Look!). Verbs like know, like, want are not used in the continuous.",
+life:`Look! The bus *is coming*. | comes, coming, is come
+I usually *take* the train to work. | is taking, taking, takes
+She *is talking* on the phone right now. | talks, talking, is talk
+We *are staying* at a small hotel this week. | stay, staying, are stay
+My father *cooks* dinner every Friday. | are cooking, cooking, cook
+Shh! The baby *is sleeping*. | sleeps, sleeping, is sleep
+He usually *works* from home on Mondays. | are working, working, work
+What *are you doing* at the moment? | do you do, you doing, are you do
+The museum *opens* at nine every day. | are opening, opening, open
+I never *drink* coffee in the evening. | is never drinking, drinking, drinks
+Right now, Mia *is buying* vegetables at the market. | buys, buying, is buy
+*Are you waiting* for the doctor now? | Do you wait, You waiting, Are you wait
+It *is raining* in the city at the moment. | rains, raining, is rain
+My train *leaves* at 8:15 every morning. | are leaving, leaving, leave
+Tom *is painting* the kitchen this weekend. | paints, painting, is paint
+She often *visits* her parents on Sundays. | are often visiting, visiting, visit
+Listen! Someone *is knocking* at the door. | knocks, knocking, is knock
+We *are looking* for a new flat at the moment. | look, looking, are look
+People in my office *start* work at nine. | is starting, starting, starts
+I *am working* on a big report this week. | work, working, am work`,
+school:`The students *are writing* an essay now. | write, writing, are write
+We *have* English three times a week. | is having, having, has
+Be quiet! The teacher *is speaking*. | speaks, speaking, is speak
+My brother *walks* to school every day. | are walking, walking, walk
+What *is Lily reading* right now? | does Lily read, Lily reading, is Lily read
+I *don't understand* this question. | am not understanding, not understanding, doesn't understand
+Our class *is visiting* the science museum today. | visits, visiting, is visit
+He *forgets* his PE kit every Tuesday. | are forgetting, forgetting, forget
+*Do you know* the answer? | Are you knowing, Does you know, Do you knowing
+Look, the boys *are playing* football outside. | play, playing, are play
+I *study* for two hours every evening. | is studying, studying, studies
+Sara *is wearing* a red jacket today. | wears, wearing, is wear`,
+other:`My cat *likes* fish. | is liking, liking, like
+The sun *is shining* today. | shines, shining, is shine
+Water *boils* at 100 degrees. | are boiling, boiling, boil
+My grandparents *are visiting* us this week. | visit, visiting, are visit
+We usually *go* to the park on Saturdays. | is going, going, goes
+Look! It *is snowing*. | snows, snowing, is snow
+My dog *barks* at every bicycle. | are barking, barking, bark
+I *want* a glass of water, please. | am wanting, wanting, wants`},
+{id:7,lv:"A2",n:"Comparatives & superlatives",sel:"Comparatives & superlatives",sh:"Comparatives & superlatives",r:"Short adjectives: -er / the -est (cheap → cheaper → the cheapest). Long adjectives: more / the most. Irregular: good → better → the best, bad → worse → the worst. Use than after a comparative.",
+life:`The train is *faster* than the bus. | more fast, fastest, more faster
+This is *the cheapest* hotel in the city. | the most cheap, cheaper, the cheaper
+My new job is *more interesting* than my old job. | interestinger, most interesting, more interestinger
+Today is *hotter* than yesterday. | more hot, hotest, hottest
+This is *the best* restaurant in town. | the goodest, the better, the most good
+Taxis are *more expensive* than buses. | expensiver, most expensive, more expensiver
+The weather is *worse* than last week. | badder, more bad, worst
+This is *the busiest* street in the city. | the most busy, busier, the busyest
+My office is *bigger* than my flat! | more big, biger, biggest
+Walking is *healthier* than driving. | healthyer, healthiest, more healthier
+This is *the most comfortable* chair in the shop. | the comfortablest, more comfortable, the more comfortable
+The supermarket is *nearer* than the market. | more near, nearest, more nearer
+Is your city *bigger* than mine? | more big, biggest, bigest
+Monday is *the worst* day of the week for me. | the baddest, the worse, the most bad
+This phone is *cheaper* than that one. | more cheap, cheapest, cheapper
+My journey to work is *longer* than yours. | more long, longest, more longer
+Saturday is *the quietest* day at the office. | the quieter, quietest, the more quiet
+This flat is *more modern* than the old one. | moderner, most modern, more moderner
+The red bag is *heavier* than the blue one. | more heavy, heavyer, heaviest
+This is *the most popular* café in the area. | the popularest, more popular, the more popular`,
+school:`Maths is *more difficult* than art for me. | difficulter, most difficult, more difficulter
+Tom is *taller* than his brother. | more tall, tallest, more taller
+Jack is *the tallest* student in our class. | the most tall, taller, the taller
+My test result was *better* than last time. | gooder, more good, best
+This is *the easiest* exercise in the book. | the most easy, easier, the easyest
+Our classroom is *smaller* than the library. | more small, smallest, smaler
+Science is *more exciting* than history for me. | excitinger, most exciting, more excitinger
+Mia is *the fastest* runner in the school. | the most fast, faster, the faster
+Today's homework is *longer* than yesterday's. | more long, longest, longger
+This was *the worst* exam of the year. | the baddest, the worse, the most bad
+My new school bag is *lighter* than my old one. | more light, lightest, more lighter
+Who is *the youngest* person in your class? | the most young, younger, the younger`,
+other:`An elephant is *heavier* than a horse. | more heavy, heaviest, heavyer
+My grandfather is *older* than my grandmother. | more old, oldest, more older
+This is *the coldest* month of the year. | the most cold, colder, the colder
+Cats are *quieter* than dogs. | quietter, quietest, more quieter
+My sister is *the funniest* person in my family. | the funnyest, funnier, the funnier
+This cake is *sweeter* than that one. | more sweet, sweetest, more sweeter
+Winter is *darker* than summer here. | more dark, darkest, more darker
+My dog is *the friendliest* dog in the street. | the friendlyest, friendlier, the friendlier`},
+{id:8,lv:"A2",n:"Future: will / going to",sel:"Future: will / going to",sh:"will / going to",r:"Use be going to + verb for plans and for predictions you can see now. Use will + verb for quick decisions, offers, promises and opinions about the future. Never will to or going without be.",
+life:`I *am going to* visit my aunt next weekend. | going to, am go to, will to
+Look at those clouds! It *is going to* rain. | going to, will to, is go to
+The phone is ringing. I *will answer* it. | will answering, will to answer, answer will
+We *are going to* buy a new car this year. | going to, are go to, will to
+Don't worry, I *will help* you with the boxes. | will helping, will to help, helps will
+She *is going to* start a new job in May. | going to, is go to, will to
+*Will* you open the window, please? | Are, Wills, Going
+I think prices *will go* up next year. | will going, will to go, goes will
+I'm hungry. I *will make* a sandwich. | will making, will to make, making will
+They *are not going to* travel this summer. | not going to, are not go to, won't to
+*Are you going to* cook tonight? | You going to, Are you go to, Will you to
+I *won't be* late, I promise. | won't to be, won't being, not will be
+The shop *is going to* close early today. | going to, is go to, will to
+He *will probably arrive* at six. | will probably arriving, probably will to arrive, will probably to arrive
+My boss *is going to* give a talk tomorrow. | going to, is go to, will to
+We *will need* more chairs for the meeting. | will needing, will to need, needs will
+I *am not going to* take the bus today. | not going to, am not go to, won't to
+Wait, I *will carry* that bag for you. | will carrying, will to carry, carry will
+Our train *is going to* be late. | going to, is go to, will to
+I'm sure you *will enjoy* the trip. | will enjoying, will to enjoy, enjoy will`,
+school:`I *am going to* study medicine at university. | going to, am go to, will to
+Our class *is going to* have a party on Friday. | going to, is go to, will to
+I *will lend* you my pen. | will lending, will to lend, lends will
+The teacher *will give* us the results tomorrow. | will giving, will to give, gives will
+*Are you going to* join the drama club? | You going to, Are you go to, Will you to
+I think you *will pass* the exam. | will passing, will to pass, passes will
+We *are going to* play basketball after school. | going to, are go to, will to
+I forgot my book. I *will share* with Ben. | will sharing, will to share, shares will
+She *isn't going to* take the test today. | not going to, isn't go to, won't to
+Next year I *will be* fifteen. | will being, will to be, am being
+Mr Lee *is going to* show us a film. | going to, is go to, will to
+Don't worry, I *won't tell* anyone. | won't telling, won't to tell, not will tell`,
+other:`My sister *is going to* have a baby in June. | going to, is go to, will to
+It *will be* sunny tomorrow afternoon. | will being, will to be, is be
+We *are going to* paint the garden fence. | going to, are go to, will to
+I think the cat *will sleep* all afternoon. | will sleeping, will to sleep, sleeps will
+Grandma *is going to* bake a cake for us. | going to, is go to, will to
+Be careful! You *are going to* drop those eggs. | going to, are go to, will to
+I'm cold. I *will close* the window. | will closing, will to close, close will
+My parents *are going to* move to a smaller house. | going to, are go to, will to`},
+
+{id:9,lv:"B1",n:"Present perfect vs past simple",sel:"Present perfect vs past simple",sh:"Pres. perfect vs past simple",r:"Past simple for finished time (yesterday, in 2019, two years ago, when…?). Present perfect (have / has + past participle) for experience and with since, for, already, yet, ever, never and just.",
+life:`She *has lived* here since 2019. | lived, has live, is living
+I *bought* this car two years ago. | have bought, buyed, has bought
+*Have you ever been* to Japan? | Did you ever been, Have you ever went, Were you ever
+We *visited* Rome last summer. | have visited, visit, have visit
+He *has worked* for this company for ten years. | works, has work, is working
+I *have already finished* the report. | have already finish, already have finish, has already finished
+My train *left* five minutes ago. | has left, leaved, have left
+*Have you finished* your coffee yet? | Have you finish, Has you finished, Did you finished
+I *have never eaten* sushi. | have never ate, has never eaten, am never eating
+The meeting *started* at ten o'clock. | has started, start, have started
+We *have known* our neighbours for years. | know, have know, are knowing
+When *did you move* to this city? | have you moved, did you moved, you moved
+She *has just left* the office. | has just leave, have just left, is just left
+I *lost* my wallet yesterday. | have lost, losed, has lost
+Prices *have gone up* a lot since last year. | went up, go up, have went up
+*Did you see* the doctor last week? | Have you seen, Did you saw, Have you saw
+I *have been* a nurse since 2015. | am, was, have be
+They *opened* the new airport in 2020. | have opened, open, have open
+*Has* the plumber called yet? | Have, Is, Does
+I *haven't seen* my cousin since March. | didn't see, don't see, haven't saw`,
+school:`I *have already done* my homework. | have already did, has already done, am already done
+We *had* a test yesterday. | have had, has had, have
+*Have you ever won* a prize at school? | Did you ever won, Have you ever win, Has you ever won
+Our teacher *has taught* here for twenty years. | teaches, has teach, is teaching
+I *didn't go* to school last Friday. | haven't gone, haven't went, didn't went
+Ben *has broken* his arm, so he can't play today. | has broke, have broken, is broken
+The school year *started* in September. | has started, start, have started
+I *have known* my best friend since primary school. | know, knew, have know
+*Did you watch* the match last night? | Have you watched, Did you watched, Have you watch
+She *has never failed* an exam. | has never fail, have never failed, is never failing
+We *moved* to this school two years ago. | have moved, move, have move
+*Has* anyone seen my calculator? | Have, Is, Does`,
+other:`My grandparents *have lived* in the same house for fifty years. | live, have live, are living
+It *rained* a lot last weekend. | has rained, rain, have rained
+We *have had* our dog since 2018. | have, had, has had
+I *saw* a great film on Saturday. | have seen, seed, have saw
+*Have you ever seen* a whale? | Did you ever seen, Have you ever saw, Has you ever seen
+My sister *was born* in 2010. | has been born, is born, have born
+My brother *has just bought* a new bike. | has just buy, have just bought, is just bought
+I *haven't had* breakfast yet. | haven't have, hasn't had, don't had`},
+{id:10,lv:"B1",n:"First & second conditional",sel:"First & second conditional",sh:"1st & 2nd conditional",r:"First conditional (real future): if + present simple, will + verb. Second conditional (unreal or unlikely): if + past simple, would + verb. If I were you… is common for advice.",
+life:`If it rains tomorrow, we *will stay* at home. | would stay, stay will, will staying
+If I *had* more money, I would buy a bigger flat. | have, would have, will have
+If you *leave* now, you will catch the train. | will leave, left, leaving
+If I *were* you, I would take the job. | am, will be, be
+She *would travel* more if she had more time. | will travel, travels, would travels
+If the shop is open, I *will buy* some milk. | would buy, buy will, will buying
+If I lived in the city, I *would walk* to work. | will walk, walk, would walked
+If you *don't hurry*, you will miss the bus. | won't hurry, didn't hurry, not hurry
+What *would you do* if you lost your job? | will you do, do you do, would you did
+If we *had* a car, we would visit you more often. | have, would have, will have
+If the weather is good, we *will have* lunch outside. | would have, will had, have will
+If I *see* Tom, I will tell him. | will see, saw, would see
+If I *knew* the answer, I would tell you. | know, would know, will know
+You *will feel* better if you drink some water. | would feel, feel will, will feeling
+If my boss *calls*, tell him I'm in a meeting. | will call, would call, called
+If I *didn't have* to work, I would go to the beach. | don't have, wouldn't have, won't have
+If the train *is* late, I will take a taxi. | will be, would be, was
+If we *lived* by the sea, we would swim every day. | live, would live, will live
+I *would buy* that house if it were cheaper. | will buy, buy, would bought
+If it *doesn't stop* raining, we will cancel the trip. | won't stop, didn't stop, not stop`,
+school:`If you study hard, you *will pass* the exam. | would pass, pass will, will passing
+If I *finish* my homework early, I will play football. | will finish, finished, would finish
+If I *were* the teacher, I would give less homework. | am, will be, be
+If we *had* more time, we would finish the project. | have, would have, will have
+If you *forget* your book, I will lend you mine. | will forget, forgot, would forget
+If I *could* speak five languages, I would work abroad. | can, would can, will can
+She *would join* the team if she were taller. | will join, joins, would joined
+If it *snows*, the school will close. | will snow, snowed, would snow
+What *will you do* if you fail the test? | would you do, do you do, will you did
+If I *won* the school prize, I would be very happy. | win, would win, will win
+If the bell *rings*, we will go outside. | will ring, rang, would ring
+If we *practise* every day, we will win the match. | will practise, practised, would practise`,
+other:`If the dog is hungry, it *will bark*. | would bark, barks will, will barking
+If I *had* a garden, I would grow vegetables. | have, would have, will have
+If you *touch* the cat, it will run away. | will touch, touched, would touch
+If my grandmother *lived* closer, I would visit her every day. | lives, would live, will live
+If it's sunny on Sunday, we *will go* to the park. | would go, go will, will going
+If I *were* a bird, I would fly to the mountains. | am, will be, be
+My mum *would be* happy if I cleaned my room. | will be, is, would been
+If we *don't water* the plants, they will die. | won't water, didn't water, not water`},
+{id:11,lv:"B1",n:"Modals: must / have to / should / mustn't / don't have to",sel:"Modals: must / have to / should",sh:"Modals",r:"must / have to = it is necessary; mustn't = it is not allowed; don't have to = it is not necessary; should = advice. After must, mustn't and should use the base verb (no to); have to changes: he has to, I had to.",
+life:`You *must wear* a seat belt in the car. | must to wear, must wearing, musts wear
+You *mustn't run* by the swimming pool. | mustn't to run, don't must run, mustn't running
+I *have to* get up at six for work. | must to, has to, have
+You *should see* a doctor about that cough. | should to see, should seeing, shoulds see
+We *don't have to* wear a suit on Fridays. | haven't to, don't have, doesn't have to
+She *has to* work on Saturdays. | have to, must to, has
+You *should drink* more water. | should to drink, should drinking, should drinks
+Passengers *must show* their tickets. | must to show, must showing, must shows
+You *mustn't park* here. It's a bus stop. | mustn't to park, don't must park, mustn't parking
+He *doesn't have to* pay for parking at work. | don't have to, doesn't has to, hasn't to
+*Do I have to* book a table? | Must I to, Do I has to, Does I have to
+You *shouldn't eat* so much sugar. | shouldn't to eat, shouldn't eating, don't should eat
+Visitors *must sign* in at reception. | must to sign, must signing, must signs
+I *had to* wait an hour for the bus yesterday. | must, have to, had
+You *don't have to* bring anything. We have food. | mustn't, don't must, doesn't have to
+We *should leave* now or we'll be late. | should to leave, should leaving, should leaves
+Workers *have to* wear helmets on the building site. | has to, must to, have
+You *must keep* your passport safe. | must to keep, must keeping, must keeps
+My doctor says I *should walk* every day. | should to walk, should walking, should walks
+Visitors *mustn't touch* the paintings. | mustn't to touch, don't must touch, mustn't touching`,
+school:`Students *must turn* off their phones in class. | must to turn, must turning, must turns
+You *mustn't copy* your friend's homework. | mustn't to copy, don't must copy, mustn't copying
+We *don't have to* go to school on Saturday. | doesn't have to, don't must, haven't to
+You *should ask* the teacher for help. | should to ask, should asking, should asks
+I *have to* finish my essay tonight. | has to, must to, have
+Tom *has to* bring his PE kit on Monday. | have to, must to, has
+You *shouldn't talk* during the test. | shouldn't to talk, shouldn't talking, don't should talk
+*Do we have to* do all the exercises? | Must we to, Do we has to, Does we have to
+You *must be* quiet in the library. | must to be, must being, must are
+She *doesn't have to* take the exam again. She passed. | don't have to, doesn't has to, mustn't to
+We *had to* stay late after school yesterday. | must, have to, had
+You *should practise* your spelling every day. | should to practise, should practising, should practises`,
+other:`You *must feed* the cat twice a day. | must to feed, must feeding, must feeds
+We *don't have to* get up early on Sundays. | doesn't have to, don't must, haven't to
+You *shouldn't go* out without a coat in this weather. | shouldn't to go, shouldn't going, don't should go
+Dogs *must stay* on the path in this park. | must to stay, must staying, must stays
+My little brother *has to* go to bed at eight. | have to, must to, has
+You *mustn't feed* the animals at the zoo. | mustn't to feed, don't must feed, mustn't feeding
+Grandpa *should rest* after his long walk. | should to rest, should resting, should rests
+I *have to* help my mum in the garden today. | has to, must to, have`},
+{id:12,lv:"B1",n:"Quantifiers: some / any / much / many / a few / a little",sel:"Quantifiers: some / any / much…",sh:"Quantifiers",r:"some in positive sentences and offers; any in negatives and questions; many / a few with plural countable nouns; much / a little with uncountable nouns.",
+life:`There isn't *any* rice in the cupboard. | some, many, a few
+How *much* money do you need? | many, a few, any
+How *many* people work in your office? | much, a little, some
+I'd like *some* coffee, please. | any, many, a few
+We have *a few* minutes before the train leaves. | a little, much, any
+Can I have *a little* sugar in my tea? | a few, many, few of
+There aren't *many* shops in my village. | much, a little, some
+I don't have *much* time today. | many, a few, some
+Are there *any* tickets left for tonight? | much, a little, a lot
+She bought *some* apples at the market. | any, much, a little
+There's *a little* soup left in the pot. | a few, many, few of
+How *much* luggage do you have? | many, a few, few
+I need *a few* more days to finish the work. | a little, much, little
+We didn't see *many* tourists in the city. | much, a little, little
+There is *some* cheese in the fridge. | any, many, a few
+Do you have *any* questions for me? | much, a little, few
+I only drink *a little* water at night. | a few, many, few
+The hotel doesn't have *many* rooms. | much, a little, little
+There's not *much* traffic today. | many, a few, few
+I have *a few* friends in this city. | a little, much, any`,
+school:`How *many* students are in your class? | much, a little, any
+I have *some* homework to do tonight. | any, many, a few
+We don't have *any* English lessons today. | some, much, a few
+There are *a few* new books in the library. | a little, much, little
+How *much* homework did you get? | many, a few, few
+I made *a few* mistakes in the test. | a little, much, little
+Is there *any* paper in the printer? | many, a few, a lot
+Our teacher doesn't give us *much* time for tests. | many, a few, few
+There aren't *many* students in the gym. | much, a little, little
+I need *some* help with this exercise. | any, many, a few
+We have *a little* time before the bell. | a few, many, few of
+Did you buy *any* pencils? | much, a little, a lot`,
+other:`There isn't *much* snow this winter. | many, a few, few
+We saw *a few* birds in the garden. | a little, much, little
+My grandmother puts *a little* salt in the soup. | a few, many, few of
+Do you have *any* pets? | much, a little, a lot
+There are *some* cows in the field. | any, much, a little
+How *many* brothers and sisters do you have? | much, a little, any
+We didn't have *much* rain last month. | many, a few, few
+I'd like *some* water, please. | any, many, a few`},
+
+{id:13,lv:"B2",n:"Passive voice (all main tenses)",sel:"Passive voice",sh:"Passive voice",r:"be in the right tense + past participle: is made, was built, is being repaired, has been sold, will be finished, must be returned. Use by to say who did the action.",
+life:`This bridge *was built* in 1890. | was build, built, is built
+English *is spoken* in many countries. | is speak, speaks, spoken
+The new hospital *will be finished* next year. | will finished, will be finish, is finish
+My car *is being repaired* at the moment. | is repairing, is being repair, being repaired
+The office *is cleaned* every evening. | is cleaning, cleans, cleaned
+All the tickets *have been sold*. | have sold, have been sell, has been sold
+The meeting *was cancelled* because of the snow. | cancelled, was cancel, has cancelled
+This cheese *is made* from goat's milk. | made, is make, makes
+My order *was delivered* yesterday. | delivered, was deliver, is delivered
+The road *is being repaired*, so we took another route. | is repairing, is being repair, was repairing
+Breakfast *is served* from 7 to 10. | serves, is serve, is serving
+These shoes *were made* in Italy. | made, were make, was made
+The flight *has been delayed* by two hours. | has delayed, has been delay, have been delayed
+Your room *will be cleaned* while you are out. | will clean, will cleaned, will be cleaning
+The museum *was visited* by thousands of people last year. | visited, was visit, is visited
+Cars *are not allowed* in the old town. | do not allowed, are not allow, not allowed
+The letters *were sent* last week. | sent, were send, are sent
+A new shopping centre *is being built* near my flat. | is building, is being build, being built
+The report *must be finished* by Friday. | must finished, must be finish, must finish
+The windows *are washed* once a month. | wash, are wash, washed`,
+school:`The exam papers *are marked* by two teachers. | mark, are mark, marked
+Our school *was founded* in 1975. | founded, was found, is founded
+The results *will be announced* on Monday. | will announce, will be announce, will announced
+The homework *has to be handed* in by Friday. | has to hand, has to be hand, has to handed
+The classroom *is being painted* this week. | is painting, is being paint, being painted
+Phones *are not allowed* in the exam room. | do not allowed, are not allow, not allowed
+The school play *was watched* by all the parents. | watched, was watch, is watched
+The winners *will be given* a certificate. | will give, will be give, will given
+The library books *must be returned* by Friday. | must returned, must be return, must return
+This project *was done* by Mia and Leo. | did, was do, is done
+The school bus *was cleaned* yesterday. | cleaned, was cleaning, is cleaned
+The new sports hall *has been finished*. | has finished, has been finish, have been finished`,
+other:`Rice *is grown* in many parts of Asia. | is grow, grown, was grow
+The cake *was eaten* in five minutes. | ate, was eat, eaten
+The old tree *was cut* down last week. | cutted, is cut, was cutted
+This song *is played* on the radio every day. | is play, played, was play
+The dog *is walked* twice a day. | is walk, walked, was walk
+Our house *was painted* last summer. | painted, was paint, is painted
+The parcel *has been opened*. | has open, have been opened, has opened
+The photos *were taken* by my uncle. | took, were take, was taken`},
+{id:14,lv:"B2",n:"Reported speech",sel:"Reported speech",sh:"Reported speech",r:"After a past reporting verb, move the tense back (is → was, will → would, can → could, has done → had done) and change time words (that day, the next day, the day before). Reported questions use statement word order; say + nothing, tell + person.",
+life:`Tom said he *was* busy that evening. | is, be, were
+My boss asked me where *I lived*. | do I live, did I live, I living
+She told me she *would call* the next day. | will call, would called, calls
+He said he *had finished* the report the day before. | has finished, had finish, finishes
+The receptionist asked if *we had* a reservation. | did we have, do we have, having
+Mia said she *couldn't* come to the meeting that afternoon. | can't, couldn't to, cannot
+The doctor told me *to rest* for a week. | rest, resting, that rest
+My manager asked me *to send* the file. | send, sending, that I send
+He asked me what time *the train left*. | did the train leave, the train did leave, does the train leave
+She said she *had lost* her keys the day before. | has lost, had lose, loses
+The waiter asked us what *we wanted* to drink. | did we want, do we want, wanting
+They told us the hotel *was* full that night. | is, be, were
+I asked the driver if he *could* stop near the bank. | can, could to, does
+She *told* me that the shop was closed. | said me, told to me, says me
+He *said* that he liked his new job. | told, said me, telled
+The guide told us *not to touch* the paintings. | don't touch, not touch, no touching
+My neighbour asked me *whether* I needed help. | that, what, do
+She told me she *was moving* to a new flat the following week. | is moving, was move, moves
+The cashier said the machine *wasn't* working that morning. | isn't, weren't, doesn't
+He asked me *if* I had seen his phone. | that, what, do`,
+school:`The teacher told us *to open* our books. | open, opening, that open
+Ben said he *had forgotten* his homework that day. | has forgotten, had forget, forgets
+Our teacher asked us *not to talk* during the test. | don't talk, not talk, no talking
+Lily asked me what *I was doing* that weekend. | was I doing, am I doing, I doing
+The coach said we *would play* the following Saturday. | will play, would played, play
+She asked me if *I had studied* for the test. | did I study, have I studied, had I studied
+Our teacher said that the exam *would be* on the following Monday. | will be, would being, is
+Leo told me he *couldn't* find his calculator that morning. | can't, couldn't to, cannot
+The head teacher *told* the students to be quiet. | said, says, telled
+My friend asked me *where the library was*. | where was the library, where the library is it, where did the library be
+She said she *had already read* the book. | has already read, had already readed, already reads
+The teacher asked *who had left* a bag in the classroom. | who did leave, who had leave, who leaves`,
+other:`My grandmother said she *was* cold that morning. | is, be, were
+My dad told me *to feed* the cat. | feed, feeding, that feed
+My sister said she *would bake* a cake the next day. | will bake, would baked, bakes
+Mum asked me if *I had cleaned* my room. | did I clean, have I cleaned, had I cleaned
+My uncle said he *had seen* a fox in the garden the night before. | has seen, had saw, sees
+My brother asked me *if* I wanted to play chess. | that, what, do
+Grandpa told us *not to run* near the pond. | don't run, not run, no running
+She said it *had rained* all day the day before. | has rained, had rain, rains`},
+{id:15,lv:"B2",n:"Third conditional & wish",sel:"Third conditional & wish",sh:"3rd conditional & wish",r:"Third conditional (imagined past): if + had + past participle, would have + past participle. wish + past simple = a wish about now (I wish I had a car); wish + past perfect = a regret about the past (I wish I had gone).",
+life:`If I *had left* earlier, I would have caught the train. | left, would leave, have left
+If we had booked a table, we *would have got* a seat. | would get, will have got, would have get
+I wish I *had* a bigger flat. | have, will have, having
+I wish I *hadn't eaten* so much at lunch. | didn't eat, haven't eaten, wouldn't eat
+If you *had told* me, I would have helped you. | told, would tell, have told
+I *would have called* you if I had known. | would call, will have called, would have call
+I wish I *lived* closer to my office. | live, am living, will live
+If the taxi *had come* on time, we wouldn't have missed the flight. | came, would come, has come
+I wish I *had bought* that jacket in the sale. | bought, have bought, would buy
+If we *hadn't taken* the wrong road, we would have arrived earlier. | didn't take, wouldn't take, haven't taken
+She *wouldn't have been* late if she had set an alarm. | won't have been, wouldn't have be, wouldn't had been
+I wish I *could* speak Spanish. | can, could to, would can
+If I had saved more money, I *would have travelled* last year. | would travel, will have travelled, would had travelled
+I wish my office *were* nearer the city centre. | is, will be, be
+If he *had checked* the address, he wouldn't have got lost. | checked, would check, has checked
+I wish I *knew* how to fix this. | know, have known, am knowing
+If they *had invited* us, we would have gone. | invited, would invite, have invited
+We *would have bought* the house if it had been cheaper. | will have bought, would have buy, would had bought
+I wish it *wasn't* so expensive to live here. | isn't, won't be, not be
+If I *hadn't missed* the bus, I wouldn't have been late for work. | didn't miss, wouldn't miss, haven't missed`,
+school:`If she had studied harder, she *would have passed* the exam. | will have passed, would have pass, would had passed
+I wish I *had listened* in class yesterday. | listened, have listened, would listen
+If I *had known* about the test, I would have studied. | knew, would know, have known
+I wish we *didn't have* so much homework. | don't have, won't have, haven't
+If you *had asked* the teacher, she would have helped you. | asked, would ask, have asked
+We *would have won* the match if Tom had played. | will have won, would have win, would had won
+I wish I *could* play the piano. | can, could to, would can
+If I *hadn't forgotten* my book, I would have done the exercise. | didn't forget, wouldn't forget, haven't forgotten
+I wish our school *had* a swimming pool. | has, will have, having
+If we had left on time, we *wouldn't have missed* the start of the play. | won't have missed, wouldn't have miss, wouldn't had missed
+I wish I *hadn't said* that to my friend. | didn't say, haven't said, wouldn't say
+If he *had worn* his trainers, he could have run faster. | wore, would wear, has worn`,
+other:`If it *hadn't rained*, we would have had a picnic. | didn't rain, wouldn't rain, hasn't rained
+I wish I *had* a dog. | have, will have, having
+My grandmother wishes she *had learned* to swim. | has learned, would learned, had learn
+If we *had planted* the seeds earlier, the flowers would have grown. | planted, would plant, have planted
+I wish the weather *was* warmer today. | is, will be, be
+If my brother *had called*, I would have picked him up. | called, would call, has called
+We *would have seen* the sunset if we had arrived earlier. | will have seen, would have see, would had seen
+I wish I *hadn't broken* my mum's favourite cup. | didn't break, haven't broken, wouldn't break`},
+{id:16,lv:"B2",n:"Gerunds vs infinitives",sel:"Gerunds vs infinitives",sh:"Gerunds vs infinitives",r:"Some verbs take -ing (enjoy, avoid, finish, mind, suggest, keep, give up); others take to + verb (want, decide, hope, plan, refuse, agree, promise, manage). After a preposition always use -ing (good at cooking, look forward to seeing).",
+life:`I enjoy *cooking* for my friends. | to cook, cook, cooked
+We decided *to stay* at home. | staying, stay, stayed
+She avoids *driving* in the city centre. | to drive, drive, drove
+I'm thinking about *changing* my job. | to change, change, changed
+He refused *to pay* for the broken glass. | paying, pay, paid
+Would you mind *opening* the window? | to open, open, opened
+I hope *to visit* you next summer. | visiting, visit, visited
+They finished *painting* the kitchen. | to paint, paint, painted
+She's good at *solving* problems. | to solve, solve, solved
+We agreed *to meet* at the station. | meeting, meet, met
+I'm looking forward to *seeing* you. | see, saw, seen
+He suggested *taking* a taxi. | to take, take, took
+I can't afford *to buy* a new car. | buying, buy, bought
+She kept *talking* during the film. | to talk, talk, talked
+We plan *to move* to the coast. | moving, move, moved
+I'm tired of *waiting* for the bus. | to wait, wait, waited
+He promised *to call* me back. | calling, call, called
+Please stop *making* so much noise. | make, made, makes
+She managed *to fix* the printer. | fixing, fix, fixed
+I don't mind *working* late on Fridays. | to work, work, worked`,
+school:`I want *to become* a doctor. | becoming, become, became
+Tom is interested in *learning* Japanese. | to learn, learn, learned
+We practised *speaking* English in pairs. | to speak, speak, spoke
+She forgot *to bring* her pencil case. | bring, brought, brings
+I'm bad at *remembering* dates. | to remember, remember, remembered
+Our teacher wants us *to read* two books this term. | reading, read, that we read
+He's afraid of *speaking* in front of the class. | to speak, speak, spoke
+I need *to finish* my project tonight. | finishing, finish, finished
+Leo avoids *doing* his homework on Fridays. | to do, do, did
+We're excited about *going* on the school trip. | to go, go, went
+She learned *to swim* when she was six. | swimming, swim, swam
+Mia offered *to help* me with maths. | helping, help, helped`,
+other:`My grandfather loves *gardening*. | garden, gardened, gardens
+My sister can't stand *washing* the dishes. | wash, washed, washes
+We hope *to see* snow this winter. | seeing, see, saw
+My dog enjoys *chasing* birds. | to chase, chase, chased
+I'd like *to learn* how to bake bread. | learning, learn, learned
+She gave up *eating* sugar last year. | to eat, eat, ate
+My brother keeps *forgetting* his keys. | to forget, forget, forgot
+My parents decided *to buy* a smaller car. | buying, buy, bought`}
+];
+</script>
+<script>
+(function(){
+'use strict';
+var FREE=false;
+var BUY='';
+var MAXMINE=FREE?12:300;
+var LOCKED=FREE?['fix','auc','qb','ttt']:[];
+var APP=window.APP={sfx:{},flashes:0,fs:0,timerEnds:0,shakes:0,blocked:0};
+var $=function(id){return document.getElementById(id)};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function lsGet(k,d){try{var v=localStorage.getItem('eslgram_'+k);return v?JSON.parse(v):d}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem('eslgram_'+k,JSON.stringify(v));return true}catch(e){return false}}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+
+/* ---------- parsing (same rules for built-in bank and My Sentences) ---------- */
+function mk(pre,a,post,ds){return {pre:pre,a:a,post:post,ds:ds,text:(pre+a+post).replace(/\s+/g,' ').trim(),bad:(pre+ds[0]+post).replace(/\s+/g,' ').trim()}}
+function parseLine(s){
+ var bar=s.indexOf('|');
+ if(bar<0)return {err:'no | before the wrong options'};
+ var sent=s.slice(0,bar).trim(),opt=s.slice(bar+1);
+ var stars=(sent.match(/\*/g)||[]).length;
+ if(stars===0)return {err:'no *answer* marked with stars'};
+ if(stars!==2)return {err:'mark exactly one answer like *this*'};
+ var m=sent.match(/^([^*]*)\*([^*]+)\*([^*]*)$/);
+ if(!m||!m[2].trim())return {err:'the answer between the stars is empty'};
+ var a=m[2].trim(),seen={};seen[a.toLowerCase()]=1;
+ var ds=opt.split(',').map(function(x){return x.trim()}).filter(function(x){if(!x||seen[x.toLowerCase()])return false;seen[x.toLowerCase()]=1;return true});
+ if(!ds.length)return {err:'add 1–3 wrong options after |'};
+ var extra=ds.length>3;
+ return {item:mk(m[1],a,m[3],ds.slice(0,3)),extra:extra};
+}
+function parseText(txt,max){
+ var lines=String(txt||'').split(/\r?\n/),out=[],errs=[],name='',dup=0,com=0,first=true,seen={},extra=0;
+ for(var i=0;i<lines.length;i++){
+  var s=lines[i].trim();if(!s)continue;
+  if(first&&s.slice(0,2)==='##'){name=s.replace(/^#+/,'').trim();first=false;continue}
+  first=false;
+  if(s.charAt(0)==='#'){com++;continue}
+  if(seen[s]){dup++;continue}
+  seen[s]=1;
+  var r=parseLine(s);
+  if(r.err){errs.push({line:i+1,msg:r.err});continue}
+  if(r.extra)extra++;
+  r.item.line=i+1;r.item.raw=s;out.push(r.item);
+ }
+ var cut=0;if(out.length>max){cut=out.length-max;out=out.slice(0,max)}
+ return {items:out,errs:errs,name:name,dup:dup,com:com,cut:cut,found:out.length+cut,extra:extra};
+}
+APP.parseText=parseText;
+
+/* ---------- built-in bank ---------- */
+var BUILT=[],PBY={},BANKERR=[];
+POINTS.forEach(function(p){
+ PBY[p.id]=p;p.items=[];p.locked=!p.life;
+ ['life','school','other'].forEach(function(tp){
+  if(!p[tp])return;
+  var r=parseText(p[tp],10000);
+  r.errs.forEach(function(e){BANKERR.push('P'+p.id+' '+tp+' line '+e.line+': '+e.msg)});
+  r.items.forEach(function(it){it.pid=p.id;it.lv=p.lv;it.tp=tp;p.items.push(it);BUILT.push(it)});
+ });
+});
+APP.BUILT=BUILT;APP.BANKERR=BANKERR;window.BANK=BUILT;
+var LVN={A1:'Beginner',A2:'Elementary',B1:'Intermediate',B2:'Upper-int.'};
+var LVC={A1:'var(--sun)',A2:'var(--sky)',B1:'var(--mint)',B2:'var(--lilac)'};
+var LVT={A1:'#FFF3CC',A2:'#E3F2FD',B1:'#DDF7EC',B2:'#EEE6FC'};
+var TCOL=['var(--sun)','var(--sky)','var(--mint)','var(--grape)','var(--berry)','var(--orange)'];
+var TWHITE=[false,false,false,true,true,false];
+
+/* ---------- my sets + selection ---------- */
+var SETS=FREE?[]:lsGet('sets',[]);if(!Array.isArray(SETS))SETS=[];
+var TMP=null,CACHE={};
+function setItems(s){if(!CACHE[s.id]||CACHE[s.id].text!==s.text)CACHE[s.id]={text:s.text,items:parseText(s.text,MAXMINE).items};return CACHE[s.id].items}
+function getSet(id){if(id==='tmp')return TMP;for(var i=0;i<SETS.length;i++)if(SETS[i].id===id)return SETS[i];return null}
+var SEL=lsGet('selection',null);
+if(!SEL||!Array.isArray(SEL.pts))SEL={pts:[POINTS[0].id],sets:[]};
+SEL.pts=SEL.pts.filter(function(id){return PBY[id]&&!PBY[id].locked});
+SEL.sets=(SEL.sets||[]).filter(function(id){return getSet(id)});
+function saveSel(){lsSet('selection',{pts:SEL.pts,sets:SEL.sets.filter(function(x){return x!=='tmp'})})}
+function groups(){
+ var g=[];
+ POINTS.forEach(function(p){if(SEL.pts.indexOf(p.id)>=0)g.push({key:'p'+p.id,name:p.sel,sh:p.sh,lv:p.lv,items:p.items})});
+ SEL.sets.forEach(function(id){var s=getSet(id);if(s)g.push({key:'s'+id,name:s.name,sh:s.name,lv:'',items:setItems(s)})});
+ return g;
+}
+function pool(){var a=[];groups().forEach(function(g){a=a.concat(g.items)});return a}
+APP.groups=groups;APP.pool=pool;APP.SEL=SEL;
+
+/* ---------- deck ---------- */
+var D={order:[],pos:0,items:[]};APP.D=D;
+function newDeck(){D.items=pool();D.order=shuffle(D.items.map(function(_,i){return i}));D.pos=0;foot()}
+function draw(){
+ if(D.pos>=D.order.length){askReshuffle();return null}
+ var it=D.items[D.order[D.pos++]];foot();return it;
+}
+function askReshuffle(){APP.reshuffleAsked=(APP.reshuffleAsked||0)+1;TIMER.pause();msg('All sentences used — reshuffle?','All '+D.items.length+' sentences in this selection have been used in this game.',[['Reshuffle ▸',function(){closeMsg();newDeck();if(G&&G.next)G.next()},'pri'],['Not now',closeMsg,'pap']])}
+APP.draw=draw;APP.newDeck=newDeck;
+
+/* ---------- teams ---------- */
+var TS=lsGet('teams',{n:4,names:[]})||{n:4,names:[]};
+var TM={n:clamp(TS.n||4,2,6),names:[],sc:[0,0,0,0,0,0],cur:0};
+for(var ti=0;ti<6;ti++)TM.names[ti]=(TS.names&&TS.names[ti])||('Team '+(ti+1));
+APP.TM=TM;
+function saveTeams(){lsSet('teams',{n:TM.n,names:TM.names})}
+var G=null,META=null;APP.G=function(){return G};
+function nTeams(){return G&&G.id==='ttt'?2:TM.n}
+var GX='<svg class="gl" viewBox="0 0 40 40"><path d="M9 9l22 22M31 9L9 31" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg>';
+var GO='<svg class="gl" viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg>';
+function renderTeams(){
+ var n=nTeams(),h='';
+ for(var i=0;i<n;i++){
+  h+='<div class="team'+(i===TM.cur?' cur':'')+(TWHITE[i]?' wt':'')+'" style="background:'+TCOL[i]+'" data-t="'+i+'"><span class="ns">'+(G&&G.id==='ttt'?(i===0?GX:GO):'')+'<span class="n" data-t="'+i+'">'+esc(TM.names[i])+'</span><span class="s" id="tsc'+i+'">'+disp(i)+'</span></span><button class="pm" data-pm="-1" data-t="'+i+'" title="−1">−</button><button class="pm" data-pm="1" data-t="'+i+'" title="+1">+</button></div>';
+ }
+ var el=$('teams');el.className='teams'+(n>=5?' tight':'');el.style.gridTemplateColumns='repeat('+n+',minmax(0,1fr))';el.innerHTML=h;
+}
+function disp(i){return G&&G.disp?G.disp(i):TM.sc[i]}
+function scoresOnly(){for(var i=0;i<nTeams();i++){var e=$('tsc'+i);if(e)e.textContent=disp(i)}}
+function addScore(t,d){TM.sc[t]+=d;scoresOnly();APP.lastScore=TM.sc.slice()}
+function setCur(t){TM.cur=t;var ps=document.querySelectorAll('#teams .team');for(var i=0;i<ps.length;i++)ps[i].classList.toggle('cur',i===t);if(G&&G.onCur)G.onCur()}
+function rename(el){
+ var t=+el.dataset.t;el.contentEditable='true';el.focus();
+ try{var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}
+ function done(){el.removeEventListener('blur',done);el.contentEditable='false';var v=el.textContent.replace(/\s+/g,' ').trim().slice(0,24);TM.names[t]=v||('Team '+(t+1));saveTeams();renderTeams();if(G&&G.onCur)G.onCur()}
+ el.addEventListener('blur',done);
+ el.onkeydown=function(e){if(e.key==='Enter'||e.key==='Escape'){e.preventDefault();el.blur()}};
+}
+APP.addScore=addScore;APP.setCur=setCur;APP.renderTeams=renderTeams;
+
+/* ---------- sound, flash, toast ---------- */
+var SND={on:lsGet('sound',true)!==false},AC=null;
+function ac(){try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(C)AC=new C()}if(AC&&AC.state==='suspended')AC.resume()}catch(e){}return AC}
+function beep(a,f,t,d,type,v){try{var o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(0.001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+0.03)}catch(e){}}
+function sfx(kind){
+ if(!SND.on)return;var a=ac();if(!a)return;APP.sfx[kind]=(APP.sfx[kind]||0)+1;var t=a.currentTime+0.01;
+ if(kind==='end'){beep(a,880,t,0.2,'square',0.12);beep(a,880,t+0.28,0.2,'square',0.12);beep(a,1175,t+0.56,0.35,'square',0.12)}
+ else if(kind==='ok'){beep(a,660,t,0.12,'sine',0.25);beep(a,990,t+0.12,0.22,'sine',0.25)}
+ else if(kind==='no'){beep(a,180,t,0.3,'sawtooth',0.12)}
+ else if(kind==='win'){[523,659,784,1047].forEach(function(f,i){beep(a,f,t+i*0.12,0.2,'triangle',0.22)})}
+}
+function soundIcon(){$('bSound').innerHTML='<svg viewBox="0 0 40 40"><g fill="none" stroke="#FFFDF6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15h7l9-8v26l-9-8H6z"/>'+(SND.on?'<path d="M27 14a8 8 0 0 1 0 12M31 9a14 14 0 0 1 0 22"/>':'<path d="M27 15l10 10M37 15L27 25" stroke="#E8457A"/>')+'</g></svg>'}
+function flash(){var f=$('flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');APP.flashes++}
+var toastT=null;
+function toast(s,ms){var t=$('toast');t.textContent=s;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on')},ms||1800);APP.lastToast=s}
+function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');APP.shakes++}
+APP.sound=SND;
+
+/* ---------- timer ---------- */
+var TIMER={total:30,left:30,run:false,iv:null,end:0,
+ set:function(s){this.stop();this.total=s;this.left=s;this.draw()},
+ reset:function(){this.stop();this.left=this.total;this.draw()},
+ start:function(){if(this.run)return;if(this.left<=0)this.left=this.total;this.run=true;this.end=Date.now()+this.left*1000;var me=this;clearInterval(this.iv);this.iv=setInterval(function(){me.tick()},100);this.draw()},
+ pause:function(){if(!this.run)return;this.left=Math.max(0,(this.end-Date.now())/1000);this.stop();this.draw()},
+ stop:function(){this.run=false;clearInterval(this.iv);this.iv=null},
+ toggle:function(){this.run?this.pause():this.start()},
+ tick:function(){this.left=Math.max(0,(this.end-Date.now())/1000);if(this.left<=0){this.finish();return}this.draw()},
+ finish:function(){this.stop();this.left=0;this.draw();APP.timerEnds++;sfx('end');flash()},
+ adj:function(d){var mx=META?META.tmax:120;this.total=clamp(this.total+d,5,mx);if(this.run){this.end+=d*1000;this.left=Math.max(0,(this.end-Date.now())/1000)}else this.left=this.total;this.draw()},
+ draw:function(){var r=$('ring');if(!r)return;var L=Math.ceil(this.left-0.001);r.querySelector('b').textContent=L;var arc=r.querySelector('.arc');arc.setAttribute('stroke-dashoffset',(402.1*(1-(this.total?this.left/this.total:0))).toFixed(1));r.className='ring'+(this.run?' run':'')+(this.left<=0?' zero':'')}
+};
+APP.TIMER=TIMER;
+function timerHTML(){return '<div class="timer" id="timerBox"><div class="tadj"><button data-ta="5" title="+5 seconds">+5</button><button data-ta="-5" title="−5 seconds">−5</button></div><div class="ring" id="ring" title="Start / pause (T)"><svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="64" fill="none" stroke="#2B5C5A" stroke-width="14"/><circle class="arc" cx="75" cy="75" r="64" fill="none" stroke="#FFC83D" stroke-width="14" stroke-linecap="round" stroke-dasharray="402.1" stroke-dashoffset="0" transform="rotate(-90 75 75)"/></svg><b>30</b></div></div>'}
+var MAG='<svg viewBox="0 0 40 40"><circle cx="17" cy="17" r="11" fill="none" stroke="#FFC83D" stroke-width="4"/><path d="M25 25l10 10" stroke="#FFC83D" stroke-width="5" stroke-linecap="round"/></svg>';
+function taskHTML(t,id){return '<div class="task"'+(id?' id="'+id+'"':'')+'>'+MAG+'<u>'+t+'</u></div>'}
+
+/* ---------- fit ---------- */
+function fitIn(el,max){var f=max;el.style.setProperty('--fs',f+'px');var g=0;while(el.scrollHeight>el.clientHeight+1&&f>44&&g<80){f-=2;el.style.setProperty('--fs',f+'px');g++}APP.lastFs=f;return f}
+function sizeFor(it,big){var w=it.text.split(' ').length;return w>14?(big?60:48):(big?76:56)}
+var ICO={
+scr:'<svg viewBox="0 0 64 64"><rect x="3" y="8" width="26" height="18" rx="5" fill="#5BB8F5" transform="rotate(-8 16 17)"/><rect x="34" y="6" width="27" height="18" rx="5" fill="#FFC83D" transform="rotate(7 47 15)"/><rect x="18" y="31" width="28" height="18" rx="5" fill="#3DD39A" transform="rotate(-4 32 40)"/><path d="M8 50c6 10 40 12 50-2" fill="none" stroke="#1E2030" stroke-width="4" stroke-linecap="round"/><path d="M50 44l9 3-3 9" fill="none" stroke="#1E2030" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+fix:'<svg viewBox="0 0 64 64"><rect x="4" y="10" width="56" height="44" rx="10" fill="#FFFDF6" stroke="#1E2030" stroke-width="3"/><rect x="11" y="22" width="16" height="6" rx="3" fill="#1E2030"/><rect x="31" y="22" width="22" height="6" rx="3" fill="#1E2030"/><rect x="11" y="38" width="20" height="6" rx="3" fill="#1E2030"/><rect x="35" y="38" width="18" height="6" rx="3" fill="#1E2030" opacity=".35"/><path d="M33 41h22" stroke="#E8457A" stroke-width="5" stroke-linecap="round"/><path d="M38 6l6 7 12-12" fill="none" stroke="#3DD39A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+gap:'<svg viewBox="0 0 64 64"><rect x="4" y="6" width="56" height="20" rx="6" fill="#1F4B4A"/><rect x="10" y="13" width="12" height="6" rx="3" fill="#FFFDF6"/><rect x="26" y="20" width="14" height="3" rx="1.5" fill="#FFC83D"/><rect x="44" y="13" width="10" height="6" rx="3" fill="#FFFDF6"/><path d="M15 31l8 13H7z" fill="#E8457A"/><path d="M48 30l7 7-7 7-7-7z" fill="#5BB8F5"/><circle cx="15" cy="54" r="7" fill="#FFC83D"/><rect x="41" y="48" width="14" height="13" rx="2" fill="#3DD39A"/></svg>',
+auc:'<svg viewBox="0 0 64 64"><rect x="20" y="6" width="30" height="16" rx="5" fill="#FF8A3D" stroke="#1E2030" stroke-width="3" transform="rotate(-35 35 14)"/><path d="M30 24L12 47" stroke="#1E2030" stroke-width="6" stroke-linecap="round"/><rect x="30" y="46" width="30" height="10" rx="4" fill="#1E2030"/><path d="M8 56h18" stroke="#1E2030" stroke-width="4" stroke-linecap="round"/><circle cx="52" cy="34" r="7" fill="#FFC83D" stroke="#1E2030" stroke-width="2"/><text x="52" y="38" font-family="Arial" font-weight="700" font-size="10" text-anchor="middle" fill="#1E2030">$</text></svg>',
+qb:'<svg viewBox="0 0 64 64"><rect x="4" y="8" width="56" height="48" rx="10" fill="#8E5BE8"/><g fill="#FFFDF6"><rect x="11" y="15" width="12" height="9" rx="2"/><rect x="26" y="15" width="12" height="9" rx="2"/><rect x="41" y="15" width="12" height="9" rx="2"/><rect x="11" y="28" width="12" height="9" rx="2"/><rect x="26" y="28" width="12" height="9" rx="2" opacity=".35"/><rect x="41" y="28" width="12" height="9" rx="2"/><rect x="11" y="41" width="12" height="9" rx="2" opacity=".35"/><rect x="26" y="41" width="12" height="9" rx="2"/><rect x="41" y="41" width="12" height="9" rx="2"/></g></svg>',
+ttt:'<svg viewBox="0 0 64 64"><g stroke="#1E2030" stroke-width="4" stroke-linecap="round"><path d="M24 6v52M40 6v52M6 24h52M6 40h52"/></g><path d="M10 10l9 9M19 10l-9 9M28 28l8 8M36 28l-8 8" stroke="#E8457A" stroke-width="5" stroke-linecap="round"/><circle cx="48" cy="15" r="6" fill="none" stroke="#2F8FD6" stroke-width="5"/><circle cx="15" cy="49" r="6" fill="none" stroke="#2F8FD6" stroke-width="5"/></svg>'};
+var GAMES=[
+ {id:'scr',no:'01',name:'Sentence Scramble',nm:'Sentence<br>Scramble',col:'var(--sun)',tint:'#FFF3CC',desc:'Put the word blocks in order.',tdef:60,tmax:120},
+ {id:'fix',no:'02',name:'Fix the Mistake',nm:'Fix the<br>Mistake',col:'var(--berry)',tint:'#FCE3E8',desc:'Spot the error. Say it right.',tdef:30,tmax:120},
+ {id:'gap',no:'03',name:'Gap Fill Race',nm:'Gap Fill<br>Race',col:'var(--sky)',tint:'#E3F2FD',desc:'Buzz in, choose A–D.',tdef:15,tmax:60},
+ {id:'auc',no:'04',name:'Grammar Auction',nm:'Grammar<br>Auction',col:'var(--orange)',tint:'#FFE6D3',desc:'Bid. Buy only correct sentences!',tdef:20,tmax:120},
+ {id:'qb',no:'05',name:'Grammar Quiz Board',nm:'Grammar<br>Quiz Board',col:'var(--grape)',tint:'#EEE6FC',desc:'Pick a column and points.',tdef:30,tmax:120},
+ {id:'ttt',no:'06',name:'Grammar Tic-Tac-Toe',nm:'Grammar<br>Tic-Tac-Toe',col:'var(--mint)',tint:'#DDF7EC',desc:'Answer right to take the square.',tdef:30,tmax:120}];
+APP.ICO=ICO;var GBY={};GAMES.forEach(function(g){GBY[g.id]=g});
+var SHAPES=['<path d="M30 6l26 46H4z" fill="currentColor"/>','<path d="M30 3l27 27-27 27L3 30z" fill="currentColor"/>','<circle cx="30" cy="30" r="25" fill="currentColor"/>','<rect x="6" y="6" width="48" height="48" rx="4" fill="currentColor"/>'];
+function optsHTML(opts,done,ans){
+ return opts.map(function(o,i){var st='',mk='';if(done){if(o.ok){st=' right';mk='<span class="mk">✓</span>'}else if(i===ans){st=' wrongc';mk='<span class="mk">✗</span>'}else st=' dim'}
+  return '<button class="opt o'+i+st+'" data-o="'+i+'"><svg class="shp" viewBox="0 0 60 60">'+SHAPES[i]+'</svg><span class="L">'+'ABCD'.charAt(i)+'</span><span class="ot">'+esc(o.t)+'</span>'+mk+'</button>'}).join('');
+}
+function mkOpts(it){return shuffle([{t:it.a,ok:true}].concat(it.ds.map(function(d){return {t:d,ok:false}})))}
+function scrambleOrder(w,text){var o=w.map(function(_,i){return i}),n=0;do{shuffle(o);n++}while(n<60&&o.map(function(i){return w[i]}).join(' ')===text);return o}
+function gapSent(it,done){return esc(it.pre)+(done?'<span class="gap fill">'+esc(it.a)+'</span>':'<span class="gap"></span>')+esc(it.post)}
+function fixSent(it,rev){return esc(it.pre)+'<span class="fix">'+(rev?'<span class="cor">'+esc(it.a)+'</span><span class="del">'+esc(it.ds[0])+'</span>':esc(it.ds[0]))+'</span>'+esc(it.post)}
+function adjustCor(scope){var c=scope.querySelector('.cor');if(!c)return;c.style.setProperty('--dx','0px');var r=c.getBoundingClientRect(),cd=c.closest('.card').getBoundingClientRect(),s=APP.scale||1,dx=0;if(r.left<cd.left+16*s)dx=(cd.left+16*s-r.left)/s;if(r.right>cd.right-16*s)dx=(cd.right-16*s-r.right)/s;c.style.setProperty('--dx',dx+'px')}
+function bstate(el,s){el.className='btn big '+(s==='pri'?'pri':'sec');el.disabled=(s==='off')}
+function area(h){$('area').innerHTML=h}
+var IMPL={};
+
+/* 01 Sentence Scramble */
+IMPL.scr={id:'scr',
+ start:function(){var g=this;newDeck();
+  area('<div class="taskrow">'+taskHTML('Put the words in the right order.')+'<div class="turn" id="turn"></div>'+timerHTML()+'</div><div class="card" style="--band:var(--sun)"><div class="band"></div><div class="scw"><div class="ans" id="scAns"></div><div class="pool" id="scPool"></div></div><div class="actions"><button class="btn big" id="scCheck">Check ✓ <span class="k">C</span></button><button class="btn big" id="scRev">Reveal <span class="k">R</span></button><button class="btn big" id="scNext">Next ▸ <span class="k">Space</span></button></div></div>');
+  $('scCheck').onclick=function(){g.check()};$('scRev').onclick=function(){g.reveal()};$('scNext').onclick=function(){g.next()};
+  $('scPool').onclick=function(e){var t=e.target.closest('.tile');if(t&&!g.done){g.pick.push(+t.dataset.i);g.draw()}};
+  $('scAns').onclick=function(e){var t=e.target.closest('.tile');if(t&&!g.done){var k=g.pick.indexOf(+t.dataset.i);if(k>=0)g.pick.splice(k,1);g.draw()}};
+  this.it=null;this.next(true);
+ },
+ next:function(first){var it=draw();if(!it)return;if(!first&&this.it){TM.cur=(TM.cur+1)%TM.n;renderTeams()}this.it=it;this.w=it.text.split(' ');this.order=scrambleOrder(this.w,it.text);this.pick=[];this.done=false;this.result='';TIMER.reset();this.draw();this.onCur()},
+ onCur:function(){var t=$('turn');if(!t)return;t.innerHTML='Turn: '+esc(TM.names[TM.cur]);t.style.background=TCOL[TM.cur];t.style.color=TWHITE[TM.cur]?'#fff':'var(--ink)'},
+ draw:function(){var w=this.w,rev=this.result==='rev',idx=rev?w.map(function(_,i){return i}):this.pick;
+  var tile=function(i){return '<button class="tile" data-i="'+i+'">'+esc(w[i])+'</button>'};
+  $('scAns').innerHTML=idx.length?idx.map(tile).join(''):'<span class="ph">Click the words in order</span>';
+  $('scAns').className='ans'+(this.result==='ok'?' ok':'')+(rev?' rev':'');
+  $('scPool').innerHTML=this.order.filter(function(i){return idx.indexOf(i)<0}).map(tile).join('');
+  bstate($('scCheck'),this.done?'off':'pri');bstate($('scRev'),this.done?'off':'sec');bstate($('scNext'),this.done?'pri':'sec');
+  fitIn($('area'),56);
+ },
+ check:function(){if(this.done)return;var w=this.w;if(this.pick.length<w.length){shake($('scAns'));toast('Use all the words');return}
+  if(this.pick.map(function(i){return w[i]}).join(' ')===this.it.text){this.done=true;this.result='ok';addScore(TM.cur,1);sfx('ok');toast('+1 → '+TM.names[TM.cur]);this.draw()}else{sfx('no');shake($('scAns'))}},
+ reveal:function(){if(this.done)return;this.done=true;this.result='rev';this.draw()},
+ space:function(){this.next()},
+ key:function(u){if(u==='C')this.check();else if(u==='R')this.reveal()}
+};
+
+/* 02 Fix the Mistake */
+IMPL.fix={id:'fix',
+ start:function(){var g=this;newDeck();
+  area('<div class="taskrow">'+taskHTML('Find the mistake. Say the correct sentence.')+timerHTML()+'</div><div class="card" style="--band:var(--berry)"><div class="band"></div><div class="sent" id="fxS"></div><div class="legend" id="fxL"><span><i class="sw" style="background:var(--wtint);border:3px solid var(--wrong)"></i>the mistake</span><span><i class="sw" style="background:var(--mint)"></i>correct form</span></div><div class="actions"><button class="btn big" id="fxA"></button><button class="btn big" id="fxB"></button></div></div>');
+  $('fxA').onclick=function(){g.reveal()};$('fxB').onclick=function(){g.rev?g.next():TIMER.toggle()};
+  this.next();
+ },
+ next:function(){var it=draw();if(!it)return;this.it=it;this.rev=false;TIMER.reset();this.draw()},
+ draw:function(){var s=$('fxS');s.className='sent'+(this.rev?' rev':'');s.innerHTML=fixSent(this.it,this.rev);$('fxL').className='legend'+(this.rev?' on':'');
+  if(!this.rev){$('fxA').innerHTML='Reveal ▸ <span class="k">Space</span>';bstate($('fxA'),'pri');$('fxB').innerHTML='Start / pause timer <span class="k">T</span>';bstate($('fxB'),'sec')}
+  else{$('fxA').innerHTML='Revealed ✓';bstate($('fxA'),'off');$('fxB').innerHTML='Next sentence ▸ <span class="k">Space</span>';bstate($('fxB'),'pri')}
+  fitIn($('area'),sizeFor(this.it,true));adjustCor($('fxS'));
+ },
+ reveal:function(){if(this.rev)return;this.rev=true;TIMER.pause();this.draw()},
+ space:function(){this.rev?this.next():this.reveal()},
+ key:function(u){if(u==='R')this.reveal()}
+};
+
+/* 03 Gap Fill Race */
+IMPL.gap={id:'gap',
+ start:function(){var g=this;newDeck();
+  area('<div class="taskrow"><div class="task" id="gpT"></div><div class="tact"><button class="btn big" id="gpR">Show answer <span class="k">R</span></button><button class="btn big" id="gpN">Next ▸ <span class="k">Space</span></button></div>'+timerHTML()+'</div><div class="card" style="--band:var(--sky)"><div class="band"></div><div class="sent" id="gpS"></div></div><div class="opts" id="gpO"></div>');
+  $('gpR').onclick=function(){g.show()};$('gpN').onclick=function(){g.next()};
+  $('gpO').onclick=function(e){var b=e.target.closest('.opt');if(b)g.choose(+b.dataset.o)};
+  this.next();
+ },
+ next:function(){var it=draw();if(!it)return;this.it=it;this.opts=mkOpts(it);this.ans=-1;this.done=false;this.buzz=-1;TIMER.reset();this.draw();TIMER.start()},
+ draw:function(){var t=$('gpT');
+  if(this.buzz>=0)t.innerHTML='<span class="buzz" style="background:'+TCOL[this.buzz]+(TWHITE[this.buzz]?';color:#fff':'')+'">'+esc(TM.names[this.buzz])+' buzzed!</span>';
+  else t.innerHTML=MAG+'<u>Buzz in: team number, then A–'+'ABCD'.charAt(this.opts.length-1)+'.</u>';
+  $('gpS').innerHTML=gapSent(this.it,this.done);$('gpO').innerHTML=optsHTML(this.opts,this.done,this.ans);
+  bstate($('gpR'),this.done?'off':'sec');bstate($('gpN'),this.done?'pri':'sec');
+  fitIn($('area'),sizeFor(this.it,true));
+ },
+ team:function(t){setCur(t);if(!this.done){this.buzz=t;this.draw()}},
+ choose:function(i){if(this.done||i>=this.opts.length)return;this.ans=i;this.done=true;TIMER.pause();
+  if(this.opts[i].ok){var t=this.buzz>=0?this.buzz:TM.cur;addScore(t,1);sfx('ok');toast('+1 → '+TM.names[t])}else sfx('no');this.draw()},
+ show:function(){if(this.done)return;this.done=true;this.ans=-1;TIMER.pause();this.draw()},
+ space:function(){this.next()},
+ key:function(u){var i='ABCD'.indexOf(u);if(u.length===1&&i>=0)this.choose(i);else if(u==='R')this.show()}
+};
+/* 04 Grammar Auction */
+IMPL.auc={id:'auc',startMoney:1000,N:10,
+ start:function(){newDeck();this.phase='setup';this.lots=[];this.act=0;this.render()},
+ cash:function(t,ex){var s=this.startMoney+TM.sc[t];this.lots.forEach(function(L,j){if(j!==ex&&L.team===t)s-=L.bid});return s},
+ fin:function(t){var s=this.startMoney+TM.sc[t];this.lots.forEach(function(L){if(L.team===t)s+=L.wrong?-L.bid:L.bid});return s},
+ disp:function(i){return this.phase==='done'?this.fin(i):this.phase==='bid'?this.cash(i,-1):this.startMoney+TM.sc[i]},
+ render:function(){var g=this,h='';
+  if(this.phase==='setup'){
+   var seg=function(a,b,cur,attr){var s='';for(var i=a;i<=b;i++)s+='<button class="'+(i===cur?'on':'')+'" '+attr+'="'+i+'">'+i+'</button>';return s};
+   h='<div class="setup"><h2>Grammar Auction · setup</h2><p>Every team starts with the same money. Teams bid on each sentence. About half of the sentences are wrong! After “Reveal all”, a correct sentence adds the bid and a wrong sentence takes the bid away.</p>'+
+    '<div class="srow"><b>Teams</b><div class="seg">'+seg(2,6,TM.n,'data-tn')+'</div></div>'+
+    '<div class="srow"><b>Starting money</b><button class="btn pap" data-sm="-100">−100</button><input id="auStart" type="number" min="100" max="100000" step="100" value="'+this.startMoney+'"><button class="btn pap" data-sm="100">+100</button></div>'+
+    '<div class="srow"><b>Sentences per round</b><div class="seg">'+seg(8,12,this.N,'data-ln')+'</div></div>'+
+    '<div class="srow"><b></b><button class="btn big pri" id="auGo">Start auction ▸</button></div></div>';
+   area(h);
+   $('area').onclick=function(e){var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.tn){TM.n=+b.dataset.tn;saveTeams();if(TM.cur>=TM.n)TM.cur=0;renderTeams();g.readStart();g.render()}
+    else if(b.dataset.ln){g.readStart();g.N=+b.dataset.ln;g.render()}
+    else if(b.dataset.sm){g.readStart();g.startMoney=clamp(g.startMoney+(+b.dataset.sm),100,100000);g.render();scoresOnly()}
+    else if(b.id==='auGo'){g.readStart();g.go()}};
+   return;
+  }
+  $('area').onclick=null;
+  if(this.phase==='bid'){
+   var rows=this.lots.map(function(L,i){var o='<option value="-1">—</option>';for(var t=0;t<TM.n;t++)o+='<option value="'+t+'"'+(L.team===t?' selected':'')+'>'+esc(TM.names[t])+'</option>';
+    return '<tr data-l="'+i+'"'+(i===g.act?' class="act"':'')+'><td class="ln">'+(i+1)+'</td><td class="ls">'+esc(L.wrong?L.it.bad:L.it.text)+'</td><td><select data-l="'+i+'">'+o+'</select></td><td><input data-l="'+i+'" type="number" min="0" step="10" placeholder="0" value="'+(L.bid||'')+'"><span class="hint" id="auH'+i+'"></span></td></tr>'}).join('');
+   area('<div class="lotrow"><button class="btn arrow" id="auP">◀</button><div class="card" style="--band:var(--orange)"><div class="band"></div><div class="lothd"><span class="lotno" id="auNo"></span></div><div class="sent" id="auS"></div></div><button class="btn arrow" id="auN">▶</button>'+timerHTML()+'</div>'+
+    '<div class="ledger"><div class="lhead"><span>Ledger: choose the winning team and type the bid for each lot</span><span class="sp"></span><button class="btn pri" id="auRev">Reveal all ✓</button></div><div class="lrows" id="auRows"><table class="lt"><thead><tr><th>#</th><th>Sentence</th><th>Winning team</th><th>Bid</th></tr></thead><tbody id="auB">'+rows+'</tbody></table></div></div>');
+   $('auP').onclick=function(){g.go2(g.act-1)};$('auN').onclick=function(){g.go2(g.act+1)};$('auRev').onclick=function(){g.reveal()};
+   var B=$('auB');
+   B.onchange=function(e){var i=+e.target.dataset.l;if(e.target.tagName==='SELECT'){g.lots[i].team=+e.target.value;g.validate(i,true)}else g.validate(i,true)};
+   B.oninput=function(e){if(e.target.tagName==='INPUT')g.validate(+e.target.dataset.l,false)};
+   B.onclick=function(e){var tr=e.target.closest('tr');if(tr&&e.target.tagName!=='SELECT'&&e.target.tagName!=='INPUT')g.go2(+tr.dataset.l)};
+   this.lot();return;
+  }
+  var res=this.lots.map(function(L,i){var r=L.team<0||!L.bid?'—':(L.wrong?'−'+L.bid:'+'+L.bid);
+   var s=L.wrong?'<span class="chip no">✗ Wrong</span>'+esc(L.it.pre)+'<span class="delS">'+esc(L.it.ds[0])+'</span><span class="corS">'+esc(L.it.a)+'</span>'+esc(L.it.post):'<span class="chip ok">✓ Correct</span>'+esc(L.it.text);
+   return '<tr><td class="ln">'+(i+1)+'</td><td class="ls">'+s+'</td><td>'+(L.team<0?'—':esc(TM.names[L.team]))+'</td><td>'+(L.bid||'—')+'</td><td><b>'+r+'</b></td></tr>'}).join('');
+  var rk=[];for(var t=0;t<TM.n;t++)rk.push({t:t,v:this.fin(t)});rk.sort(function(a,b){return b.v-a.v});
+  var top=rk[0].v,win=rk.filter(function(x){return x.v===top}).map(function(x){return esc(TM.names[x.t])}).join(' & ');
+  area('<div class="resw"><div class="ledger res"><div class="lhead"><span>Results · start '+this.startMoney+'</span></div><div class="lrows"><table class="lt"><thead><tr><th>#</th><th>Sentence</th><th>Team</th><th>Bid</th><th>Result</th></tr></thead><tbody>'+res+'</tbody></table></div></div>'+
+   '<div class="wbox"><svg width="300" height="90" viewBox="0 0 300 90"><path d="M10 20h40v50H10l14-25z" fill="#E6A800"/><path d="M290 20h-40v50h40l-14-25z" fill="#E6A800"/><rect x="40" y="8" width="220" height="62" rx="10" fill="#FFC83D"/><text x="150" y="52" text-anchor="middle" font-family="Arial Rounded MT Bold,Arial" font-weight="700" font-size="34" fill="#1E2030">WINNER</text></svg><div class="wname" id="auWin">'+win+'</div><ol class="rank">'+rk.map(function(x){return '<li style="background:'+TCOL[x.t]+(TWHITE[x.t]?';color:#fff':'')+'"><span>'+esc(TM.names[x.t])+'</span><span>'+x.v+'</span></li>'}).join('')+'</ol><button class="btn big pri" id="auAgain">New round ▸</button></div></div>');
+  $('auAgain').onclick=function(){TM.sc=[0,0,0,0,0,0];g.phase='setup';g.lots=[];g.render();renderTeams()};
+ },
+ readStart:function(){var e=$('auStart');if(e){var v=parseInt(e.value,10);this.startMoney=isNaN(v)?1000:clamp(v,100,100000)}},
+ go:function(){var n=this.N,out=[],seen={},guard=0;
+  while(out.length<n&&guard<2000){guard++;if(D.pos>=D.order.length){if(D.items.length<=out.length)break;newDeck();toast('All sentences used — reshuffled')}var it=D.items[D.order[D.pos++]];if(seen[it.text])continue;seen[it.text]=1;out.push(it)}
+  foot();var idx=shuffle(out.map(function(_,i){return i})),nw=Math.floor(out.length/2),wr={};for(var i=0;i<nw;i++)wr[idx[i]]=1;
+  this.lots=out.map(function(it,i){return {it:it,wrong:!!wr[i],team:-1,bid:0}});this.act=0;TM.sc=[0,0,0,0,0,0];this.phase='bid';this.render();renderTeams();
+ },
+ lot:function(){var L=this.lots[this.act];$('auNo').textContent='Lot '+(this.act+1)+' of '+this.lots.length;$('auS').textContent=L.wrong?L.it.bad:L.it.text;$('auS').style.fontSize=(L.it.text.split(' ').length>14?46:60)+'px';
+  var trs=document.querySelectorAll('#auB tr');for(var i=0;i<trs.length;i++)trs[i].classList.toggle('act',i===this.act);
+  var a=trs[this.act];if(a&&a.scrollIntoView)a.scrollIntoView({block:'nearest'});TIMER.reset()},
+ go2:function(i){if(this.phase!=='bid')return;this.act=clamp(i,0,this.lots.length-1);this.lot()},
+ validate:function(i,commit){var L=this.lots[i],inp=document.querySelector('#auB input[data-l="'+i+'"]'),h=$('auH'+i);var v=parseInt(inp.value,10);if(isNaN(v)||v<0)v=0;var m='',bad=false;
+  if(L.team>=0){var mx=Math.max(0,this.cash(L.team,i));if(v>mx){bad=true;m='Max '+mx;v=mx;if(commit){inp.value=mx;bad=false;m='Max '+mx+' (lowered)'}}}else if(v>0)m='Choose a team';
+  L.bid=v;inp.classList.toggle('bad',bad);h.textContent=m;scoresOnly();APP.lastBid={i:i,bid:v,hint:m}},
+ reveal:function(){for(var i=0;i<this.lots.length;i++)this.validate(i,true);this.phase='done';sfx('win');this.render();scoresOnly()},
+ space:function(){if(this.phase==='bid')this.go2(this.act+1)},
+ key:function(u,e){if(this.phase!=='bid')return;if(e.key==='ArrowRight')this.go2(this.act+1);else if(e.key==='ArrowLeft')this.go2(this.act-1)},
+ foot:function(){return this.phase==='bid'?'Lot '+(this.act+1)+' / '+this.lots.length+' · Used '+D.pos+' / '+D.items.length+' · Space or → = next lot · T = timer':'Used '+D.pos+' / '+D.items.length}
+};
+
+/* shared question card for Quiz Board + Tic-Tac-Toe */
+var TYPEN={gap:'Gap fill',fix:'Fix the mistake',scr:'Sentence scramble'};
+var Q={cfg:null,
+ open:function(cfg){this.cfg=cfg;var it=cfg.it;this.shown=false;this.ans=-1;if(cfg.type==='gap')this.opts=mkOpts(it);if(cfg.type==='scr'){var w=it.text.split(' ');this.words=scrambleOrder(w,it.text).map(function(i){return w[i]})}
+  var tb=$('timerBox');if(tb){this.home=tb.parentNode;this.nx=tb.nextSibling}
+  $('qov').classList.add('on');this.draw();TIMER.reset();},
+ draw:function(){var c=this.cfg,it=c.it,t=c.type,h='<div class="card qcard" style="--band:'+c.band+'"><div class="band"></div><div class="qhd"><span>'+c.title+'</span><span class="qt2">'+TYPEN[t]+'</span><span style="width:300px"></span></div><div id="qTimer"></div>';
+  if(t==='gap')h+='<div class="qtask">Choose the right answer.</div><div class="sent">'+gapSent(it,this.shown)+'</div><div class="opts" id="qO">'+optsHTML(this.opts,this.shown,this.ans)+'</div>';
+  else if(t==='fix')h+='<div class="qtask">Find the mistake. Say the correct sentence.</div><div class="sent'+(this.shown?' rev':'')+'">'+fixSent(it,this.shown)+'</div>';
+  else h+='<div class="qtask">Put the words in the right order.</div><div class="wl">'+this.words.map(function(w){return '<span>'+esc(w)+'</span>'}).join('')+'</div>'+(this.shown?'<div class="qsol">'+esc(it.text)+'</div>':'');
+  h+='<div class="actions"><button class="btn big" id="qShow">Show answer <span class="k">R</span></button><button class="btn big pri" id="qOk">✓ '+c.okLabel()+'</button><button class="btn big sec" id="qNo">✗ '+c.noLabel+'</button><button class="btn big sec" id="qX">Close <span class="k">Esc</span></button></div></div>';
+  var ov=$('qov'),tb0=$('timerBox');if(tb0&&ov.contains(tb0)&&this.home)this.home.appendChild(tb0);ov.innerHTML=h;bstate($('qShow'),this.shown?'off':'sec');$('qOk').className='btn big pri';
+  var tb=$('timerBox');if(tb){$('qTimer').appendChild(tb);tb.parentNode.style.cssText='position:absolute;right:24px;top:26px'}
+  var me=this;$('qShow').onclick=function(){me.show()};$('qOk').onclick=function(){me.done(true)};$('qNo').onclick=function(){me.done(false)};$('qX').onclick=function(){me.close()};
+  var o=$('qO');if(o)o.onclick=function(e){var b=e.target.closest('.opt');if(b)me.choose(+b.dataset.o)};
+  var card=ov.querySelector('.qcard');fitIn(card,it.text.split(' ').length>14?56:68);adjustCor(card);TIMER.draw();
+ },
+ choose:function(i){if(!this.cfg||this.shown||this.cfg.type!=='gap'||i>=this.opts.length)return;this.ans=i;this.shown=true;sfx(this.opts[i].ok?'ok':'no');TIMER.pause();this.draw()},
+ show:function(){if(!this.cfg||this.shown)return;this.shown=true;TIMER.pause();this.draw()},
+ done:function(ok){var c=this.cfg;this.close();if(c)ok?c.onOk():c.onNo()},
+ close:function(){if(!this.cfg)return;var tb=$('timerBox');if(tb&&this.home){this.home.insertBefore(tb,this.nx&&this.nx.parentNode===this.home?this.nx:null)}this.cfg=null;$('qov').classList.remove('on');$('qov').innerHTML='';TIMER.reset()},
+ isOpen:function(){return !!this.cfg},
+ key:function(u){var i='ABCD'.indexOf(u);if(u.length===1&&i>=0)this.choose(i);else if(u==='R')this.show()}
+};
+APP.Q=Q;
+
+/* 05 Grammar Quiz Board */
+var QCOL=['var(--sun)','var(--sky)','var(--mint)','var(--grape)','var(--orange)'];
+IMPL.qb={id:'qb',pen:false,
+ start:function(){var g=this,gs=groups(),note='';
+  if(gs.length>5){gs=gs.slice().sort(function(a,b){return b.items.length-a.items.length}).slice(0,5);note='More than 5 ticked: using the 5 with the most sentences.'}
+  var cols;
+  if(gs.length===1){var all=gs[0].items,g0=gs[0];cols=[0,1,2,3,4].map(function(k){return {name:'Set '+(k+1),lv:g0.lv,sub:g0.sh,items:all.filter(function(_,i){return i%5===k})}}).filter(function(c){return c.items.length})}
+  else cols=gs.map(function(x){return {name:x.sh,lv:x.lv,sub:'',items:x.items}});
+  cols.forEach(function(c,i){c.col=QCOL[i];c.deck=shuffle(c.items.slice());c.pos=0;c.used=[0,0,0,0,0]});
+  this.cols=cols;this.undo=[];this.opened=0;this.note=note;
+  area('<div class="taskrow short">'+taskHTML('Pick a column and points.')+'<div class="qnote" id="qbNote"></div><button class="btn" id="qbPen"></button><button class="btn" id="qbUndo">Undo <span class="k">U</span></button>'+timerHTML()+'</div><div class="qb" id="qbG"></div>');
+  $('qbPen').onclick=function(){g.pen=!g.pen;g.draw()};$('qbUndo').onclick=function(){g.doUndo()};
+  $('qbG').onclick=function(e){var b=e.target.closest('.qt');if(b)g.open(+b.dataset.c,+b.dataset.r)};
+  this.draw();if(note)toast(note,3500);APP.qbNote=note;
+ },
+ draw:function(){var c=this.cols,h='';$('qbNote').textContent=this.note;$('qbPen').textContent='Wrong = −points: '+(this.pen?'On':'Off');$('qbUndo').disabled=!this.undo.length;
+  var G2=$('qbG');G2.style.gridTemplateColumns='repeat('+c.length+',minmax(0,1fr))';
+  c.forEach(function(x){h+='<div class="qh" style="background:'+x.col+(x.col==='var(--grape)'?';color:#fff':'')+'">'+esc(x.name)+(x.sub?'<small>'+esc(x.sub)+'</small>':'')+'</div>'});
+  for(var r=0;r<5;r++)c.forEach(function(x,ci){h+='<button class="qt'+(x.used[r]?' used':'')+'" data-c="'+ci+'" data-r="'+r+'" style="background:'+x.col+(x.col==='var(--grape)'?';color:#fff':'')+'">'+(x.used[r]?'✓':(r+1)*100)+'</button>'});
+  G2.innerHTML=h;foot();
+ },
+ open:function(ci,r){var c=this.cols[ci],g=this;if(c.used[r])return;if(c.pos>=c.deck.length){shuffle(c.deck);c.pos=0}var it=c.deck[c.pos++],pts=(r+1)*100;
+  Q.open({it:it,type:Math.random()<0.5?'gap':'fix',band:c.col,title:esc(c.name)+' · '+pts,okLabel:function(){return 'Correct → '+esc(TM.names[TM.cur])+' +'+pts},noLabel:'Wrong',
+   onOk:function(){g.mark(ci,r,pts)},onNo:function(){g.mark(ci,r,g.pen?-pts:0)}});
+ },
+ mark:function(ci,r,d){var t=TM.cur;this.cols[ci].used[r]=1;this.opened++;addScore(t,d);if(d>0){sfx('ok');toast((d>0?'+':'')+d+' → '+TM.names[t])}else sfx('no');this.undo.push({c:ci,r:r,t:t,d:d});setCur((t+1)%TM.n);this.draw()},
+ doUndo:function(){var u=this.undo.pop();if(!u)return;this.cols[u.c].used[u.r]=0;this.opened--;addScore(u.t,-u.d);setCur(u.t);this.draw();toast('Undone')},
+ onCur:function(){if(Q.isOpen())Q.draw()},
+ space:function(){if(Q.isOpen())Q.show()},
+ key:function(u){if(Q.isOpen())Q.key(u);else if(u==='U')this.doUndo()},
+ foot:function(){var t=0;this.cols.forEach(function(c){t+=5});return 'Opened '+this.opened+' / '+t+' · Esc = close a question · T = timer'}
+};
+
+/* 06 Grammar Tic-Tac-Toe */
+IMPL.ttt={id:'ttt',size:3,
+ start:function(){newDeck();TM.cur=0;this.board()},
+ board:function(){var g=this;this.cells=[];for(var i=0;i<this.size*this.size;i++)this.cells.push(-1);this.over=false;this.line=null;this.res='';
+  area('<div class="tttw"><div class="tttL"><div class="turnb" id="tTurn"></div><div class="seg"><button data-sz="3">3×3</button><button data-sz="4">4×4</button></div><div class="tres" id="tRes"></div><button class="btn big pri" id="tNew" style="display:none">New board ▸</button></div><div class="tbw"><div class="tbd n'+this.size+'" id="tB"></div><svg class="wline" id="tWL"></svg></div><div class="tttR">'+timerHTML()+'</div></div>');
+  $('area').querySelector('.seg').onclick=function(e){var b=e.target.closest('button');if(b){g.size=+b.dataset.sz;g.board()}};
+  $('tB').onclick=function(e){var c=e.target.closest('.cell');if(c)g.pick(+c.dataset.i)};$('tNew').onclick=function(){g.board()};
+  setCur(TM.cur);this.draw();
+ },
+ mark:function(v){return v===0?'<svg viewBox="0 0 100 100"><path d="M20 20l60 60M80 20L20 80" stroke="#E8457A" stroke-width="14" stroke-linecap="round"/></svg>':v===1?'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="32" fill="none" stroke="#2F8FD6" stroke-width="14"/></svg>':''},
+ draw:function(){var g=this,n=this.size,B=$('tB');B.style.gridTemplateColumns='repeat('+n+',auto)';
+  B.innerHTML=this.cells.map(function(v,i){return '<button class="cell'+(g.line&&g.line.indexOf(i)>=0?' win':'')+'" data-i="'+i+'">'+g.mark(v)+'</button>'}).join('');
+  var segs=$('area').querySelectorAll('.seg button');for(var i=0;i<segs.length;i++)segs[i].className=(+segs[i].dataset.sz===n?'on':'');
+  var t=TM.cur,tb=$('tTurn');tb.style.background=t===0?'var(--berry)':'#2F8FD6';tb.innerHTML=(t===0?GX:GO)+esc(TM.names[t])+'’s turn';tb.style.visibility=this.over?'hidden':'visible';
+  $('tRes').textContent=this.res;$('tNew').style.display=this.over?'':'none';
+  var wl=$('tWL');wl.innerHTML='';
+  if(this.line){var cs=B.children,a=cs[this.line[0]],b=cs[this.line[this.line.length-1]],W=B.offsetWidth,H=B.offsetHeight;wl.setAttribute('width',W);wl.setAttribute('height',H);
+   var x1=a.offsetLeft+a.offsetWidth/2,y1=a.offsetTop+a.offsetHeight/2,x2=b.offsetLeft+b.offsetWidth/2,y2=b.offsetTop+b.offsetHeight/2;
+   wl.innerHTML='<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#1E2030" stroke-width="22" stroke-linecap="round" opacity=".35"/><line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#FFC83D" stroke-width="16" stroke-linecap="round"/>'}
+  foot();
+ },
+ pick:function(i){if(this.over||this.cells[i]>=0)return;var it=draw();if(!it)return;var g=this,t=TM.cur;
+  Q.open({it:it,type:['gap','fix','scr'][Math.floor(Math.random()*3)],band:t===0?'var(--berry)':'var(--sky)',title:(t===0?'X':'O')+' · '+esc(TM.names[t]),okLabel:function(){return 'Correct → take the square'},noLabel:'Wrong → other team',onOk:function(){g.take(i)},onNo:function(){sfx('no');g.swap()}})},
+ lines:function(){var n=this.size,L=[],r,c,a;for(r=0;r<n;r++){a=[];for(c=0;c<n;c++)a.push(r*n+c);L.push(a)}for(c=0;c<n;c++){a=[];for(r=0;r<n;r++)a.push(r*n+c);L.push(a)}a=[];for(r=0;r<n;r++)a.push(r*n+r);L.push(a);a=[];for(r=0;r<n;r++)a.push(r*n+n-1-r);L.push(a);return L},
+ take:function(i){var t=TM.cur,g=this;this.cells[i]=t;sfx('ok');
+  var w=this.lines().filter(function(l){return l.every(function(k){return g.cells[k]===t})})[0];
+  if(w){this.over=true;this.line=w;this.res=TM.names[t]+' wins!';addScore(t,1);sfx('win');confetti();this.draw();APP.tttResult='win'+t;return}
+  if(this.cells.every(function(v){return v>=0})){this.over=true;this.res='Draw: the board is full.';this.draw();APP.tttResult='draw';return}
+  this.swap()},
+ swap:function(){setCur(1-TM.cur);this.draw()},
+ onCur:function(){if($('tTurn'))this.draw();if(Q.isOpen())Q.draw()},
+ space:function(){if(Q.isOpen())Q.show()},
+ key:function(u){if(Q.isOpen())Q.key(u)},
+ foot:function(){var n=this.cells?this.cells.filter(function(v){return v>=0}).length:0;return 'Squares '+n+' / '+(this.size*this.size)+' · Used '+D.pos+' / '+D.items.length+' sentences · T = timer'}
+};
+function confetti(){var g=$('game'),cols=['#FFC83D','#5BB8F5','#3DD39A','#E8457A','#FFFDF6','#FF8A3D'];for(var i=0;i<36;i++){var s=document.createElement('span');s.className='conf';s.style.left=(Math.random()*1880)+'px';s.style.background=cols[i%6];s.style.borderRadius=i%3?'50%':'4px';s.style.animationDelay=(Math.random()*0.5)+'s';g.appendChild(s);setTimeout(function(x){return function(){x.remove()}}(s),2600)}}
+APP.IMPL=IMPL;
+/* ---------- footer, chip, screens ---------- */
+function foot(){var f=$('foot');if(!f||!G)return;f.textContent=G.foot?G.foot():'Used '+D.pos+' / '+D.items.length+' · T = timer · Space = next'}
+function chipHTML(){var gs=groups();if(!gs.length)return '';var g=gs[0];return (g.lv?'<span class="lvc" style="background:'+LVC[g.lv]+'">'+g.lv+'</span>':'<span class="lvc" style="background:var(--sun)">My set</span>')+'<span class="nm">'+esc(g.name)+'</span>'+(gs.length>1?'<span class="more">+'+(gs.length-1)+' more</span>':'')}
+function show(id){$('start').className='scr'+(id==='start'?' on':'');$('game').className='scr'+(id==='game'?' on':'');APP.screen=id}
+function lockedMsg(){msg('Full version','This free demo includes Sentence Scramble and Gap Fill Race with 24 sentences. The full version has 6 games, 640 built-in sentences on 16 grammar points (A1–B2) and saved sets of up to 300 of your own sentences.',BUY?[['See the full version ▸',function(){window.open(BUY,'_blank')},'pri'],['Close',closeMsg,'pap']]:null)}
+function startGame(id){
+ if(LOCKED.indexOf(id)>=0){lockedMsg();return false}
+ var n=pool().length;
+ if(n<5){APP.blocked++;msg('Choose at least 5 sentences',n===0?'Tick a grammar point or one of your sets first.':'Only '+n+' sentence'+(n===1?' is':'s are')+' selected. A game needs at least 5. Tick more grammar points or add sentences in My Sentences.');return false}
+ Q.close();G=IMPL[id];META=GBY[id];TM.sc=[0,0,0,0,0,0];TM.cur=0;
+ show('game');$('gName').innerHTML=ICO[id]+'<span>'+META.name+'</span>';$('gChip').innerHTML=chipHTML();$('area').className='a-'+id;$('area').onclick=null;
+ TIMER.stop();TIMER.total=META.tdef;TIMER.left=META.tdef;
+ G.start();renderTeams();TIMER.draw();foot();return true;
+}
+function restartGame(){if(!G)return;Q.close();TM.sc=[0,0,0,0,0,0];TM.cur=0;TIMER.stop();TIMER.left=TIMER.total;G.start();renderTeams();TIMER.draw();foot();toast('New game: scores cleared')}
+function goHome(){TIMER.stop();Q.close();G=null;META=null;show('start');renderStart()}
+APP.startGame=startGame;APP.restart=restartGame;APP.goHome=goHome;
+
+/* ---------- start page ---------- */
+function renderStart(){
+ var h='';
+ ['A1','A2','B1','B2'].forEach(function(lv){var ps=POINTS.filter(function(p){return p.lv===lv}),open=ps.filter(function(p){return !p.locked});
+  var any=open.some(function(p){return SEL.pts.indexOf(p.id)>=0});
+  h+='<div class="box'+(any?' on':'')+'" style="background:'+LVT[lv]+'"><div class="bh"><span class="tag" style="background:'+LVC[lv]+'">'+lv+'</span><small>'+LVN[lv]+'</small>'+(open.length?'<button class="all" data-lv="'+lv+'">All '+lv+'</button>':'')+'</div>'+
+   ps.map(function(p){var on=SEL.pts.indexOf(p.id)>=0;return '<button class="ck'+(on?' x':'')+(p.locked?' lock':'')+'" data-p="'+p.id+'"><i></i><span>'+esc(p.sel)+'</span><em>'+(p.locked?'Full version':p.items.length)+'</em></button>'}).join('')+'</div>'});
+ $('lvBoxes').innerHTML=h;
+ var sets=(TMP?[TMP]:[]).concat(SETS),m='<span class="ml">My sets:</span><div class="msets">';
+ if(!sets.length)m+='<span class="none">None yet. Paste your own sentences in My Sentences.</span>';
+ sets.forEach(function(s){var on=SEL.sets.indexOf(s.id)>=0;m+='<button class="ck'+(on?' x':'')+'" data-s="'+s.id+'"><i></i><span>'+esc(s.name)+(s.id==='tmp'?' (not saved)':'')+'</span><em>'+setItems(s).length+'</em></button>'});
+ m+='</div><button class="btn" id="bEdit" style="background:var(--board2)">Edit sets ▸</button>';$('mineRow').innerHTML=m;
+ $('cnt').innerHTML='<b>'+pool().length+'</b> sentences selected';
+ $('cards').innerHTML=GAMES.map(function(g){var lk=LOCKED.indexOf(g.id)>=0;return '<div class="g" data-g="'+g.id+'"><div class="band" style="background:'+g.col+'"></div><div class="in"><div class="gt"><div class="ic" style="background:'+g.tint+'">'+ICO[g.id]+'</div><div class="num">'+g.no+'</div></div><div class="gn">'+g.nm+'</div><div class="gd">'+g.desc+'</div><button class="btn sun play" data-play="'+g.id+'">Play ▸</button></div>'+(lk?'<div class="veil" data-lock="1"><svg width="40" height="46" viewBox="0 0 40 46"><rect x="4" y="20" width="32" height="24" rx="5" fill="#1E2030"/><path d="M11 20v-7a9 9 0 0 1 18 0v7" fill="none" stroke="#1E2030" stroke-width="5"/></svg><span class="fv">Full version</span></div>':'')+'</div>'}).join('');
+ var t='<span class="lbl">Teams</span><div class="seg">';for(var i=2;i<=6;i++)t+='<button class="'+(i===TM.n?'on':'')+'" data-tn="'+i+'">'+i+'</button>';
+ t+='</div><div class="tnames">';for(i=0;i<TM.n;i++)t+='<input data-tname="'+i+'" maxlength="24" value="'+esc(TM.names[i])+'" style="background:'+TCOL[i]+(TWHITE[i]?';color:#fff':'')+'" aria-label="Team '+(i+1)+' name">';
+ $('teamRow').innerHTML=t+'</div>';
+}
+APP.renderStart=renderStart;
+function togglePt(id){var p=PBY[id];if(p.locked){lockedMsg();return}var k=SEL.pts.indexOf(id);if(k>=0)SEL.pts.splice(k,1);else SEL.pts.push(id);saveSel();renderStart()}
+function toggleSet(id){var k=SEL.sets.indexOf(id);if(k>=0)SEL.sets.splice(k,1);else SEL.sets.push(id);saveSel();renderStart()}
+APP.selectOnly=function(ids){SEL.pts.length=0;ids.forEach(function(i){SEL.pts.push(i)});SEL.sets.length=0;saveSel();renderStart()};
+$('start').addEventListener('click',function(e){
+ var b=e.target.closest('button,.veil');if(!b)return;
+ if(b.dataset.lock){lockedMsg();return}
+ if(b.dataset.p){togglePt(+b.dataset.p);return}
+ if(b.dataset.s){toggleSet(b.dataset.s);return}
+ if(b.dataset.lv){POINTS.forEach(function(p){if(p.lv===b.dataset.lv&&!p.locked&&SEL.pts.indexOf(p.id)<0)SEL.pts.push(p.id)});saveSel();renderStart();return}
+ if(b.dataset.play){startGame(b.dataset.play);return}
+ if(b.dataset.tn){TM.n=+b.dataset.tn;saveTeams();renderStart();return}
+ if(b.id==='bClear'){SEL.pts.length=0;SEL.sets.length=0;saveSel();renderStart();return}
+ if(b.id==='bMine'||b.id==='bEdit'){openMine();return}
+ if(b.id==='bHelpS'){openHelp();return}
+});
+$('start').addEventListener('input',function(e){var i=e.target.dataset.tname;if(i!==undefined){TM.names[+i]=e.target.value.trim()||('Team '+(+i+1));saveTeams()}});
+
+/* ---------- My Sentences panel ---------- */
+var LAST=null;
+function gutter(){var n=$('mTxt').value.split('\n').length,s=[];for(var i=1;i<=n;i++)s.push(i);$('mGut').textContent=s.join('\n');$('mGut').scrollTop=$('mTxt').scrollTop}
+function check(){
+ var r=parseText($('mTxt').value,MAXMINE);LAST=r;APP.lastParse=r;
+ if(r.name&&!$('mName').value.trim())$('mName').value=r.name;
+ var h='<div class="okc'+(r.items.length?'':' zero')+'">✓ <b>'+r.items.length+'</b> sentence'+(r.items.length===1?'':'s')+' ready</div><div class="msgs">';
+ r.errs.forEach(function(e){h+='<div class="e">Line '+e.line+': '+esc(e.msg)+' (skipped)</div>'});
+ if(r.cut)h+='<div class="e">'+(FREE?'Free demo: 12 sentences. The full version takes 300 per set and includes 640 built-in sentences.':'Only the first 300 sentences are used ('+r.found+' found).')+'</div>';
+ if(r.dup)h+='<div class="n">'+r.dup+' repeated line'+(r.dup>1?'s':'')+' ignored</div>';
+ if(r.com)h+='<div class="n">'+r.com+' comment line'+(r.com>1?'s':'')+' (#) ignored</div>';
+ if(r.extra)h+='<div class="n">'+r.extra+' line'+(r.extra>1?'s have':' has')+' more than 3 wrong options: only the first 3 are used</div>';
+ if(r.items.length&&r.items.length<5)h+='<div class="e">A game needs at least 5 sentences. Add more lines or tick grammar points too.</div>';
+ $('mChk').innerHTML=h+'</div>';gutter();return r;
+}
+function renderSets(){
+ if(FREE){$('mSetsH').textContent='Free demo';$('mSets').innerHTML='<p class="none" style="margin-top:8px">Up to 12 sentences. Saving sets, Import .txt and Export .txt are in the full version.</p>';return}
+ $('mSetsH').textContent='Saved sets ('+SETS.length+' / 20)';
+ $('mSets').innerHTML=SETS.length?SETS.map(function(s){return '<div class="srow2"><span class="snm">'+esc(s.name)+'</span><em>'+setItems(s).length+'</em><button data-load="'+s.id+'">Load</button><button data-ren="'+s.id+'" title="Rename">✎</button><button data-del="'+s.id+'" title="Delete">✕</button></div>'}).join(''):'<p class="none" style="margin-top:8px">No saved sets yet. Saved sets stay in this browser on this computer. Use Export .txt to take them to another computer.</p>';
+}
+function saveSets(){return lsSet('sets',SETS)}
+function openMine(){$('ovMine').classList.add('on');if(FREE){['mSave','mImp','mExp'].forEach(function(id){$(id).style.display='none'})}check();renderSets();APP.mineOpen=true}
+function closeMine(){$('ovMine').classList.remove('on');APP.mineOpen=false;if(APP.screen==='start')renderStart()}
+function useMine(){var r=check();if(!r.items.length){toast('No usable lines yet');return false}
+ TMP={id:'tmp',name:$('mName').value.trim()||r.name||'My pasted set',text:$('mTxt').value};delete CACHE.tmp;
+ if(SEL.sets.indexOf('tmp')<0)SEL.sets.push('tmp');closeMine();toast(r.items.length+' sentences ready: “'+TMP.name+'” is ticked');return true}
+function saveMine(){var r=check(),name=$('mName').value.trim()||r.name;
+ if(!r.items.length){msg('Nothing to save','Paste at least one sentence in the format shown.');return}
+ if(!name){msg('Name your set','Type a set name first (for example “Unit 7 – Homework errors”).');return}
+ var ex=null;SETS.forEach(function(s){if(s.name===name)ex=s});
+ if(ex){ex.text=$('mTxt').value}else{if(SETS.length>=20){msg('20 sets saved','You already have 20 saved sets (the maximum). Delete one first.');return}ex={id:'s'+Date.now().toString(36),name:name,text:$('mTxt').value};SETS.push(ex)}
+ if(!saveSets())toast('Could not save in this browser');
+ var k=SEL.sets.indexOf('tmp');if(k>=0)SEL.sets.splice(k,1);TMP=null;if(SEL.sets.indexOf(ex.id)<0)SEL.sets.push(ex.id);saveSel();renderSets();toast('Saved “'+name+'” ('+setItems(ex).length+')')}
+$('ovMine').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+ if(b.id==='mClose')closeMine();else if(b.id==='mUse')useMine();else if(b.id==='mSave')saveMine();else if(b.id==='mImp')$('mFile').click();
+ else if(b.id==='mClr'){$('mTxt').value='';$('mName').value='';check()}
+ else if(b.id==='mExp'){var t=$('mTxt').value,n=$('mName').value.trim();if(n&&!/^\s*##/.test(t))t='## '+n+'\n'+t;var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download=(n||'my-sentences').replace(/[\\\/:*?"<>|]+/g,'-')+'.txt';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},800)}
+ else if(b.dataset.load){var s=getSet(b.dataset.load);$('mName').value=s.name;$('mTxt').value=s.text;check()}
+ else if(b.dataset.ren){var s2=getSet(b.dataset.ren),nn=window.prompt('New name for this set:',s2.name);if(nn&&nn.trim()){s2.name=nn.trim().slice(0,60);saveSets();renderSets()}}
+ else if(b.dataset.del){var s3=getSet(b.dataset.del);if(window.confirm('Delete the set “'+s3.name+'”?')){SETS.splice(SETS.indexOf(s3),1);var k=SEL.sets.indexOf(s3.id);if(k>=0)SEL.sets.splice(k,1);saveSets();saveSel();renderSets()}}
+});
+$('mTxt').addEventListener('input',check);$('mTxt').addEventListener('scroll',gutter);
+$('mFile').addEventListener('change',function(){var f=this.files&&this.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){$('mTxt').value=String(rd.result).replace(/^﻿/,'');if(!$('mName').value.trim())$('mName').value=f.name.replace(/\.txt$/i,'');check()};rd.readAsText(f,'UTF-8');this.value=''});
+APP.applyMine=function(text,name){openMine();$('mName').value=name||'';$('mTxt').value=text;return useMine()};
+APP.saveMine=function(text,name){openMine();$('mName').value=name;$('mTxt').value=text;saveMine();closeMine()};
+
+/* ---------- messages + help ---------- */
+var MSGF=[];
+function msg(t,body,btns){btns=btns||[['OK',closeMsg,'pri']];MSGF=btns;$('msgBox').innerHTML='<h2>'+esc(t)+'</h2><p style="margin-top:12px">'+esc(body)+'</p><div class="acts">'+btns.map(function(b,i){return '<button class="btn big '+(b[2]||'pri')+'" data-mi="'+i+'">'+esc(b[0])+'</button>'}).join('')+'</div>';$('ovMsg').classList.add('on');APP.lastMsg=t+' | '+body}
+function closeMsg(){$('ovMsg').classList.remove('on')}
+$('msgBox').addEventListener('click',function(e){var b=e.target.closest('button');if(b)MSGF[+b.dataset.mi][1]()});
+var KC=[['T','Start / pause the timer (click the ring too; +5 / −5 change the time)'],['F','Full screen on / off'],['Esc','Close a window or question'],['?','This help']];
+var HELP={
+start:{t:'ESL Grammar Games Offline',how:['Tick grammar points (A1–B2) or your own sets. The dark pill shows how many sentences are selected.','Pick a game. Your selection stays the same in all 6 games until you change it (Change grammar button).','Choose 2–6 teams and type their names at the bottom of this page. In a game, click a team to make it the current team; double-click its name to rename it.','My Sentences: paste your own sentences, one per line: She *has lived* here since 2019. | lived, has live, is living'],keys:[['F','Full screen on / off'],['Esc','Close a window'],['?','This help']],note:'640 built-in English sentences, 16 grammar points, levels A1–B2 (no C1). No internet and no accounts. Your own sets are saved only in this browser on this computer.'},
+scr:{t:'Sentence Scramble',how:['The words of a correct sentence appear in mixed order.','Click the words in order (or students call out the order and you click). Click a word in the top row to send it back.','Check: if the order is right, the row turns green and the team whose turn it is gets +1. If not, the row shakes.','Reveal shows the sentence. Next goes to the next sentence and the next team.'],keys:[['Space','Next sentence (next team)'],['C','Check'],['R','Reveal'],['1–6','Choose the team whose turn it is']].concat(KC),note:'Check accepts only the original order. If a team finds another correct order, give the point with + on the team bar.'},
+fix:{t:'Fix the Mistake',how:['A sentence with one grammar mistake appears.','Teams find the mistake and say the correct sentence. Start the timer if you want (30 seconds by default).','Reveal: the mistake gets a red line and the correct form appears in green above it.','Give points with + on the team bar, then go to the next sentence.'],keys:[['Space','Reveal, then next sentence'],['R','Reveal'],['1–6','Highlight a team']].concat(KC)},
+gap:{t:'Gap Fill Race',how:['A sentence with a gap and 2–4 options (A–D) appears. The timer starts (15 seconds; change it with +5 / −5, 5–60 s).','The first team to buzz in: press its number (1–6) or click the team.','Choose the team’s answer with A–D or a click. Right answer: +1 for that team. The correct option turns green; a wrong choice turns red.','Show answer reveals it without points. Next goes on.'],keys:[['Space','Next sentence'],['1–6','Team buzzes in'],['A B C D','Choose an answer'],['R','Show answer']].concat(KC)},
+auc:{t:'Grammar Auction',how:['Setup: teams (2–6), starting money (default 1000) and 8–12 sentences per round. About half of the sentences are wrong.','For each lot, teams bid. Choose the winning team and type the bid in the ledger. A bid cannot be more than the team’s money left.','The team bar shows the money each team has left.','Reveal all: correct sentences add the bid, wrong ones take it away. The table shows ✓ Correct / ✗ Wrong with the correction, and the winner.'],keys:[['Space or →','Next lot'],['←','Previous lot']].concat(KC),note:'Example: start 1000, buy a correct sentence for 200 and a wrong one for 150: final money 1050. The + / − buttons on the team bar adjust money by 1.'},
+qb:{t:'Grammar Quiz Board',how:['Columns are your ticked grammar points (2–5). With more than 5, the 5 with the most sentences are used. With only one point or set, the board shows Set 1–5.','The current team picks a column and points (100–500). A gap-fill or fix-the-mistake question opens.','Show answer, then click Correct (adds the points to the current team) or Wrong. With “Wrong = −points” on, a wrong answer takes the points away.','Used squares turn grey. Undo restores the last square and its points. Play passes to the next team.'],keys:[['A B C D','Answer a gap-fill question'],['R or Space','Show answer'],['U','Undo the last square'],['1–6','Choose the current team']].concat(KC)},
+ttt:{t:'Grammar Tic-Tac-Toe',how:['Two teams: X (red) and O (blue). Choose 3×3 or 4×4 (4 in a row wins on 4×4).','The team whose turn it is picks a square. A question opens (gap fill, fix the mistake or sentence scramble).','Correct: the team takes the square. Wrong: the other team plays.','Three (or four) in a row wins and the line lights up. A full board is a draw. New board keeps the score; Restart clears it.'],keys:[['A B C D','Answer a gap-fill question'],['R or Space','Show answer'],['1–2','Choose the team whose turn it is']].concat(KC)}};
+function openHelp(){var h=HELP[G?G.id:'start'];$('helpBox').innerHTML='<h2>'+h.t+' · help</h2><div class="hcols"><div><h3>How to play</h3><ol>'+h.how.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol>'+(h.note?'<p style="margin-top:12px;color:#4A4C5C">'+esc(h.note)+'</p>':'')+'</div><div><h3>Keyboard</h3><table class="keys">'+h.keys.map(function(k){return '<tr><td><span class="k">'+k[0]+'</span></td><td>'+k[1]+'</td></tr>'}).join('')+'</table></div></div><div class="acts"><button class="btn big pri" id="hClose">Close <span class="k">Esc</span></button></div>';$('ovHelp').classList.add('on');$('hClose').onclick=closeHelp}
+function closeHelp(){$('ovHelp').classList.remove('on')}
+
+/* ---------- game screen events ---------- */
+$('bHome').onclick=goHome;$('bChange').onclick=function(){goHome();var p=document.querySelector('.panel');p.style.outline='6px solid var(--sun)';setTimeout(function(){p.style.outline=''},1200)};
+$('bRestart').onclick=restartGame;$('bHelp').onclick=openHelp;$('bFull').onclick=toggleFS;
+$('bSound').onclick=function(){SND.on=!SND.on;lsSet('sound',SND.on);soundIcon();if(SND.on)sfx('ok')};
+function toggleFS(){var d=document,el=d.documentElement,p;APP.fs++;try{if(d.fullscreenElement||d.webkitFullscreenElement)p=(d.exitFullscreen||d.webkitExitFullscreen).call(d);else p=(el.requestFullscreen||el.webkitRequestFullscreen).call(el);if(p&&p.catch)p.catch(function(){})}catch(e){}}
+$('teams').addEventListener('click',function(e){var b=e.target.closest('.pm');if(b){addScore(+b.dataset.t,+b.dataset.pm);return}var n=e.target.closest('.n');if(n&&n.isContentEditable)return;var t=e.target.closest('.team');if(!t)return;var i=+t.dataset.t;if(G&&G.team)G.team(i);else setCur(i)});
+$('teams').addEventListener('dblclick',function(e){var n=e.target.closest('.n');if(n)rename(n)});
+$('game').addEventListener('click',function(e){var a=e.target.closest('[data-ta]');if(a){TIMER.adj(+a.dataset.ta);return}if(e.target.closest('#ring'))TIMER.toggle()});
+document.addEventListener('click',function(e){var b=e.target.closest('button');if(b)setTimeout(function(){b.blur()},0)});
+document.addEventListener('keydown',function(e){
+ var t=e.target,k=e.key;APP.lastKey=k;
+ if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT'||t.isContentEditable)){if(k==='Escape'&&t.tagName!=='TEXTAREA')t.blur();else if(k==='Escape'&&$('ovMine').classList.contains('on'))closeMine();return}
+ if(k==='Escape'){if($('ovMsg').classList.contains('on'))closeMsg();else if($('ovHelp').classList.contains('on'))closeHelp();else if($('ovMine').classList.contains('on'))closeMine();else if(Q.isOpen())Q.close();return}
+ if(k==='?'){e.preventDefault();$('ovHelp').classList.contains('on')?closeHelp():openHelp();return}
+ if($('ovMsg').classList.contains('on')||$('ovHelp').classList.contains('on')||$('ovMine').classList.contains('on'))return;
+ if(k==='f'||k==='F'){e.preventDefault();toggleFS();return}
+ if(!G||APP.screen!=='game')return;
+ if(k===' '){e.preventDefault();G.space&&G.space();return}
+ if(k==='t'||k==='T'){TIMER.toggle();return}
+ if(/^[1-6]$/.test(k)){var n=+k-1;if(n<nTeams()){if(G.team&&!Q.isOpen())G.team(n);else setCur(n)}return}
+ if(G.key)G.key(k.toUpperCase(),e);
+});
+APP.key=function(k){document.dispatchEvent(new KeyboardEvent('keydown',{key:k,bubbles:true}))};
+
+/* ---------- stage scaling + init ---------- */
+function fitStage(){var w=window.innerWidth,h=window.innerHeight,s=Math.min(w/1920,h/1080);$('stage').style.transform='translate('+Math.round((w-1920*s)/2)+'px,'+Math.round((h-1080*s)/2)+'px) scale('+s+')';APP.scale=s}
+window.addEventListener('resize',fitStage);fitStage();soundIcon();
+if(FREE){$('demoTag').innerHTML='<span class="demo">Free demo</span>';if(BUY)$('buyBox').innerHTML='<a class="btn sun" href="'+BUY+'" target="_blank" rel="noopener">Get the full version ▸</a>'}
+renderStart();
+})();
+</script>
+</body>
+</html>

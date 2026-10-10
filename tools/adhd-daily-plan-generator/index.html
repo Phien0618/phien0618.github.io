@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ADHD Daily Plan Generator (Free Printable Daily Top 3 Page)</title>
+<meta name="description" content="Free ADHD Daily Plan Generator: type your 3 things, a first tiny step and your morning, afternoon and evening, then print one ADHD-friendly free printable daily page in US Letter or A4. No sign-up.">
+<style id="pagerule">@page{size:8.5in 11in;margin:0.5in 0.5in 0.5in 0.75in}</style>
+<style>
+/* ===== Printed page: black #000 + one gray #D6D6D6 only =====
+   The Letter/A4 toggle switches #pagerule between
+   @page{size:8.5in 11in;margin:0.5in 0.5in 0.5in 0.75in} and @page{size:210mm 297mm;margin:12mm 12mm 12mm 19mm} */
+.paper{--gray:#D6D6D6;--pitch:9mm;--fs-h1:24pt;--fs-tag:14pt;--fs-help:11pt;--fs-lab:11pt;--fs-task:14pt;--fs-body:11pt;--fs-small:9pt;--fs-foot:9pt}
+.paper.lg{--pitch:11mm;--fs-h1:28pt;--fs-tag:16pt;--fs-help:14pt;--fs-lab:14pt;--fs-task:17pt;--fs-body:14pt;--fs-small:11pt;--fs-foot:10pt}
+.paper,.paper *{box-sizing:border-box;margin:0;padding:0}
+.paper{width:8.5in;height:11in;background:#fff;color:#000;padding:.5in .5in .5in .75in;overflow:hidden}
+.paper.a4{width:210mm;height:297mm;padding:12mm 12mm 12mm 19mm}
+.sheet{height:9.98in;display:flex;flex-direction:column;overflow:hidden;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:var(--fs-body);line-height:1.25;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact;break-after:page;page-break-after:always}
+.a4 .sheet{height:272.5mm}
+.sheet .ic{width:5.5mm;height:5.5mm;flex:none}
+.hdr{display:flex;justify-content:space-between;align-items:flex-end;gap:4mm;padding-bottom:2.5mm;border-bottom:1pt solid #000;flex:none}
+.hdr h1{font-size:var(--fs-h1);line-height:1;font-weight:800;letter-spacing:-.01em}
+.hdr .sub{font-size:var(--fs-help);margin-top:1.8mm}
+.daytag{border:1pt solid #000;border-radius:99px;padding:1.2mm 4mm;font-size:var(--fs-tag);font-weight:800;white-space:nowrap;flex:none;min-width:30mm;min-height:9mm}
+.label{font-size:var(--fs-lab);font-weight:800;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:1.8mm;flex:none}
+.box{border:1pt solid #000;border-radius:3mm;padding:3.5mm}
+.cb{width:5mm;height:5mm;border:1pt solid #000;border-radius:1mm;flex:none;display:inline-block;background:#fff}
+.badge{width:9mm;height:9mm;border:1.2pt solid #000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14pt;flex:none}
+.line{border-bottom:.75pt solid var(--gray);height:var(--pitch);display:flex;align-items:flex-end;padding-bottom:1.5mm;flex:none;min-width:0;white-space:nowrap;overflow:hidden}
+.line>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.typed{font-weight:700}
+.tl{border-bottom:.75pt solid var(--gray);min-height:var(--pitch);padding:1mm 0 1.5mm;display:flex;align-items:flex-end;font-size:var(--fs-task);line-height:1.2;flex:none;overflow-wrap:anywhere}
+.tasks{flex:1;display:flex;flex-direction:column;gap:3.5mm;margin-top:4mm;min-height:0}
+.task{flex:1;display:flex;gap:4mm;padding:3mm 3.5mm;min-height:0;overflow:hidden}
+.task .body{flex:1;display:flex;flex-direction:column;min-width:0}
+.step{display:flex;align-items:flex-end;gap:2mm;margin-top:auto}
+.step .line{flex:1}
+.stl{display:flex;align-items:center;gap:1mm;white-space:nowrap;padding-bottom:1.5mm;flex:none}
+.sheet .stl .ic{width:3.8mm;height:3.8mm}
+.side{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2mm;width:10mm;flex:none}
+.side .cb{width:7mm;height:7mm}
+.side small{font-size:var(--fs-small)}
+.one{display:flex;align-items:flex-end;gap:2mm;margin-top:3.5mm;font-weight:800;flex:none}
+.one .line{flex:1}
+.one>span{padding-bottom:1.5mm;white-space:nowrap}
+.sheet .one .ic{margin-bottom:1mm}
+.blocks{display:grid;grid-template-columns:1fr 1fr 1fr;height:66mm;margin-top:4mm;padding:0;flex:none}
+.a4 .blocks{height:76mm}
+.blk{padding:3mm 3.5mm;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.blk+.blk{border-left:.75pt solid var(--gray)}
+.blk .label{margin-bottom:2.5mm}
+.it{display:flex;align-items:flex-end;gap:2mm;flex:none}
+.it .cb{margin-bottom:1.2mm}
+.it .line{flex:1;height:8.5mm}
+.lg .it .line{height:10mm}
+.carry{background:var(--gray);border:1pt dashed #000;border-radius:3mm;padding:2.5mm 4mm 3mm;margin-top:4mm;flex:none}
+.carry .label{margin-bottom:.5mm}
+.carry .lab2{font-weight:400;letter-spacing:0;text-transform:none;font-size:var(--fs-help);margin-left:2mm}
+.carry .row{display:flex;align-items:flex-end;gap:3mm}
+.carry .row .cb{margin-bottom:1.2mm}
+.carry .row .line{flex:1;border-bottom:.5pt solid #000}
+.ftr{margin-top:auto;display:flex;align-items:flex-start;gap:1.5mm;font-size:var(--fs-foot);padding-top:2.5mm;flex:none;line-height:1.3}
+.sheet .ftr .mk{width:4mm;height:4mm;margin-top:.2mm}
+.ftr a{color:#000;text-decoration:none;font-weight:700}
+@media print{
+  html,body{background:#fff!important}
+  .paper{width:auto!important;height:auto!important;padding:0!important;box-shadow:none!important;overflow:visible!important}
+  .sheet{break-after:auto;page-break-after:auto}
+}
+</style>
+<style>
+/* ===== Screen ===== */
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#F4EEE3;color:#1F2421;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.45}
+button,input{font:inherit;color:inherit}
+button{min-height:44px;cursor:pointer}
+:focus-visible{outline:3px solid #3F5E48;outline-offset:2px}
+.i{width:20px;height:20px;flex:none}
+.gtop{min-height:64px;background:#fff;border-bottom:1px solid #D9D0C0;display:flex;align-items:center;gap:10px;padding:8px 28px;flex-wrap:wrap}
+.gtop .name{font-weight:800;font-size:18px}
+.gtop .free{background:#DCE6DD;color:#2F4A37;font-weight:700;font-size:14px;padding:6px 12px;border-radius:99px}
+.gtop a.up{margin-left:auto;color:#3F5E48;font-weight:700;font-size:15px}
+.gmain{display:grid;grid-template-columns:420px minmax(0,1fr);gap:28px;padding:24px 28px;align-items:start;max-width:1400px;margin:0 auto}
+.form{background:#fff;border:1px solid #D9D0C0;border-radius:16px;padding:22px 24px;min-width:0}
+.form h1{font-size:24px;line-height:1.2;margin:0 0 6px}
+.help{color:#555B57;font-size:14px;margin:0 0 8px}
+.l{display:block;font-weight:700;font-size:14px;margin:14px 0 6px}
+.inp{width:100%;min-height:48px;border:1px solid #CFC5B3;border-radius:10px;padding:0 12px;font-size:16px;background:#fff}
+.inp::placeholder{color:#6B716D}
+.tk{margin-top:12px}
+.tkl{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:6px}
+.n{width:24px;height:24px;border:1.5px solid #1F2421;border-radius:50%;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.inp.step{margin-top:6px;min-height:44px;background:#FBF9F4}
+.sec{border-top:1px solid #E8DFCF;margin-top:18px;padding-top:4px}
+.seg{display:flex;border:1px solid #CFC5B3;border-radius:12px;overflow:hidden}
+.seg button{flex:1;min-height:48px;border:0;border-left:1px solid #CFC5B3;background:#fff;font-weight:700;font-size:15px}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed=true]{background:#3F5E48;color:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{min-height:52px;width:100%;margin-top:18px;border-radius:12px;font-weight:700;font-size:17px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #3F5E48;background:#3F5E48;color:#fff}
+.btn:hover{background:#35503D}
+.btn.ghost{background:#fff;color:#1F2421;border-color:#1F2421;font-size:15px;min-height:48px;margin-top:10px}
+.note{font-size:13px;color:#555B57;margin:10px 0 0}
+.prev{position:sticky;top:12px;display:flex;flex-direction:column;align-items:center;min-width:0}
+.ptitle{font-weight:700;margin-bottom:12px}
+.ptitle small{font-weight:400;color:#555B57;font-size:14px}
+.stagewrap{background:#fff;box-shadow:0 22px 44px rgba(70,55,30,.16),0 3px 8px rgba(70,55,30,.10);border-radius:2px;overflow:hidden}
+.stage{transform-origin:0 0;width:max-content}
+.tip{font-size:13px;color:#555B57;text-align:center;margin:10px 0 0;max-width:520px}
+.art{max-width:680px;margin:20px auto 60px;padding:0 20px;font-size:18px;line-height:1.6}
+.art h2{font-size:26px;line-height:1.25;margin:40px 0 10px}
+.art h3{font-size:20px;margin:26px 0 6px}
+.art a{color:#2F4A37;font-weight:700}
+.art details{background:#fff;border:1px solid #D9D0C0;border-radius:12px;padding:0 18px;margin:10px 0}
+.art summary{min-height:48px;display:flex;align-items:center;font-weight:700;cursor:pointer}
+.art details p{margin:0 0 14px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.card{display:block;background:#fff;border:1px solid #D9D0C0;border-radius:16px;padding:16px 18px;text-decoration:none;color:#1F2421!important;font-weight:400!important}
+.card b{display:block;font-size:17px;line-height:1.3;margin-bottom:4px;color:#2F4A37}
+.card span{font-size:15px;line-height:1.45;display:block}
+.card.main{border:2px solid #3F5E48}
+.foot{text-align:center;font-size:14px;color:#555B57;padding:0 20px 40px}
+@media(max-width:900px){.gmain{grid-template-columns:1fr}.prev{position:static}.gtop{padding:8px 16px}.gmain{padding:16px}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+@media print{
+  .gtop,.form,.ptitle,.tip,.art,.foot,.no-print{display:none!important}
+  body{background:#fff!important}
+  .gmain,.prev{display:block!important;padding:0!important;margin:0!important;max-width:none!important;position:static!important}
+  .stagewrap{width:auto!important;height:auto!important;overflow:visible!important;box-shadow:none!important;border-radius:0!important}
+  .stage{transform:none!important;width:auto!important}
+}
+</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></g></symbol>
+<symbol id="half" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 16a6 6 0 0 1 12 0"/><path d="M2.5 16h19M12 5v3M4.8 8.8l2 2M19.2 8.8l-2 2M7 20h10"/></g></symbol>
+<symbol id="moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="hook" viewBox="0 0 24 24"><path d="M6 3.5v8a3.5 3.5 0 0 0 3.5 3.5H20M15.5 10.5L20 15l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="mark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="7" height="7" rx="1.6"/><path d="M3.8 5.6l1.5 1.5 2.6-3"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.6"/><rect x="15" y="15" width="7" height="7" rx="1.6"/></g></symbol>
+<symbol id="prn" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="2.5" y="9" width="19" height="8" rx="2"/><path d="M6 14h12v7H6z"/></g></symbol>
+</defs></svg>
+
+<header class="gtop">
+  <svg class="i" style="width:28px;height:28px;color:#1F2421" aria-hidden="true"><use href="#mark"/></svg>
+  <span class="name">ADHD Daily Plan Generator</span><span class="free">Free · 1 page</span>
+  <a class="up" href="/products/adhd-daily-plan-maker/">Need 7–30 pages? Full version →</a>
+</header>
+
+<main class="gmain">
+  <section class="form" aria-label="Your plan">
+    <h1>ADHD Daily Plan Generator</h1>
+    <p class="help">Type your 3 things, print one ADHD-friendly page. Nothing is saved: refreshing the page clears it. Blank lines print for handwriting.</p>
+    <div class="tk"><label class="tkl" for="t0"><span class="n">1</span>Thing 1</label>
+      <input class="inp" id="t0" data-f="t" data-i="0" maxlength="90" placeholder="e.g. Email the landlord about the sink">
+      <input class="inp step" data-f="s" data-i="0" maxlength="60" placeholder="first tiny step (optional)" aria-label="First tiny step for thing 1"></div>
+    <div class="tk"><label class="tkl" for="t1"><span class="n">2</span>Thing 2</label>
+      <input class="inp" id="t1" data-f="t" data-i="1" maxlength="90" placeholder="e.g. Finish the chapter 4 notes">
+      <input class="inp step" data-f="s" data-i="1" maxlength="60" placeholder="first tiny step (optional)" aria-label="First tiny step for thing 2"></div>
+    <div class="tk"><label class="tkl" for="t2"><span class="n">3</span>Thing 3</label>
+      <input class="inp" id="t2" data-f="t" data-i="2" maxlength="90" placeholder="Third thing (optional)">
+      <input class="inp step" data-f="s" data-i="2" maxlength="60" placeholder="first tiny step (optional)" aria-label="First tiny step for thing 3"></div>
+    <label class="l" for="one">If I only do one</label>
+    <input class="inp" id="one" data-f="one" maxlength="60" placeholder="e.g. #1, the email (10 minutes)">
+    <div class="sec">
+      <label class="l" for="bm">Morning</label><input class="inp" id="bm" data-f="b" data-i="0" maxlength="40" placeholder="e.g. Meds + water">
+      <label class="l" for="ba">Afternoon</label><input class="inp" id="ba" data-f="b" data-i="1" maxlength="40" placeholder="e.g. Walk the dog">
+      <label class="l" for="be">Evening</label><input class="inp" id="be" data-f="b" data-i="2" maxlength="40" placeholder="e.g. Phone on charger">
+      <label class="l" for="tag">Day or date on the page <span style="font-weight:400;color:#555B57">(optional)</span></label>
+      <input class="inp" id="tag" data-f="tag" maxlength="16" placeholder="e.g. Monday">
+    </div>
+    <div class="sec">
+      <div class="two">
+        <div><span class="l">Paper</span><div class="seg" role="group" aria-label="Paper size"><button type="button" data-act="paper" data-v="letter" aria-pressed="true">Letter</button><button type="button" data-act="paper" data-v="a4" aria-pressed="false">A4</button></div></div>
+        <div><span class="l">Text size</span><div class="seg" role="group" aria-label="Text size"><button type="button" data-act="size" data-v="normal" aria-pressed="true">Normal</button><button type="button" data-act="size" data-v="large" aria-pressed="false">Large</button></div></div>
+      </div>
+      <button type="button" class="btn" data-act="print"><svg class="i" aria-hidden="true"><use href="#prn"/></svg>Print / Save as PDF · 1 page</button>
+      <button type="button" class="btn ghost" data-act="reset">Start over (clear the boxes)</button>
+      <p class="note">Print at 100% (Actual size) and turn off headers and footers in the print window.</p>
+    </div>
+  </section>
+  <section class="prev" aria-label="Print preview">
+    <div class="ptitle">Your page <small id="plab">· Daily Top 3 · Letter</small></div>
+    <div class="stagewrap" id="wrap"><div class="stage" id="stage"></div></div>
+    <p class="tip">Want 7, 14 or 30 pages with your routines already printed on them? That is the <a href="/products/adhd-daily-plan-maker/">full ADHD Daily Plan Maker</a>.</p>
+  </section>
+</main>
+
+<article class="art">
+  <h2>How to plan your day with ADHD using 3 things</h2>
+  <p>A long to-do list can feel like a wall. You look at twenty tasks, cannot pick one, and the morning is gone. The Daily Top 3 method keeps the page small on purpose: you choose three things that matter today, write the first tiny step for each one, and decide which single thing you would do if the day falls apart. Everything else is a bonus.</p>
+  <p>This free ADHD Daily Plan Generator turns that method into a printable page. You type, the page fills in, and you print it in US Letter or A4. The layout is black and one light gray, so it prints clearly on any home printer and uses very little ink.</p>
+  <h3>How to use the generator</h3>
+  <p><b>1. Pick three.</b> Type up to three things for today. Two is fine. One is fine. Empty boxes print as lines you can fill in by hand.</p>
+  <p><b>2. Shrink the start.</b> For each thing, add a first tiny step that takes under two minutes, like “open the email draft” or “put the book on the desk”. A small start is easier to begin than a big task.</p>
+  <p><b>3. Choose your one.</b> Fill in “If I only do one”. On a messy day, that line tells you what counts as a win.</p>
+  <p><b>4. Add your day.</b> Write one fixed thing for the morning, afternoon and evening, like meds, a meeting or walking the dog. The rest of each block stays blank for handwriting.</p>
+  <p><b>5. Print.</b> Choose Letter or A4, then press Print. In the print window, set the scale to 100% and turn headers and footers off. You can also pick “Save as PDF” to keep the page on your phone or tablet.</p>
+  <p>At the end of the day, anything you did not finish goes into the Carry forward strip at the bottom. No guilt, it just moves to tomorrow.</p>
+  <h2>FAQ</h2>
+  <details><summary>Is this ADHD daily planner really free?</summary><p>Yes. Use it as often as you like, with no sign-up and no email. It makes one page at a time and does not save anything, so refreshing the page clears the boxes.</p></details>
+  <details><summary>Does it work on a phone or iPad?</summary><p>Yes. Fill it in, tap Print, then print or choose Save as PDF. Paper sizes are US Letter and A4.</p></details>
+  <details><summary>Can I print a whole week with my routines on it?</summary><p>Not in the free version. The full ADHD Daily Plan Maker saves your routines once and prints 1, 7, 14 or 30 Daily Top 3 pages in one go, plus a brain dump sorter, weekly plan, dopamine menu, habit tracker and low-energy day page. It is a one-time $6 download that works offline.</p></details>
+  <details><summary>Is this medical advice?</summary><p>No. It is an ADHD-friendly paper planning page. It is a simple way to organize a day, nothing more.</p></details>
+  <h2>More ADHD-friendly planners</h2>
+  <div class="cards">
+    <a class="card main" href="/products/adhd-daily-plan-maker/"><b>ADHD Daily Plan Maker (full version)</b><span>Save routines once, print 7, 14 or 30 filled-in pages, plus 5 more page makers. Works offline.</span></a>
+    <a class="card" href="/products/adhd-printable-planner-pack/"><b>ADHD Printable Planner Pack</b><span>Ready-made printable daily and weekly pages in US Letter and A4.</span></a>
+    <a class="card" href="/products/adhd-undated-digital-planner/"><b>ADHD Undated Digital Planner</b><span>A tappable PDF planner for GoodNotes and Notability on iPad.</span></a>
+    <a class="card" href="/products/adhd-focus-bundle/"><b>ADHD Focus Bundle</b><span>The planners together in one bundle.</span></a>
+  </div>
+</article>
+<p class="foot">ADHD Daily Plan Generator · by Three Things Planners · runs in your browser, nothing is uploaded</p>
+
+<script>
+(function(){
+'use strict';
+var S={t:['','',''],s:['','',''],one:'',b:['','',''],tag:'',paper:'letter',size:'normal'};
+var BL=[['Morning','sun'],['Afternoon','half'],['Evening','moon']];
+function esc(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function tr(x){return String(x||'').trim();}
+function ic(id,c){return '<svg class="ic'+(c?' '+c:'')+'" aria-hidden="true"><use href="#'+id+'"/></svg>';}
+function rep(x,n){var o='';for(var i=0;i<n;i++)o+=x;return o;}
+function ln(x){x=tr(x);return '<div class="line'+(x?' typed':'')+'">'+(x?'<span>'+esc(x)+'</span>':'')+'</div>';}
+function page(){
+  var L=S.size==='large',A4=S.paper==='a4',h='',tag=tr(S.tag);
+  h+='<div class="hdr"><div><h1>Daily Top 3</h1><div class="sub">Pick three. Anything else is a bonus.</div></div><div class="daytag">'+esc(tag)+'</div></div><div class="tasks">';
+  for(var k=0;k<3;k++){
+    var t=tr(S.t[k]),long=t.length>(L?38:48);
+    h+='<div class="box task"><div class="badge">'+(k+1)+'</div><div class="body">'+(t?'<div class="tl typed">'+esc(t)+'</div>':'<div class="line"></div>')+((L||long)?'':'<div class="line"></div>')+
+      '<div class="step"><span class="stl">'+ic('hook')+'first tiny step:</span>'+ln(S.s[k])+'</div></div><div class="side"><span class="cb"></span><small>done</small></div></div>';
+  }
+  h+='</div><div class="one">'+ic('star')+'<span>If I only do one:</span>'+ln(S.one)+'</div>';
+  var cap=(A4?6:5)-(L?1:0);
+  h+='<div class="box blocks">';
+  BL.forEach(function(b,i){
+    var v=tr(S.b[i]);
+    h+='<div class="blk"><div class="label">'+ic(b[1])+b[0]+'</div>'+(v?'<div class="it"><span class="cb"></span>'+ln(v)+'</div>':'')+rep('<div class="it"><span class="cb"></span><div class="line"></div></div>',v?cap-1:cap)+'</div>';
+  });
+  h+='</div><div class="carry"><div class="label">'+ic('arrow')+'Carry forward<span class="lab2">Not done? Park it here. No guilt.</span></div>'+rep('<div class="row"><span class="cb"></span><div class="line"></div><span class="cb"></span><div class="line"></div></div>',2)+'</div>';
+  h+='<div class="ftr">'+ic('mark','mk')+'<span>Made with the free ADHD Daily Plan Generator · Full version (7–30 day packs, saved routines, dopamine menu): <a href="https://phien0618.github.io/products/adhd-daily-plan-maker/">phien0618.github.io/products/adhd-daily-plan-maker/</a></span></div>';
+  return '<div class="paper '+(A4?'a4':'letter')+(L?' lg':'')+'"><div class="sheet">'+h+'</div></div>';
+}
+var $=function(id){return document.getElementById(id);};
+function fit(){
+  var a4=S.paper==='a4',pw=a4?793.7:816,ph=a4?1122.5:1056,col=document.querySelector('.prev').clientWidth||520,s;
+  if(window.matchMedia('(max-width:900px)').matches)s=Math.min(col/pw,1);else s=Math.min(col/pw,Math.max(320,window.innerHeight-150)/ph,0.9);
+  s=Math.max(s,0.25);$('stage').style.transform='scale('+s+')';$('wrap').style.width=Math.round(pw*s)+'px';$('wrap').style.height=Math.round(ph*s)+'px';
+}
+function render(){
+  $('pagerule').textContent=S.paper==='a4'?'@page{size:210mm 297mm;margin:12mm 12mm 12mm 19mm}':'@page{size:8.5in 11in;margin:0.5in 0.5in 0.5in 0.75in}';
+  $('stage').innerHTML=page();$('plab').textContent='· Daily Top 3 · '+(S.paper==='a4'?'A4':'Letter')+(S.size==='large'?' · Large':'');fit();
+}
+document.addEventListener('input',function(e){
+  var el=e.target,f=el.dataset&&el.dataset.f;if(!f)return;var i=+el.dataset.i;
+  if(f==='t')S.t[i]=el.value;else if(f==='s')S.s[i]=el.value;else if(f==='b')S.b[i]=el.value;else if(f==='one')S.one=el.value;else if(f==='tag')S.tag=el.value;
+  render();
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');if(!b)return;var a=b.dataset.act,v=b.dataset.v;
+  if(a==='paper'||a==='size'){S[a]=v;document.querySelectorAll('[data-act='+a+']').forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.v===v));});render();}
+  else if(a==='print'){render();setTimeout(function(){window.print();},60);}
+  else if(a==='reset'){document.querySelectorAll('[data-f]').forEach(function(x){x.value='';});S.t=['','',''];S.s=['','',''];S.b=['','',''];S.one='';S.tag='';render();}
+});
+window.addEventListener('resize',fit);
+window.addEventListener('beforeprint',render);
+if(location.hash==='#a4'){S.paper='a4';document.querySelectorAll('[data-act=paper]').forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.v==='a4'));});}
+render();
+})();
+</script>
+</body>
+</html>
