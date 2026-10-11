@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signed to Kickoff · Client Onboarding Kit</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#16233A;--navy2:#2B3D5C;--coral:#EE6B57;--coralt:#FDE9E4;--sage:#2F6B57;--saget:#E3F0EA;--paper:#FAF7F1;--sand:#EFE8DC;--ink:#1E1E24;--muted:#6B6F7B;--line:#D9D3C7;--yellow:#FFF4C2;
+--display:"Fraunces",Georgia,"Iowan Old Style","Times New Roman",serif;
+--body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+--mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+html,body{background:var(--paper)}
+body{font-family:var(--body);color:var(--ink);font-size:14px;line-height:1.45}
+button{font-family:inherit;cursor:pointer}
+
+/* ---------- app header ---------- */
+.apphead{background:var(--navy);color:#fff;padding:16px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.brand{display:flex;flex-direction:column;min-width:0}
+.brand b{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.1}
+.brand span{color:var(--sand);font-size:13px;letter-spacing:.06em}
+.trackmini{flex:1;min-width:260px;max-width:440px}
+.trackmini svg{width:100%;height:auto;display:block}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-left:auto}
+.btn{height:36px;padding:0 14px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid transparent}
+.btn-outline{background:transparent;color:#fff;border-color:#fff}
+.btn-save{background:var(--coralt);color:var(--navy)}
+.btn-ghost{background:transparent;color:var(--sand);border-color:transparent;text-decoration:underline}
+.seg{display:inline-flex;border:1px solid #fff;border-radius:8px;overflow:hidden}
+.seg button{height:34px;padding:0 12px;background:transparent;color:#fff;border:0;font-size:13px;font-weight:600}
+.seg button.on{background:#fff;color:var(--navy)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--sage);color:#fff;padding:9px 16px;border-radius:20px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1}
+
+/* ---------- layout ---------- */
+.main{display:grid;grid-template-columns:420px minmax(0,1fr);gap:24px;padding:24px;align-items:start}
+.formcol{min-width:0}
+.doccol{min-width:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.card h2{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--coral);margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px}
+.fld{margin-bottom:10px;min-width:0}
+.fld label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:3px}
+.fld input,.fld select{width:100%;height:40px;border:1px solid var(--line);border-radius:8px;padding:0 10px;font-family:var(--body);font-size:14px;color:var(--ink);background:#fff}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 2px var(--yellow);background:var(--yellow)}
+.rows .r{display:flex;gap:6px;margin-bottom:6px;min-width:0}
+.rows .r input{flex:1;min-width:0}
+.rows .r input.d{flex:0 0 130px}
+.rows .x{flex:none;width:34px;height:40px;border:1px solid var(--line);background:#fff;border-radius:8px;color:var(--muted);font-size:16px}
+.addrow{height:32px;padding:0 12px;border:1px dashed var(--navy2);background:transparent;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--navy)}
+.addrow:disabled{opacity:.5;cursor:default}
+.hint{font-size:12px;color:var(--muted);margin-top:4px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tab{height:34px;padding:0 13px;border-radius:17px;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:13px;font-weight:600}
+.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.docbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.docbar .papernote{font-size:12px;color:var(--muted)}
+.printbtn{height:38px;padding:0 16px;border-radius:8px;background:var(--navy);color:#fff;border:0;font-size:13.5px;font-weight:600}
+.sheetwrap{overflow:hidden}
+
+/* ---------- document sheet ---------- */
+.sheet{display:none;background:#fff;width:816px;min-height:1056px;padding:56px 64px 48px;border-radius:6px;box-shadow:0 10px 30px rgba(10,20,40,.12);font-size:13.3px;line-height:1.45;color:var(--ink)}
+body.a4 .sheet{width:794px;min-height:1123px;padding:56px 60px 48px}
+.sheet.on{display:block}
+.ph{background:var(--sand);border-radius:3px;padding:0 3px;font-family:var(--mono);font-size:.92em}
+.sheet .lh{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--navy);position:relative}
+.sheet .lh:after{content:"";position:absolute;left:0;bottom:-2px;width:48px;height:2px;background:var(--coral)}
+.sheet .biz{font-family:var(--display);font-weight:700;font-size:19px;color:var(--navy)}
+.sheet .contact{font-size:11px;color:var(--muted);margin-top:2px}
+.sheet .dt{text-align:right}
+.sheet .ey{font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--coral)}
+.sheet .for{font-size:11.5px;color:var(--navy2);margin-top:3px}
+.sheet h1{font-family:var(--display);font-weight:700;font-size:34px;color:var(--navy);margin-top:20px;letter-spacing:-.01em;line-height:1.1}
+.sheet .lead{font-size:14.5px;color:var(--navy2);margin-top:8px;max-width:660px}
+.sheet .strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--sand);border-radius:6px;margin-top:16px}
+.sheet .strip div{padding:10px 14px;border-right:1px solid #E2D9C9;min-width:0}
+.sheet .strip div:last-child{border-right:0}
+.sheet .strip small{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.sheet .strip b{display:block;font-size:14.5px;color:var(--navy);margin-top:2px;font-weight:600;overflow-wrap:anywhere}
+.sheet .mono{font-family:var(--mono);font-weight:500}
+.sheet .sec{display:flex;align-items:baseline;gap:10px;margin-top:18px;padding-bottom:5px;border-bottom:1px solid var(--line);break-after:avoid}
+.sheet .sec .n{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--coral)}
+.sheet .sec h2{font-size:15.5px;font-weight:700;color:var(--navy)}
+.sheet table{border-collapse:collapse;width:100%;margin-top:8px;font-size:13px}
+.sheet th{background:var(--sand);color:var(--navy);font-weight:700;font-size:11.5px;text-align:left;padding:6px 10px;letter-spacing:.03em}
+.sheet td{padding:5px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.sheet td.r,.sheet th.r{text-align:right}
+.sheet tr{break-inside:avoid;page-break-inside:avoid}
+.sheet .two{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:26px;break-inside:avoid}
+.sheet .cg{display:grid;grid-template-columns:110px minmax(0,1fr);row-gap:6px;margin-top:10px;font-size:13px}
+.sheet .cg span{color:var(--muted)}
+.sheet .pay td{padding:6px 10px}
+.sheet .pay .tot td{font-weight:700;border-bottom:0;border-top:1.5px solid var(--navy)}
+.sheet .steps{margin-top:9px;display:grid;gap:7px}
+.sheet .step{display:flex;gap:11px;align-items:flex-start;font-size:13px;break-inside:avoid}
+.sheet .step .num{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center;flex:none}
+.sheet .step b{color:var(--navy)}
+.sheet .faq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 26px;margin-top:10px;font-size:13px}
+.sheet .faq div{break-inside:avoid;min-width:0}
+.sheet .faq b{display:block;color:var(--navy)}
+.sheet .faq p{color:#3a3f4b}
+.sheet .pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:10px;align-items:start}
+.sheet .pan{border-radius:8px;padding:12px 14px;min-width:0;break-inside:avoid}
+.sheet .inc{background:var(--saget);border:1.5px solid var(--sage)}
+.sheet .exc{background:#fff;border:1.5px dashed var(--coral)}
+.sheet .pl{font-size:11px;font-weight:800;letter-spacing:.12em;display:flex;align-items:center;gap:6px}
+.sheet .inc .pl{color:var(--sage)}.sheet .exc .pl{color:#B4432F}
+.sheet .pan ul{list-style:none;margin-top:7px}
+.sheet .pan li{display:flex;gap:8px;font-size:13px;padding:3px 0}
+.sheet .pan li svg{flex:none;margin-top:4px}
+.sheet .note{font-size:11px;color:var(--muted);margin-top:7px}
+.sheet .kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:10px}
+.sheet .kv div{border:1px solid var(--line);border-radius:6px;padding:8px 12px;min-width:0}
+.sheet .kv small{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.sheet .kv b{font-size:14px;color:var(--navy)}
+.sheet .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px;font-size:12.5px}
+.sheet .flow div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:7px 9px;min-width:0}
+.sheet .flow b{display:block;color:var(--navy);font-size:11.5px}
+.sheet .sig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;margin-top:12px}
+.sheet .sig h3{font-size:11px;letter-spacing:.12em;color:var(--navy);font-weight:800}
+.sheet .ln{display:flex;align-items:flex-end;gap:8px;height:40px;font-size:11.5px;color:var(--muted)}
+.sheet .ln span{width:66px;flex:none}
+.sheet .ln i{flex:1;border-bottom:1px solid var(--ink);height:1px}
+.sheet .ln em{font-style:normal;color:var(--ink);font-size:13px;flex:1;border-bottom:1px solid var(--ink);padding-bottom:2px;min-width:0}
+.sheet .keep{break-inside:avoid;page-break-inside:avoid}
+.sheet .disc{margin-top:12px;border:1px dashed var(--navy2);border-radius:6px;padding:8px 12px;font-size:11.5px;color:var(--navy2);display:flex;gap:9px;align-items:center;break-inside:avoid}
+.sheet .disc svg{flex:none}
+.sheet .grp{margin-top:18px;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--navy);text-transform:uppercase;padding-bottom:5px;border-bottom:2px solid var(--navy);break-after:avoid}
+.sheet .q{margin-top:10px;break-inside:avoid;page-break-inside:avoid}
+.sheet .q p{font-size:13.5px;font-weight:600;color:var(--navy);display:flex;gap:10px}
+.sheet .q p .qn{font-family:var(--mono);font-weight:500;color:var(--navy2);flex:none;width:30px}
+.sheet .q .wl{height:30px;border-bottom:1px solid var(--line);margin-left:40px}
+.sheet .chip{display:inline-block;font-family:var(--mono);font-size:11.5px;background:var(--sand);color:var(--navy);border-radius:10px;padding:1px 8px;white-space:nowrap}
+.sheet .tb{width:14px;height:14px;border:1.5px solid var(--navy);border-radius:2px;display:inline-block;flex:none;margin-top:2px}
+.sheet .cl{list-style:none;margin-top:8px}
+.sheet .cl li{display:flex;gap:10px;font-size:13px;padding:4px 0;break-inside:avoid}
+.sheet .perm{display:flex;gap:12px;align-items:flex-start;margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:12px 14px;break-inside:avoid}
+.sheet .perm input{width:18px;height:18px;flex:none;margin-top:1px;accent-color:var(--navy)}
+.sheet .perm label{font-size:13px}
+.sheet .docfoot{margin-top:22px;display:flex;justify-content:space-between;gap:16px;font-size:10.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:7px;break-inside:avoid}
+#doc-scope .sec{margin-top:10px}
+#doc-scope h1{margin-top:12px;font-size:30px}
+#doc-scope .lead{font-size:13.5px;margin-top:5px}
+#doc-scope .ln{height:28px}
+#doc-scope .sig{margin-top:4px}
+#doc-scope .pan{padding:9px 12px}
+#doc-scope .pan li{padding:2px 0}
+#doc-scope .kv div{padding:6px 12px}
+#doc-scope .flow div{padding:5px 9px}
+#doc-scope .disc{margin-top:8px;padding:6px 12px}
+#doc-scope .docfoot{margin-top:10px}
+#doc-scope table{margin-top:6px}
+#doc-scope table td{padding:4px 10px}
+.sheet .twocl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px}
+.sheet .notes .wl{height:30px;border-bottom:1px solid var(--line)}
+
+/* ---------- emails ---------- */
+.emails{padding:0 24px 40px}
+.emails h2.big{font-family:var(--display);font-size:28px;color:var(--navy);margin:8px 0 4px}
+.emails .sub{color:var(--navy2);margin-bottom:16px}
+.mailgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.mail{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0;display:flex;flex-direction:column}
+.mail .mh{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.mail .kl{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+.mail .mt{font-size:14px;font-weight:700;color:var(--navy);margin-top:2px}
+.mail .subj{margin-top:10px;font-size:13.5px;color:var(--navy);overflow-wrap:anywhere}
+.mail .body{margin-top:8px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;flex:1}
+.copy{height:34px;padding:0 14px;border-radius:8px;background:var(--navy);color:#fff;border:0;font-size:13px;font-weight:600;flex:none}
+.copy.ok{background:var(--sage)}
+
+@media (max-width:860px){
+  .main{grid-template-columns:minmax(0,1fr);padding:16px}
+  .emails{padding:0 16px 32px}
+  .mailgrid{grid-template-columns:minmax(0,1fr)}
+  .apphead{padding:14px 16px}
+  .trackmini{order:3;max-width:none;flex-basis:100%}
+}
+
+/* ---------- print: only the active document ---------- */
+@media print{
+  html,body{background:#fff}
+  .apphead,.formcol,.tabs,.docbar,.emails,.toast{display:none !important}
+  .main{display:block;padding:0}
+  .sheetwrap{overflow:visible}
+  .sheet{display:none !important;box-shadow:none;border-radius:0;padding:0 !important;width:auto !important;min-height:0 !important;zoom:1 !important}
+  .sheet.on{display:block !important}
+  .ph{background:none;padding:0;font-family:inherit;font-size:inherit}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+<style id="page-letter" media="print">@page{size:letter;margin:0.5in 0.65in 0.5in 0.65in}</style>
+<style id="page-a4" media="print">@page{size:A4;margin:13mm 16mm 13mm 16mm}</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body class="letter">
+
+<header class="apphead">
+  <div class="brand"><b>Signed to Kickoff</b><span>Client Onboarding Kit</span></div>
+  <div class="trackmini" aria-hidden="true">
+    <svg viewBox="0 0 440 56" font-family="system-ui,Arial,sans-serif" font-size="11" text-anchor="middle">
+      <line x1="22" y1="16" x2="418" y2="16" stroke="#EFE8DC" stroke-width="2"/>
+      <circle cx="22" cy="16" r="11" fill="#EE6B57"/><text x="22" y="20" fill="#fff" font-weight="700">1</text><text x="22" y="46" fill="#fff" font-weight="700">Signed</text>
+      <circle cx="88" cy="16" r="10" fill="#2B3D5C" stroke="#EFE8DC"/><text x="88" y="20" fill="#fff">2</text><text x="88" y="46" fill="#EFE8DC">Welcome</text>
+      <circle cx="154" cy="16" r="10" fill="#2B3D5C" stroke="#EFE8DC"/><text x="154" y="20" fill="#fff">3</text><text x="154" y="46" fill="#EFE8DC">Questions</text>
+      <circle cx="220" cy="16" r="10" fill="#2B3D5C" stroke="#EFE8DC"/><text x="220" y="20" fill="#fff">4</text><text x="220" y="46" fill="#EFE8DC">Scope</text>
+      <circle cx="286" cy="16" r="10" fill="#2B3D5C" stroke="#EFE8DC"/><text x="286" y="20" fill="#fff">5</text><text x="286" y="46" fill="#EFE8DC">Kickoff</text>
+      <circle cx="352" cy="16" r="10" fill="#2B3D5C" stroke="#EFE8DC"/><text x="352" y="20" fill="#fff">6</text><text x="352" y="46" fill="#EFE8DC">Updates</text>
+      <circle cx="418" cy="16" r="11" fill="#2F6B57"/><text x="418" y="20" fill="#fff" font-weight="700">7</text><text x="412" y="46" fill="#fff" font-weight="700">Handoff</text>
+    </svg>
+  </div>
+  <div class="actions">
+    <button class="btn btn-outline" id="btnExample" type="button">Load example</button>
+    <button class="btn btn-save" id="btnSave" type="button">Save</button>
+    <button class="btn btn-ghost" id="btnReset" type="button">Reset</button>
+    <div class="seg" role="group" aria-label="Paper size"><button type="button" id="pLetter" class="on">Letter</button><button type="button" id="pA4">A4</button></div>
+  </div>
+</header>
+
+<div class="main">
+  <section class="formcol" aria-label="Your details and the client's details">
+    <div class="card" id="cardA">
+      <h2>A · YOU</h2>
+      <div class="grid2">
+        <div class="fld"><label for="yName">Your name</label><input id="yName" data-k="yName" placeholder="Maya Chen" autocomplete="off"></div>
+        <div class="fld"><label for="yBiz">Business name</label><input id="yBiz" data-k="yBiz" placeholder="Maya Chen Studio" autocomplete="off"></div>
+        <div class="fld"><label for="yEmail">Email</label><input id="yEmail" data-k="yEmail" placeholder="you@yourdomain.com" autocomplete="off"></div>
+        <div class="fld"><label for="yWeb">Website</label><input id="yWeb" data-k="yWeb" placeholder="yourdomain.com" autocomplete="off"></div>
+        <div class="fld"><label for="yHours">Working hours</label><input id="yHours" data-k="yHours" placeholder="Mon–Fri 9:00–17:00" autocomplete="off"></div>
+        <div class="fld"><label for="yTz">Time zone</label><input id="yTz" data-k="yTz" placeholder="ET (New York)" autocomplete="off"></div>
+        <div class="fld"><label for="yReply">Reply within (hours)</label><input id="yReply" data-k="yReply" inputmode="numeric" placeholder="24" autocomplete="off"></div>
+        <div class="fld"><label for="yChannel">Preferred channel</label><input id="yChannel" data-k="yChannel" placeholder="Email" autocomplete="off"></div>
+        <div class="fld"><label for="yTerms">Payment terms (days)</label><input id="yTerms" data-k="yTerms" inputmode="numeric" placeholder="14" autocomplete="off"></div>
+        <div class="fld"><label for="yDeposit">Deposit (%)</label><input id="yDeposit" data-k="yDeposit" inputmode="decimal" placeholder="50" autocomplete="off"></div>
+        <div class="fld"><label for="yRounds">Revision rounds included</label><input id="yRounds" data-k="yRounds" inputmode="numeric" placeholder="2" autocomplete="off"></div>
+        <div class="fld"><label for="yRate">Extra work (rate per hour)</label><input id="yRate" data-k="yRate" inputmode="decimal" placeholder="85" autocomplete="off"></div>
+      </div>
+    </div>
+    <div class="card" id="cardB">
+      <h2>B · CLIENT &amp; PROJECT</h2>
+      <div class="grid2">
+        <div class="fld"><label for="cName">Client contact</label><input id="cName" data-k="cName" placeholder="Sam Lee" autocomplete="off"></div>
+        <div class="fld"><label for="cCompany">Company</label><input id="cCompany" data-k="cCompany" placeholder="Northfield Coffee Co." autocomplete="off"></div>
+      </div>
+      <div class="fld"><label for="pName">Project name</label><input id="pName" data-k="pName" placeholder="Brand Refresh" autocomplete="off"></div>
+      <div class="grid2">
+        <div class="fld"><label for="pStart">Start date</label><input id="pStart" data-k="pStart" placeholder="Oct 19, 2026" autocomplete="off"></div>
+        <div class="fld"><label for="pEnd">Delivery date</label><input id="pEnd" data-k="pEnd" placeholder="Nov 27, 2026" autocomplete="off"></div>
+        <div class="fld"><label for="pFee">Project fee</label><input id="pFee" data-k="pFee" inputmode="decimal" placeholder="2700" autocomplete="off"></div>
+        <div class="fld"><label for="pCur">Currency symbol</label><input id="pCur" data-k="pCur" placeholder="$" autocomplete="off"></div>
+      </div>
+      <div class="fld"><label for="pField">Your field (questionnaire)</label>
+        <select id="pField" data-k="pField">
+          <option value="design">Design</option>
+          <option value="web">Web Development</option>
+          <option value="writing">Writing &amp; Copy</option>
+          <option value="marketing">Marketing &amp; Social</option>
+          <option value="consulting">Consulting</option>
+        </select></div>
+      <div class="fld rows" id="rowsDel"><label>Deliverables (up to 8)</label><div class="list"></div><button type="button" class="addrow" data-add="del">+ Add row</button></div>
+      <div class="fld rows" id="rowsExc"><label>Not included (up to 8)</label><div class="list"></div><button type="button" class="addrow" data-add="exc">+ Add row</button></div>
+      <div class="fld rows" id="rowsMil"><label>Milestones (up to 6): name and date</label><div class="list"></div><button type="button" class="addrow" data-add="mil">+ Add row</button></div>
+      <p class="hint">Dates show exactly as you type them. Amounts show with no decimals and a thousands separator. Empty fields appear in the documents as [Placeholders].</p>
+    </div>
+  </section>
+
+  <section class="doccol" aria-label="Documents">
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-doc="welcome" type="button">Welcome Guide</button>
+      <button class="tab" data-doc="questions" type="button">Discovery Questionnaire</button>
+      <button class="tab" data-doc="scope" type="button">Scope &amp; Revisions Confirmation</button>
+      <button class="tab" data-doc="kickoff" type="button">Kickoff Call Agenda</button>
+      <button class="tab" data-doc="handoff" type="button">Project Handoff &amp; Feedback</button>
+    </div>
+    <div class="sheetwrap" id="sheetwrap">
+      <article class="sheet on" id="doc-welcome" data-doc="welcome"><div class="docbar"><span class="papernote"></span><button class="printbtn" type="button" data-print="welcome">Print / Save as PDF</button></div><div class="content"></div></article>
+      <article class="sheet" id="doc-questions" data-doc="questions"><div class="docbar"><span class="papernote"></span><button class="printbtn" type="button" data-print="questions">Print / Save as PDF</button></div><div class="content"></div></article>
+      <article class="sheet" id="doc-scope" data-doc="scope"><div class="docbar"><span class="papernote"></span><button class="printbtn" type="button" data-print="scope">Print / Save as PDF</button></div><div class="content"></div></article>
+      <article class="sheet" id="doc-kickoff" data-doc="kickoff"><div class="docbar"><span class="papernote"></span><button class="printbtn" type="button" data-print="kickoff">Print / Save as PDF</button></div><div class="content"></div></article>
+      <article class="sheet" id="doc-handoff" data-doc="handoff"><div class="docbar"><span class="papernote"></span><button class="printbtn" type="button" data-print="handoff">Print / Save as PDF</button></div><div class="content"></div></article>
+    </div>
+  </section>
+</div>
+
+<section class="emails" id="emails">
+  <h2 class="big">8 emails, filled in</h2>
+  <p class="sub">Copy one, paste it into your email app, read it once, send. Lines with "…" are for you to complete.</p>
+  <div class="mailgrid" id="mailgrid"></div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script type="application/json" id="qbank">
+{
+ "general": [
+  "In one or two sentences, what does your business do, and for whom?",
+  "What is the main goal of this project? What should be different when it's finished?",
+  "How will you know the project was a success? Name one or two signs you'll look for.",
+  "Who are your ideal customers or readers? Describe them as specifically as you can.",
+  "Who are your main competitors or alternatives, and what do you like or dislike about them?",
+  "Who will give feedback and approve the work? Who has the final say?",
+  "Are there any fixed dates, launches or events this project must be ready for?",
+  "What have you already tried or made for this, and what did or didn't work?",
+  "What files, logins or materials will you share with me, and by when?",
+  "Is there anything that worries you about this project, or anything you'd like me to avoid?"
+ ],
+ "design": [
+  "Which three words should people use to describe your brand after seeing the new design?",
+  "Which three words should they never use?",
+  "Share 2–3 brands or designs you admire (in any industry). What do you like about each?",
+  "Is there anything in your current visual identity you want to keep (colours, symbol, typeface)?",
+  "Are there colours you love, or colours you want to avoid? Why?",
+  "Where will the design be used most: website, social media, packaging, print, signage, or somewhere else?",
+  "Do you have existing brand guidelines, logo files or fonts? Please list what you can send.",
+  "Do you prefer a wordmark, a symbol, or both together? Or would you like my recommendation?",
+  "Which sizes and formats do you need for the final files (for example print, web, social profiles)?",
+  "Are there legal names, taglines or trademarks that must appear exactly as written?",
+  "Who will use the final files day to day, and which software do they use?",
+  "Is there any imagery, style or symbol that would be inappropriate for your audience or culture?"
+ ],
+ "web": [
+  "What is the website's main job: sell, generate leads, inform, or something else?",
+  "Which platform are you on now, or want to use (for example WordPress, Shopify, Webflow, custom code)?",
+  "Who owns the domain and hosting, and can you invite me as a user?",
+  "Which accounts will I need (CMS, hosting, DNS, payments, analytics, email)? Please share access securely, not in a plain email.",
+  "Which pages or features must be ready at launch, and which can wait for a later phase?",
+  "Who will write and supply the text, images and product data, and by when?",
+  "Which third-party tools must the site connect to (payments, booking, newsletter, CRM)?",
+  "Which browsers and devices matter most to your customers?",
+  "Are there accessibility, privacy or legal requirements (cookie notice, terms, accessibility standards)?",
+  "Who will update the site after launch, and what do they need to do without a developer?",
+  "Do you have analytics or traffic data from the current site that I can look at?",
+  "How should the launch happen: on a set date, as a quiet launch, or after a full backup of the old site?"
+ ],
+ "writing": [
+  "What is the piece (or set of pieces) for, and what should the reader do after reading it?",
+  "Who is the reader? What do they already know, and what do they doubt?",
+  "Describe the tone you want in three words. Is there a tone you want to avoid?",
+  "Share 2–3 pieces of writing you like (yours or someone else's). What works in each?",
+  "Are there words, phrases or claims you always use, or never use?",
+  "Which key facts, numbers or proof points must I include? Where can I check them?",
+  "Who are your competitors, and how should your message sound different from theirs?",
+  "Do you follow a style guide (US or UK spelling, AP, Chicago, a house style)?",
+  "Who will review drafts, and will their comments arrive together in one document?",
+  "Are there SEO keywords, word counts or formats I need to hit?",
+  "Will I interview anyone (you, your team, your customers)? Who, and how do I reach them?",
+  "Where will the copy be published, and who will format and upload it?"
+ ],
+ "marketing": [
+  "Which goal matters most for the next 90 days: awareness, leads, sales, or community?",
+  "Which channels are you active on now, and which ones should we focus on?",
+  "What results have you had so far on each channel? Please share any numbers you track.",
+  "Who is your ideal follower or customer, and where do they spend time online?",
+  "Which competitors or accounts do you watch, and what do you think they do well?",
+  "What are your key offers, launches or promotions in the next 3 months?",
+  "What content do you already have (photos, videos, blog posts, customer quotes you have permission to use)?",
+  "Who approves posts or campaigns before they go live, and how much notice do they need?",
+  "What is your monthly budget for paid ads, if any, and who owns the ad account?",
+  "Which topics, words or images are off-limits for your brand?",
+  "Which accounts will I need access to, and at what permission level?",
+  "How do you want results reported to you, and how often?"
+ ],
+ "consulting": [
+  "What is the specific problem or decision you want help with?",
+  "What would a good outcome look like 3 months after we finish?",
+  "What have you already tried to solve it, and what happened?",
+  "Who are the key people involved, and who makes the final decision?",
+  "Which data, reports or documents can you share before we start?",
+  "What constraints should I know about (budget, people, time, policies)?",
+  "Which parts of the business are off-limits or sensitive in this project?",
+  "How involved do you want to be: regular working sessions, or a recommendation at the end?",
+  "What format do you want the final output in (report, presentation, workshop, plan)?",
+  "How do you prefer to decide: with data, with options to compare, or with one clear recommendation?",
+  "Are there people who might resist the changes, and how should we involve them?",
+  "How will you measure whether my recommendations worked?"
+ ]
+}
+</script>
+
+<script>
+(function(){
+"use strict";
+var Q = JSON.parse(document.getElementById('qbank').textContent);
+var FIELDS = {design:'Design', web:'Web Development', writing:'Writing & Copy', marketing:'Marketing & Social', consulting:'Consulting'};
+var MAX = {del:8, exc:8, mil:6};
+var KEY = 'signed-to-kickoff-v1';
+var SCALAR = ['yName','yBiz','yEmail','yWeb','yHours','yTz','yReply','yChannel','yTerms','yDeposit','yRounds','yRate','cName','cCompany','pName','pStart','pEnd','pFee','pCur','pField'];
+
+var EXAMPLE = {
+  yName:'Maya Chen', yBiz:'Maya Chen Studio', yEmail:'maya@example.com', yWeb:'mayachen.studio',
+  yHours:'Mon–Thu 9:00–17:00', yTz:'ET (New York)', yReply:'24', yChannel:'Email', yTerms:'14',
+  yDeposit:'50', yRounds:'2', yRate:'85',
+  cName:'Sam Lee', cCompany:'Northfield Coffee Co.', pName:'Brand Refresh', pStart:'Oct 19, 2026', pEnd:'Nov 27, 2026',
+  pFee:'2700', pCur:'$', pField:'design',
+  del:['Primary logo + 2 alternate versions','Colour palette & type system','12-page brand guidelines (PDF)','Social profile kit (5 templates)'],
+  exc:['Website design or development','Copywriting or tagline','Photography','Printing and print management'],
+  mil:[['Discovery & moodboard','Oct 23, 2026'],['Logo concepts','Nov 3, 2026'],['Refinements (2 rounds)','Nov 13, 2026'],['Brand guidelines draft','Nov 20, 2026'],['Final files delivered','Nov 27, 2026']]
+};
+
+var state = blank();
+var current = 'welcome';
+var paper = 'letter';
+
+function blank(){ var s={}; SCALAR.forEach(function(k){ s[k]=''; }); s.pField='design'; s.del=['']; s.exc=['']; s.mil=[['','']]; return s; }
+
+/* ---------- helpers ---------- */
+function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function tr(x){ return (x==null?'':String(x)).trim(); }
+function num(x){ var t=tr(x).replace(/[,\s]/g,''); if(t==='') return null; var n=Number(t); return isFinite(n)?n:null; }
+function fmt(n){ return Math.round(n).toLocaleString('en-US',{maximumFractionDigits:0}); }
+// value or placeholder; mode 'h' = html, 't' = text
+function V(val, label, mode){ var t=tr(val); if(t) return mode==='t'?t:esc(t); return mode==='t'?'['+label+']':'<span class="ph">['+esc(label)+']</span>'; }
+function money(n, label, mode){ if(n==null) return V('', label, mode); var s=tr(state.pCur)+fmt(n); return mode==='t'?s:esc(s); }
+function firstName(){ var t=tr(state.cName); return t? t.split(/\s+/)[0] : ''; }
+function list(arr){ return (arr||[]).map(tr).filter(Boolean); }
+function miles(){ return (state.mil||[]).map(function(m){ return [tr(m[0]),tr(m[1])]; }).filter(function(m){ return m[0]||m[1]; }); }
+
+function calc(){
+  var fee=num(state.pFee), pct=num(state.yDeposit);
+  var dep = (fee!=null && pct!=null) ? Math.round(fee*pct/100) : null;
+  var bal = (dep!=null) ? fee-dep : null;
+  return {fee:fee, pct:pct, dep:dep, bal:bal, rate:num(state.yRate)};
+}
+
+// token table for both html and text
+function T(mode){
+  var c=calc(), m=miles(), m1=m[0]||['',''];
+  var rate = c.rate==null ? V('', 'Hourly Rate', mode) : money(c.rate,'Hourly Rate',mode);
+  return {
+    name:V(state.yName,'Your Name',mode), biz:V(state.yBiz,'Business Name',mode), email:V(state.yEmail,'Your Email',mode),
+    web:V(state.yWeb,'Your Website',mode), hours:V(state.yHours,'Working Hours',mode), tz:V(state.yTz,'Time Zone',mode),
+    reply:V(state.yReply,'Reply Hours',mode), channel:V(state.yChannel,'Channel',mode), terms:V(state.yTerms,'Payment Days',mode),
+    pct:V(c.pct==null?'':String(c.pct)+'%','Deposit %',mode), rounds:V(state.yRounds,'Revision Rounds',mode), rate:rate,
+    client:V(state.cName,'Client Name',mode), first:V(firstName(),'Client Name',mode), company:V(state.cCompany,'Client Company',mode),
+    project:V(state.pName,'Project Name',mode), start:V(state.pStart,'Start Date',mode), end:V(state.pEnd,'Delivery Date',mode),
+    fee:money(c.fee,'Project Fee',mode), dep:money(c.dep,'Deposit',mode), bal:money(c.bal,'Balance',mode),
+    m1:V(m1[0],'Milestone',mode), m1d:V(m1[1],'Milestone Date',mode)
+  };
+}
+
+/* ---------- SVG glyphs ---------- */
+var TICK='<svg width="11" height="11" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3 7-7" stroke="#2F6B57" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var CROSS='<svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="#EE6B57" stroke-width="2.4" stroke-linecap="round"/></svg>';
+var INFO='<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="#2B3D5C" stroke-width="1.5"/><path d="M8 7v4.2M8 4.6v.2" stroke="#2B3D5C" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+function lh(t, type){
+  return '<div class="lh"><div><div class="biz">'+t.biz+'</div><div class="contact">'+t.email+' · '+t.web+'</div></div>'+
+    '<div class="dt"><div class="ey">'+type+'</div><div class="for">Prepared for '+t.client+' · '+t.company+'</div></div></div>';
+}
+function sec(n, title){ return '<div class="sec"><span class="n">'+n+'</span><h2>'+title+'</h2></div>'; }
+function foot(t, name){ return '<div class="docfoot"><span>'+t.biz+' · '+t.project+'</span><span>'+name+'</span></div>'; }
+function itemsOr(arr, label){ var a=list(arr); return a.length? a.map(esc) : ['<span class="ph">['+label+']</span>']; }
+
+/* ---------- 1 Welcome Guide ---------- */
+function docWelcome(){
+  var t=T('h'), m=miles(), h='';
+  h+=lh(t,'WELCOME GUIDE');
+  h+='<h1>Welcome aboard, '+t.first+'.</h1>';
+  h+='<p class="lead">Thanks for choosing me for your '+t.project+'. This guide covers what happens next, when, and how we\'ll work together, so you always know where the project stands.</p>';
+  h+='<div class="strip"><div><small>Project</small><b>'+t.project+'</b></div><div><small>Start</small><b class="mono">'+t.start+'</b></div><div><small>Delivery</small><b class="mono">'+t.end+'</b></div><div><small>Project fee</small><b class="mono">'+t.fee+'</b></div></div>';
+  h+=sec('01','Timeline');
+  h+='<table><tr><th style="width:40px">#</th><th>Milestone</th><th class="r">Date</th></tr>';
+  if(!m.length) m=[['','']];
+  m.forEach(function(r,i){ h+='<tr><td class="mono">'+(i+1)+'</td><td>'+V(r[0],'Milestone','h')+'</td><td class="r mono">'+V(r[1],'Milestone Date','h')+'</td></tr>'; });
+  h+='</table>';
+  h+='<div class="two"><div>'+sec('02','How to reach me')+'<div class="cg">'+
+     '<span>Best channel</span><b>'+t.channel+' · '+t.email+'</b>'+
+     '<span>Working hours</span><b>'+t.hours+'</b>'+
+     '<span>Time zone</span><b>'+t.tz+'</b>'+
+     '<span>Replies</span><b>Within '+t.reply+' hours on working days</b></div></div>';
+  h+='<div>'+sec('03','Payments')+'<table class="pay">'+
+     '<tr><td>Deposit ('+t.pct+'), before we start</td><td class="r mono">'+t.dep+'</td></tr>'+
+     '<tr><td>Balance, on delivery (net '+t.terms+')</td><td class="r mono">'+t.bal+'</td></tr>'+
+     '<tr class="tot"><td>Project fee</td><td class="r mono">'+t.fee+'</td></tr></table></div></div>';
+  h+=sec('04','Your next 3 steps');
+  h+='<div class="steps">'+
+     '<div class="step"><span class="num">1</span><div><b>Pay the deposit of '+t.dep+'</b> so I can reserve your start date of '+t.start+'.</div></div>'+
+     '<div class="step"><span class="num">2</span><div><b>Fill in the Discovery Questionnaire</b> (about 20 minutes) and send it back before our kickoff call.</div></div>'+
+     '<div class="step"><span class="num">3</span><div><b>Review and sign the Scope &amp; Revisions Confirmation</b> so we agree on what\'s included.</div></div></div>';
+  h+='<div class="keep">'+sec('05','Quick answers')+'<div class="faq">'+
+     '<div><b>How many revisions do I get?</b><p>'+t.rounds+' rounds are included. Extra changes are billed at '+t.rate+'/hour, agreed before I start.</p></div>'+
+     '<div><b>What if I\'m late with feedback?</b><p>The timeline moves by the same number of days. I\'ll confirm new dates in writing.</p></div>'+
+     '<div><b>Who should give feedback?</b><p>One decision-maker, please. Collect your team\'s notes and send them together.</p></div>'+
+     '<div><b>When do I get the files?</b><p>On '+t.end+'. The balance of '+t.bal+' is due within '+t.terms+' days of delivery.</p></div>'+
+     '<div><b>Can we add something to the project?</b><p>Yes. I\'ll send the cost and new dates first. Nothing changes until you approve it in writing.</p></div>'+
+     '<div><b>What if we need to pause?</b><p>Tell me as soon as you can. We\'ll agree new dates for the remaining work in writing.</p></div>'+
+     '</div></div>';
+  h+=foot(t,'Welcome Guide');
+  return h;
+}
+
+/* ---------- 2 Discovery Questionnaire ---------- */
+function docQuestions(){
+  var t=T('h'), f=state.pField||'design', h='', n=0;
+  h+=lh(t,'DISCOVERY QUESTIONNAIRE');
+  h+='<h1>Discovery Questionnaire</h1>';
+  h+='<p class="lead">For '+t.project+'. Please answer in your own words; short answers are fine. It takes about 20 minutes. If a question doesn\'t apply, write "n/a". Send it back to '+t.email+' before our kickoff call.</p>';
+  h+='<div class="grp">About your business (general) · 10</div>';
+  Q.general.forEach(function(q){ n++; h+=qItem(n,q,3); });
+  h+='<div class="grp">'+esc(FIELDS[f])+' questions · 12</div>';
+  Q[f].forEach(function(q){ n++; h+=qItem(n,q,4); });
+  h+='<div class="q"><p><span class="qn"></span>Anything else you\'d like me to know?</p><div class="wl"></div><div class="wl"></div></div>';
+  h+=foot(t,'Discovery Questionnaire · 22 questions');
+  return h;
+}
+function qItem(n,q,lines){ var s='<div class="q"><p><span class="qn">Q'+(n<10?'0':'')+n+'</span><span>'+esc(q)+'</span></p>'; for(var i=0;i<lines;i++) s+='<div class="wl"></div>'; return s+'</div>'; }
+
+/* ---------- 3 Scope & Revisions ---------- */
+function docScope(){
+  var t=T('h'), h='';
+  h+=lh(t,'SCOPE &amp; REVISIONS');
+  h+='<h1>Scope &amp; Revisions Confirmation</h1>';
+  h+='<p class="lead"><b>'+t.project+'</b> · '+t.start+' to '+t.end+' · <span class="mono">'+t.fee+'</span>. What\'s in, what\'s out and how changes work. Please sign and send it back before kickoff.</p>';
+  h+=sec('01','What\'s included, and what isn\'t');
+  h+='<div class="pair"><div class="pan inc"><div class="pl">'+TICK.replace('width="11" height="11"','width="14" height="14"')+'INCLUDED</div><ul>';
+  itemsOr(state.del,'Deliverable').forEach(function(x){ h+='<li>'+TICK+'<span>'+x+'</span></li>'; });
+  h+='</ul></div><div class="pan exc"><div class="pl">'+CROSS.replace('width="10" height="10"','width="12" height="12"')+'NOT INCLUDED</div><ul>';
+  itemsOr(state.exc,'Not Included').forEach(function(x){ h+='<li>'+CROSS+'<span>'+x+'</span></li>'; });
+  h+='</ul><div class="note">Anything here can be quoted separately.</div></div></div>';
+  h+=sec('02','Revisions');
+  h+='<div class="kv"><div><small>Rounds included</small><b>'+t.rounds+' rounds</b></div><div><small>Extra work</small><b class="mono">'+t.rate+' / hour</b></div><div><small>A round means</small><b style="font-size:12.5px;font-weight:600">one set of combined notes</b></div></div>';
+  h+=sec('03','If something changes');
+  h+='<div class="flow"><div><b>1 · You ask</b>Email the change.</div><div><b>2 · I estimate</b>Cost + dates in '+t.reply+' h.</div><div><b>3 · You approve</b>Reply "approved".</div><div><b>4 · I start</b>Billed at '+t.rate+'/hour.</div></div>';
+  h+=sec('04','Payment plan');
+  h+='<table><tr><th>Payment</th><th>When</th><th class="r">Amount</th></tr>'+
+     '<tr><td>Deposit ('+t.pct+')</td><td>Before work starts on '+t.start+'</td><td class="r mono">'+t.dep+'</td></tr>'+
+     '<tr><td>Balance</td><td>On delivery, '+t.end+' (net '+t.terms+' days)</td><td class="r mono">'+t.bal+'</td></tr>'+
+     '<tr><td><b>Total</b></td><td></td><td class="r mono"><b>'+t.fee+'</b></td></tr></table>';
+  h+='<div class="keep">'+sec('05','Sign-off');
+  h+='<div class="sig"><div><h3>CLIENT</h3><div class="ln"><span>Name</span><em>'+t.client+', '+t.company+'</em></div><div class="ln"><span>Signature</span><i></i></div><div class="ln"><span>Date</span><i></i></div></div>'+
+     '<div><h3>FREELANCER</h3><div class="ln"><span>Name</span><em>'+t.name+', '+t.biz+'</em></div><div class="ln"><span>Signature</span><i></i></div><div class="ln"><span>Date</span><i></i></div></div></div>';
+  h+='<div class="disc">'+INFO+'<span>This is a project summary, not a legal contract. It does not replace your agreement or legal advice.</span></div></div>';
+  h+=foot(t,'Scope &amp; Revisions Confirmation');
+  return h;
+}
+
+/* ---------- 4 Kickoff Call Agenda ---------- */
+var AGENDA = [
+  ['Welcome and introductions','Who\'s on the call and who approves the work',3],
+  ['Goals and what success looks like','The one or two results that matter most',5],
+  ['Questionnaire follow-ups','Open questions from your answers',6],
+  ['Scope walk-through','What\'s included, what isn\'t, revision rounds',5],
+  ['Timeline and milestones','Dates, and what I need from you before each one',4],
+  ['How we\'ll communicate','Channel, reply times, weekly update, feedback',4],
+  ['Next steps and owners','Who does what before the first milestone',3]
+];
+function clock(m){ return '0:'+(m<10?'0':'')+m; }
+function docKickoff(){
+  var t=T('h'), h='', at=0, total=0;
+  h+=lh(t,'KICKOFF CALL AGENDA');
+  h+='<h1>Kickoff Call Agenda</h1>';
+  h+='<p class="lead">30 minutes for '+t.project+', with '+t.client+' ('+t.company+') and '+t.name+'. We start on '+t.start+'.</p>';
+  h+=sec('01','Agenda · 30 minutes');
+  h+='<table><tr><th style="width:96px">Time</th><th>Segment</th><th class="r" style="width:80px">Length</th></tr>';
+  AGENDA.forEach(function(a){ h+='<tr><td class="mono">'+clock(at)+'–'+clock(at+a[2])+'</td><td><b>'+esc(a[0])+'</b><br><span style="color:var(--muted)">'+esc(a[1])+'</span></td><td class="r"><span class="chip">'+a[2]+' min</span></td></tr>'; at+=a[2]; total+=a[2]; });
+  h+='<tr><td></td><td><b>Total</b></td><td class="r"><b class="mono">'+total+' min</b></td></tr></table>';
+  h+='<div class="twocl"><div class="keep">'+sec('02','Before the call')+'<ul class="cl">'+
+     cl('Client: questionnaire sent back')+cl('Client: scope confirmation read, questions noted')+cl('Freelancer: answers read, follow-up questions listed')+cl('Both: the person who approves the work is invited')+cl('Freelancer: call link and this agenda sent')+'</ul></div>';
+  h+='<div class="keep">'+sec('03','After the call')+'<ul class="cl">'+
+     cl('Recap email sent within 24 hours')+cl('Any scope changes confirmed in writing')+cl('First milestone confirmed: '+t.m1+', '+t.m1d)+cl('Shared folder and access set up')+cl('Weekly update day agreed')+'</ul></div></div>';
+  h+='<div class="keep notes">'+sec('04','Notes and decisions')+'<div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div></div>';
+  h+=foot(t,'Kickoff Call Agenda');
+  return h;
+}
+function cl(x){ return '<li><span class="tb"></span><span>'+x+'</span></li>'; }
+
+/* ---------- 5 Handoff & Feedback ---------- */
+function docHandoff(){
+  var t=T('h'), h='', items=itemsOr(state.del,'Deliverable');
+  h+=lh(t,'PROJECT HANDOFF &amp; FEEDBACK');
+  h+='<h1>Project Handoff &amp; Feedback</h1>';
+  h+='<p class="lead">'+t.project+' is complete. Here is everything I\'m handing over to '+t.company+', what happens next, and three short questions about working together.</p>';
+  h+=sec('01','Files delivered');
+  h+='<table><tr><th style="width:40px">#</th><th>Deliverable</th><th class="r" style="width:110px">Received</th></tr>';
+  items.forEach(function(x,i){ h+='<tr><td class="mono">'+(i+1)+'</td><td>'+x+'</td><td class="r"><span class="tb"></span></td></tr>'; });
+  h+='</table>';
+  h+=sec('02','Support after handoff');
+  h+='<p style="margin-top:8px">For 14 days after delivery on '+t.end+', I\'ll fix anything that doesn\'t match the approved scope at no extra cost. New requests are quoted first and billed at '+t.rate+'/hour. The balance of '+t.bal+' is due within '+t.terms+' days of delivery.</p>';
+  h+='<div class="keep">'+sec('03','Your feedback (about 5 minutes)');
+  ['What went well in working together?','What one thing could I have done better?','How has the result helped your business so far, or how do you expect it to?'].forEach(function(q,i){ h+=qItem(i+1,q,2); });
+  h+='</div>';
+  h+='<div class="keep">'+sec('04','Permission to quote you');
+  h+='<div class="perm"><input type="checkbox" id="permbox"><label for="permbox">I give permission to quote my feedback publicly (with my name and company). <b>Leave unticked and it stays private.</b> Only a ticked box allows public use.</label></div></div>';
+  h+='<div class="keep">'+sec('05','Know someone who needs similar help?');
+  h+='<p style="margin-top:8px">If someone comes to mind, I\'d be grateful for an introduction. Reply to my email with their name, or pass on '+t.web+'. No pressure either way.</p></div>';
+  h+='<div class="keep"><div class="sig"><div><h3>RECEIVED BY (CLIENT)</h3><div class="ln"><span>Name</span><em>'+t.client+'</em></div><div class="ln"><span>Date</span><i></i></div></div>'+
+     '<div><h3>HANDED OVER BY</h3><div class="ln"><span>Name</span><em>'+t.name+'</em></div><div class="ln"><span>Date</span><i></i></div></div></div></div>';
+  h+=foot(t,'Project Handoff &amp; Feedback');
+  return h;
+}
+
+/* ---------- emails ---------- */
+function emails(){
+  var t=T('t'), del=list(state.del), exc=list(state.exc);
+  var delLines = (del.length?del:['[Deliverable]']).map(function(x){ return '- '+x; }).join('\n');
+  var excList = exc.length? exc.join(', ') : '[Not Included]';
+  var sig = t.name+'\n'+t.biz+' · '+t.web;
+  return [
+   {title:'Welcome & next steps', subject:'Welcome! Next steps for '+t.project,
+    body:'Hi '+t.first+',\n\nThank you for choosing '+t.biz+' for '+t.project+'. I\'m looking forward to starting on '+t.start+'.\n\nAttached is your Welcome Guide. It covers the timeline, how to reach me and the payment plan. To get us started, there are three quick steps:\n\n1. Pay the deposit of '+t.dep+' to reserve your start date.\n2. Fill in the Discovery Questionnaire (attached, about 20 minutes).\n3. Review and sign the Scope & Revisions Confirmation (attached).\n\nThe best way to reach me is '+t.channel+' ('+t.email+'). I reply within '+t.reply+' hours on working days ('+t.hours+', '+t.tz+').\n\nTalk soon,\n'+sig},
+   {title:'Questionnaire reminder', subject:'Quick reminder: your questionnaire for '+t.project,
+    body:'Hi '+t.first+',\n\nJust a friendly reminder about the Discovery Questionnaire for '+t.project+'. Your answers shape everything I make, so I\'d like to have them before our kickoff call.\n\nIt takes about 20 minutes. If a question doesn\'t apply, write "n/a" and move on. If it\'s easier to talk it through, reply and we\'ll cover it on the call.\n\nCould you send it back within the next two working days? That keeps us on track for '+t.start+'.\n\nThanks,\n'+sig},
+   {title:'Kickoff call invite', subject:'Let\'s book our 30-minute kickoff call for '+t.project,
+    body:'Hi '+t.first+',\n\nThanks for sending everything over. The next step is a 30-minute kickoff call before we start on '+t.start+'.\n\nOn the call we\'ll go over your goals, a few follow-ups to your questionnaire, the scope (what\'s included and what isn\'t), the timeline, and how we\'ll keep in touch. The agenda is attached.\n\nPlease reply with two or three 30-minute slots that work for you, and I\'ll send a calendar invite. If someone else will approve the work, please invite them too.\n\nBest,\n'+sig},
+   {title:'Kickoff recap', subject:'Recap: '+t.project+' kickoff and next steps',
+    body:'Hi '+t.first+',\n\nThanks for the kickoff call. Here\'s a short recap so we\'re both working from the same notes.\n\nProject: '+t.project+' for '+t.company+'\nStart: '+t.start+' · Delivery: '+t.end+'\nFirst milestone: '+t.m1+' on '+t.m1d+'\nRevision rounds included: '+t.rounds+'\nNot included: '+excList+'\n\nDecisions we made: …\nWhat I need from you: …\n\nIf anything here doesn\'t match what you heard, reply by the end of tomorrow and I\'ll correct it.\n\n'+sig},
+   {title:'Weekly status update', subject:t.project+': weekly update',
+    body:'Hi '+t.first+',\n\nHere\'s this week\'s update on '+t.project+'.\n\nDone this week: …\nNext week: …\nWhat I need from you: …\n\nNext milestone: '+t.m1+' on '+t.m1d+'. Delivery is planned for '+t.end+'.\n\nAny questions, just reply here. I\'ll send the next update at the same time next week.\n\n'+sig},
+   {title:'Milestone approval request', subject:'Ready for your review: '+t.m1+' ('+t.project+')',
+    body:'Hi '+t.first+',\n\n'+t.m1+' for '+t.project+' is ready for your review. You\'ll find it attached.\n\nTo keep us on schedule, please reply within 3 working days with either:\n- "Approved", or\n- one set of combined notes from everyone who needs to see it.\n\nA set of notes counts as one of your '+t.rounds+' included revision rounds. Anything outside the agreed scope is quoted first and billed at '+t.rate+'/hour, only if you approve it.\n\nThank you,\n'+sig},
+   {title:'Final handoff', subject:'Your final files for '+t.project,
+    body:'Hi '+t.first+',\n\n'+t.project+' is finished. Thank you for working with me on it.\n\nHere\'s everything included in the handoff:\n'+delLines+'\n\nThe handoff sheet (attached) lists every file so you can tick off what you\'ve received. The balance of '+t.bal+' is due within '+t.terms+' days of delivery, and the invoice is attached.\n\nFor 14 days after delivery, I\'ll fix anything that doesn\'t match the approved scope at no extra cost.\n\nBest,\n'+sig},
+   {title:'Feedback & testimonial request', subject:'3 quick questions about '+t.project,
+    body:'Hi '+t.first+',\n\nNow that '+t.project+' is wrapped up, I\'d love your honest feedback. It takes about 5 minutes:\n\n1. What went well in working together?\n2. What one thing could I have done better?\n3. How has the result helped '+t.company+' so far, or how do you expect it to?\n\nIf you\'re happy for me to quote your answers publicly (with your name and company), please say so in your reply. If you don\'t, they stay private. Either answer is completely fine.\n\nAnd if you know someone who could use similar help, I\'d be grateful for an introduction.\n\nThank you again,\n'+sig}
+  ];
+}
+
+/* ---------- render ---------- */
+var DOCS = {welcome:docWelcome, questions:docQuestions, scope:docScope, kickoff:docKickoff, handoff:docHandoff};
+function renderDocs(){
+  Object.keys(DOCS).forEach(function(k){ document.querySelector('#doc-'+k+' .content').innerHTML = DOCS[k](); });
+  var note = paper==='a4' ? 'A4 · prints this document only' : 'US Letter · prints this document only';
+  document.querySelectorAll('.papernote').forEach(function(n){ n.textContent = note; });
+  var g=document.getElementById('mailgrid'), h='';
+  emails().forEach(function(m,i){
+    h+='<div class="mail" data-mail="'+(i+1)+'"><div class="mh"><div><div class="kl">EMAIL '+(i+1)+' OF 8</div><div class="mt">'+esc(m.title)+'</div></div><button class="copy" type="button" data-copy="'+i+'">Copy</button></div>'+
+       '<div class="subj"><b>Subject:</b> '+esc(m.subject)+'</div><div class="body">'+esc(m.body)+'</div></div>';
+  });
+  g.innerHTML=h;
+  fit();
+}
+
+/* ---------- form ---------- */
+function rowsUI(kind){
+  var box=document.querySelector({del:'#rowsDel',exc:'#rowsExc',mil:'#rowsMil'}[kind]), L=box.querySelector('.list'), h='';
+  state[kind].forEach(function(v,i){
+    if(kind==='mil') h+='<div class="r"><input data-row="mil" data-i="'+i+'" data-p="0" value="'+esc(v[0])+'" placeholder="Milestone" aria-label="Milestone '+(i+1)+' name"><input class="d" data-row="mil" data-i="'+i+'" data-p="1" value="'+esc(v[1])+'" placeholder="Oct 23, 2026" aria-label="Milestone '+(i+1)+' date"><button type="button" class="x" data-del="mil" data-i="'+i+'" aria-label="Remove row">×</button></div>';
+    else h+='<div class="r"><input data-row="'+kind+'" data-i="'+i+'" value="'+esc(v)+'" placeholder="'+(kind==='del'?'Deliverable':'Not included')+'" aria-label="'+(kind==='del'?'Deliverable':'Not included')+' '+(i+1)+'"><button type="button" class="x" data-del="'+kind+'" data-i="'+i+'" aria-label="Remove row">×</button></div>';
+  });
+  L.innerHTML=h;
+  var b=box.querySelector('.addrow'), full=state[kind].length>=MAX[kind];
+  b.disabled=full; b.textContent = full ? 'Max '+MAX[kind] : '+ Add row';
+}
+function fillForm(){
+  SCALAR.forEach(function(k){ var el=document.getElementById(k); if(el) el.value = state[k]||(k==='pField'?'design':''); });
+  rowsUI('del'); rowsUI('exc'); rowsUI('mil');
+}
+document.addEventListener('input', function(e){
+  var el=e.target;
+  if(el.dataset.k){ state[el.dataset.k]=el.value; renderDocs(); return; }
+  if(el.dataset.row){ var k=el.dataset.row, i=+el.dataset.i; if(k==='mil') state.mil[i][+el.dataset.p]=el.value; else state[k][i]=el.value; renderDocs(); }
+});
+document.addEventListener('change', function(e){ if(e.target.id==='pField'){ state.pField=e.target.value; renderDocs(); } });
+document.addEventListener('click', function(e){
+  var el=e.target.closest('button'); if(!el) return;
+  if(el.dataset.add){ var k=el.dataset.add; if(state[k].length<MAX[k]){ state[k].push(k==='mil'?['','']:''); rowsUI(k); var ins=document.querySelectorAll('[data-row="'+k+'"]'); if(ins.length) ins[k==='mil'?ins.length-2:ins.length-1].focus(); } return; }
+  if(el.dataset.del){ var d=el.dataset.del; state[d].splice(+el.dataset.i,1); if(!state[d].length) state[d].push(d==='mil'?['','']:''); rowsUI(d); renderDocs(); return; }
+  if(el.classList.contains('tab')){ show(el.dataset.doc); return; }
+  if(el.dataset.print){ show(el.dataset.print); setTimeout(function(){ window.print(); },50); return; }
+  if(el.dataset.copy!=null){ copyMail(+el.dataset.copy, el); return; }
+});
+function show(doc){
+  current=doc;
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('on', t.dataset.doc===doc); });
+  document.querySelectorAll('.sheet').forEach(function(s){ s.classList.toggle('on', s.dataset.doc===doc); });
+  fit();
+}
+function copyMail(i, btn){
+  var m=emails()[i], text='Subject: '+m.subject+'\n\n'+m.body;
+  function done(){ btn.textContent='Copied ✓'; btn.classList.add('ok'); setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('ok'); },1500); }
+  function fallback(){ var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(err){} document.body.removeChild(ta); done(); }
+  if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else fallback();
+}
+function toast(msg){ var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); },1600); }
+
+function setPaper(p){
+  paper=p; document.body.classList.toggle('a4', p==='a4'); document.body.classList.toggle('letter', p==='letter');
+  document.getElementById('page-letter').disabled = (p!=='letter');
+  document.getElementById('page-a4').disabled = (p!=='a4');
+  document.getElementById('pLetter').classList.toggle('on', p==='letter');
+  document.getElementById('pA4').classList.toggle('on', p==='a4');
+  state.paper=p; renderDocs();
+}
+document.getElementById('pLetter').onclick=function(){ setPaper('letter'); };
+document.getElementById('pA4').onclick=function(){ setPaper('a4'); };
+
+document.getElementById('btnExample').onclick=function(){
+  state=JSON.parse(JSON.stringify(EXAMPLE)); state.paper=paper; fillForm(); renderDocs(); toast('Example loaded: Maya Chen · Brand Refresh');
+};
+document.getElementById('btnSave').onclick=function(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); toast('Saved in this browser ✓'); }catch(err){ toast('Could not save: browser storage is blocked'); }
+};
+document.getElementById('btnReset').onclick=function(){
+  if(!confirm('Clear every field? Your saved copy in this browser is removed too.')) return;
+  try{ localStorage.removeItem(KEY); }catch(err){}
+  state=blank(); fillForm(); setPaper(paper); toast('All fields cleared');
+};
+
+/* scale the sheet to the column on small screens (screen only) */
+function fit(){
+  var wrap=document.getElementById('sheetwrap'), sw = paper==='a4'?794:816, w=wrap.clientWidth;
+  var z = (w>0 && w<sw) ? (w/sw) : 1;
+  document.querySelectorAll('.sheet').forEach(function(s){ s.style.zoom = z; });
+}
+window.addEventListener('resize', fit);
+window.addEventListener('beforeprint', function(){ document.querySelectorAll('.sheet').forEach(function(s){ s.style.zoom=1; }); });
+window.addEventListener('afterprint', fit);
+
+/* ---------- start ---------- */
+try{ var saved=localStorage.getItem(KEY); if(saved){ var o=JSON.parse(saved); state=Object.assign(blank(), o); ['del','exc','mil'].forEach(function(k){ if(!Array.isArray(state[k])||!state[k].length) state[k]=blank()[k]; }); } }catch(err){}
+fillForm();
+setPaper(state.paper==='a4'?'a4':'letter');
+// optional URL hash for quick views, e.g. #example,scope,a4
+location.hash.replace(/^#/,'').split(',').forEach(function(p){
+  if(p==='example') document.getElementById('btnExample').click();
+  else if(p==='a4') setPaper('a4');
+  else if(p==='reset'){ state=blank(); fillForm(); renderDocs(); }
+  else if(DOCS[p]) show(p);
+  else if(FIELDS[p]){ state.pField=p; fillForm(); renderDocs(); }
+});
+})();
+</script>
+</body>
+</html>

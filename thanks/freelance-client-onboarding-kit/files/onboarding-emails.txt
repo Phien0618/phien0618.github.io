@@ -1,0 +1,188 @@
+SIGNED TO KICKOFF · THE 8 ONBOARDING EMAILS
+===========================================
+
+Plain-text versions of the 8 emails in client-onboarding-kit.html.
+Replace every [Bracket Placeholder] with your details, or use the HTML
+generator: it fills them in for you and has a Copy button on each email.
+Lines with "…" are for you to complete before sending.
+
+Placeholders used:
+[Client Name] = the client's first name (greeting) · [Client Company]
+[Project Name] · [Start Date] · [Delivery Date] · [Deposit] · [Balance]
+[Milestone] / [Milestone Date] = the next milestone · [Deliverable]
+[Not Included] · [Revision Rounds] · [Hourly Rate] · [Payment Days]
+[Your Name] · [Business Name] · [Your Email] · [Your Website]
+[Channel] · [Reply Hours] · [Working Hours] · [Time Zone]
+
+
+§1 WELCOME & NEXT STEPS
+Send: the day the client says yes (with the Welcome Guide, questionnaire
+and scope confirmation attached).
+---------------------------------------------------------------------
+Subject: Welcome! Next steps for [Project Name]
+
+Hi [Client Name],
+
+Thank you for choosing [Business Name] for [Project Name]. I'm looking forward to starting on [Start Date].
+
+Attached is your Welcome Guide. It covers the timeline, how to reach me and the payment plan. To get us started, there are three quick steps:
+
+1. Pay the deposit of [Deposit] to reserve your start date.
+2. Fill in the Discovery Questionnaire (attached, about 20 minutes).
+3. Review and sign the Scope & Revisions Confirmation (attached).
+
+The best way to reach me is [Channel] ([Your Email]). I reply within [Reply Hours] hours on working days ([Working Hours], [Time Zone]).
+
+Talk soon,
+[Your Name]
+[Business Name] · [Your Website]
+
+
+§2 QUESTIONNAIRE REMINDER
+Send: 2–3 working days after §1 if the questionnaire hasn't come back.
+---------------------------------------------------------------------
+Subject: Quick reminder: your questionnaire for [Project Name]
+
+Hi [Client Name],
+
+Just a friendly reminder about the Discovery Questionnaire for [Project Name]. Your answers shape everything I make, so I'd like to have them before our kickoff call.
+
+It takes about 20 minutes. If a question doesn't apply, write "n/a" and move on. If it's easier to talk it through, reply and we'll cover it on the call.
+
+Could you send it back within the next two working days? That keeps us on track for [Start Date].
+
+Thanks,
+[Your Name]
+[Business Name] · [Your Website]
+
+
+§3 KICKOFF CALL INVITE
+Send: once the questionnaire and signed scope are back.
+---------------------------------------------------------------------
+Subject: Let's book our 30-minute kickoff call for [Project Name]
+
+Hi [Client Name],
+
+Thanks for sending everything over. The next step is a 30-minute kickoff call before we start on [Start Date].
+
+On the call we'll go over your goals, a few follow-ups to your questionnaire, the scope (what's included and what isn't), the timeline, and how we'll keep in touch. The agenda is attached.
+
+Please reply with two or three 30-minute slots that work for you, and I'll send a calendar invite. If someone else will approve the work, please invite them too.
+
+Best,
+[Your Name]
+[Business Name] · [Your Website]
+
+
+§4 KICKOFF RECAP
+Send: within 24 hours of the kickoff call.
+---------------------------------------------------------------------
+Subject: Recap: [Project Name] kickoff and next steps
+
+Hi [Client Name],
+
+Thanks for the kickoff call. Here's a short recap so we're both working from the same notes.
+
+Project: [Project Name] for [Client Company]
+Start: [Start Date] · Delivery: [Delivery Date]
+First milestone: [Milestone] on [Milestone Date]
+Revision rounds included: [Revision Rounds]
+Not included: [Not Included]
+
+Decisions we made: …
+What I need from you: …
+
+If anything here doesn't match what you heard, reply by the end of tomorrow and I'll correct it.
+
+[Your Name]
+[Business Name] · [Your Website]
+
+
+§5 WEEKLY STATUS UPDATE
+Send: the same day every week until handoff.
+---------------------------------------------------------------------
+Subject: [Project Name]: weekly update
+
+Hi [Client Name],
+
+Here's this week's update on [Project Name].
+
+Done this week: …
+Next week: …
+What I need from you: …
+
+Next milestone: [Milestone] on [Milestone Date]. Delivery is planned for [Delivery Date].
+
+Any questions, just reply here. I'll send the next update at the same time next week.
+
+[Your Name]
+[Business Name] · [Your Website]
+
+
+§6 MILESTONE APPROVAL REQUEST
+Send: each time a milestone is ready for review.
+---------------------------------------------------------------------
+Subject: Ready for your review: [Milestone] ([Project Name])
+
+Hi [Client Name],
+
+[Milestone] for [Project Name] is ready for your review. You'll find it attached.
+
+To keep us on schedule, please reply within 3 working days with either:
+- "Approved", or
+- one set of combined notes from everyone who needs to see it.
+
+A set of notes counts as one of your [Revision Rounds] included revision rounds. Anything outside the agreed scope is quoted first and billed at [Hourly Rate]/hour, only if you approve it.
+
+Thank you,
+[Your Name]
+[Business Name] · [Your Website]
+
+
+§7 FINAL HANDOFF
+Send: with the final files, the handoff sheet and the balance invoice.
+---------------------------------------------------------------------
+Subject: Your final files for [Project Name]
+
+Hi [Client Name],
+
+[Project Name] is finished. Thank you for working with me on it.
+
+Here's everything included in the handoff:
+- [Deliverable]
+- [Deliverable]
+
+The handoff sheet (attached) lists every file so you can tick off what you've received. The balance of [Balance] is due within [Payment Days] days of delivery, and the invoice is attached.
+
+For 14 days after delivery, I'll fix anything that doesn't match the approved scope at no extra cost.
+
+Best,
+[Your Name]
+[Business Name] · [Your Website]
+
+
+§8 FEEDBACK & TESTIMONIAL REQUEST
+Send: 1–2 weeks after handoff, once the client has used the work.
+---------------------------------------------------------------------
+Subject: 3 quick questions about [Project Name]
+
+Hi [Client Name],
+
+Now that [Project Name] is wrapped up, I'd love your honest feedback. It takes about 5 minutes:
+
+1. What went well in working together?
+2. What one thing could I have done better?
+3. How has the result helped [Client Company] so far, or how do you expect it to?
+
+If you're happy for me to quote your answers publicly (with your name and company), please say so in your reply. If you don't, they stay private. Either answer is completely fine.
+
+And if you know someone who could use similar help, I'd be grateful for an introduction.
+
+Thank you again,
+[Your Name]
+[Business Name] · [Your Website]
+
+
+---------------------------------------------------------------------
+Only quote feedback publicly when the client has said yes in writing.
+These are communication templates, not legal advice.
