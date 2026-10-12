@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1200" height="780" fill="#FFF8EC"/>
+  <text x="60" y="80" font-size="44" font-weight="700" fill="#163A3A">What you get: 1 ZIP, 8 files</text>
+  <text x="60" y="120" font-size="21" fill="#4a5a5a">ESL-Phonics-Games-Offline.zip · after payment every file is also listed separately</text>
+
+  <rect x="60" y="150" width="1080" height="130" rx="16" fill="#163A3A"/>
+  <text x="90" y="192" font-size="18" font-weight="700" fill="#3DD39A">THE GAME · 1 HTML FILE · WORKS WITH NO INTERNET</text>
+  <text x="90" y="232" font-size="30" font-weight="700" fill="#ffffff">ESL-Phonics-Games.html</text>
+  <text x="90" y="264" font-size="20" fill="#dfeeee">6 games · 22 sound units · 452 words · 220 alien words · 48 pictures</text>
+
+  <rect x="60" y="305" width="1080" height="360" rx="16" fill="#ffffff" stroke="#e5dfd3" stroke-width="2"/>
+  <text x="90" y="345" font-size="18" font-weight="700" fill="#E0663A">6 PRINTABLE PDFs · EACH GUIDE IN US LETTER AND A4</text>
+  <g font-size="16" font-weight="700" fill="#888">
+    <text x="90" y="385">GUIDE</text>
+    <text x="330" y="385">PAGES</text>
+    <text x="450" y="385">US LETTER FILE</text>
+    <text x="800" y="385">A4 FILE</text>
+  </g>
+  <line x1="90" y1="398" x2="1110" y2="398" stroke="#e5dfd3" stroke-width="2"/>
+
+  <g font-size="22" fill="#163A3A">
+    <text x="90" y="440" font-weight="700">Quick Start</text>
+    <text x="330" y="440">1</text>
+    <text x="450" y="440">Quick-Start-Letter.pdf</text>
+    <text x="800" y="440">Quick-Start-A4.pdf</text>
+
+    <text x="90" y="530" font-weight="700">Teacher Guide</text>
+    <text x="330" y="530">12</text>
+    <text x="450" y="530">Teacher-Guide-Letter.pdf</text>
+    <text x="800" y="530">Teacher-Guide-A4.pdf</text>
+
+    <text x="90" y="620" font-weight="700">Word Bank</text>
+    <text x="330" y="620">13</text>
+    <text x="450" y="620">Word-Bank-Letter.pdf</text>
+    <text x="800" y="620">Word-Bank-A4.pdf</text>
+  </g>
+  <g font-size="17" fill="#777">
+    <text x="90" y="466">open, choose units, play, keys and your own words on one page</text>
+    <text x="90" y="556">1 page per game, the 22 units, your own lists, a 30-minute sample lesson</text>
+    <text x="90" y="646">every word and alien word of all 22 units, grouped by stage</text>
+  </g>
+  <line x1="90" y1="485" x2="1110" y2="485" stroke="#f0ebe2" stroke-width="2"/>
+  <line x1="90" y1="575" x2="1110" y2="575" stroke="#f0ebe2" stroke-width="2"/>
+
+  <rect x="60" y="690" width="1080" height="64" rx="16" fill="#ffffff" stroke="#e5dfd3" stroke-width="2"/>
+  <text x="90" y="731" font-size="22" font-weight="700" fill="#163A3A">LICENSE.txt</text>
+  <text x="250" y="731" font-size="19" fill="#555">single-teacher licence: all your own classes and devices, print as often as you need</text>
+</svg>
