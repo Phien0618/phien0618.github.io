@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Proposal Builder · 1-Page Summary + 3 Pricing Options</title>
+<style id="pagestyle"></style>
+<style>
+:root{--brand:#16233A;--brand-tint:#E8E9EB;--brand-ink:#16233A;--on-brand:#fff;--navy:#16233A;--navy2:#2B3D5C;--coral:#EE6B57;--sage:#2F6B57;--saget:#E3F0EA;--sand:#EFE8DC;--paper:#FAF7F1;--ink:#1E1E24;--muted:#6B6F7B;--line:#D9D3C7;--yel:#FFF4C2;
+--display:"Fraunces",Georgia,"Iowan Old Style","Times New Roman",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);font-family:var(--body);color:var(--ink);font-size:14px;line-height:1.45}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+.mono{font-family:var(--mono);font-weight:500}
+.app{background:var(--navy);color:#fff;min-height:88px;display:flex;align-items:center;gap:16px;padding:12px 24px;flex-wrap:wrap}
+.app h1{font-family:var(--display);font-weight:700;font-size:26px;margin:0;line-height:1.1}
+.app small{color:var(--sand);font-size:13px;display:block}
+.trio{display:flex;align-items:flex-end;gap:4px;height:32px}.trio i{width:11px;border-radius:3px;background:#3A4B6B;height:20px}.trio i:nth-child(2){background:var(--coral);height:30px}
+.tools{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tools select{width:auto;max-width:230px}
+.tools select,.tools .tb{height:38px;border-radius:8px;border:1px solid #3A4B6B;background:#22314D;color:#fff;padding:0 12px;font-size:13.5px}
+.seg{display:inline-flex;border:1px solid #3A4B6B;border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#22314D;color:#C9CED8;height:38px;padding:0 12px;font-size:13px;font-weight:600}.seg button.on{background:#fff;color:var(--navy)}
+.tools .pr{background:var(--coral);border-color:var(--coral);font-weight:700;font-size:15px}
+.layout{display:grid;grid-template-columns:440px minmax(0,1fr);gap:24px;padding:20px 24px;align-items:start}
+.editor{min-width:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+.card summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-weight:700;color:var(--navy)}
+.card summary::-webkit-details-marker{display:none}
+.cn{font-family:var(--mono);font-size:12px;color:var(--coral);min-width:20px}.ct{flex:1;min-width:0}
+.pill{font-size:11.5px;font-weight:600;color:var(--muted);background:var(--sand);border-radius:20px;padding:2px 9px;white-space:nowrap}
+.lock{font-size:13px;opacity:.7}
+.sw{position:relative;display:inline-block;width:36px;height:20px}.sw input{opacity:0;position:absolute;inset:0;margin:0;cursor:pointer}
+.sw i{position:absolute;inset:0;border-radius:20px;background:#C9CED8;pointer-events:none}.sw i:after{content:"";position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.15s}
+.sw input:checked+i{background:var(--sage)}.sw input:checked+i:after{left:19px}
+.cb{padding:2px 14px 14px;border-top:1px solid #EEE9E0}
+.f{margin-top:10px;min-width:0}.f label{display:block;font-size:12px;font-weight:600;color:var(--navy2);margin-bottom:4px}
+input,select,textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;font-size:13.5px}
+input,select{height:40px}textarea{resize:vertical;line-height:1.4}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 2px var(--yel)}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 10px}.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 10px}
+.hint{font-size:11.5px;color:var(--muted);margin-top:4px}.hint.strong{color:#7A5A00;background:var(--yel);padding:6px 9px;border-radius:6px;margin-top:10px}
+.brandrow{display:flex;align-items:center;gap:6px}.brandrow input[type=color]{width:44px;height:36px;padding:2px;flex:none}
+.swb{width:22px;height:22px;border-radius:50%;border:0;flex:none}.swb.on{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--navy)}
+.logobox{display:flex;align-items:center;gap:10px;min-height:40px}.logobox img{max-height:40px;max-width:140px;object-fit:contain}
+.drop{display:block;border:1.5px dashed var(--line);border-radius:8px;padding:9px;text-align:center;font-size:12.5px;color:var(--navy2);cursor:pointer;width:100%}
+.linkbtn{border:0;background:none;color:var(--navy2);text-decoration:underline;font-size:12.5px}
+.calc{font-size:12.5px;color:var(--navy2);margin-top:8px}.calc.wide{grid-column:span 2;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding-bottom:4px}
+.sub{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2);margin-top:14px}
+.list{margin-top:6px}.lrow{display:flex;gap:6px;margin-top:6px;align-items:flex-start}.lrow>*{min-width:0}.lrow input,.lrow textarea{flex:1}
+.lrow .w40{flex:0 0 38%}.lrow .w20{flex:0 0 22%}.lrow.r4 input{flex:1}.lrow.r4 input:first-child{flex:0 0 34%}
+.x{border:1px solid var(--line);background:#fff;border-radius:8px;width:30px;height:40px;flex:none;color:var(--muted)}
+.add{margin-top:8px;border:1px dashed var(--navy2);background:#fff;border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;color:var(--navy)}.add:disabled{opacity:.5;cursor:default}
+.recpick{font-size:13px;margin-top:10px;display:flex;flex-wrap:wrap;gap:4px 12px}.recpick label{display:flex;align-items:center;gap:4px}.recpick input{width:auto;height:auto}
+.warn{background:var(--yel);color:#7A5A00;border:1.5px solid #E6C65C;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:600;margin-top:10px}
+.pvcol{min-width:0}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.ab{height:38px;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);padding:0 14px;font-weight:600;font-size:13.5px}
+.ab.dark{background:var(--navy);color:#fff}.ab.done{background:var(--sage);border-color:var(--sage);color:#fff}.ab small{font-weight:500;opacity:.75;margin-left:4px}
+.totwc{font-size:12px;color:var(--muted);margin-left:auto}
+.phc{background:var(--sand);border-radius:3px;padding:0 2px}
+.lower{padding:0 24px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.panel h2{font-family:var(--display);font-size:22px;color:var(--navy);margin:0 0 4px}
+.panel .ph2{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+.filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.libgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:10px;max-height:720px;overflow:auto}
+.snip{border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;display:flex;flex-direction:column;min-width:0}
+.snip .st{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.snip p{margin:4px 0 8px;color:var(--navy2);flex:1}
+.tagc{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:#fff;border-radius:4px;padding:2px 6px}.fl{font-size:11px;color:var(--muted)}
+.ins{align-self:flex-start;border:1px solid var(--navy);background:#fff;border-radius:7px;padding:4px 12px;font-weight:600;font-size:12.5px;color:var(--navy)}
+.mails{display:grid;gap:8px;margin-top:6px;max-height:760px;overflow:auto}
+.mail{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px}
+.mail .mt{display:flex;justify-content:space-between;align-items:center}.kl{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--muted)}
+.mtt{font-weight:700;color:var(--navy);margin-top:2px}.ms{margin-top:4px}.mb{margin-top:6px;color:var(--navy2);line-height:1.5}
+.cp{border:0;background:var(--navy);color:#fff;border-radius:7px;padding:5px 12px;font-weight:700;font-size:12.5px}.cp.done{background:var(--sage)}
+.hl{background:var(--yel);border-radius:3px;padding:0 2px;font-weight:600}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--sage);color:#fff;padding:10px 18px;border-radius:24px;font-weight:700;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.modal{position:fixed;inset:0;background:rgba(22,35,58,.45);display:grid;place-items:center;z-index:40}.modal[hidden]{display:none}
+.mbox{background:#fff;border-radius:14px;padding:20px;width:min(560px,92vw);max-height:84vh;overflow:auto}
+.mbox h3{margin:0 0 8px;font-family:var(--display);color:var(--navy);font-size:22px}
+.mbtns{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.pbtn{height:38px;border-radius:8px;border:0;background:var(--navy);color:#fff;padding:0 14px;font-weight:700}.pbtn:disabled{opacity:.5}
+.qbtn{height:38px;border-radius:8px;border:1px solid var(--line);background:#fff;padding:0 14px}
+.mrow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.srow{display:flex;gap:6px;align-items:center;border-top:1px solid var(--line);padding:8px 0}.srow>div{flex:1;min-width:0}.srow span{display:block;font-size:12px;color:var(--muted)}
+.srow button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:4px 9px;font-size:12.5px}
+.foot-note{font-size:12px;color:var(--muted);padding:0 24px 30px}
+/* ---------- printed proposal ---------- */
+.docwrap{transform-origin:top left}
+#doc{--brand:#16233A}
+.sheet{background:#fff;width:816px;min-height:1056px;padding:44px 62px 60px;margin:0 0 22px;box-shadow:0 10px 30px rgba(10,20,40,.14);font-size:13.6px;line-height:1.48;color:var(--ink)}
+body.a4 .sheet{width:794px;min-height:1123px;padding:44px 60px 60px}
+.lh{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--brand)}
+.lh .who{display:flex;align-items:center;gap:12px;min-width:0}.lh .logo{max-height:40px;max-width:140px;object-fit:contain}
+.biz{font-family:var(--display);font-weight:700;font-size:20px;color:var(--brand-ink);line-height:1.1}
+.contact{font-size:11px;color:var(--muted);margin-top:2px}
+.dt{text-align:right}.dt .ey{font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--brand-ink)}.dt .for{font-size:11.5px;color:var(--navy2);margin-top:3px}
+.lh.compact{padding-bottom:8px;border-bottom-width:1px;margin-bottom:4px}.lh.compact .biz{font-size:16px}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--brand-ink);text-transform:uppercase;margin-top:28px}
+#doc h1{font-family:var(--display);font-weight:700;font-size:36px;color:var(--brand-ink);letter-spacing:-.01em;line-height:1.08;margin:6px 0 0}
+.goal{margin-top:20px;border-left:4px solid var(--brand);padding:4px 0 4px 18px}
+.goal q{font-family:var(--display);font-style:italic;font-weight:500;font-size:20px;line-height:1.35;color:var(--ink);quotes:"\201C" "\201D";display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.goal .src{font-size:11px;color:var(--muted);margin-top:8px}
+.rec{margin-top:22px;background:var(--brand-tint);border:1.5px solid var(--brand);border-radius:10px;padding:18px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;break-inside:avoid}
+.tag{display:inline-block;background:var(--brand);color:var(--on-brand);font-size:10px;font-weight:700;letter-spacing:.14em;padding:4px 9px;border-radius:4px}
+.rec .name{font-family:var(--display);font-weight:700;font-size:23px;color:var(--brand-ink);margin-top:8px}
+.rec .inc{font-size:12.6px;color:var(--navy2);margin-top:4px}
+.rec .price{font-family:var(--display);font-weight:700;font-size:44px;color:var(--brand-ink);line-height:1;text-align:right}
+.rec .split{font-family:var(--mono);font-size:12px;color:var(--navy2);text-align:right;margin-top:8px;line-height:1.6;white-space:nowrap}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--sand);border-radius:6px;margin-top:14px}
+.facts div{padding:10px 14px;border-right:1px solid #E2D9C9;min-width:0}.facts div:last-child{border:0}
+.facts small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--muted)}.facts b{display:block;font-size:13.5px;color:var(--brand-ink);margin-top:3px;font-weight:600}
+.others{font-size:12.6px;color:var(--navy2);margin-top:12px}.others b{color:var(--ink)}
+.yes{margin-top:24px;break-inside:avoid}.yes h3{font-size:16px;font-weight:700;color:var(--brand-ink);padding-bottom:6px;border-bottom:1px solid var(--line);margin:0}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:14px}
+.step{display:flex;gap:11px;align-items:flex-start}.step b{display:block;font-size:13.4px}.step span{font-size:11.8px;color:var(--muted);line-height:1.4;display:block;margin-top:2px}
+.num{width:30px;height:30px;border-radius:50%;background:var(--brand);color:var(--on-brand);font-weight:700;font-size:14px;display:grid;place-items:center;flex:none}
+.close{margin:22px 0 0;font-size:13.4px;line-height:1.55}
+.sig{font-family:var(--display);font-weight:600;font-size:17px;color:var(--brand-ink);margin-top:8px}
+.toc{margin-top:24px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11.5px;color:var(--navy2);align-items:baseline}
+.toc small{width:100%;font-size:9.5px;font-weight:700;letter-spacing:.12em;color:var(--muted)}.toc i{font-style:normal;font-family:var(--mono);color:var(--brand-ink);font-weight:500;margin-right:3px}
+.sec{display:flex;align-items:baseline;gap:10px;margin-top:22px;padding-bottom:6px;border-bottom:1px solid var(--line);break-after:avoid;page-break-after:avoid}
+.light .sec{border-left:4px solid var(--brand);padding-left:8px}
+.sec .n{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--brand-ink)}.sec h2{font-size:16px;font-weight:700;color:var(--brand-ink);margin:0}
+.goals{margin:10px 0 0;padding-left:18px}.goals li{margin:5px 0}.goals li::marker{color:var(--brand)}
+.appr{margin-top:8px}.ar{display:flex;gap:12px;align-items:flex-start;padding:6px 0;break-inside:avoid}
+.ar .c{width:22px;height:22px;border-radius:50%;background:var(--brand);color:var(--on-brand);font-size:11.5px;font-weight:700;display:grid;place-items:center;flex:none;margin-top:1px}
+.ar b{font-weight:600}.ar span{color:var(--muted);margin-left:6px}
+.scope{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:10px;align-items:start;break-inside:avoid}
+.scope>div{border-radius:8px;padding:10px 14px;min-width:0}.scope .inc{background:var(--saget);border:1.5px solid var(--sage)}.scope .exc{background:#fff;border:1.5px dashed #8A8F9A}
+.scope .lb{font-size:10.5px;font-weight:700;letter-spacing:.12em;display:flex;align-items:center;gap:6px}.scope .inc .lb{color:var(--sage)}
+.scope ul{margin:6px 0 0;padding-left:16px;font-size:12.8px}.scope li{margin:3px 0}.empty{color:#B4532F;font-style:italic}
+.gl{width:14px;height:14px;vertical-align:-2px}
+table{border-collapse:collapse;width:100%;font-size:12.6px}
+.tl{margin-top:10px}.tl th{background:var(--sand);color:var(--brand-ink);font-weight:700;font-size:11px;text-align:left;padding:7px 10px;letter-spacing:.03em}
+.tl td{padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}tr{break-inside:avoid}.r{text-align:right}
+.wk{font-family:var(--mono);font-size:11px;color:var(--muted);background:#F3EFE8;border-radius:4px;padding:1px 6px}
+.opt{margin-top:12px;border-collapse:separate;border-spacing:0;font-size:12.4px;break-inside:avoid}
+.opt th,.opt td{border-bottom:1px solid var(--line);padding:5px 10px;text-align:center}
+.opt th{font-size:13px;font-weight:700;padding:10px;vertical-align:bottom}
+.opt td:first-child,.opt th:first-child{text-align:left;color:var(--navy2);width:34%}
+.opt .rc{background:var(--brand-tint);border-left:2px solid var(--brand);border-right:2px solid var(--brand)}
+.opt th.rc{background:var(--brand);color:var(--on-brand);border-radius:8px 8px 0 0;border-top:2px solid var(--brand)}
+.light .opt th.rc{background:var(--brand-tint);border:3px solid var(--brand);border-bottom:0}
+.opt th.rc .tg{display:block;font-size:9px;letter-spacing:.14em;font-weight:700;opacity:.9;margin-bottom:3px}
+.opt tr.last td.rc{border-bottom:2px solid var(--brand)}
+.opt .ok{color:var(--brand-ink)}.opt .no{color:#A4A7AF}
+.opt .price td{font-family:var(--display);font-weight:700;font-size:21px;padding-top:9px;padding-bottom:9px;vertical-align:middle}
+.opt .price td:first-child{font-family:var(--body);font-size:12.4px;color:var(--ink)}
+.opt .money td{font-family:var(--mono);font-size:12px;color:var(--navy2)}.opt .money td:first-child{font-family:var(--body)}
+.addons{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 28px;margin-top:10px;font-size:12px;color:var(--navy2);break-inside:avoid}
+.addons div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:3px 0}
+.addons b{font-size:10px;letter-spacing:.12em;color:var(--muted);grid-column:1/3}
+.terms{margin-top:8px;font-size:12.4px}.terms .row{display:grid;grid-template-columns:30% minmax(0,1fr);gap:14px;padding:6px 0;border-bottom:1px solid var(--line);break-inside:avoid}
+.terms .row b{font-weight:600}.terms .row>span{color:var(--navy2)}
+.chip{font-size:11px;background:#F3EFE8;border-radius:4px;padding:1px 6px;color:var(--navy2)}
+.protect{margin-top:10px;background:var(--sand);border-radius:8px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;font-size:12.6px;break-inside:avoid;color:var(--ink)}
+.protect svg{flex:none;color:var(--brand-ink);margin-top:2px}.protect b{display:block;font-size:10px;letter-spacing:.12em;color:var(--brand-ink);margin-bottom:2px}
+.faq{margin-top:10px;font-size:12.4px}.faq .fh{font-weight:700;color:var(--brand-ink);font-size:12.6px}.qa{padding:5px 0;border-bottom:1px solid var(--line);break-inside:avoid}.qa b{display:block;font-weight:600}.qa span{color:var(--navy2)}
+.acc{break-inside:avoid;margin-top:10px}.acc p{margin:0;font-size:12.8px}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:10px;font-size:13px}.ticks>span{display:flex;align-items:center;gap:8px}
+.tick{width:16px;height:16px;border:1.5px solid var(--ink);border-radius:2px;display:inline-block;flex:none}
+.lines{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 28px;margin-top:8px}
+.lines div{font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}.lines span{display:block;height:38px;border-bottom:1px solid var(--ink)}
+.disc{border:1px dashed var(--navy2);border-radius:6px;padding:8px 12px;font-size:11.4px;color:var(--navy2);display:flex;gap:9px;align-items:center;margin-top:14px}.disc svg{flex:none}
+@media (max-width:900px){.layout,.lower{grid-template-columns:minmax(0,1fr)}.tools{margin-left:0}}
+@media print{
+  html,body{background:#fff}
+  .app,.editor,.actions,.lower,.screen-only,.toast,.modal,.foot-note,#pvwarn{display:none!important}
+  .layout{display:block;padding:0}.pvcol{position:static}.docwrap{zoom:1!important}
+  .sheet,body.a4 .sheet{width:auto;min-height:0;padding:0;margin:0;box-shadow:none}
+  .s1{break-after:page;page-break-after:always}
+  .eyebrow{margin-top:22px}.phc{background:none;padding:0}
+  .tl{break-inside:avoid}
+}
+#doc,#doc *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head><body>
+<header class="app">
+  <div class="trio" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div><h1>Proposal Builder</h1><small>1-Page Summary + 3 Pricing Options</small></div>
+  <div class="tools">
+    <select id="preset" class="tb" aria-label="Load an example preset"></select>
+    <button class="tb" id="btnSaved">Saved (<span id="savedn">0</span>/20)</button>
+    <button class="tb" id="btnExport">Export JSON</button>
+    <button class="tb" id="btnImport">Import JSON</button><input type="file" id="importFile" accept="application/json,.json" hidden>
+    <div class="seg" role="group" aria-label="Paper size"><button data-paper="letter">Letter</button><button data-paper="a4">A4</button></div>
+    <button class="tb pr" data-print>Print / Save as PDF</button>
+  </div>
+</header>
+<main class="layout">
+  <section class="editor" id="editor" aria-label="Editor"></section>
+  <section class="pvcol" id="pvcol" aria-label="Preview">
+    <div class="actions">
+      <button class="ab" id="cpPlain">Copy as plain text</button>
+      <button class="ab" id="cpPitch">Copy short pitch <small id="pitchn"></small></button>
+      <button class="ab dark" data-print>Print</button>
+      <span class="totwc" id="totwc"></span>
+    </div>
+    <div class="warn" id="pvwarn" hidden></div>
+    <div class="docwrap" id="docwrap"><div id="doc"></div></div>
+  </section>
+</main>
+<section class="lower">
+  <div class="panel">
+    <h2>Snippet Library</h2><p class="ph2" id="libn"></p>
+    <div class="filters"><select id="fField" aria-label="Field"></select>
+      <select id="fSec" aria-label="Section"><option value="all">All sections</option><option value="goals">Goals</option><option value="approach">Approach</option><option value="why">Why me</option><option value="notincl">Not included</option><option value="faq">FAQ</option></select></div>
+    <div class="libgrid" id="lib"></div>
+  </div>
+  <div class="panel">
+    <h2>Follow-up emails</h2><p class="ph2">8 emails, filled in from your proposal. Highlighted text came from your proposal; grey brackets are yours to write.</p>
+    <div class="mails" id="emails"></div>
+  </div>
+</section>
+<p class="foot-note">Everything stays in this browser (localStorage). Nothing is uploaded. Use Export JSON to back up or move to another computer. For the page header with your logo and the "Page x of y" footer, print from Chrome or Edge. This tool and its examples are guidance, not legal advice; a proposal is not a contract.</p>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal" id="mSaved" hidden><div class="mbox"><h3>Saved proposals</h3><div id="savedList"></div><div class="mbtns"><button class="qbtn" data-close>Close</button></div></div></div>
+<div class="modal" id="mScope" hidden><div class="mbox"><h3>Add a "Not included" item</h3><p>Add at least one 'Not included' item. It's the line that protects you from scope creep.</p><div class="mbtns"><button class="qbtn" data-close>Cancel</button><button class="pbtn" id="addNow">Add one now</button></div></div></div>
+<script>
+window.FPB_DATA = {
+"presets": {
+"design": {
+  "label": "Brand / Graphic Design",
+  "persona": {"name":"Maya Chen","business":"Maya Chen Studio","email":"maya@example.com","website":"mayachen.example"},
+  "proposal": {
+    "title":"Northfield Bakery Brand Refresh","client":"Dana Brooks","clientRole":"Owner","company":"Northfield Bakery",
+    "number":"P-2026-014","sent":"2026-10-12","validDays":14,"start":"2026-11-02",
+    "goal":"We want the bakery to look as good as the bread, with one look we can use on boxes, the shop sign and Instagram before the holiday boxes go to print.",
+    "goalSource":"Your goal, in your words, from our call on Oct 8, 2026",
+    "recDesc":"New logo suite, colour & type system, box and sign artwork, 12 Instagram templates, 2 revision rounds.",
+    "duration":"6 weeks","kickoff":"A 45-minute call in the week of Nov 2.",
+    "closing":"This plan gets your new look onto boxes and the shop sign by Dec 14, ahead of the holiday print run. Happy to walk through it on a short call.",
+    "goals":[
+      {"h":"One look everywhere","t":"Boxes, the shop sign and Instagram use three different logos today. You want one system that works on all of them."},
+      {"h":"Ready before the holiday print run","t":"Holiday boxes go to the printer in mid-December, so final files are needed by Dec 14."},
+      {"h":"As good as the bread","t":"Regulars love the product; the brand should show new customers the same care when they walk past."},
+      {"h":"Easy for your team","t":"Your staff post on Instagram themselves, so the templates must be simple to edit."}
+    ],
+    "approach":[
+      {"h":"Discovery call","t":"45 minutes on your customers, the other shops on your street and what must not change."},
+      {"h":"Moodboard & direction","t":"Two visual directions; you pick one before any logo work starts."},
+      {"h":"Logo concepts","t":"Three concepts in the chosen direction, each shown on a box and on the sign."},
+      {"h":"Refine","t":"Two rounds of changes on the concept you choose."},
+      {"h":"Roll-out","t":"Box and sign artwork, Instagram templates and a short guidelines PDF."}
+    ],
+    "included":["Logo suite: primary logo + 2 versions (stacked, icon)","Colour palette and type system","Box artwork (1 box size) and shop-sign artwork","12 editable Instagram post templates","Brand guidelines PDF (12 pages)","2 revision rounds on the chosen concept"],
+    "notIncluded":["Website design or build","Packaging print management","Photography","Copywriting / tagline"],
+    "milestones":[{"n":"Kickoff & discovery","w":0},{"n":"Moodboard & direction","w":1},{"n":"Logo concepts","w":2},{"n":"Refinements (2 rounds)","w":4},{"n":"Final files & guidelines","w":6}],
+    "opt":{"names":["Essential","Brand Refresh","Complete"],"rec":1,"dep":50,"prices":[2400,3600,5200],
+      "rows":[
+        {"l":"Logo suite (primary + 2 versions)","v":["✓","✓","✓"]},
+        {"l":"Colour & type system","v":["✓","✓","✓"]},
+        {"l":"Box and shop-sign artwork","v":["—","✓","✓"]},
+        {"l":"Instagram templates","v":["—","12","24"]},
+        {"l":"Brand guidelines (PDF)","v":["4 pages","12 pages","20 pages"]},
+        {"l":"Revision rounds","v":["1","2","3"]},
+        {"l":"Timeline","v":["4 weeks","6 weeks","8 weeks"]}
+      ]},
+    "addons":[{"n":"Menu board layout","p":350},{"n":"Gift card design","p":250}],
+    "why":[
+      {"h":"Food & retail brands","t":"Brand and packaging work for small bakeries and cafés.","link":"mayachen.example/work"},
+      {"h":"Print-ready files","t":"Every box and sign file is checked against your printer's specs before final delivery.","link":""}
+    ],
+    "terms":{"pay":"50% deposit to book your start date. The balance is due within 7 days of the final delivery date in the timeline.",
+      "rev":"Rounds as listed in your option. Extra rounds at $85/hour, quoted before work starts.",
+      "chg":"New requests get a short written change note with price and date before any work starts.",
+      "late":"If materials from you arrive late, the timeline moves by the same number of days; the final payment stays due on the original date."},
+    "faq":[],
+    "accept":"This proposal is not a contract. Once you accept, I'll send a short agreement and the deposit invoice."
+  }
+},
+"dev": {
+  "label": "Web / Shopify Development",
+  "persona": {"name":"Leo Marsh","business":"Marsh Web Works","email":"leo@example.com","website":"marshweb.example"},
+  "proposal": {
+    "title":"Harbor & Pine Shopify Store","client":"Sam Ortiz","clientRole":"Founder","company":"Harbor & Pine",
+    "number":"P-2026-021","sent":"2026-10-12","validDays":14,"start":"2026-11-09",
+    "goal":"We sell at markets and through Instagram messages. We need a proper store where people can buy without messaging us, live before our spring collection drops in mid-January.",
+    "goalSource":"Your goal, in your words, from our call on Oct 7, 2026",
+    "recDesc":"Styled theme, 60 products imported, 3 payment methods, shipping for 2 zones, 2 revision rounds, 30 days of launch support.",
+    "duration":"8 weeks","kickoff":"A 45-minute call in the week of Nov 9.",
+    "closing":"This plan gets the store live by Jan 4, before the spring collection drops. Happy to walk through it on a short call.",
+    "goals":[
+      {"h":"Sell without messages","t":"Customers order through Instagram messages today; you want a checkout that works at 2 a.m. without you."},
+      {"h":"Live before the spring collection","t":"The new collection drops in mid-January, so the store must launch by Jan 4."},
+      {"h":"Easy to update yourself","t":"You want to add products and change prices without calling a developer."},
+      {"h":"Shipping that covers its cost","t":"Rates must cover heavy items like ceramics, not one flat fee for everything."}
+    ],
+    "approach":[
+      {"h":"Discovery & sitemap","t":"Agree pages, product types, shipping zones and apps before design starts."},
+      {"h":"Design on a theme","t":"Style a premium theme to your brand; you approve the home and product page designs."},
+      {"h":"Build & import","t":"Set up collections, import products from your spreadsheet, configure payments and shipping."},
+      {"h":"Test","t":"Test orders on desktop and mobile for every payment method, tax and shipping rule."},
+      {"h":"Launch & training","t":"Go live together, plus a 45-minute recorded training call on adding products."}
+    ],
+    "included":["Theme setup and styling: home, collection, product, cart, about and contact pages","Import of up to 60 products from your spreadsheet","3 payment methods and shipping rules for 2 zones","Basic on-page SEO: page titles, descriptions and redirects from old links","2 revision rounds on the design","30 days of launch support (bug fixes)"],
+    "notIncluded":["Product photography or photo editing","Custom apps or paid app subscriptions","Writing product descriptions","Ongoing support after 30 days (available as a monthly plan)"],
+    "milestones":[{"n":"Kickoff & sitemap","w":0},{"n":"Design approval","w":2},{"n":"Build & product import","w":4},{"n":"Testing & content review","w":6},{"n":"Launch & training","w":8}],
+    "opt":{"names":["Essential","Launch Store","Complete"],"rec":1,"dep":40,"prices":[3800,5600,8200],
+      "rows":[
+        {"l":"Theme setup & styling","v":["✓","✓","✓"]},
+        {"l":"Products imported","v":["25","60","150"]},
+        {"l":"Payment methods","v":["2","3","3"]},
+        {"l":"Shipping zones","v":["1","2","4"]},
+        {"l":"Email sign-up pop-up & welcome email","v":["—","—","✓"]},
+        {"l":"Launch support (bug fixes)","v":["14 days","30 days","60 days"]},
+        {"l":"Revision rounds","v":["1","2","3"]},
+        {"l":"Timeline","v":["6 weeks","8 weeks","10 weeks"]}
+      ]},
+    "addons":[{"n":"Extra 50 products imported","p":450},{"n":"Monthly care plan (per month)","p":240}],
+    "why":[
+      {"h":"Stores for makers","t":"Shopify builds for small businesses that sell physical products.","link":"marshweb.example/work"},
+      {"h":"A hand-off you can run","t":"Every store ships with a recorded training video and a 1-page admin cheat sheet.","link":""}
+    ],
+    "terms":{"pay":"40% deposit to book your start date. The balance is due within 7 days of the launch date in the timeline.",
+      "rev":"Rounds as listed in your option. Extra changes at $95/hour, quoted before work starts.",
+      "chg":"New features or pages get a short written change note with price and date before any work starts.",
+      "late":"If materials from you arrive late, the timeline moves by the same number of days; the final payment stays due on the original date."},
+    "faq":[],
+    "accept":"This proposal is not a contract. Once you accept, I'll send a short agreement and the deposit invoice."
+  }
+},
+"copy": {
+  "label": "Copywriting / Content",
+  "persona": {"name":"Priya Nair","business":"Priya Nair Copy","email":"priya@example.com","website":"priyanair.example"},
+  "proposal": {
+    "title":"Clearwater Physio Website Copy","client":"Ellen Hart","clientRole":"Clinic Director","company":"Clearwater Physio",
+    "number":"P-2026-008","sent":"2026-10-12","validDays":14,"start":"2026-11-02",
+    "goal":"People find us on Google, read the site and still call to ask what we do. We want pages that answer their questions and get them to book online.",
+    "goalSource":"Your goal, in your words, from our call on Oct 6, 2026",
+    "recDesc":"Copy for 5 pages, keyword research and SEO titles for each page, 2 revision rounds.",
+    "duration":"4 weeks","kickoff":"A 45-minute call in the week of Nov 2.",
+    "closing":"This plan gets all five pages ready for your web designer by Nov 30. Happy to walk through it on a short call.",
+    "goals":[
+      {"h":"Fewer 'what do you do?' calls","t":"Visitors should understand your services, prices and who you treat without phoning."},
+      {"h":"More online bookings","t":"Every page should lead to the online booking button."},
+      {"h":"Found in local searches","t":"Show up for the treatments people search for in your area."},
+      {"h":"Sound like the clinic","t":"Warm and plain, not clinical jargon."}
+    ],
+    "approach":[
+      {"h":"Discovery call","t":"45 minutes on your patients, services and the questions your front desk hears most."},
+      {"h":"Keyword & page plan","t":"One main search phrase and one job per page, agreed before writing."},
+      {"h":"Drafts","t":"All 5 pages in a shared document, with notes on why each section is there."},
+      {"h":"Revise","t":"Two rounds of edits on the full set."},
+      {"h":"Hand-off","t":"Final copy formatted for your web designer, with SEO titles and meta descriptions."}
+    ],
+    "included":["Copy for 5 pages: Home, Services, About, Pricing, Contact & booking","Keyword research: 1 main phrase per page","SEO page titles and meta descriptions","2 revision rounds on the full set","Final copy formatted for your web designer"],
+    "notIncluded":["Website design or uploading the copy to your site","Blog posts","Photography","Paid ads"],
+    "milestones":[{"n":"Discovery call","w":0},{"n":"Page plan approved","w":1},{"n":"First drafts","w":2},{"n":"Revisions (2 rounds)","w":3},{"n":"Final copy","w":4}],
+    "opt":{"names":["Essential","Copy + SEO","Complete"],"rec":1,"dep":50,"prices":[1500,2250,3100],
+      "rows":[
+        {"l":"Pages of website copy","v":["5","5","5"]},
+        {"l":"Keyword research per page","v":["—","✓","✓"]},
+        {"l":"SEO titles & meta descriptions","v":["—","✓","✓"]},
+        {"l":"Patient interviews (30 min, phone)","v":["—","—","2"]},
+        {"l":"Revision rounds","v":["1","2","2"]},
+        {"l":"Timeline","v":["3 weeks","4 weeks","5 weeks"]}
+      ]},
+    "addons":[{"n":"Extra page","p":300},{"n":"Google Business Profile description","p":150}],
+    "why":[
+      {"h":"Health clinic copy","t":"Website copy for physio and allied health clinics, written in plain, patient-first language.","link":"priyanair.example/samples"},
+      {"h":"A light brief","t":"One 45-minute call replaces a long questionnaire.","link":""}
+    ],
+    "terms":{"pay":"50% deposit to book your start date. The balance is due within 7 days of the final copy date in the timeline.",
+      "rev":"Rounds as listed in your option. Extra rounds at $75/hour, quoted before work starts.",
+      "chg":"New pages or extra pieces get a short written change note with price and date before any work starts.",
+      "late":"If materials from you arrive late, the timeline moves by the same number of days; the final payment stays due on the original date."},
+    "faq":[],
+    "accept":"This proposal is not a contract. Once you accept, I'll send a short agreement and the deposit invoice."
+  }
+},
+"marketing": {
+  "label": "Marketing (Email / Ads / Social)",
+  "persona": {"name":"Tom Reyes","business":"Reyes Email Studio","email":"tom@example.com","website":"reyesemail.example"},
+  "proposal": {
+    "title":"Little Fern Toys Email Marketing Setup","client":"Jess Park","clientRole":"Co-founder","company":"Little Fern Toys",
+    "number":"P-2026-017","sent":"2026-10-12","validDays":14,"start":"2026-11-02",
+    "goal":"We have 3,000 subscribers and only send an email when we remember. We want emails that go out on their own and bring in sales between launches.",
+    "goalSource":"Your goal, in your words, from our call on Oct 9, 2026",
+    "recDesc":"Welcome, abandoned-cart and post-purchase flows, 4 campaign templates, list clean-up, 2 revision rounds.",
+    "duration":"5 weeks","kickoff":"A 45-minute call in the week of Nov 2.",
+    "closing":"This plan gets your flows live by Nov 30, in time for holiday shoppers. Happy to walk through it on a short call.",
+    "goals":[
+      {"h":"Emails that run on their own","t":"Welcome, cart and post-purchase emails should send automatically instead of when someone remembers."},
+      {"h":"Sales between launches","t":"Orders spike at launches and drop in between. Email should bring steady orders in the quiet weeks."},
+      {"h":"A plan your co-founder can read","t":"You'll share this with your co-founder, so the first page has to say what, when and how much."},
+      {"h":"Keep the brand voice","t":"Playful but not silly; parents are the buyers."}
+    ],
+    "approach":[
+      {"h":"Audit","t":"Review your list, current sign-up form and the last 12 months of sends."},
+      {"h":"Plan the flows","t":"Map which email goes when, and the one job each email has."},
+      {"h":"Write & design","t":"Write and build the emails in your email platform, in your brand."},
+      {"h":"Test & launch","t":"Test every trigger and link, then switch the flows on."},
+      {"h":"Results check","t":"Review opens, clicks and sales after one week and adjust subject lines."}
+    ],
+    "included":["Welcome flow (4 emails)","Abandoned-cart flow (3 emails)","Post-purchase flow (2 emails)","4 reusable campaign templates","List clean-up and a new sign-up form","2 revision rounds"],
+    "notIncluded":["Paid ads or social media management","Product photography","Email platform subscription fees","Sending weekly campaigns after launch (available as a retainer)"],
+    "milestones":[{"n":"Audit & kickoff","w":0},{"n":"Flow plan approved","w":1},{"n":"Emails written & designed","w":3},{"n":"Testing & launch","w":4},{"n":"1-week results check","w":5}],
+    "opt":{"names":["Essential","Automated Setup","Complete"],"rec":1,"dep":50,"prices":[1800,2700,3900],
+      "rows":[
+        {"l":"Welcome flow (emails)","v":["3","4","5"]},
+        {"l":"Abandoned-cart flow","v":["—","✓","✓"]},
+        {"l":"Post-purchase flow","v":["—","✓","✓"]},
+        {"l":"Campaign templates","v":["2","4","6"]},
+        {"l":"List clean-up & sign-up form","v":["✓","✓","✓"]},
+        {"l":"Monthly results report","v":["—","—","3 months"]},
+        {"l":"Revision rounds","v":["1","2","2"]},
+        {"l":"Timeline","v":["3 weeks","5 weeks","6 weeks"]}
+      ]},
+    "addons":[{"n":"SMS sign-up + 2 SMS messages","p":400},{"n":"Extra campaign template","p":150}],
+    "why":[
+      {"h":"Email for online shops","t":"Flows and campaigns for independent online stores.","link":"reyesemail.example/work"},
+      {"h":"You keep everything","t":"All flows, templates and audiences stay in your own email account.","link":""}
+    ],
+    "terms":{"pay":"50% deposit to book your start date. The balance is due within 7 days of the launch date in the timeline.",
+      "rev":"Rounds as listed in your option. Extra rounds at $80/hour, quoted before work starts.",
+      "chg":"New flows or campaigns get a short written change note with price and date before any work starts.",
+      "late":"If materials from you arrive late, the timeline moves by the same number of days; the final payment stays due on the original date."},
+    "faq":[],
+    "accept":"This proposal is not a contract. Once you accept, I'll send a short agreement and the deposit invoice."
+  }
+},
+"consulting": {
+  "label": "Consulting (Operations)",
+  "persona": {"name":"Ana Kovac","business":"Kovac Operations","email":"ana@example.com","website":"kovacops.example"},
+  "proposal": {
+    "title":"Brightline Logistics Operations Process Review","client":"Mark Ellison","clientRole":"COO","company":"Brightline Logistics",
+    "number":"P-2026-011","sent":"2026-10-12","validDays":14,"start":"2026-11-09",
+    "goal":"Orders get stuck between sales and the warehouse, and nobody can say where. We want a clear process and someone to tell us what to fix first.",
+    "goalSource":"Your goal, in your words, from our call on Oct 5, 2026",
+    "recDesc":"Order-to-dispatch process map, 8 staff interviews, findings report with a 90-day fix plan, half-day leadership workshop.",
+    "duration":"5 weeks","kickoff":"A 60-minute kickoff in the week of Nov 9.",
+    "closing":"This plan puts a ranked fix list in front of your leadership team by Dec 14. Happy to walk through it on a short call.",
+    "goals":[
+      {"h":"Find where orders get stuck","t":"Orders slow down between sales and the warehouse, and no one can say exactly where."},
+      {"h":"Know what to fix first","t":"A short, ranked list of fixes rather than a 60-page report."},
+      {"h":"Get the team on board","t":"Supervisors should help shape the fixes so they stick."},
+      {"h":"See progress each week","t":"A small set of weekly measures that show whether orders move faster."}
+    ],
+    "approach":[
+      {"h":"Kickoff & data request","t":"Agree scope and contacts; collect order data and current process documents."},
+      {"h":"Interviews","t":"8 confidential 45-minute interviews across sales, customer service and the warehouse."},
+      {"h":"Map the process","t":"One order-to-dispatch map showing every hand-off and where orders wait."},
+      {"h":"Findings & 90-day plan","t":"Ranked issues, each with an owner, an effort estimate and a weekly measure."},
+      {"h":"Leadership workshop","t":"A half-day session to agree priorities and owners."}
+    ],
+    "included":["Kickoff meeting and data request","8 staff interviews (45 minutes each, on site or by video)","Order-to-dispatch process map","Findings report (up to 15 pages) with ranked issues","90-day fix plan with owners and weekly measures","Half-day leadership workshop"],
+    "notIncluded":["Software selection or implementation","Hiring or HR decisions","Legal, tax or financial advice","Hands-on management of the fixes (Complete adds 4 check-ins)"],
+    "milestones":[{"n":"Kickoff & data request","w":0},{"n":"Interviews complete","w":2},{"n":"Process map review","w":3},{"n":"Findings & 90-day plan","w":4},{"n":"Leadership workshop","w":5}],
+    "opt":{"names":["Essential","Review + Plan","Complete"],"rec":1,"dep":50,"prices":[2000,3500,5000],
+      "rows":[
+        {"l":"Order-to-dispatch process map","v":["✓","✓","✓"]},
+        {"l":"Staff interviews","v":["4","8","12"]},
+        {"l":"Findings report","v":["✓","✓","✓"]},
+        {"l":"90-day fix plan","v":["—","✓","✓"]},
+        {"l":"Leadership workshop (half day)","v":["—","1","1"]},
+        {"l":"Check-ins every 2 weeks","v":["—","—","4"]},
+        {"l":"Report revision rounds","v":["1","1","2"]},
+        {"l":"Timeline","v":["3 weeks","5 weeks","13 weeks"]}
+      ]},
+    "addons":[{"n":"Extra interviews (block of 4)","p":600},{"n":"Follow-up check-in (90 minutes)","p":350}],
+    "why":[
+      {"h":"Operations reviews","t":"Process reviews for warehouse and distribution teams.","link":"kovacops.example/approach"},
+      {"h":"Ranked, not exhaustive","t":"Every finding comes with an owner, an effort estimate and a measure.","link":""}
+    ],
+    "terms":{"pay":"50% deposit to book your start date. The balance is due within 7 days of the workshop date in the timeline.",
+      "rev":"Report rounds as listed in your option. Extra work at $120/hour, quoted before it starts.",
+      "chg":"New questions or teams added to the review get a short written change note with price and date before any work starts.",
+      "late":"If materials from you arrive late, the timeline moves by the same number of days; the final payment stays due on the original date."},
+    "faq":[],
+    "accept":"This proposal is not a contract. Once you accept, I'll send a short agreement and the deposit invoice."
+  }
+}
+},
+"snippets": [
+{"f":"design","s":"goals","h":"One look everywhere","t":"[Client] uses [number] different versions of the logo across [channels]. You want one system that works on all of them."},
+{"f":"design","s":"goals","h":"Ready before [deadline]","t":"[Event or print date] is fixed, so final files are needed by [date]."},
+{"f":"design","s":"goals","h":"Look like the business you are now","t":"The current brand was made when [past situation]. It no longer matches the prices you charge or the customers you want."},
+{"f":"design","s":"approach","h":"Moodboard & direction","t":"Two visual directions; you choose one before any logo work starts."},
+{"f":"design","s":"approach","h":"Concepts in context","t":"Each concept is shown on [a real item, e.g. your sign or packaging], not on a blank page."},
+{"f":"design","s":"approach","h":"Roll-out kit","t":"Templates and a short guidelines PDF so your team can use the brand without me."},
+{"f":"design","s":"why","h":"Relevant work","t":"[Number] brand projects for [type of business]. See [link to a case study]."},
+{"f":"design","s":"why","h":"Files that print correctly","t":"Every print file is checked against your printer's specs before final delivery."},
+{"f":"design","s":"notincl","t":"Website design or build (I can quote it separately)"},
+{"f":"design","s":"notincl","t":"Printing, print management and print costs"},
+{"f":"design","s":"faq","h":"What if we don't like any of the concepts?","t":"We go back to the moodboard once, at no extra cost, before any revision round is used."},
+{"f":"design","s":"faq","h":"Who owns the final logo?","t":"You do. Ownership of the final logo transfers to you when the final invoice is paid. I may show the work in my portfolio unless you ask me not to."},
+
+{"f":"dev","s":"goals","h":"Sell without manual orders","t":"Customers order through [messages / email / phone] today. You want a checkout that works without you."},
+{"f":"dev","s":"goals","h":"Easy to update yourself","t":"You want to change products, prices and banners without calling a developer."},
+{"f":"dev","s":"goals","h":"Faster pages","t":"The current site takes [number] seconds to load on a phone, and you believe it's costing sales."},
+{"f":"dev","s":"approach","h":"Discovery & sitemap","t":"Agree pages, features, integrations and who supplies each piece of content before design starts."},
+{"f":"dev","s":"approach","h":"Private preview site","t":"Everything is built on a private preview link; your live site stays untouched until launch day."},
+{"f":"dev","s":"approach","h":"Launch & training","t":"We go live together, plus a recorded training call on the tasks you'll do every week."},
+{"f":"dev","s":"why","h":"Similar builds","t":"[Number] [platform] sites for [type of business]. Live example: [link]."},
+{"f":"dev","s":"why","h":"A hand-off you can run","t":"Every site ships with a recorded walkthrough and a 1-page admin cheat sheet."},
+{"f":"dev","s":"notincl","t":"Custom apps, plugins or paid subscriptions (you pay these fees directly)"},
+{"f":"dev","s":"notincl","t":"Ongoing maintenance after [number] days (available as a monthly plan)"},
+{"f":"dev","s":"faq","h":"What if we find a bug after launch?","t":"Bugs reported within [number] days of launch are fixed at no cost. After that, the monthly plan or my hourly rate applies."},
+{"f":"dev","s":"faq","h":"Do we need to buy anything else?","t":"You pay the platform, theme and any app subscriptions directly. I'll list each one with its price before we start."},
+
+{"f":"copy","s":"goals","h":"Fewer repeat questions","t":"Visitors should understand [services, prices, process] without having to email or call."},
+{"f":"copy","s":"goals","h":"More [bookings / sign-ups / enquiries]","t":"Every page should lead to one clear next step: [the action]."},
+{"f":"copy","s":"goals","h":"Sound like you","t":"[Tone in their words, e.g. warm and plain], not [what to avoid]."},
+{"f":"copy","s":"approach","h":"Page plan","t":"One job and one main search phrase per page, agreed before writing starts."},
+{"f":"copy","s":"approach","h":"Annotated drafts","t":"Drafts come with short notes on why each section is there, so your feedback is faster."},
+{"f":"copy","s":"approach","h":"Customer interviews","t":"Two 30-minute calls with real customers to collect the words they use."},
+{"f":"copy","s":"why","h":"Relevant samples","t":"Copy for [type of business]. Sample pages: [link]."},
+{"f":"copy","s":"why","h":"A light brief","t":"One 45-minute call replaces a long questionnaire."},
+{"f":"copy","s":"notincl","t":"Uploading copy to your website or formatting it in your site builder"},
+{"f":"copy","s":"notincl","t":"Blog posts, emails or ads (I can quote these separately)"},
+{"f":"copy","s":"faq","h":"What if we don't like the first draft?","t":"Your rounds cover changes to the full set. If the direction is wrong, we fix the page plan first and I redraft once at no extra cost."},
+{"f":"copy","s":"faq","h":"Will the copy be original?","t":"Yes. Every page is written for you from your call notes and is not reused for other clients."},
+
+{"f":"marketing","s":"goals","h":"Emails that run on their own","t":"You want [welcome / cart / post-purchase] emails to send automatically instead of [current situation]."},
+{"f":"marketing","s":"goals","h":"Revenue between launches","t":"Sales spike at launches and drop in between. Marketing should bring steady orders in the quiet weeks."},
+{"f":"marketing","s":"goals","h":"Numbers you can share","t":"[Partner / manager] wants a simple monthly view of what marketing earned."},
+{"f":"marketing","s":"approach","h":"Audit","t":"Review your list, sign-up forms and the last [number] months of results."},
+{"f":"marketing","s":"approach","h":"Test & launch","t":"Test every trigger and link, then switch the flows on in a fixed order."},
+{"f":"marketing","s":"approach","h":"Results check","t":"Review open, click and sales numbers after [number] weeks and adjust."},
+{"f":"marketing","s":"why","h":"Relevant work","t":"[Number] [email / ads / social] projects for [type of business]. Example: [link]."},
+{"f":"marketing","s":"why","h":"You keep everything","t":"All flows, templates and audiences stay in your own accounts."},
+{"f":"marketing","s":"notincl","t":"Ad spend, platform fees and software subscriptions"},
+{"f":"marketing","s":"notincl","t":"Ongoing campaign sending after launch (available as a monthly retainer)"},
+{"f":"marketing","s":"faq","h":"Can you promise a sales number?","t":"No. Results depend on your list, offer and season. I'll report the numbers every [period] and explain what I'd change."},
+{"f":"marketing","s":"faq","h":"Do we need to change platforms?","t":"No. I'll work in [current platform]. If the audit finds something that blocks the plan, I'll explain it before suggesting any switch."},
+
+{"f":"consulting","s":"goals","h":"Find the bottleneck","t":"[Process] slows down between [team A] and [team B], and no one can say exactly where."},
+{"f":"consulting","s":"goals","h":"Know what to fix first","t":"A short, ranked list of fixes rather than a long report."},
+{"f":"consulting","s":"goals","h":"Make it stick","t":"The people doing the work should help shape the changes."},
+{"f":"consulting","s":"approach","h":"Data request","t":"A short list of reports and documents to collect before interviews start."},
+{"f":"consulting","s":"approach","h":"Interviews","t":"[Number] confidential 45-minute interviews across [teams]."},
+{"f":"consulting","s":"approach","h":"Workshop","t":"A half-day session to agree priorities, owners and weekly measures."},
+{"f":"consulting","s":"why","h":"Relevant experience","t":"[Number] years in [industry or function]. Example project: [link or one-line outcome you can back up]."},
+{"f":"consulting","s":"why","h":"Ranked findings","t":"Every finding comes with an owner, an effort estimate and a measure."},
+{"f":"consulting","s":"notincl","t":"Software selection, implementation or IT changes"},
+{"f":"consulting","s":"notincl","t":"Legal, tax, HR or financial advice"},
+{"f":"consulting","s":"faq","h":"Will staff feel judged?","t":"Interviews are confidential. The report describes processes, not individuals."},
+{"f":"consulting","s":"faq","h":"What do you need from us?","t":"One contact person, the data on the request list in week 1, and interview slots booked by [date]."}
+],
+"emails": [
+{"title":"Sending the proposal","when":"Day 0","subject":"Proposal: [Project Name]","body":"Hi [Client First Name],\n\nThanks again for the call. Your proposal for [Project Name] is attached.\n\nPage 1 has everything you need to decide: your goal, my recommendation ([Recommended Option], [Recommended Price]) and three steps to say yes. The other two options are compared on the Options page.\n\nThe proposal is valid until [Valid Until]. If anything is unclear, reply with your question and I'll answer within one working day.\n\nBest,\n[Your Name]"},
+{"title":"Day 2 check-in","when":"Day 2","subject":"Quick check on the [Project Name] proposal","body":"Hi [Client First Name],\n\nDid the summary page answer your questions? If it helps, I can walk you through the three options in a 15-minute call this week.\n\nTwo times that work for me: [Time option 1] or [Time option 2].\n\nBest,\n[Your Name]"},
+{"title":"Day 5 value add","when":"Day 5","subject":"One idea for [Project Name]","body":"Hi [Client First Name],\n\nWhile planning your project I noticed [one specific thing about their business, site or materials]. Whichever option you choose, [one practical suggestion they can use even without hiring you].\n\nNo reply needed. I thought it would be useful.\n\nBest,\n[Your Name]"},
+{"title":"Day 10 decision nudge","when":"Day 10","subject":"[Project Name]: still a priority?","body":"Hi [Client First Name],\n\nThe proposal for [Project Name] is valid until [Valid Until]. To start on [Start Date], I need your answer by then so I can hold the dates.\n\nIf the timing or budget has changed, tell me. [Essential Option] at [Essential Price] covers the core of the project, and we can add the rest later.\n\nBest,\n[Your Name]"},
+{"title":"1 day before the proposal expires","when":"1 day before expiry","subject":"Your [Project Name] proposal expires tomorrow","body":"Hi [Client First Name],\n\nA short note: the proposal for [Project Name] expires tomorrow, [Valid Until]. After that I'll release the start date to other projects.\n\nIf you'd like to go ahead, tick an option on the last page and reply with the signed copy. If now isn't the right time, that's fine too. Let me know and I'll close the file.\n\nBest,\n[Your Name]"},
+{"title":"Reply to \"It's more than we expected\"","when":"Reply","subject":"Re: [Project Name] proposal","body":"Hi [Client First Name],\n\nThanks for being direct. I'd rather adjust the scope than the quality, so here are two ways to bring the number down:\n\n1. [Essential Option] at [Essential Price]. It keeps [the most important outcome] and drops [what is removed].\n2. Keep [Recommended Option] and split it into two phases, starting with [phase 1 scope].\n\nMy rate for the work stays the same, and I'm happy to shape the scope around your budget. Which of these is closer?\n\nBest,\n[Your Name]"},
+{"title":"Reply to \"We need to think about it\"","when":"Reply","subject":"Re: [Project Name] proposal","body":"Hi [Client First Name],\n\nOf course. To make the decision easier: is it mainly the timing, the budget or the scope? Tell me which, and I'll send a short answer on that part only.\n\nThe proposal stays valid until [Valid Until].\n\nBest,\n[Your Name]"},
+{"title":"Reply to \"We went with someone else\"","when":"Reply","subject":"Re: [Project Name] proposal","body":"Hi [Client First Name],\n\nThanks for letting me know, and good luck with the project. If you have a minute, I'd value one line on what tipped the decision. It helps me improve my proposals.\n\nIf plans change, I'm happy to help. I'll check in again in a few months.\n\nBest,\n[Your Name]"}
+]
+};
+</script>
+<script>
+(function(){
+var D=window.FPB_DATA, KEYS=['summary','goals','approach','scope','timeline','options','why','terms','accept'];
+var TITLES={summary:'Decision summary',goals:'Your goals',approach:'Approach',scope:'Scope',timeline:'Timeline',options:'Options',why:'Why me',terms:'Terms',accept:'Next steps & acceptance'};
+var MAX={goals:5,approach:6,milestones:8,addons:4,why:3,rows:12,faq:6};
+var LS='fpb1.state', LSS='fpb1.saved', MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var S, saved;
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function $(s,r){return (r||document).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function ph(s){return esc(s).replace(/\[[^\]\n]{1,80}\]/g,function(m){return '<span class="phc">'+m+'</span>'})}
+function pad(n){return (n<10?'0':'')+n}
+function num(v){var n=parseFloat(String(v).replace(/[^0-9.\-]/g,''));return isFinite(n)?n:0}
+function cur(){var p=S.profile;return p.cur==='custom'?(p.curCustom||''):p.cur}
+function money(n){return cur()+Math.round(num(n)).toLocaleString('en-US')}
+function pdate(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||'').trim());if(!m)return null;var d=new Date(+m[1],+m[2]-1,+m[3]);return isNaN(d)?null:d}
+function fdate(d){return d?MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear():'[Date]'}
+function addDays(d,n){if(!d)return null;var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x}
+function validUntil(){return addDays(pdate(S.p.sent),num(S.p.validDays))}
+function deposit(i){var pr=Math.round(num(S.p.opt.prices[i]));var d=Math.round(pr*num(S.p.opt.dep)/100);return {price:pr,dep:d,bal:pr-d}}
+function words(t){var m=String(t||'').match(/[A-Za-z0-9$€£][^\s]*/g);return m?m.length:0}
+function firstName(){return String(S.p.client||'').trim().split(/\s+/)[0]||'[Client First Name]'}
+function hexRgb(h){h=String(h||'#16233A').replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');var n=parseInt(h,16);return [(n>>16)&255,(n>>8)&255,n&255]}
+function lum(h){var c=hexRgb(h).map(function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)});return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2]}
+function tint(h,a){var c=hexRgb(h);return '#'+c.map(function(v){var x=Math.round(v*a+255*(1-a));return (x<16?'0':'')+x.toString(16)}).join('')}
+
+function defaults(){
+  var pr=D.presets.design;
+  return {paper:'letter',preset:'design',profile:{name:pr.persona.name,business:pr.persona.business,email:pr.persona.email,website:pr.persona.website,cur:'$',curCustom:'',brand:'#16233A',logo:'',logoW:0,logoH:0,example:true},
+    p:loadPreset('design'),on:allOn()};
+}
+function allOn(){var o={};KEYS.forEach(function(k){o[k]=true});return o}
+function loadPreset(k){var p=clone(D.presets[k].proposal);return p}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S));localStorage.setItem(LSS,JSON.stringify(saved))}catch(e){toast('Browser storage is full. Delete a saved proposal or use a smaller logo.')}}
+function load(){try{S=JSON.parse(localStorage.getItem(LS)||'null')}catch(e){S=null}
+  if(!S||!S.p||!S.profile)S=defaults(); if(!S.on)S.on=allOn(); S.on.summary=true;S.on.accept=true;
+  try{saved=JSON.parse(localStorage.getItem(LSS)||'[]')}catch(e){saved=[]} if(!Array.isArray(saved))saved=[];}
+
+/* ---------- path binding ---------- */
+function getPath(o,p){return p.split('.').reduce(function(a,k){return a==null?a:a[k]},o)}
+function setPath(o,p,v){var ks=p.split('.'),last=ks.pop();var t=ks.reduce(function(a,k){return a[k]},o);t[last]=v}
+
+/* ---------- editor ---------- */
+function field(label,path,opt){opt=opt||{};var v=getPath(S,path);v=v==null?'':v;
+  var id='f_'+path.replace(/\./g,'_');
+  var inp=opt.area?'<textarea id="'+id+'" data-path="'+path+'" rows="'+(opt.rows||3)+'" placeholder="'+esc(opt.ph||'')+'">'+esc(v)+'</textarea>'
+    :'<input id="'+id+'" data-path="'+path+'"'+(opt.num?' data-num="1" inputmode="decimal"':'')+' value="'+esc(v)+'" placeholder="'+esc(opt.ph||'')+'">';
+  return '<div class="f'+(opt.cls?' '+opt.cls:'')+'"><label for="'+id+'">'+esc(label)+'</label>'+inp+(opt.hint?'<div class="hint">'+opt.hint+'</div>':'')+'</div>'}
+function listRows(path,cols,max,addLabel,hint){var arr=getPath(S,path)||[];var h='<div class="list" data-list="'+path+'">';
+  arr.forEach(function(it,i){h+='<div class="lrow">';cols.forEach(function(c){var pth=path+'.'+i+(c.k?'.'+c.k:'');var v=c.k?it[c.k]:it;
+      h+=c.area?'<textarea class="'+(c.cls||'')+'" data-path="'+pth+'" rows="2" placeholder="'+esc(c.ph)+'">'+esc(v)+'</textarea>'
+      :'<input class="'+(c.cls||'')+'" data-path="'+pth+'"'+(c.num?' data-num="1" inputmode="decimal"':'')+' value="'+esc(v)+'" placeholder="'+esc(c.ph)+'" aria-label="'+esc(c.ph)+'">'});
+    h+='<button class="x" data-del="'+path+'" data-i="'+i+'" title="Remove">✕</button></div>'});
+  var full=arr.length>=max;
+  h+='<button class="add" data-add="'+path+'"'+(full?' disabled':'')+'>'+(full?'Max '+max:'+ '+addLabel)+'</button>'+(hint?'<div class="hint">'+hint+'</div>':'')+'</div>';return h}
+function card(k,n,body){var locked=(k==='summary'||k==='accept');
+  return '<details class="card" data-card="'+k+'"'+(k==='summary'?' open':'')+'><summary><span class="cn">'+n+'</span><span class="ct">'+TITLES[k]+'</span><span class="pill" data-wc="'+k+'">0 words</span>'
+   +(locked?'<span class="lock" title="Always included">🔒</span>':'<label class="sw" title="Include this section"><input type="checkbox" data-on="'+k+'"'+(S.on[k]?' checked':'')+'><i></i></label>')
+   +'</summary><div class="cb">'+body+'</div></details>'}
+function renderEditor(){
+  var p=S.p, h='';
+  // profile
+  var curOpts=['$','€','£','A$','C$','custom'].map(function(c){return '<option value="'+c+'"'+(S.profile.cur===c?' selected':'')+'>'+(c==='custom'?'Custom…':c)+'</option>'}).join('');
+  var sw=['#16233A','#2E6B57','#5B3A6E','#1F6475','#B4532F'].map(function(c){return '<button class="swb'+(S.profile.brand.toLowerCase()===c.toLowerCase()?' on':'')+'" data-swatch="'+c+'" style="background:'+c+'" title="'+c+'"></button>'}).join('');
+  h+='<details class="card" open data-card="profile"><summary><span class="cn">◉</span><span class="ct">My profile</span><span class="pill">saved in this browser</span></summary><div class="cb">'
+   +'<div class="g2">'+field('Your name','profile.name',{ph:'Your name'})+field('Business name','profile.business',{ph:'Business name'})+'</div>'
+   +'<div class="g2">'+field('Email','profile.email',{ph:'you@yourdomain.com'})+field('Website','profile.website',{ph:'yourdomain.com'})+'</div>'
+   +'<div class="g2"><div class="f"><label for="cursel">Currency</label><select id="cursel" data-path="profile.cur">'+curOpts+'</select></div>'
+   +(S.profile.cur==='custom'?field('Custom symbol','profile.curCustom',{ph:'e.g. CHF '}):'<div></div>')+'</div>'
+   +'<div class="g2"><div class="f"><label for="brandpick">Brand colour</label><div class="brandrow"><input type="color" id="brandpick" data-path="profile.brand" value="'+esc(S.profile.brand)+'">'+sw+'</div><div class="hint mono">'+esc(S.profile.brand.toUpperCase())+'</div></div>'
+   +'<div class="f"><label>Logo (PNG, JPG or SVG)</label><div class="logobox">'+(S.profile.logo?'<img src="'+S.profile.logo+'" alt="Your logo"><button class="linkbtn" id="logodel">Remove</button>':'<label class="drop" for="logofile">Choose a logo file</label>')+'<input type="file" id="logofile" accept="image/png,image/jpeg,image/svg+xml" hidden></div><div class="hint">Stored in this browser only. Printed in the page header.</div></div></div>'
+   +'</div></details>';
+  var N=numbers();
+  // 1 summary
+  h+=card('summary','01','<div class="warn" id="wcwarn" hidden></div>'
+   +field('Project name','p.title')+'<div class="g2">'+field('Client name','p.client')+field('Client title','p.clientRole')+'</div>'
+   +'<div class="g2">'+field('Client company','p.company')+field('Proposal no.','p.number')+'</div>'
+   +'<div class="g3">'+field('Date sent','p.sent',{ph:'YYYY-MM-DD'})+field('Valid (days)','p.validDays',{num:1,ph:'14'})+field('Start date','p.start',{ph:'YYYY-MM-DD'})+'</div>'
+   +'<div class="calc">Valid until <b class="mono" id="c_valid"></b></div>'
+   +field("Client's goal, in their words",'p.goal',{area:1,rows:3,ph:"Quote the client's own words from the call or email",hint:'Keep it to about 35 words so it fits 4 lines.'})
+   +field('Where the words came from','p.goalSource',{ph:'Your goal, in your words, from our call on [Date]'})
+   +field('Recommended option: one-line contents','p.recDesc',{area:1,rows:2})
+   +'<div class="g2">'+field('Duration','p.duration',{ph:'6 weeks'})+field('Kickoff line (step 3)','p.kickoff')+'</div>'
+   +field('Closing line','p.closing',{area:1,rows:2}));
+  h+=card('goals',N.goals||'02',listRows('p.goals',[{k:'h',ph:'Client phrase (bold)',cls:'w40'},{k:'t',ph:'What it means',area:1}],MAX.goals,'Add goal','Up to 5. Start each with a phrase the client actually said.'));
+  h+=card('approach',N.approach||'03',listRows('p.approach',[{k:'h',ph:'Step name',cls:'w40'},{k:'t',ph:'One-line description',area:1}],MAX.approach,'Add step','Aim for 3 to 6 steps.'));
+  h+=card('scope',N.scope||'04','<div class="sub">✓ Included</div>'+listRows('p.included',[{ph:'Included item'}],12,'Add included item')
+   +'<div class="sub">✕ Not included</div>'+listRows('p.notIncluded',[{ph:'Not included item'}],10,'Add not-included item','At least one item is needed before printing. It is the line that protects you from scope creep.'));
+  h+=card('timeline',N.timeline||'05',listRows('p.milestones',[{k:'n',ph:'Milestone'},{k:'w',ph:'Week +N',num:1,cls:'w20'}],MAX.milestones,'Add milestone','Dates = start date + N × 7 days, calculated for you.'));
+  var o=p.opt, oh='<div class="g3">';
+  [0,1,2].forEach(function(i){oh+=field('Option '+(i+1)+' name','p.opt.names.'+i)});
+  oh+='</div><div class="recpick">Recommended: '+[0,1,2].map(function(i){return '<label><input type="radio" name="rec" data-rec="'+i+'"'+(o.rec===i?' checked':'')+'> '+esc(o.names[i]||('Option '+(i+1)))+'</label>'}).join(' ')+'</div>';
+  oh+='<div class="g3">';[0,1,2].forEach(function(i){oh+=field('Price '+(i+1),'p.opt.prices.'+i,{num:1,ph:'0'})});oh+='</div>';
+  oh+='<div class="g3">'+field('Deposit %','p.opt.dep',{num:1,ph:'50'})+'<div class="calc wide" id="c_dep"></div></div>';
+  oh+='<div class="sub">Rows (label + what each option gets; use ✓ or —)</div><div class="list" data-list="p.opt.rows">';
+  o.rows.forEach(function(r,i){oh+='<div class="lrow r4"><input data-path="p.opt.rows.'+i+'.l" value="'+esc(r.l)+'" placeholder="Row label" aria-label="Row label">'+[0,1,2].map(function(j){return '<input class="w20" data-path="p.opt.rows.'+i+'.v.'+j+'" value="'+esc(r.v[j])+'" aria-label="'+esc(o.names[j])+'">'}).join('')+'<button class="x" data-del="p.opt.rows" data-i="'+i+'" title="Remove">✕</button></div>'});
+  oh+='<button class="add" data-add="p.opt.rows"'+(o.rows.length>=MAX.rows?' disabled>Max '+MAX.rows:'>+ Add row')+'</button></div>';
+  oh+='<div class="sub">Optional add-ons</div>'+listRows('p.addons',[{k:'n',ph:'Add-on'},{k:'p',ph:'Price',num:1,cls:'w20'}],MAX.addons,'Add add-on');
+  h+=card('options',N.options||'06',oh);
+  h+=card('why',N.why||'07','<div class="hint strong">Use your own real results only. The presets use fictional examples.</div>'+listRows('p.why',[{k:'h',ph:'Proof title',cls:'w40'},{k:'t',ph:'What you did (checkable)',area:1},{k:'link',ph:'Link (optional)',cls:'w40'}],MAX.why,'Add proof','2 to 3 proofs a client can check.'));
+  h+=card('terms',N.terms||'08',field('Payments','p.terms.pay',{area:1,rows:2})+field('Revisions','p.terms.rev',{area:1,rows:2})+field('Change requests','p.terms.chg',{area:1,rows:2})+field('Late materials (keep this clause)','p.terms.late',{area:1,rows:3})+'<div class="calc">Valid until is filled in from the date sent and days valid.</div>');
+  h+=card('accept',N.accept||'09',field('Disclaimer under the signature lines','p.accept',{area:1,rows:2})+'<div class="sub">Questions you might have (optional)</div>'+listRows('p.faq',[{k:'h',ph:'Question',cls:'w40'},{k:'t',ph:'Answer',area:1}],MAX.faq,'Add question','Insert ready-made questions from the Snippet Library.'));
+  $('#editor').innerHTML=h; updCalc();
+}
+function updCalc(){var v=$('#c_valid');if(v)v.textContent=fdate(validUntil());var c=$('#c_dep');if(c){c.innerHTML=[0,1,2].map(function(i){var d=deposit(i);return '<span>'+esc(S.p.opt.names[i])+': <b class="mono">'+money(d.dep)+'</b> + <b class="mono">'+money(d.bal)+'</b></span>'}).join('')}}
+
+/* ---------- document ---------- */
+function numbers(){var n=0,m={};KEYS.forEach(function(k){if(S.on[k])m[k]=pad(++n)});return m}
+function lhFull(){var pf=S.profile,p=S.p;return '<div class="lh"><div class="who">'+(pf.logo?'<img class="logo" src="'+pf.logo+'" alt="">':'')+'<div><div class="biz">'+esc(pf.business||pf.name)+'</div><div class="contact">'+esc([pf.email,pf.website].filter(Boolean).join(' · '))+'</div></div></div><div class="dt"><div class="ey">PROPOSAL · '+esc(p.number)+'</div><div class="for">Prepared for '+esc([p.client,p.company].filter(Boolean).join(' · '))+'</div></div></div>'}
+function lhCompact(){var pf=S.profile,p=S.p;return '<div class="lh compact screen-only"><div class="who">'+(pf.logo?'<img class="logo" src="'+pf.logo+'" alt="">':'')+'<div class="biz">'+esc(pf.business||pf.name)+'</div></div><div class="dt"><div class="ey">PROPOSAL · '+esc(p.number)+'</div><div class="for">'+esc(p.title)+'</div></div></div>'}
+function secHead(k,N){return '<div class="sec"><span class="n">'+N[k]+'</span><h2>'+TITLES[k]+'</h2></div>'}
+var TICK='<svg class="gl" viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var CROSS='<svg class="gl" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+function cellVal(v){v=String(v==null?'':v).trim();if(v==='✓')return '<span class="ok">'+TICK+'</span>';if(v==='—'||v==='-'||v==='')return '<span class="no">—</span>';return ph(v)}
+function renderDoc(){
+  var p=S.p,pf=S.profile,o=p.opt,N=numbers(),r=deposit(o.rec),h='';
+  var others=[0,1,2].filter(function(i){return i!==o.rec}).map(function(i){return '<b>'+esc(o.names[i])+'</b> <span class="mono">'+money(deposit(i).price)+'</span>'}).join(' · ');
+  h+='<div class="sheet s1"><div data-sec="summary">'+lhFull()+'<div class="eyebrow">01 · Decision summary</div><h1>'+ph(p.title||'[Project name]')+'</h1>'
+   +(p.goal?'<div class="goal"><q>'+ph(p.goal)+'</q><div class="src">'+ph(p.goalSource)+'</div></div>':'')
+   +'<div class="rec"><div><span class="tag">RECOMMENDED</span><div class="name">'+esc(o.names[o.rec])+'</div><div class="inc">'+ph(p.recDesc)+'</div></div><div><div class="price">'+money(r.price)+'</div><div class="split">'+num(o.dep)+'% deposit '+money(r.dep)+'<br>Balance '+money(r.bal)+'</div></div></div>'
+   +'<div class="facts"><div><small>START</small><b class="mono">'+fdate(pdate(p.start))+'</b></div><div><small>DURATION</small><b>'+ph(p.duration)+'</b></div><div><small>VALID UNTIL</small><b class="mono">'+fdate(validUntil())+'</b></div><div><small>PROPOSAL NO.</small><b class="mono">'+esc(p.number)+'</b></div></div>'
+   +'<div class="others">Other options: '+others+'.'+(S.on.options?' All three are compared side by side in section '+N.options+'.':'')+'</div>'
+   +'<div class="yes"><h3>To say yes</h3><div class="steps">'
+   +'<div class="step"><div class="num">1</div><div><b>Tick an option &amp; sign</b><span>The acceptance box is on the last page.</span></div></div>'
+   +'<div class="step"><div class="num">2</div><div><b>Pay the '+num(o.dep)+'% deposit</b><span>I\'ll send the invoice the same day.</span></div></div>'
+   +'<div class="step"><div class="num">3</div><div><b>Book the kickoff</b><span>'+ph(p.kickoff)+'</span></div></div></div></div>'
+   +(p.closing?'<p class="close">'+ph(p.closing)+'</p>':'')+'<div class="sig">'+esc(pf.name)+'</div>'
+   +'<div class="toc"><small>INSIDE THIS PROPOSAL</small>'+KEYS.slice(1).filter(function(k){return S.on[k]}).map(function(k){return '<span><i>'+N[k]+'</i> '+(k==='accept'?'Accept':TITLES[k])+'</span>'}).join('')+'</div>'
+   +'</div></div>';
+  h+='<div class="sheet s2">'+lhCompact();
+  if(S.on.goals)h+='<div class="block" data-sec="goals">'+secHead('goals',N)+'<ul class="goals">'+p.goals.map(function(g){return '<li><b>'+ph(g.h)+'.</b> '+ph(g.t)+'</li>'}).join('')+'</ul></div>';
+  if(S.on.approach)h+='<div class="block" data-sec="approach">'+secHead('approach',N)+'<div class="appr">'+p.approach.map(function(a,i){return '<div class="ar"><span class="c">'+(i+1)+'</span><div><b>'+ph(a.h)+'</b><span>'+ph(a.t)+'</span></div></div>'}).join('')+'</div></div>';
+  if(S.on.scope)h+='<div class="block" data-sec="scope">'+secHead('scope',N)+'<div class="scope"><div class="inc"><div class="lb">'+TICK+' INCLUDED</div><ul>'+p.included.map(function(x){return '<li>'+ph(x)+'</li>'}).join('')+'</ul></div><div class="exc"><div class="lb">'+CROSS+' NOT INCLUDED</div><ul>'+(p.notIncluded.length?p.notIncluded.map(function(x){return '<li>'+ph(x)+'</li>'}).join(''):'<li class="screen-only empty">Add at least one item.</li>')+'</ul></div></div></div>';
+  if(S.on.timeline){var st=pdate(p.start);h+='<div class="block" data-sec="timeline">'+secHead('timeline',N)+'<table class="tl"><tr><th>Milestone</th><th>Week</th><th class="r">Date</th></tr>'+p.milestones.map(function(m){var w=Math.round(num(m.w));return '<tr><td>'+ph(m.n)+'</td><td><span class="wk">Week +'+w+'</span></td><td class="r mono">'+fdate(addDays(st,w*7))+'</td></tr>'}).join('')+'</table></div>';}
+  if(S.on.options){h+='<div class="block" data-sec="options">'+secHead('options',N)+'<table class="opt"><tr><th></th>'+[0,1,2].map(function(i){return '<th'+(i===o.rec?' class="rc"><span class="tg">RECOMMENDED</span>':'>')+esc(o.names[i])+'</th>'}).join('')+'</tr>';
+    o.rows.forEach(function(rw){h+='<tr><td>'+ph(rw.l)+'</td>'+[0,1,2].map(function(i){return '<td'+(i===o.rec?' class="rc"':'')+'>'+cellVal(rw.v[i])+'</td>'}).join('')+'</tr>'});
+    var D3=[0,1,2].map(deposit),rc=function(i){return i===o.rec?' class="rc"':''};
+    h+='<tr class="price"><td>Price</td>'+D3.map(function(d,i){return '<td'+rc(i)+'>'+money(d.price)+'</td>'}).join('')+'</tr>';
+    h+='<tr class="money"><td>Deposit ('+num(o.dep)+'%) to start</td>'+D3.map(function(d,i){return '<td'+rc(i)+'>'+money(d.dep)+'</td>'}).join('')+'</tr>';
+    h+='<tr class="money last"><td>Balance</td>'+D3.map(function(d,i){return '<td'+rc(i)+'>'+money(d.bal)+'</td>'}).join('')+'</tr></table>';
+    if(p.addons.length)h+='<div class="addons"><b>OPTIONAL ADD-ONS</b>'+p.addons.map(function(a){return '<div><span>'+ph(a.n)+'</span><span class="mono">'+money(a.p)+'</span></div>'}).join('')+'</div>';
+    h+='</div>';}
+  if(S.on.why)h+='<div class="block" data-sec="why">'+secHead('why',N)+'<div class="terms">'+p.why.map(function(w){return '<div class="row"><b>'+ph(w.h)+'</b><span>'+ph(w.t)+(w.link?' <span class="chip mono">'+esc(w.link)+'</span>':'')+'</span></div>'}).join('')+'</div></div>';
+  if(S.on.terms){var t=p.terms;h+='<div class="block" data-sec="terms">'+secHead('terms',N)+'<div class="terms">'
+    +'<div class="row"><b>Payments</b><span>'+ph(t.pay)+'</span></div><div class="row"><b>Revisions</b><span>'+ph(t.rev)+'</span></div><div class="row"><b>Changes</b><span>'+ph(t.chg)+'</span></div>'
+    +'<div class="row"><b>Valid until</b><span><span class="mono">'+fdate(validUntil())+'</span> ('+num(p.validDays)+' days from '+fdate(pdate(p.sent))+')</span></div></div>'
+    +(t.late?'<div class="protect"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>MATERIALS &amp; TIMING</b>'+ph(t.late)+'</div></div>':'')+'</div>';}
+  h+='<div class="block" data-sec="accept">'+secHead('accept',N)
+   +(p.faq.length?'<div class="faq"><div class="fh">Questions you might have</div>'+p.faq.map(function(f){return '<div class="qa"><b>'+ph(f.h)+'</b><span>'+ph(f.t)+'</span></div>'}).join('')+'</div>':'')
+   +'<div class="acc"><p>To go ahead, tick one option, sign below and send a copy to '+esc(pf.email||'[your email]')+'.</p><div class="ticks">'+[0,1,2].map(function(i){return '<span><i class="tick"></i>'+esc(o.names[i])+' <span class="mono">'+money(deposit(i).price)+'</span></span>'}).join('')+'</div>'
+   +'<div class="lines"><div><span></span>Name</div><div><span></span>Title</div><div><span></span>Signature</div><div><span></span>Date</div></div>'
+   +'<div class="disc"><svg width="18" height="18" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 9v5M10 6v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>'+ph(p.accept)+'</span></div></div></div>';
+  h+='</div>';
+  $('#doc').innerHTML=h;
+  // brand
+  var b=S.profile.brand||'#16233A',light=lum(b)>0.45,root=$('#doc');
+  root.style.setProperty('--brand',b);root.style.setProperty('--brand-tint',tint(b,0.10));root.style.setProperty('--brand-ink',light?'#1E1E24':b);root.style.setProperty('--on-brand',light?'#1E1E24':'#fff');
+  root.classList.toggle('light',light);
+  pageStyle(); counts();
+}
+function cssStr(s){return '"'+String(s||'').replace(/\\/g,'\\\\').replace(/"/g,'\\"').replace(/[\r\n]+/g,' ')+'"'}
+function xml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function b64(s){return btoa(unescape(encodeURIComponent(s)))}
+function headSvg(){var pf=S.profile,x=0,img='',H=40,ink=lum(pf.brand)>0.45?'#1E1E24':pf.brand;
+  if(pf.logo){var r=(pf.logoW&&pf.logoH)?pf.logoW/pf.logoH:1,w=Math.min(130,Math.max(20,Math.round(34*r)));img='<image href="'+pf.logo+'" x="0" y="3" width="'+w+'" height="34" preserveAspectRatio="xMinYMid meet"/>';x=w+10}
+  var name=pf.business||pf.name||'',W=Math.min(460,x+Math.round(name.length*9.4)+12);
+  var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+img+'<text x="'+x+'" y="26" font-family="Fraunces, Georgia, \'Times New Roman\', serif" font-weight="700" font-size="16" fill="'+ink+'">'+xml(name)+'</text></svg>';
+  return 'data:image/svg+xml;base64,'+b64(svg)}
+function pageStyle(){var a4=S.paper==='a4',p=S.p,pf=S.profile,ink=lum(pf.brand)>0.45?'#1E1E24':pf.brand;
+  var m=a4?'24mm 16mm 19mm':'0.95in 0.65in 0.75in',mf=a4?'14mm':'0.55in';
+  var foot='font-family:Inter,system-ui,Arial,sans-serif;font-size:8pt;color:#6B6F7B;vertical-align:top;padding-top:7px;border-top:1px solid #D9D3C7';
+  var css='@page{size:'+(a4?'A4':'Letter')+';margin:'+m+';'
+   +'@top-left{content:url("'+headSvg()+'");vertical-align:bottom;padding-bottom:5px;border-bottom:1px solid '+pf.brand+'}'
+   +'@top-right{content:'+cssStr('PROPOSAL · '+p.number)+';font-family:Inter,system-ui,Arial,sans-serif;font-size:7.5pt;font-weight:700;letter-spacing:.12em;color:'+ink+';vertical-align:bottom;padding-bottom:9px;border-bottom:1px solid '+pf.brand+'}'
+   +'@bottom-left{content:'+cssStr((pf.business||pf.name)+' · '+p.title)+';'+foot+'}'
+   +'@bottom-right{content:'+cssStr(p.number+' · Page ')+' counter(page) " of " counter(pages);'+foot+'}}'
+   +'@page :first{margin-top:'+mf+';@top-left{content:none;border:0}@top-right{content:none;border:0}}';
+  $('#pagestyle').textContent=css;document.body.classList.toggle('a4',a4);
+  $$('.seg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-paper')===S.paper)});}
+function counts(){var tot=0;KEYS.forEach(function(k){var el=$('[data-sec="'+k+'"]');var w=el?words(textOf(el)):0;tot+=w;var pl=$('[data-wc="'+k+'"]');if(pl)pl.textContent=(S.on[k]?w:0)+' words'});
+  var sw=words(textOf($('[data-sec="summary"]')));var wr=$('#wcwarn'),pw=$('#pvwarn');
+  var msg=sw>250?'⚠ Your summary is '+sw+' words. Aim for under 250 so it fits one page.':'';
+  [wr,pw].forEach(function(e){if(e){e.hidden=!msg;e.textContent=msg}});
+  $('#totwc').textContent=tot+' words in total · summary '+sw;
+  var sp=pitch();$('#pitchn').textContent='≤150 words: '+words(sp);}
+function textOf(el){if(!el)return '';var c=el.cloneNode(true);$$('.screen-only',c).forEach(function(x){x.remove()});return c.textContent.replace(/\s+/g,' ')}
+
+/* ---------- text outputs ---------- */
+function fill(s){var p=S.p,o=p.opt,r=deposit(o.rec),e=deposit(0);var map={'Client First Name':firstName(),'Project Name':p.title,'Recommended Option':o.names[o.rec],'Recommended Price':money(r.price),'Valid Until':fdate(validUntil()),'Your Name':S.profile.name,'Essential Option':o.names[0],'Essential Price':money(e.price),'Start Date':fdate(pdate(p.start)),'Deposit %':num(o.dep)+'%'};
+  return s.replace(/\[([^\]]+)\]/g,function(m,k){return map[k]!=null&&map[k]!==''?map[k]:m})}
+function pitch(){var p=S.p,o=p.opt,r=deposit(o.rec),oth=[0,1,2].filter(function(i){return i!==o.rec}).map(function(i){return o.names[i]+' ('+money(deposit(i).price)+')'}).join(' and ');
+  var parts=['Hi '+firstName()+',','Thanks for the call. You told me: "'+p.goal+'"','My recommendation is '+o.names[o.rec]+' for '+money(r.price)+': '+p.recDesc,'We can start on '+fdate(pdate(p.start))+' and finish in '+p.duration+'. There are two other options: '+oth+'.','To go ahead: pick an option, pay the '+num(o.dep)+'% deposit ('+money(r.dep)+') and we book the kickoff. The full proposal is valid until '+fdate(validUntil())+'.',S.profile.name];
+  var t=parts.join('\n\n');if(words(t)>150){parts.splice(2,1,'My recommendation is '+o.names[o.rec]+' for '+money(r.price)+'.');t=parts.join('\n\n')}
+  if(words(t)>150){parts.splice(1,1);t=parts.join('\n\n')}return t}
+function plain(){var p=S.p,pf=S.profile,o=p.opt,N=numbers(),L=[],r=deposit(o.rec),st=pdate(p.start);
+  L.push('PROPOSAL '+p.number+': '+p.title);L.push('Prepared for '+[p.client,p.clientRole,p.company].filter(Boolean).join(', '));L.push('From '+[pf.name,pf.business,pf.email,pf.website].filter(Boolean).join(' · '));L.push('');
+  function H(k){L.push('');L.push(Number(N[k])+'. '+TITLES[k].toUpperCase())}
+  H('summary');if(p.goal)L.push('Your goal: "'+p.goal+'"');L.push('Recommended: '+o.names[o.rec]+', '+money(r.price)+' ('+num(o.dep)+'% deposit '+money(r.dep)+', balance '+money(r.bal)+')');L.push(p.recDesc);
+  L.push('Start: '+fdate(st)+' · Duration: '+p.duration+' · Valid until: '+fdate(validUntil()));
+  L.push('Other options: '+[0,1,2].filter(function(i){return i!==o.rec}).map(function(i){return o.names[i]+' '+money(deposit(i).price)}).join(' · '));
+  L.push('To say yes: 1) Tick an option and sign. 2) Pay the '+num(o.dep)+'% deposit. 3) Book the kickoff: '+p.kickoff);if(p.closing)L.push(p.closing);
+  if(S.on.goals){H('goals');p.goals.forEach(function(g){L.push('- '+g.h+'. '+g.t)})}
+  if(S.on.approach){H('approach');p.approach.forEach(function(a,i){L.push((i+1)+') '+a.h+': '+a.t)})}
+  if(S.on.scope){H('scope');L.push('Included:');p.included.forEach(function(x){L.push('- '+x)});L.push('Not included:');p.notIncluded.forEach(function(x){L.push('- '+x)})}
+  if(S.on.timeline){H('timeline');p.milestones.forEach(function(m){var w=Math.round(num(m.w));L.push('- '+m.n+' (Week +'+w+'): '+fdate(addDays(st,w*7)))})}
+  if(S.on.options){H('options');[0,1,2].forEach(function(i){var d=deposit(i);L.push(o.names[i]+(i===o.rec?' (recommended)':'')+': '+money(d.price)+' · deposit '+money(d.dep)+' · balance '+money(d.bal));o.rows.forEach(function(rw){var v=String(rw.v[i]||'').trim();if(v&&v!=='—'&&v!=='-')L.push('   - '+rw.l+(v==='✓'?'':': '+v))})});
+    if(p.addons.length){L.push('Optional add-ons:');p.addons.forEach(function(a){L.push('- '+a.n+': '+money(a.p))})}}
+  if(S.on.why){H('why');p.why.forEach(function(w){L.push('- '+w.h+'. '+w.t+(w.link?' ('+w.link+')':''))})}
+  if(S.on.terms){H('terms');L.push('Payments: '+p.terms.pay);L.push('Revisions: '+p.terms.rev);L.push('Changes: '+p.terms.chg);L.push('Materials & timing: '+p.terms.late);L.push('Valid until: '+fdate(validUntil()))}
+  H('accept');p.faq.forEach(function(f){L.push('Q: '+f.h);L.push('A: '+f.t)});L.push('To go ahead, reply with the option you choose ('+o.names.join(' / ')+'), your name and title, or sign the PDF and send it to '+(pf.email||'[your email]')+'.');L.push(p.accept);
+  L.push('');L.push(pf.name);return L.join('\n')}
+function copy(t,btn){function ok(){toast('Copied ✓');if(btn){var o=btn.textContent;btn.classList.add('done');btn.textContent='Copied ✓';setTimeout(function(){btn.classList.remove('done');btn.textContent=o},1500)}}
+  function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('Copy failed: select the text and press Ctrl/Cmd+C')}ta.remove()}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(function(){t.classList.remove('show')},1800)}
+
+/* ---------- snippets & emails ---------- */
+var SECL={goals:'Goals',approach:'Approach',why:'Why me',notincl:'Not included',faq:'FAQ'};
+function renderLib(){var ff=$('#fField').value,fs=$('#fSec').value,h='',n=0;
+  D.snippets.forEach(function(s,i){if((ff!=='all'&&s.f!==ff)||(fs!=='all'&&s.s!==fs))return;n++;
+    h+='<div class="snip"><div class="st"><span class="tagc">'+SECL[s.s]+'</span><span class="fl">'+D.presets[s.f].label+'</span></div>'+(s.h?'<b>'+ph(s.h)+'</b>':'')+'<p>'+ph(s.t)+'</p><button class="ins" data-ins="'+i+'">Insert</button></div>'});
+  $('#lib').innerHTML=h;$('#libn').textContent=n+' of '+D.snippets.length+' snippets';}
+function insert(i){var s=D.snippets[i],p=S.p,map={goals:'goals',approach:'approach',why:'why',faq:'faq'},k=map[s.s];
+  if(s.s==='notincl'){p.notIncluded.push(s.t);S.on.scope=true}else{if(p[k].length>=MAX[k]){toast('That section is full (max '+MAX[k]+'). Remove one first.');return}p[k].push(s.s==='why'?{h:s.h,t:s.t,link:''}:{h:s.h,t:s.t});S.on[s.s]=true}
+  renderEditor();renderDoc();save();toast('Inserted into '+SECL[s.s])}
+function renderEmails(){$('#emails').innerHTML=D.emails.map(function(e,i){var subj=fill(e.subject),body=fill(e.body);
+  return '<div class="mail"><div class="mt"><span class="kl">EMAIL '+(i+1)+' OF 8 · '+esc(e.when.toUpperCase())+'</span><button class="cp" data-mail="'+i+'">Copy</button></div><div class="mtt">'+esc(e.title)+'</div><div class="ms"><b>Subject:</b> '+hl(e.subject)+'</div><div class="mb">'+hl(e.body).replace(/\n/g,'<br>')+'</div></div>'}).join('')}
+function hl(s){var out=esc(s);return out.replace(/\[([^\]]+)\]/g,function(m,k){var v=fill(m);return v!==m?'<span class="hl">'+esc(v)+'</span>':'<span class="phc">'+m+'</span>'})}
+function mailText(i){var e=D.emails[i];return 'Subject: '+fill(e.subject)+'\n\n'+fill(e.body)}
+
+/* ---------- saved ---------- */
+function renderSaved(){$('#savedn').textContent=saved.length;var h='<div class="mrow"><button class="pbtn" id="saveNow"'+(saved.length>=20?' disabled':'')+'>'+(saved.length>=20?'Max 20 saved: delete one first':'Save current proposal')+'</button><span class="hint">'+saved.length+' of 20</span></div>';
+  h+=saved.length?saved.map(function(s,i){return '<div class="srow"><div><b>'+esc(s.title)+'</b><span>'+esc(s.client)+' · '+esc(s.number)+' · saved '+esc(s.at)+'</span></div><button data-sl="'+i+'">Load</button><button data-sd="'+i+'">Duplicate</button><button data-sx="'+i+'">Delete</button></div>'}).join(''):'<p class="hint">No saved proposals yet.</p>';
+  $('#savedList').innerHTML=h}
+function stamp(){var d=new Date();return fdate(d)}
+function snap(){return {title:S.p.title,client:S.p.client,number:S.p.number,at:stamp(),p:clone(S.p),on:clone(S.on),preset:S.preset}}
+
+/* ---------- events ---------- */
+var tmr;function later(){clearTimeout(tmr);tmr=setTimeout(function(){renderDoc();renderEmails();updCalc();save()},120)}
+function bind(){
+  var ed=$('#editor');
+  ed.addEventListener('input',function(e){var t=e.target,p=t.getAttribute('data-path');if(!p)return;var v=t.value;if(t.getAttribute('data-num'))v=v===''?'':num(v);
+    if(p.indexOf('profile.')===0&&p!=='profile.brand'&&p!=='profile.cur')S.profile.example=false;setPath(S,p,v);
+    if(p==='profile.brand'){renderEditorKeepFocus()}later()});
+  ed.addEventListener('change',function(e){var t=e.target;if(t.id==='cursel'){S.profile.cur=t.value;renderEditor();later()}
+    if(t.getAttribute('data-on')){S.on[t.getAttribute('data-on')]=t.checked;renderEditor();later()}
+    if(t.getAttribute('data-rec')!=null){S.p.opt.rec=+t.getAttribute('data-rec');later()}
+    if(t.id==='logofile'&&t.files[0])readLogo(t.files[0])});
+  ed.addEventListener('click',function(e){var t=e.target;
+    if(t.getAttribute('data-swatch')){S.profile.brand=t.getAttribute('data-swatch');renderEditor();later()}
+    if(t.getAttribute('data-add')){var pth=t.getAttribute('data-add'),a=getPath(S,pth);
+      var blank={'p.goals':{h:'',t:''},'p.approach':{h:'',t:''},'p.milestones':{n:'',w:(a.length?num(a[a.length-1].w)+1:0)},'p.addons':{n:'',p:''},'p.why':{h:'',t:'',link:''},'p.faq':{h:'',t:''},'p.opt.rows':{l:'',v:['✓','✓','✓']}}[pth];
+      a.push(blank===undefined?'':blank);renderEditor();openCard(t);later()}
+    if(t.getAttribute('data-del')){getPath(S,t.getAttribute('data-del')).splice(+t.getAttribute('data-i'),1);var c=t.closest('details');renderEditor();if(c)reopen(c.getAttribute('data-card'));later()}
+    if(t.id==='logodel'){S.profile.logo='';S.profile.logoW=S.profile.logoH=0;renderEditor();later()}});
+  $('#preset').addEventListener('change',function(e){var k=e.target.value;if(!k)return;
+    if(confirm('Load the '+D.presets[k].label+' example? This replaces the proposal you are editing (your profile, colour and logo stay). Save it first if you want to keep it.')){
+      S.p=loadPreset(k);S.preset=k;S.on=allOn();if(S.profile.example){var pe=D.presets[k].persona;S.profile.name=pe.name;S.profile.business=pe.business;S.profile.email=pe.email;S.profile.website=pe.website}
+      renderEditor();renderDoc();renderEmails();save();toast('Loaded: '+D.presets[k].label)}
+    e.target.value=''});
+  $$('.seg button').forEach(function(b){b.addEventListener('click',function(){S.paper=b.getAttribute('data-paper');renderDoc();save()})});
+  $$('[data-print]').forEach(function(b){b.addEventListener('click',doPrint)});
+  $('#cpPlain').addEventListener('click',function(e){copy(plain(),e.currentTarget)});
+  $('#cpPitch').addEventListener('click',function(e){copy(pitch(),e.currentTarget)});
+  $('#emails').addEventListener('click',function(e){var i=e.target.getAttribute('data-mail');if(i!=null)copy(mailText(+i),e.target)});
+  $('#fField').addEventListener('change',renderLib);$('#fSec').addEventListener('change',renderLib);
+  $('#lib').addEventListener('click',function(e){var i=e.target.getAttribute('data-ins');if(i!=null)insert(+i)});
+  $('#btnSaved').addEventListener('click',function(){renderSaved();openModal('#mSaved')});
+  $('#savedList').addEventListener('click',function(e){var t=e.target;
+    if(t.id==='saveNow'){if(saved.length>=20)return;saved.unshift(snap());save();renderSaved();toast('Saved ('+saved.length+'/20)')}
+    var i=t.getAttribute('data-sl');if(i!=null){var s=saved[+i];S.p=clone(s.p);S.on=clone(s.on||allOn());S.preset=s.preset||S.preset;renderEditor();renderDoc();renderEmails();save();closeModal();toast('Loaded')}
+    i=t.getAttribute('data-sd');if(i!=null){if(saved.length>=20){toast('Max 20 saved: delete one first');return}var c=clone(saved[+i]);c.title=c.title+' (copy)';c.p.title=c.p.title+' (copy)';c.at=stamp();saved.splice(+i+1,0,c);save();renderSaved()}
+    i=t.getAttribute('data-sx');if(i!=null){if(confirm('Delete "'+saved[+i].title+'"?')){saved.splice(+i,1);save();renderSaved()}}});
+  $('#btnExport').addEventListener('click',function(){var data={app:'freelance-proposal-builder',version:1,exported:stamp(),profile:S.profile,proposal:S.p,sections:S.on,paper:S.paper,saved:saved};
+    var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download=(S.p.number||'proposal')+'.json';document.body.appendChild(a);a.click();a.remove();toast('Exported '+a.download)});
+  $('#btnImport').addEventListener('click',function(){$('#importFile').click()});
+  $('#importFile').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(!d.proposal||!d.proposal.opt)throw 0;
+      if(!confirm('Import "'+(d.proposal.title||'proposal')+'"? This replaces the current proposal and profile.'))return;
+      S.p=d.proposal;S.profile=d.profile||S.profile;S.on=d.sections||allOn();S.paper=d.paper||S.paper;if(Array.isArray(d.saved)&&d.saved.length&&confirm('Also restore '+d.saved.length+' saved proposals from this file?'))saved=d.saved.slice(0,20);
+      renderEditor();renderDoc();renderEmails();save();toast('Imported')}catch(x){alert('This file is not a Proposal Builder export.')}};r.readAsText(f);e.target.value=''});
+  $$('[data-close]').forEach(function(b){b.addEventListener('click',closeModal)});
+  $('#addNow').addEventListener('click',function(){closeModal();S.p.notIncluded.push('');S.on.scope=true;renderEditor();reopen('scope');var ins=$$('[data-list="p.notIncluded"] input');if(ins.length)ins[ins.length-1].focus();renderDoc()});
+  window.addEventListener('resize',fit);
+}
+function renderEditorKeepFocus(){var hx=$('.hint.mono');if(hx)hx.textContent=S.profile.brand.toUpperCase();$$('.swb').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-swatch').toLowerCase()===S.profile.brand.toLowerCase())})}
+function openCard(btn){var c=btn.closest('details');if(c)reopen(c.getAttribute('data-card'))}
+function reopen(k){var c=$('[data-card="'+k+'"]');if(c){c.open=true}}
+function openModal(s){$(s).hidden=false}
+function closeModal(){$$('.modal').forEach(function(m){m.hidden=true})}
+function doPrint(){if(S.on.scope&&!S.p.notIncluded.filter(function(x){return String(x).trim()}).length){openModal('#mScope');return}renderDoc();setTimeout(function(){window.print()},60)}
+function readLogo(f){if(f.size>3e6){toast('Logo too large (max 3 MB)');return}var r=new FileReader();
+  r.onload=function(){var url=r.result;var img=new Image();img.onload=function(){var w=img.naturalWidth||200,h=img.naturalHeight||200;
+      if(f.type!=='image/svg+xml'){var sc=Math.min(1,480/w,160/h),c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*sc));c.height=Math.max(1,Math.round(h*sc));c.getContext('2d').drawImage(img,0,0,c.width,c.height);url=c.toDataURL('image/png');w=c.width;h=c.height}
+      else if(url.length>200000){toast('SVG logo too large (max 150 KB)');return}
+      S.profile.logo=url;S.profile.logoW=w;S.profile.logoH=h;renderEditor();renderDoc();save();toast('Logo added')};img.onerror=function(){toast('Could not read that image')};img.src=url};
+  r.readAsDataURL(f)}
+function fit(){var w=$('#pvcol').clientWidth-8,sw=S.paper==='a4'?794:816,z=Math.min(1,w/sw);$('#docwrap').style.zoom=z}
+
+/* ---------- init ---------- */
+load();
+$('#fField').innerHTML='<option value="all">All fields</option>'+Object.keys(D.presets).map(function(k){return '<option value="'+k+'">'+D.presets[k].label+'</option>'}).join('');
+$('#preset').innerHTML='<option value="">Load an example…</option>'+Object.keys(D.presets).map(function(k){return '<option value="'+k+'">'+D.presets[k].label+'</option>'}).join('');
+renderEditor();renderDoc();renderEmails();renderLib();bind();fit();
+window.FPB={state:function(){return S},plain:plain,pitch:pitch,mail:mailText,words:words,render:function(){renderEditor();renderDoc();renderEmails();fit()}};
+})();
+</script>
+</body></html>

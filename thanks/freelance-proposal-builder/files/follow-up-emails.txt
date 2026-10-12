@@ -1,0 +1,128 @@
+FREELANCE PROPOSAL BUILDER: 8 FOLLOW-UP EMAILS
+==============================================
+
+Schedule: send Email 1 with the proposal (Day 0), then Day 2, Day 5, Day 10
+and 1 day before the proposal expires. Emails 6-8 are replies to three answers
+you may hear.
+
+Replace every [Bracket]. In proposal-builder.html these are filled in for you:
+[Client First Name], [Project Name], [Recommended Option], [Recommended Price],
+[Valid Until], [Start Date], [Essential Option], [Essential Price], [Your Name].
+Brackets such as [Time option 1] are yours to write.
+
+
+1. SENDING THE PROPOSAL (Day 0)
+-------------------------------
+Subject: Proposal: [Project Name]
+
+Hi [Client First Name],
+
+Thanks again for the call. Your proposal for [Project Name] is attached.
+
+Page 1 has everything you need to decide: your goal, my recommendation ([Recommended Option], [Recommended Price]) and three steps to say yes. The other two options are compared on the Options page.
+
+The proposal is valid until [Valid Until]. If anything is unclear, reply with your question and I'll answer within one working day.
+
+Best,
+[Your Name]
+
+
+2. DAY 2 CHECK-IN (Day 2)
+-------------------------
+Subject: Quick check on the [Project Name] proposal
+
+Hi [Client First Name],
+
+Did the summary page answer your questions? If it helps, I can walk you through the three options in a 15-minute call this week.
+
+Two times that work for me: [Time option 1] or [Time option 2].
+
+Best,
+[Your Name]
+
+
+3. DAY 5 VALUE ADD (Day 5)
+--------------------------
+Subject: One idea for [Project Name]
+
+Hi [Client First Name],
+
+While planning your project I noticed [one specific thing about their business, site or materials]. Whichever option you choose, [one practical suggestion they can use even without hiring you].
+
+No reply needed. I thought it would be useful.
+
+Best,
+[Your Name]
+
+
+4. DAY 10 DECISION NUDGE (Day 10)
+---------------------------------
+Subject: [Project Name]: still a priority?
+
+Hi [Client First Name],
+
+The proposal for [Project Name] is valid until [Valid Until]. To start on [Start Date], I need your answer by then so I can hold the dates.
+
+If the timing or budget has changed, tell me. [Essential Option] at [Essential Price] covers the core of the project, and we can add the rest later.
+
+Best,
+[Your Name]
+
+
+5. 1 DAY BEFORE THE PROPOSAL EXPIRES (1 day before expiry)
+----------------------------------------------------------
+Subject: Your [Project Name] proposal expires tomorrow
+
+Hi [Client First Name],
+
+A short note: the proposal for [Project Name] expires tomorrow, [Valid Until]. After that I'll release the start date to other projects.
+
+If you'd like to go ahead, tick an option on the last page and reply with the signed copy. If now isn't the right time, that's fine too. Let me know and I'll close the file.
+
+Best,
+[Your Name]
+
+
+6. REPLY TO "IT'S MORE THAN WE EXPECTED"
+----------------------------------------
+Subject: Re: [Project Name] proposal
+
+Hi [Client First Name],
+
+Thanks for being direct. I'd rather adjust the scope than the quality, so here are two ways to bring the number down:
+
+1. [Essential Option] at [Essential Price]. It keeps [the most important outcome] and drops [what is removed].
+2. Keep [Recommended Option] and split it into two phases, starting with [phase 1 scope].
+
+My rate for the work stays the same, and I'm happy to shape the scope around your budget. Which of these is closer?
+
+Best,
+[Your Name]
+
+
+7. REPLY TO "WE NEED TO THINK ABOUT IT"
+---------------------------------------
+Subject: Re: [Project Name] proposal
+
+Hi [Client First Name],
+
+Of course. To make the decision easier: is it mainly the timing, the budget or the scope? Tell me which, and I'll send a short answer on that part only.
+
+The proposal stays valid until [Valid Until].
+
+Best,
+[Your Name]
+
+
+8. REPLY TO "WE WENT WITH SOMEONE ELSE"
+---------------------------------------
+Subject: Re: [Project Name] proposal
+
+Hi [Client First Name],
+
+Thanks for letting me know, and good luck with the project. If you have a minute, I'd value one line on what tipped the decision. It helps me improve my proposals.
+
+If plans change, I'm happy to help. I'll check in again in a few months.
+
+Best,
+[Your Name]
