@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freelance AI Prompt Kit: 120 Client Prompts + Prompt Builder</title>
+<style>
+:root{--navy:#16233A;--navy2:#2B3D5C;--coral:#EE6B57;--violet:#5A4FCF;--violet-t:#ECEAFB;--violet-l:#C9C4F2;--fill:#FFE98A;--fill-b:#E4C84A;--input:#FFF4C2;--sage:#2F6B57;--sage-t:#E3F0EA;--paper:#FAF7F1;--sand:#EFE8DC;--ink:#1E1E24;--muted:#6B6F7B;--line:#D9D3C7;
+--display:"Fraunces",Georgia,"Iowan Old Style","Times New Roman",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper)}
+body{font-family:var(--body);color:var(--ink);font-size:14px;line-height:1.45;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+.hd{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 28px;flex-wrap:wrap}
+.brand b{font:700 22px var(--display)}.brand span{color:var(--sand);font-size:14px;margin-left:10px}
+.hchips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hc{font-size:12px;border:1px solid #3a4b69;border-radius:20px;padding:5px 11px;color:#d7dceb}
+.hb{font:600 12.5px var(--body);border:1.5px solid #fff;border-radius:7px;padding:6px 11px;color:#fff}
+main{display:grid;grid-template-columns:320px 340px minmax(0,1fr);gap:18px;padding:18px 24px;align-items:start;max-width:1640px;margin:0 auto}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;min-width:0}
+.biz{padding:16px 18px}.lib{padding:16px 16px 10px}.pr{padding:18px 22px}
+.biz h2,.lib h2{font:700 19px var(--display);color:var(--navy);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+#bizToggle{font:inherit;color:inherit;text-align:left}
+#filled{font:500 12px var(--mono);color:var(--sage)}
+.fld{margin-top:9px;min-width:0}
+.fld label{display:block;font:600 12px var(--body);color:var(--navy);margin-bottom:3px}
+.fld input,.fld select,.fld textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13.5px;background:#fff;min-height:36px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus,.search input:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px var(--input)}
+#bizFields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 8px}
+#bizFields .fld{grid-column:1/-1}#bizFields .f-currency,#bizFields .f-size,#bizFields .f-tone,#bizFields .f-signoff{grid-column:auto}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.ghost{font:600 12px var(--body);color:var(--navy2);border:1px solid var(--line);border-radius:7px;padding:5px 9px;background:#fff}
+#example{margin-top:8px;width:100%}
+.search{margin-top:10px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;padding:0 10px;gap:8px}
+.search input{border:0;height:34px;flex:1;min-width:0;font-size:13.5px;background:transparent}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.pill{font:600 12px var(--body);border:1px solid var(--line);border-radius:20px;padding:5px 10px;color:var(--navy2);background:#fff;white-space:nowrap;flex:none;display:inline-flex;align-items:center;gap:4px}
+.pill.on{border:1.5px solid var(--violet);color:var(--violet);background:var(--violet-t)}
+.pill.lock{color:#8a8e9a;border-style:dashed}
+.list{max-height:calc(100vh - 250px);min-height:260px;overflow-y:auto}
+.row{display:flex;gap:10px;align-items:baseline;padding:8px 10px;border-radius:7px;font-size:13.5px;border-left:3px solid transparent;cursor:pointer}
+.row:hover{background:#f6f3ec}
+.row .id{font:500 12px var(--mono);color:var(--muted);flex:none}
+.row .tt{flex:1;min-width:0}
+.row .bab{font:600 10px var(--body);font-style:normal;color:var(--sage);border:1px solid var(--sage);border-radius:4px;padding:0 3px;margin-left:4px;white-space:nowrap}
+.row .st{color:#b9bdc7;font-size:15px;flex:none}.row .st.fav{color:var(--coral)}
+.row.on{background:var(--violet-t);border-left-color:var(--violet)}.row.on .id{color:var(--violet)}.row.on .tt{font-weight:600;color:var(--navy)}
+.none{color:var(--muted);padding:12px}
+.locked{border:1.5px dashed var(--line);border-radius:10px;padding:16px;color:var(--navy2)}
+.locked b{display:block;color:var(--navy);margin:6px 0 4px}.locked p{font-size:13px;margin-bottom:12px}.locked .b{display:inline-block;text-decoration:none}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.eyebrow{font:700 11px/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--violet)}
+.tabs{display:flex;gap:4px;background:var(--sand);border-radius:8px;padding:3px}
+.tabs button{font:600 12.5px var(--body);padding:5px 10px;border-radius:6px;color:var(--navy2)}
+.tabs button.on{background:#fff;color:var(--navy)}
+.pr h1{font:700 26px/1.2 var(--display);color:var(--navy);margin:8px 0 4px}
+.pr h1 small{font:500 15px var(--mono);color:var(--violet);margin-right:8px}
+.pr .when{font-size:14px;color:var(--navy2)}
+.sit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 8px;margin-top:4px}
+.sit .wide{grid-column:1/-1}
+.sit .blank{border-color:var(--fill-b);background:#FFFBEA}
+.pv{margin-top:12px;background:var(--violet-t);border:1px solid var(--violet-l);border-radius:10px;padding:13px 15px;font:13px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.val{border-bottom:2px solid var(--violet-l);color:var(--navy);font-weight:500}
+.empty{background:var(--fill);border:1px solid var(--fill-b);border-radius:3px;padding:0 3px}
+.acts{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.b{font:600 14px var(--body);border-radius:8px;padding:10px 16px;border:1.5px solid transparent}
+.b.pri{background:var(--navy);color:#fff}.b.out{border-color:var(--navy);color:var(--navy);background:#fff}
+.b.fv{border-color:var(--line);color:var(--navy2);background:#fff}.b.fv.on{color:var(--coral)}
+.b.ok{background:var(--sage);border-color:var(--sage);color:#fff}
+.warn{font-size:12.5px;color:#6b5000;background:#FFF7D6;border:1px solid var(--fill-b);border-radius:7px;padding:5px 9px;margin-left:auto;min-width:0}
+.ck{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.ck ol{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:7px}
+.ck li{font-size:13px;line-height:1.4;display:flex;gap:7px;min-width:0}.ck li b{color:var(--violet);font-family:var(--mono);font-weight:500}
+.banote{font-size:12.5px;color:var(--muted);margin:10px 0 8px;font-style:italic}
+.bacols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+.weak{border:1.5px dashed var(--navy2);border-radius:8px;padding:12px 14px;background:#fff;color:#4a4d57;min-width:0}
+.after{border:1.5px solid var(--sage);border-radius:8px;padding:12px 14px;background:var(--sage-t);min-width:0}
+.tag{font:700 10.5px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;display:block}
+.weak .tag{color:var(--navy2)}.weak .tag i{color:var(--coral);font-style:normal}.after .tag{color:var(--sage)}
+.mail{font-size:13.5px;line-height:1.5}.mail .subj{font-weight:700;color:var(--navy);margin-bottom:6px}.mail p+p{margin-top:6px}
+.changed{margin:10px 0 12px;font-size:13px;color:var(--navy2)}
+.privacy{font-size:11.5px;color:var(--muted);margin-top:12px}
+.bar{display:none;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 12px;z-index:5;box-shadow:0 -6px 20px rgba(10,20,40,.08)}
+.bar .b{flex:1}
+#fallback{display:none;position:fixed;left:12px;right:12px;bottom:80px;height:160px;z-index:9;font:12px var(--mono);border:2px solid var(--navy);border-radius:8px;padding:8px}
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:var(--sage);color:#fff;font-weight:600;padding:9px 16px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+.modal{display:none;position:fixed;inset:0;background:rgba(22,35,58,.45);z-index:8;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.modal .card{width:min(560px,100%);padding:18px 20px;max-height:92vh;overflow:auto}
+.modal h2{font:700 20px var(--display);color:var(--navy)}
+.modal .hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+.lk{vertical-align:-1px}
+@media(max-width:1099px){main{grid-template-columns:340px minmax(0,1fr)}.biz{grid-column:1/-1}.biz.closed #bizBody{display:none}
+ #bizFields{grid-template-columns:repeat(4,minmax(0,1fr))}#bizFields .fld{grid-column:span 2}#bizFields .f-currency,#bizFields .f-size,#bizFields .f-tone,#bizFields .f-signoff{grid-column:span 1}
+ #bizToggle::after{content:' ▾';font-size:14px}}
+@media(max-width:859px){.hd{padding:12px 14px}.brand b{font-size:19px}.hc{display:none}
+ main{grid-template-columns:minmax(0,1fr);padding:12px;gap:12px}
+ #bizFields{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}#bizFields .fld{grid-column:1/-1}#bizFields .f-currency,#bizFields .f-size,#bizFields .f-tone,#bizFields .f-signoff{grid-column:auto}
+ .pills{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.list{max-height:300px;min-height:0}
+ .pr{padding:16px 14px}.pr h1{font-size:22px}.sit{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .ck ol,.bacols{grid-template-columns:minmax(0,1fr)}.warn{margin-left:0}
+ .bar{display:flex}body{padding-bottom:76px}}
+</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body data-lite="0">
+<header class="hd">
+ <div class="brand"><b>Freelance AI Prompt Kit</b><span>Prompt Builder · offline</span></div>
+ <div class="hchips"><span class="hc">Works with ChatGPT · Claude · Gemini</span><span class="hc">Nothing is uploaded</span><button class="hb" id="exp" type="button">Export JSON</button><button class="hb" id="imp" type="button">Import JSON</button><input type="file" id="impf" accept=".json,application/json" hidden></div>
+</header>
+<main>
+ <section class="card biz" id="biz">
+  <h2><button id="bizToggle" type="button">My Business</button><span id="filled">0/9 filled</span></h2>
+  <div id="bizBody">
+   <div id="bizFields"></div>
+   <div class="foot"><span>Saved in this browser only</span><button class="ghost" id="clear" type="button">Clear my data</button></div>
+   <button class="ghost" id="example" type="button">Try the example profile (Sam)</button>
+  </div>
+ </section>
+ <section class="card lib">
+  <h2>Library <button class="ghost" id="addBtn" type="button">+ Add your own prompt</button></h2>
+  <div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6B6F7B" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Search 120 prompts…" aria-label="Search prompts"></div>
+  <div class="pills" id="pills"></div>
+  <div class="list" id="list"></div>
+ </section>
+ <section class="card pr" id="pr"></section>
+</main>
+<div class="bar"><button class="b pri" id="barCopy" type="button">Copy prompt</button></div>
+<div class="modal" id="modal"><div class="card">
+ <h2>Add your own prompt</h2>
+ <p class="hint">Write {{profile}} where your business details should go and put situation fields in square brackets, e.g. [Client name]. Saved in this browser; included in Export JSON.</p>
+ <div class="fld"><label for="cTitle">Title</label><input id="cTitle"></div>
+ <div class="fld"><label for="cWhen">When to use</label><input id="cWhen"></div>
+ <div class="fld"><label for="cBody">Prompt</label><textarea id="cBody" rows="5" placeholder="About me: {{profile}} Write a short email to [Client name] about … Under 100 words."></textarea></div>
+ <div class="fld"><label for="cK1">Check before you send 1</label><input id="cK1"></div>
+ <div class="fld"><label for="cK2">Check 2</label><input id="cK2"></div>
+ <div class="fld"><label for="cK3">Check 3</label><input id="cK3"></div>
+ <div class="acts"><button class="b pri" id="cSave" type="button">Save prompt</button><button class="b out" id="cCancel" type="button">Cancel</button></div>
+</div></div>
+<textarea id="fallback" aria-label="Prompt text to copy"></textarea>
+<div class="toast" id="toast" role="status"></div>
+
+<script type="text/plain" id="lib">
+P1-01 | Define your ideal client in one paragraph
+When to use: You pitch everyone and hear back from no one.
+Prompt: About me: {{profile}} Ask me 5 short questions, one at a time, about my 3 best past clients. Then write a one-paragraph ideal-client profile (industry, size, trigger, budget) in under 80 words.
+Check 1: Built from your real clients
+Check 2: Names a budget range
+Check 3: No 'businesses of all sizes'
+
+P1-02 | Research a prospect before you pitch
+When to use: You found a company you want to work with and know little about it.
+Prompt: About me: {{profile}} Here is what I found on [Company]: [Research notes]. List 3 likely problems they have that my services solve, each with its evidence, in under 120 words. Label guesses as guesses.
+Check 1: Every point has evidence
+Check 2: Guesses are labeled
+Check 3: Nothing invented about them
+
+P1-03 | Cold email with one specific observation
+When to use: You want to email a prospect who has never heard of you.
+Prompt: About me: {{profile}} Write a cold email to [Contact name] at [Company]. Open with this observation: [Specific observation]. Add one relevant proof point and end with one yes/no question. Under 90 words, no flattery.
+Check 1: First line is about them
+Check 2: One proof point only
+Check 3: Ends with a yes/no question
+
+P1-04 | Follow up on a cold email
+When to use: Your cold email got no reply after 5-7 days.
+Prompt: About me: {{profile}} Write a follow-up to [Contact name] about my email from [Date sent] on [Topic]. Add one new useful idea instead of a guilt line. Under 60 words, 3 sentences max.
+Check 1: No 'just bumping this'
+Check 2: Adds one new idea
+Check 3: 3 sentences or fewer
+
+P1-05 | Ask a mutual contact for an intro
+When to use: Someone you know is connected to a client you want.
+Prompt: About me: {{profile}} Write a note to [Mutual contact] asking for an intro to [Contact name] at [Company], with the reason: [Why them]. Include a 2-sentence blurb they can forward. Under 100 words, easy to say no.
+Check 1: Reason is specific
+Check 2: Forwardable blurb included
+Check 3: Easy to say no
+
+P1-06 | Reply to a posted job (Upwork or job board)
+When to use: You found a posted project and want a reply that isn't a template.
+Prompt: About me: {{profile}} Job post: [Paste job post]. Write a reply that restates their goal in one line, gives one relevant result and asks 2 scoping questions. Under 120 words. No 'Dear Hiring Manager'.
+Check 1: Mirrors their goal
+Check 2: One relevant result
+Check 3: Asks 2 real questions
+
+P1-07 | LinkedIn connection note
+When to use: You want to connect with a decision-maker without pitching.
+Prompt: About me: {{profile}} Write a LinkedIn connection note to [Contact name], [Their role] at [Company], that mentions [Shared context]. Under 40 words and 300 characters. No pitch, no link.
+Check 1: Under 300 characters
+Check 2: No pitch, no link
+Check 3: Mentions the shared context
+
+P1-08 | Turn a past project into a mini case study
+When to use: You need proof for pitches but have no case studies yet.
+Prompt: About me: {{profile}} Turn these notes into a mini case study. Client type: [Client type]. Problem: [Problem]. What I did: [What I did]. Result: [Result]. Use Problem / Approach / Result, under 150 words. Use only the numbers I gave.
+Check 1: Only your numbers used
+Check 2: Client named only if allowed
+Check 3: Result is concrete
+
+P1-09 | Write your one-line positioning
+When to use: You struggle to answer 'So what do you do?'
+Prompt: About me: {{profile}} Write 5 one-sentence positioning lines in the form 'I help (who) get (result) with (service)'. Each under 20 words. Then tell me which is clearest and why, in 2 sentences.
+Check 1: Names who and the result
+Check 2: No buzzwords
+Check 3: Under 20 words each
+
+P1-10 | Pitch a current client on a new service
+When to use: A current client could use a service they don't buy from you yet.
+Prompt: About me: {{profile}} Write an email to [Client name] suggesting [New service] because of [What I noticed]. Give a price range of [Price range] and one next step. Under 110 words, no pressure.
+Check 1: Tied to what you noticed
+Check 2: Price range is stated
+Check 3: One next step only
+
+P1-11 | Reconnect with a quiet past client
+When to use: A past client hasn't heard from you in 3+ months.
+Prompt: About me: {{profile}} Write a note to [Client name], whose [Past project] finished [Months ago] months ago. Share one useful idea for them and ask one question. Under 80 words. No 'just checking in'.
+Check 1: Leads with a useful idea
+Check 2: No 'just checking in'
+Check 3: One question only
+
+P1-12 | Offer overflow help to an agency
+When to use: You want steady overflow work from an agency or studio.
+Prompt: About me: {{profile}} Write an email to [Contact name] at [Agency] offering to take overflow [Service] work. Mention my rate range, usual turnaround ([Turnaround]) and whether I can work white-label. Under 120 words.
+Check 1: Rate range included
+Check 2: Turnaround is specific
+Check 3: Easy yes/no reply
+
+P1-13 | Build a prospect list with reasons
+When to use: You have time to prospect but no list.
+Prompt: About me: {{profile}} Suggest 10 kinds of companies in [Region or niche] that fit my ideal client, each with one reason and one public trigger to watch for. One line each, under 25 words per line. Do not invent company names.
+Check 1: No invented company names
+Check 2: Each has a trigger
+Check 3: Fits your ideal client
+
+P1-14 | Subject lines that get opened
+When to use: Your pitch emails are not being opened.
+Prompt: About me: {{profile}} Write 10 subject lines for an email to [Contact name] about [Topic]. Each under 7 words, no clickbait, no emojis, no fake 'Re:'. Name your top 2 in one sentence each.
+Check 1: Under 7 words each
+Check 2: No fake 'Re:'
+Check 3: No clickbait
+
+P1-15 | Weekly outreach plan
+When to use: You want a steady pipeline from a small daily habit.
+Prompt: About me: {{profile}} I have [Minutes per day] minutes a day for outreach. Make a 5-day plan (Mon-Fri) that mixes cold, warm and follow-up tasks, with a daily target. Under 150 words, as a table.
+Check 1: Fits your real minutes
+Check 2: Has daily targets
+Check 3: Includes follow-ups
+
+P2-01 | Discovery call questions
+When to use: A lead booked a call and you want to qualify budget and scope.
+Prompt: About me: {{profile}} Lead: [Company], asking for [What they asked for]. Write 8 discovery questions covering goal, success metric, deadline, decision-maker and budget. One line each, under 20 words per question.
+Check 1: Budget question included
+Check 2: Asks who decides
+Check 3: Asks how success is measured
+
+P2-02 | Pre-call questions by email
+When to use: You want a few answers in writing before the call.
+Prompt: About me: {{profile}} Write an email to [Client name] confirming our call on [Call date] and asking 5 short questions to answer beforehand. Under 120 words. Make the questions optional, not homework.
+Check 1: Call date is correct
+Check 2: 5 questions max
+Check 3: Feels optional
+
+P2-03 | Ask about budget without flinching
+When to use: The lead hasn't mentioned budget and you need a range.
+Prompt: About me: {{profile}} Write 3 ways to ask [Client name] about the budget for [Project], each 1-2 sentences, that give my typical project range as an anchor. Plain words; no 'whatever works for you'.
+Check 1: Your range is stated
+Check 2: No 'whatever works'
+Check 3: 2 sentences max each
+
+P2-04 | Summarize a discovery call
+When to use: You just finished a call and your notes are a mess.
+Prompt: About me: {{profile}} Notes from my call with [Client name]: [Paste notes]. Summarize as Goal, Must-haves, Nice-to-haves, Deadline, Budget, Open questions. Under 180 words. Mark anything not in my notes as 'unknown'.
+Check 1: Nothing invented
+Check 2: Unknowns are marked
+Check 3: Deadline and budget listed
+
+P2-05 | Recap email after the call
+When to use: You want the client to confirm what you heard before you quote.
+Prompt: About me: {{profile}} Write a recap email to [Client name] from these notes: [Paste summary]. List what I heard in 4-6 short points, then ask them to confirm or correct by [Reply by date]. Under 150 words.
+Check 1: Points match the call
+Check 2: Has a reply-by date
+Check 3: No price unless agreed
+
+P2-06 | In scope / out of scope list
+When to use: You are about to quote and need clear boundaries.
+Prompt: About me: {{profile}} Project: [Project description]. Write an In scope list and an Out of scope list (5-8 items each) and state the number of revision rounds: [Revision rounds]. Under 200 words.
+Check 1: Out-of-scope list exists
+Check 2: Revisions are numbered
+Check 3: Items are countable
+
+P2-07 | Spot red flags in a brief
+When to use: Something about a lead feels off.
+Prompt: About me: {{profile}} Brief: [Paste brief]. List up to 5 red flags (vague scope, unpaid test, rushed deadline, no decision-maker), quote the line that shows each, and give one question to ask. Under 150 words.
+Check 1: Each flag quotes the brief
+Check 2: One question per flag
+Check 3: No flags without evidence
+
+P2-08 | Turn a vague brief into questions
+When to use: The brief is one line, like 'we need a new website'.
+Prompt: About me: {{profile}} The brief from [Client name] says: [Paste brief]. Write 6 questions that turn it into a project I can scope (pages, content, deadline, who approves, budget). Under 110 words.
+Check 1: 6 questions max
+Check 2: Covers who approves
+Check 3: Plain language
+
+P2-09 | Offer a paid scoping session
+When to use: The project is too fuzzy to quote and you want to be paid to scope it.
+Prompt: About me: {{profile}} Write an email offering [Client name] a paid scoping session for [Fee]: what they get ([Deliverables]), how long it takes, and whether the fee counts toward the project: [Credit terms]. Under 120 words.
+Check 1: Fee is stated
+Check 2: Deliverables listed
+Check 3: Credit terms are clear
+
+P2-10 | Find the real deadline
+When to use: The client says 'ASAP' and you need an actual date.
+Prompt: About me: {{profile}} Write a short reply to [Client name] asking what happens on which date (launch, event, board meeting) so we can set a real deadline for [Project]. Under 70 words, 3 sentences max.
+Check 1: Asks for an actual date
+Check 2: No promise of 'ASAP'
+Check 3: 3 sentences or fewer
+
+P2-11 | Ask who signs off
+When to use: Several people join the calls and you don't know who approves.
+Prompt: About me: {{profile}} Write 2 polite ways to ask [Client name] who gives final approval on [Project] and how feedback will be merged into one list. Each under 50 words.
+Check 1: Asks for one approver
+Check 2: Asks for one feedback list
+Check 3: Not accusatory
+
+P2-12 | Kickoff assets checklist
+When to use: You need logins, files and content from the client before you start.
+Prompt: About me: {{profile}} For [Project], list the assets I need from [Client name] (files, access, content, contacts) as a checklist due [Assets due date]. Add one line: the timeline starts when the assets arrive. Under 150 words.
+Check 1: Has a due date
+Check 2: Timeline starts on receipt
+Check 3: Grouped as a checklist
+
+P2-13 | Decline a bad-fit lead kindly
+When to use: The lead doesn't fit your services, budget or values.
+Prompt: About me: {{profile}} Write a kind email declining [Client name]'s project. Reason: [Reason it's not a fit]. If useful, suggest [Referral or resource]. Under 80 words, no long excuses.
+Check 1: A clear no
+Check 2: No long excuses
+Check 3: Door left open if wanted
+
+P2-14 | Estimate hours by task
+When to use: You want a sanity check on effort before you price.
+Prompt: About me: {{profile}} Break [Project description] into tasks and give a low and a high hour estimate for each, plus totals. As a table, under 150 words. Flag tasks where you are guessing.
+Check 1: Every task has low/high
+Check 2: Guesses are flagged
+Check 3: Totals add up
+
+P2-15 | Score the lead before you write a proposal
+When to use: You want to decide if a proposal is worth your time.
+Prompt: About me: {{profile}} Score this lead 1-5 on budget fit, scope clarity, decision speed and fit with my services, using: [Paste notes]. One sentence per score, then go or no-go. Under 100 words in total.
+Check 1: Scores cite your notes
+Check 2: Ends in go or no-go
+Check 3: Under 100 words
+
+P3-01 | Proposal outline in 6 sections
+When to use: You have call notes and need a proposal skeleton.
+Prompt: About me: {{profile}} Using [Paste call summary], outline a proposal for [Client name]: Goal, Approach, Deliverables, Timeline, Investment, Next step. 2-3 short points per section, under 200 words.
+Check 1: Starts with their goal
+Check 2: Deliverables are countable
+Check 3: Ends with a next step
+
+P3-02 | Three-tier quote
+When to use: You want the client to choose how to work with you, not whether.
+Prompt: About me: {{profile}} Build 3 options for [Project]: Essential at [Price A], Recommended at [Price B], Complete at [Price C]. Say what each tier adds, under 150 words. Recommend the middle tier in one sentence.
+Check 1: Prices match your inputs
+Check 2: Each tier adds real value
+Check 3: Middle tier recommended
+
+P3-03 | Opening that mirrors their goal
+When to use: Your proposal starts with 'About me' and loses the reader.
+Prompt: About me: {{profile}} Write the opening paragraph of a proposal to [Client name]. Restate their goal ([Their goal]) and the cost of not solving it ([Cost of waiting]) in their words. Under 70 words, no 'I am excited'.
+Check 1: Uses their words
+Check 2: No 'I'm excited'
+Check 3: No price yet
+
+P3-04 | Deliverables with 'done when' lines
+When to use: You want 'done' to be clear before you start.
+Prompt: About me: {{profile}} For [Project], turn [Deliverables] into a numbered list where each item has a format, a quantity and a 'done when' line. Include [Revision rounds] revision rounds. Under 160 words.
+Check 1: Each item has 'done when'
+Check 2: Quantities are numbers
+Check 3: Revisions are capped
+
+P3-05 | Timeline with client deadlines
+When to use: Your dates slip because the client is late with feedback.
+Prompt: About me: {{profile}} Make a timeline for [Project] starting [Start date], with my milestones and the client's feedback deadlines. Add one line: if feedback is late, the timeline moves by the same number of days. Under 150 words.
+Check 1: Client deadlines shown
+Check 2: Late-feedback rule included
+Check 3: Real dates, not 'week 2'
+
+P3-06 | Payment terms section
+When to use: You want deposit and due dates in the proposal, not after it.
+Prompt: About me: {{profile}} Write payment terms for [Project] at [Total price]: [Deposit %] deposit to start, balance due [Payment days] days after delivery, how to pay, and that late payment follows our agreement. Under 100 words.
+Check 1: Deposit amount is right
+Check 2: Balance due rule is clear
+Check 3: Matches your contract
+
+P3-07 | Explain the price as value
+When to use: Your price looks big next to cheaper freelancers.
+Prompt: About me: {{profile}} Write a short 'Why this investment' section for [Client name] that links [Total price] to [Business outcome] and to my proof points. Under 90 words. No invented ROI numbers.
+Check 1: No invented ROI
+Check 2: Uses your real proof
+Check 3: Under 90 words
+
+P3-08 | Follow up on a sent proposal
+When to use: You sent a proposal 3 days ago and heard nothing.
+Prompt: About me: {{profile}} Write a follow-up to [Client name] on the proposal I sent [Date sent] for [Project]. Say I'm holding the [Start date] start until [Hold until], and offer a yes/no reply or a 15-minute call. Under 80 words.
+Check 1: Hold date is real
+Check 2: Yes/no is easy
+Check 3: No discount offered
+
+P3-09 | One-email proposal for a small job
+When to use: The job is small and a full proposal is overkill.
+Prompt: About me: {{profile}} Write a one-email proposal for [Project] at [Price]: what I'll do, what I need from the client, dates, price and how to accept. Under 180 words, plain text.
+Check 1: Price and dates included
+Check 2: How to accept is clear
+Check 3: Fits one screen
+
+P3-10 | Statement of work summary
+When to use: The client said yes and you need a short statement of work.
+Prompt: About me: {{profile}} Turn this accepted proposal into a statement-of-work summary for [Client name]: [Paste proposal]. Sections: Deliverables, Out of scope, Timeline, Payment, Change requests. Under 220 words.
+Check 1: Out of scope included
+Check 2: Change process stated
+Check 3: Payment matches proposal
+
+P3-11 | Price your add-ons in advance
+When to use: You want upsells priced before the client asks for them.
+Prompt: About me: {{profile}} For [Project], suggest 5 add-ons a client like [Client name] may ask for later, each with a one-line description and a price in my currency based on my rates. Under 120 words.
+Check 1: Prices fit your rates
+Check 2: One line each
+Check 3: Truly optional items
+
+P3-12 | Answer 'can you send examples?'
+When to use: The lead asks for samples and only a few of yours fit.
+Prompt: About me: {{profile}} Write a reply to [Client name] sharing [Sample links or names], with one sentence on why each fits [Their project]. Under 100 words. Do not offer free spec work.
+Check 1: Each sample has a reason
+Check 2: No free spec work
+Check 3: Under 100 words
+
+P3-13 | Quote a rush job
+When to use: The client needs it faster than your normal timeline.
+Prompt: About me: {{profile}} Write a quote note for [Client name]: standard timeline [Normal timeline] at [Price], or rush timeline [Rush timeline] with a [Rush fee %] rush fee, plus what the client must deliver by when. Under 120 words.
+Check 1: Rush fee is stated
+Check 2: Client duties listed
+Check 3: No unpriced rush
+
+P3-14 | Turn 'let me think about it' into a next step
+When to use: The client is interested but stalling.
+Prompt: About me: {{profile}} [Client name] replied: [Their words]. Write a reply that asks what is left to decide and offers 2 next steps (a short call or a smaller first phase). Under 90 words, no pressure.
+Check 1: Asks what's undecided
+Check 2: Offers 2 options
+Check 3: No pressure tactics
+
+P3-15 | Review a proposal before you send it
+When to use: Before you hit send on any proposal.
+Prompt: About me: {{profile}} Review this proposal: [Paste proposal]. Find vague deliverables, missing dates, missing payment terms and anything I promised without a limit. List the fixes in under 150 words.
+Check 1: Finds unlimited promises
+Check 2: Checks dates and payment
+Check 3: Fixes are specific
+
+P4-01 | Reply to 'can you do it cheaper?'
+When to use: The client likes the proposal but asks for a lower price.
+Prompt: About me: {{profile}} [Client name] asked for a lower price on [Project], quoted at [Price]. Write a reply that keeps the price and offers a smaller scope at [Lower option price] instead. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: The price holds
+Check 2: Less scope, not a discount
+Check 3: Under 100 words
+
+P4-02 | 'Our budget is only half'
+When to use: The client's budget is far below your quote.
+Prompt: About me: {{profile}} [Client name] has [Their budget] for a project I quoted at [Price]. Write a reply showing what their budget buys (a phase or fewer deliverables) and what it leaves out. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Shows what budget buys
+Check 2: States what's left out
+Check 3: No 'I'll make it work'
+
+P4-03 | Raise your rates for current clients
+When to use: You are raising rates and need to tell current clients.
+Prompt: About me: {{profile}} Write a rate-increase email to [Client name]: new rate [New rate] from [Effective date]; work booked before then stays at the old rate. Thank them in one sentence. Under 110 words, no apology. Do not offer discounts or extra work unless I say so.
+Check 1: New rate and date clear
+Check 2: No apology
+Check 3: No 'if that's OK'
+
+P4-04 | Answer 'what's your hourly rate?'
+When to use: A lead asks for an hourly rate and you price by project.
+Prompt: About me: {{profile}} Write a reply to [Client name] explaining that I price [Project type] by project, giving my typical project range and offering a quote after a 15-minute call. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: Gives a project range
+Check 2: Moves to a call
+Check 3: No hourly lowball
+
+P4-05 | Reply to 'someone quoted less'
+When to use: The client says another freelancer is cheaper.
+Prompt: About me: {{profile}} [Client name] says another freelancer quoted [Competitor price] against my [Price]. Write a calm reply naming 2 differences in what's included, and wish them well if price decides. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: No badmouthing
+Check 2: Names real differences
+Check 3: The price holds
+
+P4-06 | 'Cheaper now, more work later'
+When to use: The client promises future projects in exchange for a lower price now.
+Prompt: About me: {{profile}} [Client name] offers future work if I lower my price on [Project]. Write a reply that keeps today's price and offers [Volume terms] only once a second project is signed. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Today's price holds
+Check 2: Future terms are concrete
+Check 3: No vague promises
+
+P4-07 | Value-based price check
+When to use: You want to sanity-check a price against the client's value.
+Prompt: About me: {{profile}} Project: [Project] for [Client name]. Likely value to them: [Value estimate]. My hours: [Hours]. Suggest a price range with your reasoning, using only my numbers. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Uses only your numbers
+Check 2: Gives a range
+Check 3: Shows the reasoning
+
+P4-08 | Price a new service
+When to use: You are adding a service and don't know what to charge.
+Prompt: About me: {{profile}} I want to offer [New service]. Using my current prices and these market prices: [Market reference prices], suggest a starter and a full price with what each includes. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Uses your reference prices
+Check 2: Two clear levels
+Check 3: Fits your other prices
+
+P4-09 | Say no to a free test project
+When to use: The client wants free sample work before hiring you.
+Prompt: About me: {{profile}} [Client name] asked for a free test of [Task]. Write a friendly reply that offers past samples or a paid trial at [Trial price] instead. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: No free work
+Check 2: Paid trial is priced
+Check 3: Friendly tone
+
+P4-10 | Pushback on your payment terms
+When to use: The client wants net 60 or no deposit.
+Prompt: About me: {{profile}} [Client name] asked for [Their requested terms] instead of my terms: [My terms]. Write a reply that keeps my terms and gives the reason in one sentence. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Your terms hold
+Check 2: One-sentence reason
+Check 3: No net 60 by accident
+
+P4-11 | Cut scope, not your rate
+When to use: The client needs a lower number and you want to stay profitable.
+Prompt: About me: {{profile}} For [Project] at [Price], list 3 ways to reach [Target price] by removing scope (fewer pages, rounds or features), with what each removes. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Every option cuts scope
+Check 2: Price shown per option
+Check 3: Your rate stays the same
+
+P4-12 | Yearly rate review
+When to use: Once a year, to decide your next rate.
+Prompt: About me: {{profile}} My year: [Hours billed] hours billed, [Revenue] revenue, [Hours unbilled] unbilled hours, demand: [Demand notes]. Tell me whether to raise rates, by how much and for which clients first. Under 150 words. Do not offer discounts or extra work unless I say so.
+Check 1: Uses only your numbers
+Check 2: Names who goes first
+Check 3: Gives a % or amount
+
+P4-13 | Reply to a lowball offer
+When to use: A lead offers a fee well below your range.
+Prompt: About me: {{profile}} [Client name] offered [Their offer] for [Project]. Write a short reply with my starting price for this ([My starting price]) and a polite exit if that doesn't fit. Under 70 words. Do not offer discounts or extra work unless I say so.
+Check 1: Starting price stated
+Check 2: Polite exit
+Check 3: Under 70 words
+
+P4-14 | Offer a nonprofit rate on your terms
+When to use: You choose to give a nonprofit rate and want it framed clearly.
+Prompt: About me: {{profile}} Write a quote note to [Client name] showing the full price [Price], my nonprofit rate [Nonprofit price], and that the rate applies to this project only. Under 80 words. Do not offer discounts or extra work unless I say so, beyond this rate.
+Check 1: Full price shown first
+Check 2: Applies to this project
+Check 3: No extra discounts
+
+P4-15 | Words for 'that's too expensive' on a call
+When to use: You need something to say live, not an email.
+Prompt: About me: {{profile}} Give me 4 short spoken replies to [Their objection] for [Project] at [Price]: a question, a scope option, a value line and a polite walk-away. Each under 25 words. Do not offer discounts or extra work unless I say so.
+Check 1: Includes a question
+Check 2: Includes a walk-away
+Check 3: No instant discount
+
+P5-01 | 'Can you just add one more page?'
+When to use: The client asks for something small that isn't in the scope.
+Prompt: About me: {{profile}} [Client name] asked me to add [New request] to [Project]; it is outside the agreed scope. Write a reply that welcomes it as a change request at [Change price] and [Extra days] extra days. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: Called a change request
+Check 2: Price and days stated
+Check 3: No 'happy to throw it in'
+
+P5-02 | Change request in writing
+When to use: The client wants changes and you need them approved in writing first.
+Prompt: About me: {{profile}} Write a change-request note for [Project]. Change: [Change description]. Price: [Change price]. New delivery date: [New delivery date]. Ask [Client name] to reply 'approved' before I start. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Written approval asked
+Check 2: New date shown
+Check 3: Price is stated
+
+P5-03 | Late feedback moves the timeline
+When to use: The client was late with feedback but expects the original date.
+Prompt: About me: {{profile}} [Client name]'s feedback on [Deliverable] was due [Feedback due date] and came [Days late] days late. Write an email: the timeline moves by [Days late] days to [New delivery date]; invoice due dates do not change. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: New date is calculated
+Check 2: Due dates unchanged
+Check 3: No blame language
+
+P5-04 | One more revision round
+When to use: The included revisions are used up and the client wants more.
+Prompt: About me: {{profile}} [Client name] wants another revision of [Deliverable]; the [Revision rounds] included rounds are used. Write a friendly reply offering an extra round at [Revision price]. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Rounds used are stated
+Check 2: Extra round is priced
+Check 3: Friendly, not defensive
+
+P5-05 | New stakeholder wants to redo approved work
+When to use: Someone joins late and wants to change what was already approved.
+Prompt: About me: {{profile}} [New person] at [Company] wants to change [Approved item], which [Client name] approved on [Approval date]. Write a reply: changes to approved work are a change request with a new price and timeline. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Approval date cited
+Check 2: Treated as a change
+Check 3: Not defensive
+
+P5-06 | The client is late with content
+When to use: You can't start because copy, images or access haven't arrived.
+Prompt: About me: {{profile}} I'm waiting on [Missing assets] from [Client name], due [Assets due date]. Write a reminder: the timeline starts when they arrive, and the payment due date stays as agreed. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Lists what's missing
+Check 2: Timeline moves, due stays
+Check 3: No guilt-tripping
+
+P5-07 | 'While you're at it...'
+When to use: The client slips a new task into an email about something else.
+Prompt: About me: {{profile}} In an email about [Current task], [Client name] also asked for [Extra task]. Write a reply that answers the main point, then quotes the extra task separately at [Price]. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: Main point answered
+Check 2: Extra task is quoted
+Check 3: No silent yes
+
+P5-08 | Prepaid hours for small requests
+When to use: Small requests keep coming and you want a simple system for them.
+Prompt: About me: {{profile}} Write an email to [Client name] proposing a prepaid block of [Hours] hours at [Hourly rate] for small requests, used in [Minimum increment] steps and reported monthly. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: The block is prepaid
+Check 2: Increment is stated
+Check 3: Monthly report promised
+
+P5-09 | Hold the line on a live call
+When to use: A new ask comes up on a call and you need words in the moment.
+Prompt: About me: {{profile}} Give me 4 short spoken lines for when [Client name] adds [New request] on a call: note it, say it's outside the scope, promise a price by [Quote by date]. Each under 20 words. Do not offer discounts or extra work unless I say so.
+Check 1: No yes on the call
+Check 2: Quote date promised
+Check 3: Under 20 words each
+
+P5-10 | Reset scope after a messy month
+When to use: The project drifted and you need to restate what's in and out.
+Prompt: About me: {{profile}} For [Project], write an email to [Client name] restating the original scope ([Original scope]), listing extras done so far ([Extras so far]) and how extras are billed from now on. Under 140 words, calm. Do not offer discounts or extra work unless I say so.
+Check 1: Lists extras honestly
+Check 2: Billing from now is clear
+Check 3: Calm tone
+
+P5-11 | Bill for extras you already did
+When to use: You did extra work without a price and want to bill it fairly.
+Prompt: About me: {{profile}} I did [Extra work] for [Client name], outside the scope, about [Hours] hours. Write an email explaining a one-time invoice of [Amount] due [Due date], and that future extras get a quote first. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Hours and amount match
+Check 2: Due date included
+Check 3: Quote first from now on
+
+P5-12 | The client wants a new direction
+When to use: Halfway through, the client wants a different concept.
+Prompt: About me: {{profile}} [Client name] wants to switch [Project] from [Old direction] to [New direction]. Write a reply: work to date is billed at [Amount to date], and the new direction gets a new quote and a new timeline. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Work to date is billed
+Check 2: New quote promised
+Check 3: New timeline mentioned
+
+P5-13 | Merge scattered feedback into one list
+When to use: Feedback arrives in comments, emails and chat messages.
+Prompt: About me: {{profile}} Scattered feedback on [Deliverable]: [Paste feedback]. Merge it into one numbered list, flag conflicts and out-of-scope items, and draft 2 sentences asking [Client name] to confirm. Under 180 words. Do not offer discounts or extra work unless I say so.
+Check 1: Conflicts flagged
+Check 2: Out-of-scope flagged
+Check 3: Asks for confirmation
+
+P5-14 | The deadline moves earlier
+When to use: The client wants the delivery date pulled forward.
+Prompt: About me: {{profile}} [Client name] wants [Project] by [Earlier date] instead of [Original date]. Write a reply with 2 options: the original date, or the earlier date with a [Rush fee] rush fee and this reduced scope: [Reduced scope]. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Two clear options
+Check 2: Rush fee stated
+Check 3: No free overtime
+
+P5-15 | Close the project, open the next one
+When to use: The project is done but 'quick' requests keep coming.
+Prompt: About me: {{profile}} [Project] for [Client name] was delivered [Delivery date]. Write an email confirming it is complete, that support ended [Support end date], and how to book new work (a quote or a retainer). Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: Completion is stated
+Check 2: Support end date given
+Check 3: Next-work path offered
+
+P6-01 | Ask for the deposit before you start
+When to use: The client said yes, but the deposit invoice hasn't been paid.
+Prompt: About me: {{profile}} Write a short email to [Client name]: we start [Start date] once the [Deposit %] deposit ([Amount]) on invoice [Invoice #] is paid; if it arrives later, the start date and timeline move by the same days. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Start depends on payment
+Check 2: Amount matches the invoice
+Check 3: No 'no rush'
+
+P6-02 | Friendly nudge before the due date
+When to use: An invoice is due in a few days and you want it paid on time.
+Prompt: About me: {{profile}} Write a 3-sentence reminder to [Client name] that invoice [Invoice #] for [Amount] is due [Due date], with the payment link [Payment link]. Warm, no apology, under 60 words. Do not offer discounts or extra work unless I say so.
+Check 1: Exactly 3 sentences
+Check 2: Due date is a real date
+Check 3: Payment link included
+
+P6-03 | First reminder: invoice 14+ days late
+When to use: The due date has passed and your nudge got no reply.
+Prompt: About me: {{profile}} Write a payment reminder to [Client name] at [Company]. Invoice [Invoice #] for [Amount] was due [Due date] and is [Days overdue] days overdue. Ask them to pay this week via [Payment link]; late payment is handled under the terms in our agreement. Under 120 words, one clear ask, no apology. Do not offer discounts or extra work unless I say so.
+Check 1: Amount and dates match
+Check 2: No 'sorry to bother you'
+Check 3: One date, one way to pay
+
+P6-04 | Pause work until the invoice is paid
+When to use: An invoice is overdue and the client wants the next piece of work.
+Prompt: About me: {{profile}} Write an email to [Client name]: I'll start [Next deliverable] once invoice [Invoice #] for [Amount] is paid. The timeline moves by the days the payment is late; the invoice due date does not change. Under 100 words, calm. Do not offer discounts or extra work unless I say so.
+Check 1: Pauses work, no threats
+Check 2: Timeline moves, due stays
+Check 3: No 'I'll squeeze it in'
+
+P6-05 | Second reminder: a month late
+When to use: The first reminder didn't work and the invoice is now a month overdue.
+Prompt: About me: {{profile}} Write a second reminder to [Client name]: invoice [Invoice #] for [Amount], due [Due date], is [Days overdue] days overdue. Ask for payment by [Pay by date] or a call to agree a date, and say late fees apply per our agreement. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Pay-by date is set
+Check 2: Late terms referenced
+Check 3: No new discount
+
+P6-06 | 'Payment is in process'
+When to use: The client says it's with accounts, but nothing arrives.
+Prompt: About me: {{profile}} [Client name] said invoice [Invoice #] for [Amount] is 'in process'. Write a reply asking for the expected payment date and the name of the person in accounts. Under 70 words, 3 sentences max. Do not offer discounts or extra work unless I say so.
+Check 1: Asks for a date
+Check 2: Asks for a contact
+Check 3: 3 sentences or fewer
+
+P6-07 | The client asks to pay in installments
+When to use: The client can't pay the full invoice at once.
+Prompt: About me: {{profile}} [Client name] asked to split invoice [Invoice #] ([Amount]) into installments. Write a reply proposing [Number of payments] payments on [Payment dates], agreed in writing, with work paused if one is missed. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: A date for each payment
+Check 2: Agreed in writing
+Check 3: Missed-payment rule
+
+P6-08 | Final notice before a late fee
+When to use: The invoice is long overdue and your agreement has a late fee.
+Prompt: About me: {{profile}} Write a final notice to [Client name]: invoice [Invoice #] for [Amount] was due [Due date]. If it is unpaid by [Final date], a late fee of [Late fee] applies under our agreement. Under 100 words, firm and factual. Do not offer discounts or extra work unless I say so.
+Check 1: Fee matches your contract
+Check 2: Final date is clear
+Check 3: Firm, not rude
+
+P6-09 | Send an invoice that gets paid
+When to use: You are sending an invoice and want it paid without a chase.
+Prompt: About me: {{profile}} Write the email that goes with invoice [Invoice #] for [Amount] to [Client name] for [Project]. Include the due date [Due date], how to pay ([Payment link]) and who to contact. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: Due date is a real date
+Check 2: Payment link included
+Check 3: Under 80 words
+
+P6-10 | Ask how the client pays invoices
+When to use: You are starting with a new client and don't know their payment process.
+Prompt: About me: {{profile}} Write a short email to [Client name] asking who receives invoices, whether a PO number is needed and when their payment runs are, before I send invoice [Invoice #]. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: Asks for a PO number
+Check 2: Asks for payment runs
+Check 3: Under 80 words
+
+P6-11 | Write to accounts payable directly
+When to use: Your contact is slow and you have an accounts payable email.
+Prompt: About me: {{profile}} Write an email to [Accounts contact] at [Company] about invoice [Invoice #] for [Amount], due [Due date], approved by [Client name]. List the invoice details in 3 lines and ask for the payment date. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Says who approved it
+Check 2: Details in 3 lines
+Check 3: Asks for a payment date
+
+P6-12 | Thank them for paying
+When to use: The client paid and you want to keep the relationship warm.
+Prompt: About me: {{profile}} Write a short thank-you to [Client name] confirming payment of [Amount] for invoice [Invoice #] and naming the next step: [Next step]. Under 60 words, no comment on how late it was. Do not offer discounts or extra work unless I say so.
+Check 1: Amount confirmed
+Check 2: No 'finally'
+Check 3: Next step named
+
+P6-13 | The client paid the wrong amount
+When to use: The client paid less than the invoice total.
+Prompt: About me: {{profile}} [Client name] paid [Amount received] on invoice [Invoice #] for [Amount]. Write a reply that thanks them and asks for the remaining [Balance due] by [Due date] via [Payment link]. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: The balance math is right
+Check 2: Due date included
+Check 3: Neutral tone
+
+P6-14 | Final files after the final payment
+When to use: Your agreement says final files are released once the final invoice is paid.
+Prompt: About me: {{profile}} Write an email to [Client name]: [Project] is done, previews are attached, and the final files are released once invoice [Invoice #] for [Amount] is paid, as our agreement says. Under 90 words, friendly. Do not offer discounts or extra work unless I say so.
+Check 1: Cites your agreement
+Check 2: Previews are offered
+Check 3: Friendly, not hostile
+
+P6-15 | Better payment terms for next time
+When to use: A client paid late and you want firmer terms in your next contract.
+Prompt: About me: {{profile}} Draft plain-English payment terms: [Deposit %] deposit, balance due [Payment days] days after delivery, late fee [Late fee], work paused after [Pause after days] days overdue. Under 120 words. I will check it locally; this is not legal advice. Do not offer discounts or extra work unless I say so.
+Check 1: Matches your real terms
+Check 2: Pause rule included
+Check 3: Checked by a local pro
+
+P7-01 | Delivery email that leads to approval
+When to use: You are delivering work and want a clear yes or one feedback list.
+Prompt: About me: {{profile}} Write a delivery email to [Client name] for [Deliverable]: what's included, how to review it, one combined feedback list by [Feedback due date], and which revision round this is: [Revision round]. Under 120 words.
+Check 1: Feedback deadline set
+Check 2: One combined list asked
+Check 3: Rounds are counted
+
+P7-02 | Ask for specific feedback
+When to use: Clients reply 'looks good?' or 'make it pop'.
+Prompt: About me: {{profile}} Write 5 specific feedback questions for [Client name] about [Deliverable] that lead to clear yes/no or A/B answers. Under 90 words.
+Check 1: Questions are answerable
+Check 2: No 'thoughts?'
+Check 3: 5 questions max
+
+P7-03 | Reply to harsh feedback
+When to use: The feedback stings and you want a calm reply.
+Prompt: About me: {{profile}} Feedback from [Client name]: [Paste feedback]. Write a calm reply that thanks them, restates the 2-3 actionable points and proposes next steps with a date. Under 120 words. No defensiveness, no over-apologizing.
+Check 1: Restates actionable points
+Check 2: Has a date
+Check 3: No over-apologizing
+
+P7-04 | Turn vague feedback into tasks
+When to use: The feedback is fuzzy and you need a to-do list.
+Prompt: About me: {{profile}} Turn this feedback on [Deliverable] into concrete tasks: [Paste feedback]. For each vague item, write one clarifying question. Under 150 words, as a list.
+Check 1: Tasks are concrete
+Check 2: Questions for vague items
+Check 3: Nothing added
+
+P7-05 | Ask for final approval in writing
+When to use: The last round is done and you need a written sign-off.
+Prompt: About me: {{profile}} Write an email asking [Client name] to confirm final approval of [Deliverable] by replying 'approved' by [Approval by date], and say what happens next (files, invoice). Under 90 words.
+Check 1: Asks for written approval
+Check 2: Date included
+Check 3: Next steps listed
+
+P7-06 | Handover notes
+When to use: You are handing over files, logins or a system.
+Prompt: About me: {{profile}} Write handover notes for [Client name] on [Project]: what's delivered, where the files live ([File location]), how to use or update them and who to contact. Under 200 words, with headings.
+Check 1: File location is right
+Check 2: How-to included
+Check 3: Contact info present
+
+P7-07 | Ask for a testimonial
+When to use: The client is happy and the project just ended.
+Prompt: About me: {{profile}} Write a short email asking [Client name] for a 2-3 sentence testimonial about [Project], with 3 guiding questions (the problem, what changed, would they recommend me). Under 100 words. Make it easy to say no.
+Check 1: Easy to say no
+Check 2: 3 guiding questions
+Check 3: Asks before publishing
+
+P7-08 | Turn client praise into a testimonial draft
+When to use: The client praised you in an email and agreed to a testimonial.
+Prompt: About me: {{profile}} Turn these words from [Client name] into a 2-3 sentence testimonial draft for their approval, keeping their meaning and numbers: [Paste their words]. Under 60 words. Do not add claims they didn't make.
+Check 1: No added claims
+Check 2: Their numbers only
+Check 3: Sent for their approval
+
+P7-09 | Ask a happy client for a referral
+When to use: The project went well and you want one introduction.
+Prompt: About me: {{profile}} Write an email asking [Client name] if they know one [Type of company] that needs [Service], with a 2-sentence blurb they can forward. Under 100 words. One ask, easy to ignore.
+Check 1: One specific ask
+Check 2: Forwardable blurb
+Check 3: Easy to ignore
+
+P7-10 | Project wrap-up notes
+When to use: The project ended and you want the lessons on record.
+Prompt: About me: {{profile}} Write a short wrap-up note to [Client name] for [Project]: 3 things that went well, 1 thing to improve next time and one idea for what's next. Use only facts from: [Paste notes]. Under 150 words.
+Check 1: Facts from your notes
+Check 2: One improvement
+Check 3: Next idea offered
+
+P7-11 | You are going to miss a deadline
+When to use: You will miss a date and need to say so early.
+Prompt: About me: {{profile}} I will miss the [Original date] date for [Deliverable]. Write an email to [Client name] with the honest reason in one sentence, the new date [New date] and what they get in the meantime. Under 90 words.
+Check 1: Sent before the date
+Check 2: New date is firm
+Check 3: One-sentence reason
+
+P7-12 | The client is unhappy with the result
+When to use: The client says the work isn't what they expected.
+Prompt: About me: {{profile}} [Client name] is unhappy with [Deliverable]: [Their complaint]. Write a reply that asks 3 questions to pin down the gap against the agreed brief and proposes a call. Under 120 words. No refund or free work in this email.
+Check 1: Asks about the gap
+Check 2: Refers to the brief
+Check 3: No refund offered yet
+
+P7-13 | Portfolio write-up
+When to use: You want to add a finished project to your portfolio.
+Prompt: About me: {{profile}} Write a portfolio entry for [Project] for a [Client type]: challenge, approach and result ([Result]). Under 120 words. May I name the client? [Can name client: yes or no]. If no, keep them anonymous.
+Check 1: Permission respected
+Check 2: The result is real
+Check 3: Under 120 words
+
+P7-14 | Thank-you note that invites the next project
+When to use: The final invoice is paid and you are wrapping up.
+Prompt: About me: {{profile}} Write a thank-you email to [Client name] closing [Project], with one specific thing I enjoyed and an open invitation for [Next service] in [Season or month]. Under 80 words, no hard sell.
+Check 1: Specific, not generic
+Check 2: No hard sell
+Check 3: Under 80 words
+
+P7-15 | Six-month check-in
+When to use: Half a year after a project, to see how it is performing.
+Prompt: About me: {{profile}} Write a check-in to [Client name] six months after [Project], asking how [Metric] has moved and offering a 20-minute review. Under 80 words, 3 sentences max.
+Check 1: Asks about a real metric
+Check 2: The offer is small
+Check 3: 3 sentences or fewer
+
+P8-01 | Pitch a retainer to a repeat client
+When to use: A client has hired you 2-3 times and the work repeats.
+Prompt: About me: {{profile}} Write an email to [Client name] proposing a monthly retainer for [Recurring work]: [Monthly scope] for [Monthly fee], billed in advance, with [Notice period] notice to change it. Under 130 words.
+Check 1: Scope is countable
+Check 2: Billed in advance
+Check 3: Notice period stated
+
+P8-02 | Retainer scope with limits
+When to use: You want a retainer that doesn't turn into 'unlimited'.
+Prompt: About me: {{profile}} Write the scope section of a [Monthly fee] monthly retainer for [Client name]: included items with monthly quantities, response time, what rolls over (or not) and how extras are quoted. Under 160 words.
+Check 1: Quantities per month
+Check 2: Rollover rule is clear
+Check 3: Extras are quoted
+
+P8-03 | Renewal email
+When to use: A retainer or contract ends in about 30 days.
+Prompt: About me: {{profile}} Write a renewal email to [Client name]: the term ends [End date], highlights from this term ([Highlights]) and the renewal terms ([Renewal terms]). Ask for a yes by [Reply by date]. Under 130 words.
+Check 1: End date is correct
+Check 2: Real highlights only
+Check 3: Reply-by date set
+
+P8-04 | Renewal with a higher fee
+When to use: You are renewing and your fee goes up.
+Prompt: About me: {{profile}} Write a renewal email to [Client name] with the new monthly fee [New fee] (was [Old fee]) from [Effective date], and one sentence on the added value. Under 110 words, no apology.
+Check 1: Old and new fee correct
+Check 2: Effective date clear
+Check 3: No apology
+
+P8-05 | Monthly retainer report
+When to use: Month end, to show the client what they got.
+Prompt: About me: {{profile}} Turn these notes into a monthly report for [Client name]: [Paste notes]. Sections: Done, Results, Next month, and usage against [Monthly allowance]. Under 180 words.
+Check 1: Usage vs allowance shown
+Check 2: Results not invented
+Check 3: Next month planned
+
+P8-06 | End a retainer politely
+When to use: The retainer no longer fits your business.
+Prompt: About me: {{profile}} Write an email ending my retainer with [Client name], giving [Notice period] notice from [Notice date], a handover plan and an offer to recommend someone. Under 120 words.
+Check 1: Notice period honored
+Check 2: Handover planned
+Check 3: Warm close
+
+P8-07 | The client cancels the retainer
+When to use: The client tells you they are ending it.
+Prompt: About me: {{profile}} [Client name] wants to end the retainer. Write a reply that confirms the notice period ([Notice period]) and the last billing date ([Last billing date]), and asks one question about why. Under 90 words, no pleading.
+Check 1: Notice per agreement
+Check 2: Last date stated
+Check 3: No pleading
+
+P8-08 | Friday admin review
+When to use: End of the week, 20 minutes, to close loose ends.
+Prompt: About me: {{profile}} Here is my week: [Paste notes on projects, invoices and leads]. Give me a checklist: invoices to send or chase, follow-ups due, and my top 3 priorities for next week. Under 150 words.
+Check 1: Invoices listed
+Check 2: Follow-ups have dates
+Check 3: Only 3 priorities
+
+P8-09 | Plan next week from your calendar
+When to use: Monday morning, to turn a messy week into a plan.
+Prompt: About me: {{profile}} My commitments: [Paste calendar and deadlines]. Plan my week in time blocks, with deep work in the mornings and admin in one block. Under 150 words, as a table. Flag overloaded days.
+Check 1: Deadlines included
+Check 2: Admin in one block
+Check 3: Overload flagged
+
+P8-10 | Inbox triage
+When to use: You have a pile of unread client emails.
+Prompt: About me: {{profile}} Here are email subjects and senders: [Paste list]. Sort them into reply today, this week, delegate or ignore, with a one-line reason each. Put money emails first. Under 150 words.
+Check 1: Money emails first
+Check 2: One-line reasons
+Check 3: Nothing urgent ignored
+
+P8-11 | Monthly money review
+When to use: Month end, to see what's paid, owed and coming.
+Prompt: About me: {{profile}} My numbers: paid this month [Paid this month], invoiced but unpaid [Unpaid], pipeline [Pipeline]. Tell me what to chase, what to invoice and one pricing question to think about. Use only my numbers, under 120 words.
+Check 1: Only your numbers
+Check 2: Chase list included
+Check 3: One clear question
+
+P8-12 | Turn a long thread into decisions
+When to use: An email thread has 25 messages and you need the outcome.
+Prompt: About me: {{profile}} Thread with [Client name]: [Paste thread]. List the decisions made, the open questions and who owes what by when. Under 150 words. Mark anything unclear as 'unclear'.
+Check 1: Decisions vs open split
+Check 2: Owners and dates
+Check 3: Unclear items marked
+
+P8-13 | A 30-minute call agenda
+When to use: Before a client call, so it ends on time with a decision.
+Prompt: About me: {{profile}} Write a 30-minute agenda for my call with [Client name] about [Topic]: 4-5 items with minutes for each, and the decision we need by the end. Under 80 words.
+Check 1: Adds up to 30 minutes
+Check 2: Decision stated
+Check 3: Under 80 words
+
+P8-14 | Progress update before there's much to show
+When to use: Mid-project, the client is anxious and nothing is ready to show yet.
+Prompt: About me: {{profile}} Write a short progress update to [Client name] on [Project]: what's done, what's next and the date they will see something ([Preview date]). Under 80 words, 4 sentences max.
+Check 1: Real progress only
+Check 2: Preview date set
+Check 3: 4 sentences max
+
+P8-15 | Build your own prompt for a repeat task
+When to use: You keep doing a task this kit doesn't cover.
+Prompt: About me: {{profile}} I keep doing this task: [Describe the task]. Write a reusable prompt for it with fields in square brackets, a length limit and 3 checks before sending. Under 150 words.
+Check 1: Has bracket fields
+Check 2: Has a length limit
+Check 3: Has 3 checks
+</script>
+<script type="application/json" id="ba">
+[
+{"id":"P1-03","ws":"Copywriting services","w":"Hi there,\nI'm a freelance copywriter with lots of experience. I'd love to help your company with any writing needs you may have. Let me know if you're interested and we can set up a call. Thanks!","as":"Your pricing page","a":"Hi Priya,\nNorthfield's pricing page lists three plans but no customer proof near the buttons. I rewrote Ledgerline's pricing page; demo requests rose 22% in 60 days (client-reported). Would a one-paragraph teardown of yours be useful?\nSam","ch":"Opens with their page, gives one real result, ends with a yes/no question."},
+{"id":"P1-04","ws":"Re: Copywriting services","w":"Hi Priya,\nJust bumping this to the top of your inbox! Did you get a chance to read my last email? Would love to hear back from you when you have a moment.","as":"One idea for your pricing page","a":"Hi Priya,\nA quick idea since my note on Oct 6: put one customer quote right under the Pro plan button, where buyers hesitate. Happy to sketch two more if useful. A yes or no is fine.\nSam","ch":"Adds a useful idea instead of a guilt line, and is easy to answer."},
+{"id":"P1-11","ws":"Just checking in","w":"Hi Marco,\nJust checking in to see how things are going! Let me know if you ever need anything else. I'm always happy to help with whatever you need.","as":"Idea for the Tallyfin case study","a":"Hi Marco,\nThe case study we wrote in June is four months old now. A short follow-up with your updated numbers could give your sales team a fresh story for Q1. Want me to outline it?\nSam","ch":"Leads with one specific idea for them and asks one question."},
+{"id":"P2-03","ws":"Quick question","w":"Hi Jordan,\nThanks for the call! I was wondering if you might have any sort of budget in mind? No worries if not, whatever works for you is totally fine with me!","as":"Budget range for the website copy","a":"Hi Jordan,\nThanks for the call. My website copy projects run $1,800 to $4,500, depending on page count. Where does your budget sit in that range? It tells me which option to put in the proposal.\nSam","ch":"Gives your real range as an anchor and asks where they sit in it."},
+{"id":"P2-05","ws":"Follow up","w":"Hi Jordan,\nGreat chatting today! I think I've got a good sense of what you need. I'll put something together and send it over soon. Let me know if you have any questions!","as":"Recap: Copperleaf website call","a":"Hi Jordan,\nHere's what I heard: new homepage and 3 product pages; launch Nov 30; you approve, Alex reviews; budget $3,000 to $4,000. Anything wrong or missing? Please reply by Oct 16 and I'll send the proposal Oct 19.\nSam","ch":"Lists what you heard so the client can confirm it, with a reply-by date."},
+{"id":"P2-13","ws":"Re: Your project","w":"Hi Leo,\nI'm so sorry, but I don't think I can take this on right now. I'm really busy and it's not really my area, but I hope it goes well and sorry again!","as":"Your app store listing","a":"Hi Leo,\nThanks for thinking of me. App store copy for a consumer game is outside what I do; I write for B2B SaaS teams. A specialist in mobile game marketing will serve you better. Good luck with the launch.\nSam","ch":"A clear no with the real reason and no repeated apologies."},
+{"id":"P3-02","ws":"Quote","w":"Hi Jordan,\nFor the website copy I'd charge around $3,200, but I'm flexible if that's too much. Let me know what you think and we can adjust it.","as":"3 options for your website copy","a":"Hi Jordan,\nEssential, $1,800: homepage. Recommended, $3,200: homepage and 3 product pages, 2 revision rounds. Complete, $4,500: Recommended plus pricing page and launch emails. I recommend Recommended: it covers your Nov 30 launch pages. Which fits?\nSam","ch":"The client picks between options instead of haggling over one number."},
+{"id":"P3-08","ws":"Following up","w":"Hi Jordan,\nJust wanted to follow up on the proposal. Any thoughts? If the price is an issue I can probably bring it down a bit. Let me know!","as":"Your Nov 2 start date","a":"Hi Jordan,\nI'm holding a Nov 2 start for your website copy until Oct 26, so the pages are ready for your Nov 30 launch. Reply yes to book it, or pick a 15-minute call if you have questions.\nSam","ch":"A real deadline (the held start date) and two easy replies, no discount."},
+{"id":"P3-13","ws":"Re: Case study","w":"Hi Mei,\nNo problem at all, I can definitely get the case study done by next week! I'll just work over the weekend. Same price as usual of course.","as":"Case study: standard or rush","a":"Hi Mei,\nTwo options. Standard: 3 weeks, $650. Rush: 8 business days, $780 (20% rush fee), if your customer interview happens by Oct 16 and approvals come back within 1 day. Which works for you?\nSam","ch":"The rush has a price and conditions instead of free weekend work."},
+{"id":"P4-01","ws":"Re: Quote","w":"Hi Jordan,\nI totally understand budgets are tight. I could probably do it for $2,500 instead. I really want to work with you, so just let me know what works!","as":"Re: website copy price","a":"Hi Jordan,\nThe $3,200 price stays as quoted for the homepage and 3 product pages. If you need a lower number, Essential is $1,800 for the homepage now, and the product pages can follow as phase two. Which do you prefer?\nSam","ch":"Holds the price and offers less scope, not a discount."},
+{"id":"P4-03","ws":"Small update, hope that's OK","w":"Hi Marco,\nI'm so sorry to do this, but I need to raise my prices a little next year. I hope that's OK? If it's a problem, let me know and we can work something out.","as":"My 2027 rates","a":"Hi Marco,\nThank you for a great year of case studies. From Jan 1, 2027, my case study rate goes from $650 to $750. Anything booked before then stays at $650. Happy to plan Q1 together.\nSam","ch":"New rate and date stated plainly, with no apology and no 'if that's OK'."},
+{"id":"P4-09","ws":"Re: Test task","w":"Hi Rae,\nSure, I'm happy to do a free sample landing page so you can see my style. I'll have it to you in a couple of days!","as":"Re: Test task","a":"Hi Rae,\nI don't do unpaid tests, but here are two live pages I wrote for B2B SaaS teams. If you'd like to try me on your own copy first, a paid trial of one section is $300. Shall I send the details?\nSam","ch":"Offers real samples or a paid trial instead of free work."},
+{"id":"P5-01","ws":"Re: One more page","w":"Hi Jordan,\nSure, no problem! I can throw in the careers page too. It's only small so don't worry about it. I'll add it to my list.","as":"Careers page: change request","a":"Hi Jordan,\nHappy to add a careers page. It's outside the current scope, so it's a change request: $450 and 3 extra working days. Reply 'approved' and I'll add it to the plan; the other pages stay on schedule.\nSam","ch":"Treats the extra page as a priced change with written approval."},
+{"id":"P5-03","ws":"Re: Feedback","w":"Hi Jordan,\nThanks for the feedback! No worries at all about the delay. I'll do my best to still hit the original date, even if it means some late nights.","as":"Updated delivery date: Nov 24","a":"Hi Jordan,\nThanks for the feedback. It was due Nov 9 and arrived Nov 13, so the timeline moves 4 days: final pages now arrive Nov 24 instead of Nov 20. Invoice due dates stay as agreed.\nSam","ch":"Moves the timeline by the exact days late; payment dates do not move."},
+{"id":"P5-04","ws":"Re: More changes","w":"Hi Mei,\nOf course! I'll make another round of changes, no problem at all. Just send over whatever else you'd like changed and I'll take care of it.","as":"Round 3 for the case study","a":"Hi Mei,\nGlad we're close. The 2 included revision rounds are used, so a third round is $120 and comes back within 2 working days. Reply 'go' and send one combined list of changes.\nSam","ch":"Says the included rounds are used and prices the next one."},
+{"id":"P6-01","ws":"Invoice","w":"Hi Dana,\nHere's the invoice for the deposit, no rush at all! I'll go ahead and get started on Monday anyway so we don't lose time.","as":"Start date Oct 19 and deposit invoice #1043","a":"Hi Dana,\nGreat to be starting. We begin Oct 19 once the 50% deposit ($1,500 of the $3,000 project) on invoice #1043 is paid. If it arrives later, the start date and timeline move by the same number of days.\nSam","ch":"The start depends on the deposit, and the amount and invoice are named."},
+{"id":"P6-03","ws":"Sorry to bother you!","w":"Hi Dana,\nSo sorry to bother you, I know you're super busy! I was just wondering if you maybe had a chance to look at my invoice? No worries if not!","as":"Invoice #1042: 14 days overdue","a":"Hi Dana,\nInvoice #1042 for $1,800 was due Sept 30 and is now 14 days overdue. Please pay this week using the link on the invoice. Late payment is handled under the terms in our agreement.\nThanks, Sam","ch":"Names the invoice, amount, due date and days overdue, with one clear ask."},
+{"id":"P6-04","ws":"Re: Next steps","w":"Hi Dana,\nSure, I'll start the email sequence this week! I'm sure the invoice will come through soon, so don't worry about it for now.","as":"Email sequence start","a":"Hi Dana,\nI'll start the email sequence once invoice #1042 ($1,800) is paid. The timeline moves by the days the payment is late; the invoice due date (Sept 30) doesn't change. As soon as it lands, I'm ready to go.\nSam","ch":"Pauses new work calmly and keeps the due date fixed."},
+{"id":"P7-01","ws":"Done!","w":"Hi Jordan,\nHere are the pages! Let me know what you think. Any changes at all, just send them over whenever and I'll sort them out.","as":"Final pages for review: reply by Nov 26","a":"Hi Jordan,\nAttached: homepage and 3 product pages. Please send one combined feedback list by Nov 26; it's your last included revision round (round 2 of 2). If there are no changes, reply 'approved' and I'll send the final files.\nSam","ch":"One feedback deadline, one combined list, and the rounds are counted."},
+{"id":"P7-07","ws":"Review?","w":"Hi Marco,\nIf you have time could you write me a review? Anything you want to say is great. It would really help me out a lot!","as":"2-3 sentences about the case study?","a":"Hi Marco,\nWould you write 2-3 sentences about the Tallyfin case study? Three prompts if useful: What was the problem? What changed? Would you recommend me? I'll send you the final wording before I publish it. A no is fine.\nSam","ch":"Guiding questions, approval before publishing, and an easy no."},
+{"id":"P7-11","ws":"Small delay","w":"Hi Tom,\nSo sorry, things have been crazy this week. The case study might be a little late. I'll get it to you as soon as I can, really sorry!","as":"Case study: new date Oct 27","a":"Hi Tom,\nI'm telling you early: the case study will be 2 business days late because I underestimated the interview edits. New date: Oct 27 (was Oct 23). Today you'll get the approved outline so you can brief your team.\nSam","ch":"Said early, with a one-line reason, a firm new date and something now."},
+{"id":"P8-01","ws":"Ongoing work?","w":"Hi Marco,\nWould you want to work together on a more ongoing basis? I could just help with whatever you need each month for a set fee. Let me know!","as":"A monthly plan for case studies","a":"Hi Marco,\nYou've booked three case studies this year. A retainer could cover one case study plus two customer emails a month for $1,100, billed in advance, with 30 days' notice to change it. Want a one-page outline?\nSam","ch":"A countable monthly scope, a fee and notice terms, not 'whatever you need'."},
+{"id":"P8-04","ws":"Renewal","w":"Hi Marco,\nHope it's OK, but I'm going to need to charge a bit more when we renew. Sorry about that! Let me know if it's a problem.","as":"Retainer renewal: Feb 1, 2027","a":"Hi Marco,\nYour retainer renews Feb 1, 2027. The new monthly fee is $1,250 (was $1,100) for the same scope plus a quarterly results summary. Reply yes by Jan 15 and I'll send the renewal.\nSam","ch":"Old fee, new fee, date and the added value in four lines."},
+{"id":"P8-14","ws":"Update","w":"Hi Jordan,\nJust a quick note to say I'm working on it! Things are going well, I'll have something to show you soon. Thanks for your patience!","as":"Progress: homepage draft Nov 6","a":"Hi Jordan,\nProgress on the website copy: messaging framework done, homepage outline approved, product page outlines drafted. Next I'm writing the full homepage. You'll see the homepage draft Nov 6.\nSam","ch":"Real progress, what's next, and a date for something to see."}
+]
+</script>
+<script>
+(function(){
+'use strict';
+var LITE=document.body.getAttribute('data-lite')==='1';
+var KEY=LITE?'fapk-lite.v1':'fapk.v1';
+var CATS=[null,
+ ['Pitch','Find & Pitch Clients'],['Scoping','Discovery & Scoping'],['Proposals','Proposals & 3-Tier Quotes'],
+ ['Pricing','Pricing, Pushback & Raising Rates'],['Scope creep','Scope Creep & Change Requests'],
+ ['Getting Paid','Getting Paid (deposits, reminders, late invoices)'],['Delivery','Delivery, Feedback & Referrals'],
+ ['Retainers','Retainers, Renewals & Weekly Admin']];
+var PF=[['name','Your name','Name','Your name','e.g. Sam Rivera'],
+ ['what','What you do','What I do','What you do','e.g. Freelance B2B copywriter'],
+ ['who','Who you serve (ideal client)','Who I serve','Who you serve','e.g. B2B SaaS companies with 10–100 staff'],
+ ['services','Your core services & prices','Services & prices','Your services & prices','e.g. Website copy from $1,800; case studies $650'],
+ ['currency','Currency','Currency','Currency','e.g. USD'],
+ ['size','Typical project size','Typical project','Typical project size','e.g. $1,800–$4,500'],
+ ['proof','Proof points (1–3 results)','Proof points','Proof points','A real result, with numbers you can back up'],
+ ['tone','Tone','Tone','Tone',''],
+ ['signoff','Sign-off','Sign-off','Sign-off','e.g. Sam']];
+var SAM={name:'Sam Rivera',what:'Freelance B2B copywriter',who:'B2B SaaS companies with 10–100 staff',services:'Website copy from $1,800 per page set; case studies $650 each; email sequences from $1,200',currency:'USD',size:'$1,800–$4,500',proof:"Rewrote Ledgerline's pricing page; demo requests up 22% in 60 days (client-reported)",tone:'Direct',signoff:'Sam'};
+var SAMSIT={'Client name':'Dana Price','Company':'Brightloop','Invoice #':'#1042','Amount':'$1,800','Due date':'Sept 30','Days overdue':'14'};
+
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function parse(txt){var out=[],cur=null;txt.split(/\r?\n/).forEach(function(l){var m=l.match(/^(P(\d)-\d\d) \| (.+)$/);
+ if(m){cur={id:m[1],cat:+m[2],title:m[3].trim(),when:'',body:'',checks:[]};out.push(cur);return}
+ if(!cur)return; if(l.indexOf('When to use: ')===0)cur.when=l.slice(13).trim();
+ else if(l.indexOf('Prompt: ')===0)cur.body=l.slice(8).trim();
+ else if(/^Check [123]: /.test(l))cur.checks.push(l.slice(9).trim());});return out}
+var LIB=parse($('lib').textContent);
+var BA={};JSON.parse($('ba').textContent).forEach(function(b){BA[b.id]=b});
+
+var demo=/^kitdemo/.test(window.name||'');
+var S={profile:{},sit:{},favs:[],custom:[]};
+try{var raw=demo?null:localStorage.getItem(KEY);if(raw){var o=JSON.parse(raw);['profile','sit'].forEach(function(k){if(o[k]&&typeof o[k]==='object')S[k]=o[k]});if(Array.isArray(o.favs))S.favs=o.favs;if(Array.isArray(o.custom))S.custom=o.custom}}catch(e){}
+function save(){if(demo)return;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var V={cat:LITE?6:'all',q:'',id:LITE?'P6-01':'P1-01',tab:'p',locked:0};
+
+function all(){return LIB.concat(S.custom)}
+function get(id){var a=all();for(var i=0;i<a.length;i++)if(a[i].id===id)return a[i];return a[0]}
+function fields(b){var r=[],re=/\[([^\]]+)\]/g,m;while((m=re.exec(b)))if(r.indexOf(m[1])<0)r.push(m[1]);return r}
+function tok(v,ph,html){if(v)return html?'<span class="val">'+esc(v)+'</span>':v;return html?'<span class="empty">'+esc(ph)+'</span>':ph}
+function profBlock(html){return '\n'+PF.map(function(f){return '- '+f[2]+': '+tok(String(S.profile[f[0]]||'').trim(),'['+f[3]+']',html)}).join('\n')+'\n'}
+function render(p,html,blank){
+ return p.body.split(/(\{\{profile\}\}|\[[^\]]+\])/).map(function(s){
+  if(s==='{{profile}}')return profBlock(html);
+  var m=s.match(/^\[([^\]]+)\]$/);
+  if(m)return tok(blank?'':String(S.sit[m[1]]||'').trim(),'['+m[1]+']',html);
+  return html?esc(s):s}).join('').replace(/ \n/g,'\n').replace(/\n /g,'\n')}
+
+function buildBiz(){var h='';PF.forEach(function(f){
+ var inp=f[0]==='tone'?'<select id="pf-tone" data-k="tone"><option value="">Choose…</option><option>Warm</option><option>Direct</option><option>Formal</option></select>'
+  :(f[0]==='services'||f[0]==='proof'?'<textarea rows="3" id="pf-'+f[0]+'" data-k="'+f[0]+'" placeholder="'+esc(f[4])+'"></textarea>':'<input id="pf-'+f[0]+'" data-k="'+f[0]+'" placeholder="'+esc(f[4])+'" autocomplete="off">');
+ h+='<div class="fld f-'+f[0]+'"><label for="pf-'+f[0]+'">'+esc(f[1])+'</label>'+inp+'</div>'});
+ $('bizFields').innerHTML=h;
+ Array.prototype.forEach.call($('bizFields').querySelectorAll('[data-k]'),function(el){
+  el.value=S.profile[el.getAttribute('data-k')]||'';
+  el.addEventListener('input',function(){S.profile[el.getAttribute('data-k')]=el.value;save();count();preview()});
+  el.addEventListener('change',function(){S.profile[el.getAttribute('data-k')]=el.value;save();count();preview()})});
+ count()}
+function count(){var n=PF.filter(function(f){return String(S.profile[f[0]]||'').trim()}).length;$('filled').textContent=n+'/9 filled'}
+function fillProfile(){PF.forEach(function(f){var el=$('pf-'+f[0]);if(el)el.value=S.profile[f[0]]||''});count()}
+
+var LOCK='<svg class="lk" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+function pill(k,t){return '<button class="pill'+(V.cat===k?' on':'')+'" data-cat="'+k+'" type="button">'+esc(t)+'</button>'}
+function pills(){var a=all(),h='';
+ var favN=S.favs.filter(function(id){return a.some(function(p){return p.id===id})}).length;
+ h+=pill('all','All '+LIB.length);
+ h+=pill('fav','★ '+favN);
+ for(var c=1;c<=8;c++){var lock=LITE&&c!==6;
+  h+='<button class="pill'+(V.cat===c?' on':'')+(lock?' lock':'')+'" data-cat="'+c+'" type="button">'+(lock?LOCK:'')+c+' '+esc(CATS[c][0])+(V.cat===c?' · 15':'')+'</button>'}
+ if(!LITE&&S.custom.length)h+=pill('mine','My prompts · '+S.custom.length);
+ $('pills').innerHTML=h;
+ Array.prototype.forEach.call($('pills').querySelectorAll('.pill'),function(b){b.addEventListener('click',function(){
+  var c=b.getAttribute('data-cat');V.cat=/^\d$/.test(c)?+c:c;V.locked=(LITE&&/^\d$/.test(c)&&+c!==6)?+c:0;pills();list()})})}
+function list(){
+ if(V.locked){$('list').innerHTML='<div class="locked">'+LOCK+'<b>'+V.locked+' · '+esc(CATS[V.locked][1])+'</b><p>15 prompts in the full kit, each with 3 checks before you send, plus 3 Before / After examples.</p><a class="b pri" href="/products/freelancer-ai-playbook/">Get the full kit · $12</a></div>';return}
+ var q=V.q.toLowerCase().trim(),a=all().filter(function(p){
+  if(V.cat==='fav'&&S.favs.indexOf(p.id)<0)return false;
+  if(V.cat==='mine'&&!p.mine)return false;
+  if(typeof V.cat==='number'&&p.cat!==V.cat)return false;
+  if(q&&(p.id+' '+p.title+' '+p.when+' '+p.body).toLowerCase().indexOf(q)<0)return false;return true});
+ if(!a.length){$('list').innerHTML='<p class="none">No prompts match. Clear the search or pick another category.</p>';return}
+ $('list').innerHTML=a.map(function(p){var f=S.favs.indexOf(p.id)>=0;
+  return '<div class="row'+(p.id===V.id?' on':'')+'" data-id="'+esc(p.id)+'" role="button" tabindex="0"><span class="id">'+esc(p.id)+'</span><span class="tt">'+esc(p.title)+(BA[p.id]?' <i class="bab">B/A</i>':'')+'</span><button class="st'+(f?' fav':'')+'" data-star="'+esc(p.id)+'" type="button" aria-label="Favourite">'+(f?'★':'☆')+'</button></div>'}).join('');
+ Array.prototype.forEach.call($('list').querySelectorAll('.row'),function(r){
+  r.addEventListener('click',function(e){if(e.target.getAttribute('data-star'))return;V.id=r.getAttribute('data-id');V.tab='p';list();panel();
+   if(window.innerWidth<860)$('pr').scrollIntoView({behavior:'smooth',block:'start'})});
+  r.addEventListener('keydown',function(e){if(e.key==='Enter')r.click()})});
+ Array.prototype.forEach.call($('list').querySelectorAll('[data-star]'),function(b){b.addEventListener('click',function(){toggleFav(b.getAttribute('data-star'))})})}
+function toggleFav(id){var i=S.favs.indexOf(id);if(i<0)S.favs.push(id);else S.favs.splice(i,1);save();pills();list();panel()}
+
+function panel(){var p=get(V.id);if(!p)return;V.id=p.id;var b=BA[p.id],fav=S.favs.indexOf(p.id)>=0;
+ var cat=p.mine?'My prompts':p.cat+' · '+CATS[p.cat][0];
+ var h='<div class="meta"><span class="eyebrow">'+esc(cat)+'</span>'+(b?'<div class="tabs"><button type="button" data-tab="p" class="'+(V.tab==='p'?'on':'')+'">Prompt</button><button type="button" data-tab="ba" id="tabBA" class="'+(V.tab==='ba'?'on':'')+'">Before / After</button></div>':'')+'</div>';
+ h+='<h1><small>'+esc(p.id)+'</small>'+esc(p.title)+'</h1>';
+ if(p.when)h+='<p class="when">When to use: '+esc(p.when.charAt(0).toLowerCase()+p.when.slice(1))+'</p>';
+ if(V.tab==='ba'&&b){
+  h+='<p class="banote">Example written by us to show the target, not live AI output.</p><div class="bacols">'
+   +'<div class="weak"><span class="tag"><i>✕</i> Weak draft</span>'+mail(b.ws,b.w)+'</div>'
+   +'<div class="after"><span class="tag">✓ After</span>'+mail(b.as,b.a)+'</div></div>'
+   +'<p class="changed"><b>What changed:</b> '+esc(b.ch)+'</p><button class="b out" type="button" data-tab="p">Back to the prompt</button>';
+ }else{
+  var fl=fields(p.body);
+  if(fl.length)h+='<div class="sit">'+fl.map(function(f,i){var big=/^Paste|^Describe/.test(f);
+   return '<div class="fld'+(big?' wide':'')+'"><label for="sf'+i+'">'+esc(f)+'</label>'+(big?'<textarea rows="3"':'<input autocomplete="off"')+' id="sf'+i+'" data-f="'+esc(f)+'" placeholder="'+esc(f)+'">'+(big?'</textarea>':'')+'</div>'}).join('')+'</div>';
+  h+='<div class="pv" id="pv" aria-live="polite"></div>'
+   +'<div class="acts"><button class="b pri" type="button" id="copyP">Copy prompt</button><button class="b out" type="button" id="copyB" title="Your profile filled in, every [field] left blank">Copy blank template</button><button class="b fv'+(fav?' on':'')+'" type="button" id="favB">'+(fav?'★ Saved':'☆ Save')+'</button>'+(p.mine?'<button class="b out" type="button" id="delC">Delete</button>':'')+'<span class="warn" id="warn"></span></div>'
+   +'<div class="ck"><span class="eyebrow">Check before you send</span><ol>'+p.checks.map(function(c,i){return '<li><b>✓'+(i+1)+'</b><span>'+esc(c)+'</span></li>'}).join('')+'</ol></div>';
+ }
+ h+='<p class="privacy">Nothing is uploaded; this tool makes no network requests. Paste the prompt into your own ChatGPT, Claude, Gemini or any chat AI, then review the draft before you send it.</p>';
+ $('pr').innerHTML=h;
+ Array.prototype.forEach.call($('pr').querySelectorAll('[data-tab]'),function(t){t.addEventListener('click',function(){V.tab=t.getAttribute('data-tab');panel()})});
+ Array.prototype.forEach.call($('pr').querySelectorAll('[data-f]'),function(el){el.value=S.sit[el.getAttribute('data-f')]||'';mark(el);
+  el.addEventListener('input',function(){S.sit[el.getAttribute('data-f')]=el.value;mark(el);save();preview()})});
+ if($('copyP')){$('copyP').addEventListener('click',function(){copy(render(get(V.id),false,false),$('copyP'),'Copy prompt')});
+  $('copyB').addEventListener('click',function(){copy(render(get(V.id),false,true),$('copyB'),'Copy blank template')});
+  $('favB').addEventListener('click',function(){toggleFav(V.id)});
+  if($('delC'))$('delC').addEventListener('click',function(){S.custom=S.custom.filter(function(c){return c.id!==V.id});S.favs=S.favs.filter(function(x){return x!==V.id});V.id=LIB[0].id;if(V.cat==='mine')V.cat='all';save();pills();list();panel();toast('Prompt deleted')});
+  preview()}
+ $('barCopy').parentNode.style.visibility=$('copyP')?'':'hidden'}
+function mail(s,t){return '<div class="mail"><p class="subj">Subject: '+esc(s)+'</p>'+t.split('\n').map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'</div>'}
+function mark(el){el.classList.toggle('blank',!el.value.trim())}
+function preview(){var p=get(V.id);if(!$('pv')||!p)return;$('pv').innerHTML=render(p,true,false);
+ var miss=fields(p.body).filter(function(f){return !String(S.sit[f]||'').trim()});
+ var pm=PF.filter(function(f){return !String(S.profile[f[0]]||'').trim()}).length;
+ var t=[];if(miss.length)t.push(miss.length+(miss.length===1?' field':' fields')+' still empty: '+miss.map(function(f){return '['+f+']'}).join(' '));
+ if(pm)t.push('My Business: '+pm+' of 9 empty');
+ $('warn').textContent=t.join(' · ');$('warn').style.display=t.length?'':'none'}
+
+function copy(text,btn,label){
+ function ok(){btn.textContent='Copied ✓';btn.classList.add('ok');setTimeout(function(){btn.textContent=label;btn.classList.remove('ok')},1500);toast('Copied. Paste it into your AI chat.')}
+ function fail(){var ta=$('fallback');ta.value=text;ta.style.display='block';ta.focus();ta.select();var done=false;try{done=document.execCommand('copy')}catch(e){}
+  if(done){ok()}else{toast('Press Ctrl+C (or ⌘+C) to copy the selected text')}}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,fail)}else fail()}
+function toast(t){var el=$('toast');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){el.classList.remove('on')},2200)}
+
+function openAdd(){if(LITE){toast('Your own prompts are part of the full kit');return}$('modal').classList.add('on');$('cTitle').focus()}
+function saveCustom(){var t=$('cTitle').value.trim(),b=$('cBody').value.trim();if(!t||!b){toast('Add a title and the prompt text');return}
+ var n=1;while(S.custom.some(function(c){return c.id==='C-'+(n<10?'0':'')+n}))n++;
+ var c={id:'C-'+(n<10?'0':'')+n,cat:0,mine:true,title:t,when:$('cWhen').value.trim(),body:b,checks:[$('cK1').value.trim(),$('cK2').value.trim(),$('cK3').value.trim()].filter(Boolean)};
+ S.custom.push(c);save();['cTitle','cWhen','cBody','cK1','cK2','cK3'].forEach(function(i){$(i).value=''});$('modal').classList.remove('on');V.cat='mine';V.id=c.id;V.locked=0;pills();list();panel();toast('Saved in this browser')}
+function exportJSON(){var data={app:'Freelance AI Prompt Kit',version:1,exported:new Date().toISOString().slice(0,10),profile:S.profile,favourites:S.favs,custom_prompts:S.custom,situation_values:S.sit};
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='prompt-kit-my-data.json';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);toast('Exported prompt-kit-my-data.json')}
+function importJSON(file){var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);
+  if(d.profile&&typeof d.profile==='object')PF.forEach(function(f){if(typeof d.profile[f[0]]==='string')S.profile[f[0]]=d.profile[f[0]]});
+  if(Array.isArray(d.favourites))d.favourites.forEach(function(x){if(typeof x==='string'&&S.favs.indexOf(x)<0)S.favs.push(x)});
+  if(Array.isArray(d.custom_prompts))d.custom_prompts.forEach(function(c){if(c&&c.title&&c.body&&!S.custom.some(function(x){return x.id===c.id})){S.custom.push({id:String(c.id||'C-'+(S.custom.length+1)),cat:0,mine:true,title:String(c.title),when:String(c.when||''),body:String(c.body),checks:(c.checks||[]).map(String).slice(0,3)})}});
+  if(d.situation_values&&typeof d.situation_values==='object')Object.keys(d.situation_values).forEach(function(k){S.sit[k]=String(d.situation_values[k])});
+  save();fillProfile();pills();list();panel();toast('Imported')}catch(e){toast('That file is not a Prompt Kit JSON export')}};r.readAsText(file)}
+
+buildBiz();
+$('q').addEventListener('input',function(){V.q=this.value;if(V.q&&V.locked){V.locked=0;V.cat=LITE?6:'all';pills()}list()});
+$('clear').addEventListener('click',function(){if(!confirm('Clear your profile, field values, favourites and your own prompts from this browser?'))return;S={profile:{},sit:{},favs:[],custom:[]};try{localStorage.removeItem(KEY)}catch(e){}fillProfile();if(V.cat==='mine')V.cat='all';V.id=LITE?'P6-01':'P1-01';pills();list();panel();toast('Cleared')});
+$('example').addEventListener('click',function(){var has=PF.some(function(f){return String(S.profile[f[0]]||'').trim()});if(has&&!confirm('Replace your profile with the example (Sam Rivera)?'))return;S.profile=JSON.parse(JSON.stringify(SAM));save();fillProfile();preview();toast('Example profile loaded. Replace it with yours any time.')});
+$('bizToggle').addEventListener('click',function(){$('biz').classList.toggle('closed')});
+$('addBtn').addEventListener('click',openAdd);
+$('cCancel').addEventListener('click',function(){$('modal').classList.remove('on')});
+$('cSave').addEventListener('click',saveCustom);
+$('exp').addEventListener('click',function(){if(LITE){toast('Export and import are part of the full kit');return}exportJSON()});
+$('imp').addEventListener('click',function(){if(LITE){toast('Export and import are part of the full kit');return}$('impf').click()});
+$('impf').addEventListener('change',function(){if(this.files[0])importJSON(this.files[0]);this.value=''});
+$('barCopy').addEventListener('click',function(){var p=get(V.id);copy(render(p,false,false),$('barCopy'),'Copy prompt')});
+$('fallback').addEventListener('blur',function(){this.style.display='none'});
+if(PF.some(function(f){return String(S.profile[f[0]]||'').trim()})&&window.innerWidth<1100)$('biz').classList.add('closed');
+
+if(demo){var m=window.name.split(':');S.profile=JSON.parse(JSON.stringify(SAM));S.sit=JSON.parse(JSON.stringify(SAMSIT));S.favs=['P6-03','P6-04','P5-03','P4-01'];
+ V.id=m[1]||'P6-03';V.cat=m[3]?(m[3]==='all'?'all':+m[3]):+V.id.charAt(1);V.tab=m[2]==='ba'?'ba':'p';fillProfile()}
+pills();list();panel();
+})();
+</script>
+</body></html>

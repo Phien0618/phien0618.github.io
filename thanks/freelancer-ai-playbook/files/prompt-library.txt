@@ -1,0 +1,890 @@
+FREELANCE AI PROMPT KIT: 120 CLIENT PROMPTS + PROMPT BUILDER
+Prompt library - blank template version
+120 prompts in 8 categories (15 each), numbered P1-01 to P8-15.
+
+HOW TO USE THIS FILE
+1. Fill in the profile block below once and keep it in a note.
+2. Copy a prompt and replace {{profile}} with your profile block.
+3. Replace every [Square bracket] field with the real detail (client name, invoice number, amount...).
+4. Paste into ChatGPT, Claude, Gemini or any chat AI. Read the draft, run the 3 checks, edit, then send.
+The offline Prompt Builder (prompt-builder.html) does steps 1-3 for you.
+
+YOUR PROFILE BLOCK (paste it wherever you see {{profile}})
+- Name: [Your name]
+- What I do: [What you do]
+- Who I serve: [Who you serve]
+- Services & prices: [Your services & prices]
+- Currency: [Currency]
+- Typical project: [Typical project size]
+- Proof points: [Proof points]
+- Tone: [Tone]
+- Sign-off: [Sign-off]
+
+No AI is included: you paste each prompt into your own AI account.
+AI drafts still need your review. Not legal, tax or financial advice.
+
+
+==== 1. FIND & PITCH CLIENTS (15 prompts) ====
+
+P1-01 | Define your ideal client in one paragraph
+When to use: You pitch everyone and hear back from no one.
+Prompt: About me: {{profile}} Ask me 5 short questions, one at a time, about my 3 best past clients. Then write a one-paragraph ideal-client profile (industry, size, trigger, budget) in under 80 words.
+Check 1: Built from your real clients
+Check 2: Names a budget range
+Check 3: No 'businesses of all sizes'
+
+P1-02 | Research a prospect before you pitch
+When to use: You found a company you want to work with and know little about it.
+Prompt: About me: {{profile}} Here is what I found on [Company]: [Research notes]. List 3 likely problems they have that my services solve, each with its evidence, in under 120 words. Label guesses as guesses.
+Check 1: Every point has evidence
+Check 2: Guesses are labeled
+Check 3: Nothing invented about them
+
+P1-03 | Cold email with one specific observation
+When to use: You want to email a prospect who has never heard of you.
+Prompt: About me: {{profile}} Write a cold email to [Contact name] at [Company]. Open with this observation: [Specific observation]. Add one relevant proof point and end with one yes/no question. Under 90 words, no flattery.
+Check 1: First line is about them
+Check 2: One proof point only
+Check 3: Ends with a yes/no question
+
+P1-04 | Follow up on a cold email
+When to use: Your cold email got no reply after 5-7 days.
+Prompt: About me: {{profile}} Write a follow-up to [Contact name] about my email from [Date sent] on [Topic]. Add one new useful idea instead of a guilt line. Under 60 words, 3 sentences max.
+Check 1: No 'just bumping this'
+Check 2: Adds one new idea
+Check 3: 3 sentences or fewer
+
+P1-05 | Ask a mutual contact for an intro
+When to use: Someone you know is connected to a client you want.
+Prompt: About me: {{profile}} Write a note to [Mutual contact] asking for an intro to [Contact name] at [Company], with the reason: [Why them]. Include a 2-sentence blurb they can forward. Under 100 words, easy to say no.
+Check 1: Reason is specific
+Check 2: Forwardable blurb included
+Check 3: Easy to say no
+
+P1-06 | Reply to a posted job (Upwork or job board)
+When to use: You found a posted project and want a reply that isn't a template.
+Prompt: About me: {{profile}} Job post: [Paste job post]. Write a reply that restates their goal in one line, gives one relevant result and asks 2 scoping questions. Under 120 words. No 'Dear Hiring Manager'.
+Check 1: Mirrors their goal
+Check 2: One relevant result
+Check 3: Asks 2 real questions
+
+P1-07 | LinkedIn connection note
+When to use: You want to connect with a decision-maker without pitching.
+Prompt: About me: {{profile}} Write a LinkedIn connection note to [Contact name], [Their role] at [Company], that mentions [Shared context]. Under 40 words and 300 characters. No pitch, no link.
+Check 1: Under 300 characters
+Check 2: No pitch, no link
+Check 3: Mentions the shared context
+
+P1-08 | Turn a past project into a mini case study
+When to use: You need proof for pitches but have no case studies yet.
+Prompt: About me: {{profile}} Turn these notes into a mini case study. Client type: [Client type]. Problem: [Problem]. What I did: [What I did]. Result: [Result]. Use Problem / Approach / Result, under 150 words. Use only the numbers I gave.
+Check 1: Only your numbers used
+Check 2: Client named only if allowed
+Check 3: Result is concrete
+
+P1-09 | Write your one-line positioning
+When to use: You struggle to answer 'So what do you do?'
+Prompt: About me: {{profile}} Write 5 one-sentence positioning lines in the form 'I help (who) get (result) with (service)'. Each under 20 words. Then tell me which is clearest and why, in 2 sentences.
+Check 1: Names who and the result
+Check 2: No buzzwords
+Check 3: Under 20 words each
+
+P1-10 | Pitch a current client on a new service
+When to use: A current client could use a service they don't buy from you yet.
+Prompt: About me: {{profile}} Write an email to [Client name] suggesting [New service] because of [What I noticed]. Give a price range of [Price range] and one next step. Under 110 words, no pressure.
+Check 1: Tied to what you noticed
+Check 2: Price range is stated
+Check 3: One next step only
+
+P1-11 | Reconnect with a quiet past client
+When to use: A past client hasn't heard from you in 3+ months.
+Prompt: About me: {{profile}} Write a note to [Client name], whose [Past project] finished [Months ago] months ago. Share one useful idea for them and ask one question. Under 80 words. No 'just checking in'.
+Check 1: Leads with a useful idea
+Check 2: No 'just checking in'
+Check 3: One question only
+
+P1-12 | Offer overflow help to an agency
+When to use: You want steady overflow work from an agency or studio.
+Prompt: About me: {{profile}} Write an email to [Contact name] at [Agency] offering to take overflow [Service] work. Mention my rate range, usual turnaround ([Turnaround]) and whether I can work white-label. Under 120 words.
+Check 1: Rate range included
+Check 2: Turnaround is specific
+Check 3: Easy yes/no reply
+
+P1-13 | Build a prospect list with reasons
+When to use: You have time to prospect but no list.
+Prompt: About me: {{profile}} Suggest 10 kinds of companies in [Region or niche] that fit my ideal client, each with one reason and one public trigger to watch for. One line each, under 25 words per line. Do not invent company names.
+Check 1: No invented company names
+Check 2: Each has a trigger
+Check 3: Fits your ideal client
+
+P1-14 | Subject lines that get opened
+When to use: Your pitch emails are not being opened.
+Prompt: About me: {{profile}} Write 10 subject lines for an email to [Contact name] about [Topic]. Each under 7 words, no clickbait, no emojis, no fake 'Re:'. Name your top 2 in one sentence each.
+Check 1: Under 7 words each
+Check 2: No fake 'Re:'
+Check 3: No clickbait
+
+P1-15 | Weekly outreach plan
+When to use: You want a steady pipeline from a small daily habit.
+Prompt: About me: {{profile}} I have [Minutes per day] minutes a day for outreach. Make a 5-day plan (Mon-Fri) that mixes cold, warm and follow-up tasks, with a daily target. Under 150 words, as a table.
+Check 1: Fits your real minutes
+Check 2: Has daily targets
+Check 3: Includes follow-ups
+
+
+==== 2. DISCOVERY & SCOPING (15 prompts) ====
+
+P2-01 | Discovery call questions
+When to use: A lead booked a call and you want to qualify budget and scope.
+Prompt: About me: {{profile}} Lead: [Company], asking for [What they asked for]. Write 8 discovery questions covering goal, success metric, deadline, decision-maker and budget. One line each, under 20 words per question.
+Check 1: Budget question included
+Check 2: Asks who decides
+Check 3: Asks how success is measured
+
+P2-02 | Pre-call questions by email
+When to use: You want a few answers in writing before the call.
+Prompt: About me: {{profile}} Write an email to [Client name] confirming our call on [Call date] and asking 5 short questions to answer beforehand. Under 120 words. Make the questions optional, not homework.
+Check 1: Call date is correct
+Check 2: 5 questions max
+Check 3: Feels optional
+
+P2-03 | Ask about budget without flinching
+When to use: The lead hasn't mentioned budget and you need a range.
+Prompt: About me: {{profile}} Write 3 ways to ask [Client name] about the budget for [Project], each 1-2 sentences, that give my typical project range as an anchor. Plain words; no 'whatever works for you'.
+Check 1: Your range is stated
+Check 2: No 'whatever works'
+Check 3: 2 sentences max each
+
+P2-04 | Summarize a discovery call
+When to use: You just finished a call and your notes are a mess.
+Prompt: About me: {{profile}} Notes from my call with [Client name]: [Paste notes]. Summarize as Goal, Must-haves, Nice-to-haves, Deadline, Budget, Open questions. Under 180 words. Mark anything not in my notes as 'unknown'.
+Check 1: Nothing invented
+Check 2: Unknowns are marked
+Check 3: Deadline and budget listed
+
+P2-05 | Recap email after the call
+When to use: You want the client to confirm what you heard before you quote.
+Prompt: About me: {{profile}} Write a recap email to [Client name] from these notes: [Paste summary]. List what I heard in 4-6 short points, then ask them to confirm or correct by [Reply by date]. Under 150 words.
+Check 1: Points match the call
+Check 2: Has a reply-by date
+Check 3: No price unless agreed
+
+P2-06 | In scope / out of scope list
+When to use: You are about to quote and need clear boundaries.
+Prompt: About me: {{profile}} Project: [Project description]. Write an In scope list and an Out of scope list (5-8 items each) and state the number of revision rounds: [Revision rounds]. Under 200 words.
+Check 1: Out-of-scope list exists
+Check 2: Revisions are numbered
+Check 3: Items are countable
+
+P2-07 | Spot red flags in a brief
+When to use: Something about a lead feels off.
+Prompt: About me: {{profile}} Brief: [Paste brief]. List up to 5 red flags (vague scope, unpaid test, rushed deadline, no decision-maker), quote the line that shows each, and give one question to ask. Under 150 words.
+Check 1: Each flag quotes the brief
+Check 2: One question per flag
+Check 3: No flags without evidence
+
+P2-08 | Turn a vague brief into questions
+When to use: The brief is one line, like 'we need a new website'.
+Prompt: About me: {{profile}} The brief from [Client name] says: [Paste brief]. Write 6 questions that turn it into a project I can scope (pages, content, deadline, who approves, budget). Under 110 words.
+Check 1: 6 questions max
+Check 2: Covers who approves
+Check 3: Plain language
+
+P2-09 | Offer a paid scoping session
+When to use: The project is too fuzzy to quote and you want to be paid to scope it.
+Prompt: About me: {{profile}} Write an email offering [Client name] a paid scoping session for [Fee]: what they get ([Deliverables]), how long it takes, and whether the fee counts toward the project: [Credit terms]. Under 120 words.
+Check 1: Fee is stated
+Check 2: Deliverables listed
+Check 3: Credit terms are clear
+
+P2-10 | Find the real deadline
+When to use: The client says 'ASAP' and you need an actual date.
+Prompt: About me: {{profile}} Write a short reply to [Client name] asking what happens on which date (launch, event, board meeting) so we can set a real deadline for [Project]. Under 70 words, 3 sentences max.
+Check 1: Asks for an actual date
+Check 2: No promise of 'ASAP'
+Check 3: 3 sentences or fewer
+
+P2-11 | Ask who signs off
+When to use: Several people join the calls and you don't know who approves.
+Prompt: About me: {{profile}} Write 2 polite ways to ask [Client name] who gives final approval on [Project] and how feedback will be merged into one list. Each under 50 words.
+Check 1: Asks for one approver
+Check 2: Asks for one feedback list
+Check 3: Not accusatory
+
+P2-12 | Kickoff assets checklist
+When to use: You need logins, files and content from the client before you start.
+Prompt: About me: {{profile}} For [Project], list the assets I need from [Client name] (files, access, content, contacts) as a checklist due [Assets due date]. Add one line: the timeline starts when the assets arrive. Under 150 words.
+Check 1: Has a due date
+Check 2: Timeline starts on receipt
+Check 3: Grouped as a checklist
+
+P2-13 | Decline a bad-fit lead kindly
+When to use: The lead doesn't fit your services, budget or values.
+Prompt: About me: {{profile}} Write a kind email declining [Client name]'s project. Reason: [Reason it's not a fit]. If useful, suggest [Referral or resource]. Under 80 words, no long excuses.
+Check 1: A clear no
+Check 2: No long excuses
+Check 3: Door left open if wanted
+
+P2-14 | Estimate hours by task
+When to use: You want a sanity check on effort before you price.
+Prompt: About me: {{profile}} Break [Project description] into tasks and give a low and a high hour estimate for each, plus totals. As a table, under 150 words. Flag tasks where you are guessing.
+Check 1: Every task has low/high
+Check 2: Guesses are flagged
+Check 3: Totals add up
+
+P2-15 | Score the lead before you write a proposal
+When to use: You want to decide if a proposal is worth your time.
+Prompt: About me: {{profile}} Score this lead 1-5 on budget fit, scope clarity, decision speed and fit with my services, using: [Paste notes]. One sentence per score, then go or no-go. Under 100 words in total.
+Check 1: Scores cite your notes
+Check 2: Ends in go or no-go
+Check 3: Under 100 words
+
+
+==== 3. PROPOSALS & 3-TIER QUOTES (15 prompts) ====
+
+P3-01 | Proposal outline in 6 sections
+When to use: You have call notes and need a proposal skeleton.
+Prompt: About me: {{profile}} Using [Paste call summary], outline a proposal for [Client name]: Goal, Approach, Deliverables, Timeline, Investment, Next step. 2-3 short points per section, under 200 words.
+Check 1: Starts with their goal
+Check 2: Deliverables are countable
+Check 3: Ends with a next step
+
+P3-02 | Three-tier quote
+When to use: You want the client to choose how to work with you, not whether.
+Prompt: About me: {{profile}} Build 3 options for [Project]: Essential at [Price A], Recommended at [Price B], Complete at [Price C]. Say what each tier adds, under 150 words. Recommend the middle tier in one sentence.
+Check 1: Prices match your inputs
+Check 2: Each tier adds real value
+Check 3: Middle tier recommended
+
+P3-03 | Opening that mirrors their goal
+When to use: Your proposal starts with 'About me' and loses the reader.
+Prompt: About me: {{profile}} Write the opening paragraph of a proposal to [Client name]. Restate their goal ([Their goal]) and the cost of not solving it ([Cost of waiting]) in their words. Under 70 words, no 'I am excited'.
+Check 1: Uses their words
+Check 2: No 'I'm excited'
+Check 3: No price yet
+
+P3-04 | Deliverables with 'done when' lines
+When to use: You want 'done' to be clear before you start.
+Prompt: About me: {{profile}} For [Project], turn [Deliverables] into a numbered list where each item has a format, a quantity and a 'done when' line. Include [Revision rounds] revision rounds. Under 160 words.
+Check 1: Each item has 'done when'
+Check 2: Quantities are numbers
+Check 3: Revisions are capped
+
+P3-05 | Timeline with client deadlines
+When to use: Your dates slip because the client is late with feedback.
+Prompt: About me: {{profile}} Make a timeline for [Project] starting [Start date], with my milestones and the client's feedback deadlines. Add one line: if feedback is late, the timeline moves by the same number of days. Under 150 words.
+Check 1: Client deadlines shown
+Check 2: Late-feedback rule included
+Check 3: Real dates, not 'week 2'
+
+P3-06 | Payment terms section
+When to use: You want deposit and due dates in the proposal, not after it.
+Prompt: About me: {{profile}} Write payment terms for [Project] at [Total price]: [Deposit %] deposit to start, balance due [Payment days] days after delivery, how to pay, and that late payment follows our agreement. Under 100 words.
+Check 1: Deposit amount is right
+Check 2: Balance due rule is clear
+Check 3: Matches your contract
+
+P3-07 | Explain the price as value
+When to use: Your price looks big next to cheaper freelancers.
+Prompt: About me: {{profile}} Write a short 'Why this investment' section for [Client name] that links [Total price] to [Business outcome] and to my proof points. Under 90 words. No invented ROI numbers.
+Check 1: No invented ROI
+Check 2: Uses your real proof
+Check 3: Under 90 words
+
+P3-08 | Follow up on a sent proposal
+When to use: You sent a proposal 3 days ago and heard nothing.
+Prompt: About me: {{profile}} Write a follow-up to [Client name] on the proposal I sent [Date sent] for [Project]. Say I'm holding the [Start date] start until [Hold until], and offer a yes/no reply or a 15-minute call. Under 80 words.
+Check 1: Hold date is real
+Check 2: Yes/no is easy
+Check 3: No discount offered
+
+P3-09 | One-email proposal for a small job
+When to use: The job is small and a full proposal is overkill.
+Prompt: About me: {{profile}} Write a one-email proposal for [Project] at [Price]: what I'll do, what I need from the client, dates, price and how to accept. Under 180 words, plain text.
+Check 1: Price and dates included
+Check 2: How to accept is clear
+Check 3: Fits one screen
+
+P3-10 | Statement of work summary
+When to use: The client said yes and you need a short statement of work.
+Prompt: About me: {{profile}} Turn this accepted proposal into a statement-of-work summary for [Client name]: [Paste proposal]. Sections: Deliverables, Out of scope, Timeline, Payment, Change requests. Under 220 words.
+Check 1: Out of scope included
+Check 2: Change process stated
+Check 3: Payment matches proposal
+
+P3-11 | Price your add-ons in advance
+When to use: You want upsells priced before the client asks for them.
+Prompt: About me: {{profile}} For [Project], suggest 5 add-ons a client like [Client name] may ask for later, each with a one-line description and a price in my currency based on my rates. Under 120 words.
+Check 1: Prices fit your rates
+Check 2: One line each
+Check 3: Truly optional items
+
+P3-12 | Answer 'can you send examples?'
+When to use: The lead asks for samples and only a few of yours fit.
+Prompt: About me: {{profile}} Write a reply to [Client name] sharing [Sample links or names], with one sentence on why each fits [Their project]. Under 100 words. Do not offer free spec work.
+Check 1: Each sample has a reason
+Check 2: No free spec work
+Check 3: Under 100 words
+
+P3-13 | Quote a rush job
+When to use: The client needs it faster than your normal timeline.
+Prompt: About me: {{profile}} Write a quote note for [Client name]: standard timeline [Normal timeline] at [Price], or rush timeline [Rush timeline] with a [Rush fee %] rush fee, plus what the client must deliver by when. Under 120 words.
+Check 1: Rush fee is stated
+Check 2: Client duties listed
+Check 3: No unpriced rush
+
+P3-14 | Turn 'let me think about it' into a next step
+When to use: The client is interested but stalling.
+Prompt: About me: {{profile}} [Client name] replied: [Their words]. Write a reply that asks what is left to decide and offers 2 next steps (a short call or a smaller first phase). Under 90 words, no pressure.
+Check 1: Asks what's undecided
+Check 2: Offers 2 options
+Check 3: No pressure tactics
+
+P3-15 | Review a proposal before you send it
+When to use: Before you hit send on any proposal.
+Prompt: About me: {{profile}} Review this proposal: [Paste proposal]. Find vague deliverables, missing dates, missing payment terms and anything I promised without a limit. List the fixes in under 150 words.
+Check 1: Finds unlimited promises
+Check 2: Checks dates and payment
+Check 3: Fixes are specific
+
+
+==== 4. PRICING, PUSHBACK & RAISING RATES (15 prompts) ====
+
+P4-01 | Reply to 'can you do it cheaper?'
+When to use: The client likes the proposal but asks for a lower price.
+Prompt: About me: {{profile}} [Client name] asked for a lower price on [Project], quoted at [Price]. Write a reply that keeps the price and offers a smaller scope at [Lower option price] instead. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: The price holds
+Check 2: Less scope, not a discount
+Check 3: Under 100 words
+
+P4-02 | 'Our budget is only half'
+When to use: The client's budget is far below your quote.
+Prompt: About me: {{profile}} [Client name] has [Their budget] for a project I quoted at [Price]. Write a reply showing what their budget buys (a phase or fewer deliverables) and what it leaves out. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Shows what budget buys
+Check 2: States what's left out
+Check 3: No 'I'll make it work'
+
+P4-03 | Raise your rates for current clients
+When to use: You are raising rates and need to tell current clients.
+Prompt: About me: {{profile}} Write a rate-increase email to [Client name]: new rate [New rate] from [Effective date]; work booked before then stays at the old rate. Thank them in one sentence. Under 110 words, no apology. Do not offer discounts or extra work unless I say so.
+Check 1: New rate and date clear
+Check 2: No apology
+Check 3: No 'if that's OK'
+
+P4-04 | Answer 'what's your hourly rate?'
+When to use: A lead asks for an hourly rate and you price by project.
+Prompt: About me: {{profile}} Write a reply to [Client name] explaining that I price [Project type] by project, giving my typical project range and offering a quote after a 15-minute call. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: Gives a project range
+Check 2: Moves to a call
+Check 3: No hourly lowball
+
+P4-05 | Reply to 'someone quoted less'
+When to use: The client says another freelancer is cheaper.
+Prompt: About me: {{profile}} [Client name] says another freelancer quoted [Competitor price] against my [Price]. Write a calm reply naming 2 differences in what's included, and wish them well if price decides. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: No badmouthing
+Check 2: Names real differences
+Check 3: The price holds
+
+P4-06 | 'Cheaper now, more work later'
+When to use: The client promises future projects in exchange for a lower price now.
+Prompt: About me: {{profile}} [Client name] offers future work if I lower my price on [Project]. Write a reply that keeps today's price and offers [Volume terms] only once a second project is signed. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Today's price holds
+Check 2: Future terms are concrete
+Check 3: No vague promises
+
+P4-07 | Value-based price check
+When to use: You want to sanity-check a price against the client's value.
+Prompt: About me: {{profile}} Project: [Project] for [Client name]. Likely value to them: [Value estimate]. My hours: [Hours]. Suggest a price range with your reasoning, using only my numbers. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Uses only your numbers
+Check 2: Gives a range
+Check 3: Shows the reasoning
+
+P4-08 | Price a new service
+When to use: You are adding a service and don't know what to charge.
+Prompt: About me: {{profile}} I want to offer [New service]. Using my current prices and these market prices: [Market reference prices], suggest a starter and a full price with what each includes. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Uses your reference prices
+Check 2: Two clear levels
+Check 3: Fits your other prices
+
+P4-09 | Say no to a free test project
+When to use: The client wants free sample work before hiring you.
+Prompt: About me: {{profile}} [Client name] asked for a free test of [Task]. Write a friendly reply that offers past samples or a paid trial at [Trial price] instead. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: No free work
+Check 2: Paid trial is priced
+Check 3: Friendly tone
+
+P4-10 | Pushback on your payment terms
+When to use: The client wants net 60 or no deposit.
+Prompt: About me: {{profile}} [Client name] asked for [Their requested terms] instead of my terms: [My terms]. Write a reply that keeps my terms and gives the reason in one sentence. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Your terms hold
+Check 2: One-sentence reason
+Check 3: No net 60 by accident
+
+P4-11 | Cut scope, not your rate
+When to use: The client needs a lower number and you want to stay profitable.
+Prompt: About me: {{profile}} For [Project] at [Price], list 3 ways to reach [Target price] by removing scope (fewer pages, rounds or features), with what each removes. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Every option cuts scope
+Check 2: Price shown per option
+Check 3: Your rate stays the same
+
+P4-12 | Yearly rate review
+When to use: Once a year, to decide your next rate.
+Prompt: About me: {{profile}} My year: [Hours billed] hours billed, [Revenue] revenue, [Hours unbilled] unbilled hours, demand: [Demand notes]. Tell me whether to raise rates, by how much and for which clients first. Under 150 words. Do not offer discounts or extra work unless I say so.
+Check 1: Uses only your numbers
+Check 2: Names who goes first
+Check 3: Gives a % or amount
+
+P4-13 | Reply to a lowball offer
+When to use: A lead offers a fee well below your range.
+Prompt: About me: {{profile}} [Client name] offered [Their offer] for [Project]. Write a short reply with my starting price for this ([My starting price]) and a polite exit if that doesn't fit. Under 70 words. Do not offer discounts or extra work unless I say so.
+Check 1: Starting price stated
+Check 2: Polite exit
+Check 3: Under 70 words
+
+P4-14 | Offer a nonprofit rate on your terms
+When to use: You choose to give a nonprofit rate and want it framed clearly.
+Prompt: About me: {{profile}} Write a quote note to [Client name] showing the full price [Price], my nonprofit rate [Nonprofit price], and that the rate applies to this project only. Under 80 words. Do not offer discounts or extra work unless I say so, beyond this rate.
+Check 1: Full price shown first
+Check 2: Applies to this project
+Check 3: No extra discounts
+
+P4-15 | Words for 'that's too expensive' on a call
+When to use: You need something to say live, not an email.
+Prompt: About me: {{profile}} Give me 4 short spoken replies to [Their objection] for [Project] at [Price]: a question, a scope option, a value line and a polite walk-away. Each under 25 words. Do not offer discounts or extra work unless I say so.
+Check 1: Includes a question
+Check 2: Includes a walk-away
+Check 3: No instant discount
+
+
+==== 5. SCOPE CREEP & CHANGE REQUESTS (15 prompts) ====
+
+P5-01 | 'Can you just add one more page?'
+When to use: The client asks for something small that isn't in the scope.
+Prompt: About me: {{profile}} [Client name] asked me to add [New request] to [Project]; it is outside the agreed scope. Write a reply that welcomes it as a change request at [Change price] and [Extra days] extra days. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: Called a change request
+Check 2: Price and days stated
+Check 3: No 'happy to throw it in'
+
+P5-02 | Change request in writing
+When to use: The client wants changes and you need them approved in writing first.
+Prompt: About me: {{profile}} Write a change-request note for [Project]. Change: [Change description]. Price: [Change price]. New delivery date: [New delivery date]. Ask [Client name] to reply 'approved' before I start. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Written approval asked
+Check 2: New date shown
+Check 3: Price is stated
+
+P5-03 | Late feedback moves the timeline
+When to use: The client was late with feedback but expects the original date.
+Prompt: About me: {{profile}} [Client name]'s feedback on [Deliverable] was due [Feedback due date] and came [Days late] days late. Write an email: the timeline moves by [Days late] days to [New delivery date]; invoice due dates do not change. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: New date is calculated
+Check 2: Due dates unchanged
+Check 3: No blame language
+
+P5-04 | One more revision round
+When to use: The included revisions are used up and the client wants more.
+Prompt: About me: {{profile}} [Client name] wants another revision of [Deliverable]; the [Revision rounds] included rounds are used. Write a friendly reply offering an extra round at [Revision price]. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Rounds used are stated
+Check 2: Extra round is priced
+Check 3: Friendly, not defensive
+
+P5-05 | New stakeholder wants to redo approved work
+When to use: Someone joins late and wants to change what was already approved.
+Prompt: About me: {{profile}} [New person] at [Company] wants to change [Approved item], which [Client name] approved on [Approval date]. Write a reply: changes to approved work are a change request with a new price and timeline. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Approval date cited
+Check 2: Treated as a change
+Check 3: Not defensive
+
+P5-06 | The client is late with content
+When to use: You can't start because copy, images or access haven't arrived.
+Prompt: About me: {{profile}} I'm waiting on [Missing assets] from [Client name], due [Assets due date]. Write a reminder: the timeline starts when they arrive, and the payment due date stays as agreed. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Lists what's missing
+Check 2: Timeline moves, due stays
+Check 3: No guilt-tripping
+
+P5-07 | 'While you're at it...'
+When to use: The client slips a new task into an email about something else.
+Prompt: About me: {{profile}} In an email about [Current task], [Client name] also asked for [Extra task]. Write a reply that answers the main point, then quotes the extra task separately at [Price]. Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: Main point answered
+Check 2: Extra task is quoted
+Check 3: No silent yes
+
+P5-08 | Prepaid hours for small requests
+When to use: Small requests keep coming and you want a simple system for them.
+Prompt: About me: {{profile}} Write an email to [Client name] proposing a prepaid block of [Hours] hours at [Hourly rate] for small requests, used in [Minimum increment] steps and reported monthly. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: The block is prepaid
+Check 2: Increment is stated
+Check 3: Monthly report promised
+
+P5-09 | Hold the line on a live call
+When to use: A new ask comes up on a call and you need words in the moment.
+Prompt: About me: {{profile}} Give me 4 short spoken lines for when [Client name] adds [New request] on a call: note it, say it's outside the scope, promise a price by [Quote by date]. Each under 20 words. Do not offer discounts or extra work unless I say so.
+Check 1: No yes on the call
+Check 2: Quote date promised
+Check 3: Under 20 words each
+
+P5-10 | Reset scope after a messy month
+When to use: The project drifted and you need to restate what's in and out.
+Prompt: About me: {{profile}} For [Project], write an email to [Client name] restating the original scope ([Original scope]), listing extras done so far ([Extras so far]) and how extras are billed from now on. Under 140 words, calm. Do not offer discounts or extra work unless I say so.
+Check 1: Lists extras honestly
+Check 2: Billing from now is clear
+Check 3: Calm tone
+
+P5-11 | Bill for extras you already did
+When to use: You did extra work without a price and want to bill it fairly.
+Prompt: About me: {{profile}} I did [Extra work] for [Client name], outside the scope, about [Hours] hours. Write an email explaining a one-time invoice of [Amount] due [Due date], and that future extras get a quote first. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Hours and amount match
+Check 2: Due date included
+Check 3: Quote first from now on
+
+P5-12 | The client wants a new direction
+When to use: Halfway through, the client wants a different concept.
+Prompt: About me: {{profile}} [Client name] wants to switch [Project] from [Old direction] to [New direction]. Write a reply: work to date is billed at [Amount to date], and the new direction gets a new quote and a new timeline. Under 120 words. Do not offer discounts or extra work unless I say so.
+Check 1: Work to date is billed
+Check 2: New quote promised
+Check 3: New timeline mentioned
+
+P5-13 | Merge scattered feedback into one list
+When to use: Feedback arrives in comments, emails and chat messages.
+Prompt: About me: {{profile}} Scattered feedback on [Deliverable]: [Paste feedback]. Merge it into one numbered list, flag conflicts and out-of-scope items, and draft 2 sentences asking [Client name] to confirm. Under 180 words. Do not offer discounts or extra work unless I say so.
+Check 1: Conflicts flagged
+Check 2: Out-of-scope flagged
+Check 3: Asks for confirmation
+
+P5-14 | The deadline moves earlier
+When to use: The client wants the delivery date pulled forward.
+Prompt: About me: {{profile}} [Client name] wants [Project] by [Earlier date] instead of [Original date]. Write a reply with 2 options: the original date, or the earlier date with a [Rush fee] rush fee and this reduced scope: [Reduced scope]. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Two clear options
+Check 2: Rush fee stated
+Check 3: No free overtime
+
+P5-15 | Close the project, open the next one
+When to use: The project is done but 'quick' requests keep coming.
+Prompt: About me: {{profile}} [Project] for [Client name] was delivered [Delivery date]. Write an email confirming it is complete, that support ended [Support end date], and how to book new work (a quote or a retainer). Under 100 words. Do not offer discounts or extra work unless I say so.
+Check 1: Completion is stated
+Check 2: Support end date given
+Check 3: Next-work path offered
+
+
+==== 6. GETTING PAID (DEPOSITS, REMINDERS, LATE INVOICES) (15 prompts) ====
+
+P6-01 | Ask for the deposit before you start
+When to use: The client said yes, but the deposit invoice hasn't been paid.
+Prompt: About me: {{profile}} Write a short email to [Client name]: we start [Start date] once the [Deposit %] deposit ([Amount]) on invoice [Invoice #] is paid; if it arrives later, the start date and timeline move by the same days. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Start depends on payment
+Check 2: Amount matches the invoice
+Check 3: No 'no rush'
+
+P6-02 | Friendly nudge before the due date
+When to use: An invoice is due in a few days and you want it paid on time.
+Prompt: About me: {{profile}} Write a 3-sentence reminder to [Client name] that invoice [Invoice #] for [Amount] is due [Due date], with the payment link [Payment link]. Warm, no apology, under 60 words. Do not offer discounts or extra work unless I say so.
+Check 1: Exactly 3 sentences
+Check 2: Due date is a real date
+Check 3: Payment link included
+
+P6-03 | First reminder: invoice 14+ days late
+When to use: The due date has passed and your nudge got no reply.
+Prompt: About me: {{profile}} Write a payment reminder to [Client name] at [Company]. Invoice [Invoice #] for [Amount] was due [Due date] and is [Days overdue] days overdue. Ask them to pay this week via [Payment link]; late payment is handled under the terms in our agreement. Under 120 words, one clear ask, no apology. Do not offer discounts or extra work unless I say so.
+Check 1: Amount and dates match
+Check 2: No 'sorry to bother you'
+Check 3: One date, one way to pay
+
+P6-04 | Pause work until the invoice is paid
+When to use: An invoice is overdue and the client wants the next piece of work.
+Prompt: About me: {{profile}} Write an email to [Client name]: I'll start [Next deliverable] once invoice [Invoice #] for [Amount] is paid. The timeline moves by the days the payment is late; the invoice due date does not change. Under 100 words, calm. Do not offer discounts or extra work unless I say so.
+Check 1: Pauses work, no threats
+Check 2: Timeline moves, due stays
+Check 3: No 'I'll squeeze it in'
+
+P6-05 | Second reminder: a month late
+When to use: The first reminder didn't work and the invoice is now a month overdue.
+Prompt: About me: {{profile}} Write a second reminder to [Client name]: invoice [Invoice #] for [Amount], due [Due date], is [Days overdue] days overdue. Ask for payment by [Pay by date] or a call to agree a date, and say late fees apply per our agreement. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: Pay-by date is set
+Check 2: Late terms referenced
+Check 3: No new discount
+
+P6-06 | 'Payment is in process'
+When to use: The client says it's with accounts, but nothing arrives.
+Prompt: About me: {{profile}} [Client name] said invoice [Invoice #] for [Amount] is 'in process'. Write a reply asking for the expected payment date and the name of the person in accounts. Under 70 words, 3 sentences max. Do not offer discounts or extra work unless I say so.
+Check 1: Asks for a date
+Check 2: Asks for a contact
+Check 3: 3 sentences or fewer
+
+P6-07 | The client asks to pay in installments
+When to use: The client can't pay the full invoice at once.
+Prompt: About me: {{profile}} [Client name] asked to split invoice [Invoice #] ([Amount]) into installments. Write a reply proposing [Number of payments] payments on [Payment dates], agreed in writing, with work paused if one is missed. Under 110 words. Do not offer discounts or extra work unless I say so.
+Check 1: A date for each payment
+Check 2: Agreed in writing
+Check 3: Missed-payment rule
+
+P6-08 | Final notice before a late fee
+When to use: The invoice is long overdue and your agreement has a late fee.
+Prompt: About me: {{profile}} Write a final notice to [Client name]: invoice [Invoice #] for [Amount] was due [Due date]. If it is unpaid by [Final date], a late fee of [Late fee] applies under our agreement. Under 100 words, firm and factual. Do not offer discounts or extra work unless I say so.
+Check 1: Fee matches your contract
+Check 2: Final date is clear
+Check 3: Firm, not rude
+
+P6-09 | Send an invoice that gets paid
+When to use: You are sending an invoice and want it paid without a chase.
+Prompt: About me: {{profile}} Write the email that goes with invoice [Invoice #] for [Amount] to [Client name] for [Project]. Include the due date [Due date], how to pay ([Payment link]) and who to contact. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: Due date is a real date
+Check 2: Payment link included
+Check 3: Under 80 words
+
+P6-10 | Ask how the client pays invoices
+When to use: You are starting with a new client and don't know their payment process.
+Prompt: About me: {{profile}} Write a short email to [Client name] asking who receives invoices, whether a PO number is needed and when their payment runs are, before I send invoice [Invoice #]. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: Asks for a PO number
+Check 2: Asks for payment runs
+Check 3: Under 80 words
+
+P6-11 | Write to accounts payable directly
+When to use: Your contact is slow and you have an accounts payable email.
+Prompt: About me: {{profile}} Write an email to [Accounts contact] at [Company] about invoice [Invoice #] for [Amount], due [Due date], approved by [Client name]. List the invoice details in 3 lines and ask for the payment date. Under 90 words. Do not offer discounts or extra work unless I say so.
+Check 1: Says who approved it
+Check 2: Details in 3 lines
+Check 3: Asks for a payment date
+
+P6-12 | Thank them for paying
+When to use: The client paid and you want to keep the relationship warm.
+Prompt: About me: {{profile}} Write a short thank-you to [Client name] confirming payment of [Amount] for invoice [Invoice #] and naming the next step: [Next step]. Under 60 words, no comment on how late it was. Do not offer discounts or extra work unless I say so.
+Check 1: Amount confirmed
+Check 2: No 'finally'
+Check 3: Next step named
+
+P6-13 | The client paid the wrong amount
+When to use: The client paid less than the invoice total.
+Prompt: About me: {{profile}} [Client name] paid [Amount received] on invoice [Invoice #] for [Amount]. Write a reply that thanks them and asks for the remaining [Balance due] by [Due date] via [Payment link]. Under 80 words. Do not offer discounts or extra work unless I say so.
+Check 1: The balance math is right
+Check 2: Due date included
+Check 3: Neutral tone
+
+P6-14 | Final files after the final payment
+When to use: Your agreement says final files are released once the final invoice is paid.
+Prompt: About me: {{profile}} Write an email to [Client name]: [Project] is done, previews are attached, and the final files are released once invoice [Invoice #] for [Amount] is paid, as our agreement says. Under 90 words, friendly. Do not offer discounts or extra work unless I say so.
+Check 1: Cites your agreement
+Check 2: Previews are offered
+Check 3: Friendly, not hostile
+
+P6-15 | Better payment terms for next time
+When to use: A client paid late and you want firmer terms in your next contract.
+Prompt: About me: {{profile}} Draft plain-English payment terms: [Deposit %] deposit, balance due [Payment days] days after delivery, late fee [Late fee], work paused after [Pause after days] days overdue. Under 120 words. I will check it locally; this is not legal advice. Do not offer discounts or extra work unless I say so.
+Check 1: Matches your real terms
+Check 2: Pause rule included
+Check 3: Checked by a local pro
+
+
+==== 7. DELIVERY, FEEDBACK & REFERRALS (15 prompts) ====
+
+P7-01 | Delivery email that leads to approval
+When to use: You are delivering work and want a clear yes or one feedback list.
+Prompt: About me: {{profile}} Write a delivery email to [Client name] for [Deliverable]: what's included, how to review it, one combined feedback list by [Feedback due date], and which revision round this is: [Revision round]. Under 120 words.
+Check 1: Feedback deadline set
+Check 2: One combined list asked
+Check 3: Rounds are counted
+
+P7-02 | Ask for specific feedback
+When to use: Clients reply 'looks good?' or 'make it pop'.
+Prompt: About me: {{profile}} Write 5 specific feedback questions for [Client name] about [Deliverable] that lead to clear yes/no or A/B answers. Under 90 words.
+Check 1: Questions are answerable
+Check 2: No 'thoughts?'
+Check 3: 5 questions max
+
+P7-03 | Reply to harsh feedback
+When to use: The feedback stings and you want a calm reply.
+Prompt: About me: {{profile}} Feedback from [Client name]: [Paste feedback]. Write a calm reply that thanks them, restates the 2-3 actionable points and proposes next steps with a date. Under 120 words. No defensiveness, no over-apologizing.
+Check 1: Restates actionable points
+Check 2: Has a date
+Check 3: No over-apologizing
+
+P7-04 | Turn vague feedback into tasks
+When to use: The feedback is fuzzy and you need a to-do list.
+Prompt: About me: {{profile}} Turn this feedback on [Deliverable] into concrete tasks: [Paste feedback]. For each vague item, write one clarifying question. Under 150 words, as a list.
+Check 1: Tasks are concrete
+Check 2: Questions for vague items
+Check 3: Nothing added
+
+P7-05 | Ask for final approval in writing
+When to use: The last round is done and you need a written sign-off.
+Prompt: About me: {{profile}} Write an email asking [Client name] to confirm final approval of [Deliverable] by replying 'approved' by [Approval by date], and say what happens next (files, invoice). Under 90 words.
+Check 1: Asks for written approval
+Check 2: Date included
+Check 3: Next steps listed
+
+P7-06 | Handover notes
+When to use: You are handing over files, logins or a system.
+Prompt: About me: {{profile}} Write handover notes for [Client name] on [Project]: what's delivered, where the files live ([File location]), how to use or update them and who to contact. Under 200 words, with headings.
+Check 1: File location is right
+Check 2: How-to included
+Check 3: Contact info present
+
+P7-07 | Ask for a testimonial
+When to use: The client is happy and the project just ended.
+Prompt: About me: {{profile}} Write a short email asking [Client name] for a 2-3 sentence testimonial about [Project], with 3 guiding questions (the problem, what changed, would they recommend me). Under 100 words. Make it easy to say no.
+Check 1: Easy to say no
+Check 2: 3 guiding questions
+Check 3: Asks before publishing
+
+P7-08 | Turn client praise into a testimonial draft
+When to use: The client praised you in an email and agreed to a testimonial.
+Prompt: About me: {{profile}} Turn these words from [Client name] into a 2-3 sentence testimonial draft for their approval, keeping their meaning and numbers: [Paste their words]. Under 60 words. Do not add claims they didn't make.
+Check 1: No added claims
+Check 2: Their numbers only
+Check 3: Sent for their approval
+
+P7-09 | Ask a happy client for a referral
+When to use: The project went well and you want one introduction.
+Prompt: About me: {{profile}} Write an email asking [Client name] if they know one [Type of company] that needs [Service], with a 2-sentence blurb they can forward. Under 100 words. One ask, easy to ignore.
+Check 1: One specific ask
+Check 2: Forwardable blurb
+Check 3: Easy to ignore
+
+P7-10 | Project wrap-up notes
+When to use: The project ended and you want the lessons on record.
+Prompt: About me: {{profile}} Write a short wrap-up note to [Client name] for [Project]: 3 things that went well, 1 thing to improve next time and one idea for what's next. Use only facts from: [Paste notes]. Under 150 words.
+Check 1: Facts from your notes
+Check 2: One improvement
+Check 3: Next idea offered
+
+P7-11 | You are going to miss a deadline
+When to use: You will miss a date and need to say so early.
+Prompt: About me: {{profile}} I will miss the [Original date] date for [Deliverable]. Write an email to [Client name] with the honest reason in one sentence, the new date [New date] and what they get in the meantime. Under 90 words.
+Check 1: Sent before the date
+Check 2: New date is firm
+Check 3: One-sentence reason
+
+P7-12 | The client is unhappy with the result
+When to use: The client says the work isn't what they expected.
+Prompt: About me: {{profile}} [Client name] is unhappy with [Deliverable]: [Their complaint]. Write a reply that asks 3 questions to pin down the gap against the agreed brief and proposes a call. Under 120 words. No refund or free work in this email.
+Check 1: Asks about the gap
+Check 2: Refers to the brief
+Check 3: No refund offered yet
+
+P7-13 | Portfolio write-up
+When to use: You want to add a finished project to your portfolio.
+Prompt: About me: {{profile}} Write a portfolio entry for [Project] for a [Client type]: challenge, approach and result ([Result]). Under 120 words. May I name the client? [Can name client: yes or no]. If no, keep them anonymous.
+Check 1: Permission respected
+Check 2: The result is real
+Check 3: Under 120 words
+
+P7-14 | Thank-you note that invites the next project
+When to use: The final invoice is paid and you are wrapping up.
+Prompt: About me: {{profile}} Write a thank-you email to [Client name] closing [Project], with one specific thing I enjoyed and an open invitation for [Next service] in [Season or month]. Under 80 words, no hard sell.
+Check 1: Specific, not generic
+Check 2: No hard sell
+Check 3: Under 80 words
+
+P7-15 | Six-month check-in
+When to use: Half a year after a project, to see how it is performing.
+Prompt: About me: {{profile}} Write a check-in to [Client name] six months after [Project], asking how [Metric] has moved and offering a 20-minute review. Under 80 words, 3 sentences max.
+Check 1: Asks about a real metric
+Check 2: The offer is small
+Check 3: 3 sentences or fewer
+
+
+==== 8. RETAINERS, RENEWALS & WEEKLY ADMIN (15 prompts) ====
+
+P8-01 | Pitch a retainer to a repeat client
+When to use: A client has hired you 2-3 times and the work repeats.
+Prompt: About me: {{profile}} Write an email to [Client name] proposing a monthly retainer for [Recurring work]: [Monthly scope] for [Monthly fee], billed in advance, with [Notice period] notice to change it. Under 130 words.
+Check 1: Scope is countable
+Check 2: Billed in advance
+Check 3: Notice period stated
+
+P8-02 | Retainer scope with limits
+When to use: You want a retainer that doesn't turn into 'unlimited'.
+Prompt: About me: {{profile}} Write the scope section of a [Monthly fee] monthly retainer for [Client name]: included items with monthly quantities, response time, what rolls over (or not) and how extras are quoted. Under 160 words.
+Check 1: Quantities per month
+Check 2: Rollover rule is clear
+Check 3: Extras are quoted
+
+P8-03 | Renewal email
+When to use: A retainer or contract ends in about 30 days.
+Prompt: About me: {{profile}} Write a renewal email to [Client name]: the term ends [End date], highlights from this term ([Highlights]) and the renewal terms ([Renewal terms]). Ask for a yes by [Reply by date]. Under 130 words.
+Check 1: End date is correct
+Check 2: Real highlights only
+Check 3: Reply-by date set
+
+P8-04 | Renewal with a higher fee
+When to use: You are renewing and your fee goes up.
+Prompt: About me: {{profile}} Write a renewal email to [Client name] with the new monthly fee [New fee] (was [Old fee]) from [Effective date], and one sentence on the added value. Under 110 words, no apology.
+Check 1: Old and new fee correct
+Check 2: Effective date clear
+Check 3: No apology
+
+P8-05 | Monthly retainer report
+When to use: Month end, to show the client what they got.
+Prompt: About me: {{profile}} Turn these notes into a monthly report for [Client name]: [Paste notes]. Sections: Done, Results, Next month, and usage against [Monthly allowance]. Under 180 words.
+Check 1: Usage vs allowance shown
+Check 2: Results not invented
+Check 3: Next month planned
+
+P8-06 | End a retainer politely
+When to use: The retainer no longer fits your business.
+Prompt: About me: {{profile}} Write an email ending my retainer with [Client name], giving [Notice period] notice from [Notice date], a handover plan and an offer to recommend someone. Under 120 words.
+Check 1: Notice period honored
+Check 2: Handover planned
+Check 3: Warm close
+
+P8-07 | The client cancels the retainer
+When to use: The client tells you they are ending it.
+Prompt: About me: {{profile}} [Client name] wants to end the retainer. Write a reply that confirms the notice period ([Notice period]) and the last billing date ([Last billing date]), and asks one question about why. Under 90 words, no pleading.
+Check 1: Notice per agreement
+Check 2: Last date stated
+Check 3: No pleading
+
+P8-08 | Friday admin review
+When to use: End of the week, 20 minutes, to close loose ends.
+Prompt: About me: {{profile}} Here is my week: [Paste notes on projects, invoices and leads]. Give me a checklist: invoices to send or chase, follow-ups due, and my top 3 priorities for next week. Under 150 words.
+Check 1: Invoices listed
+Check 2: Follow-ups have dates
+Check 3: Only 3 priorities
+
+P8-09 | Plan next week from your calendar
+When to use: Monday morning, to turn a messy week into a plan.
+Prompt: About me: {{profile}} My commitments: [Paste calendar and deadlines]. Plan my week in time blocks, with deep work in the mornings and admin in one block. Under 150 words, as a table. Flag overloaded days.
+Check 1: Deadlines included
+Check 2: Admin in one block
+Check 3: Overload flagged
+
+P8-10 | Inbox triage
+When to use: You have a pile of unread client emails.
+Prompt: About me: {{profile}} Here are email subjects and senders: [Paste list]. Sort them into reply today, this week, delegate or ignore, with a one-line reason each. Put money emails first. Under 150 words.
+Check 1: Money emails first
+Check 2: One-line reasons
+Check 3: Nothing urgent ignored
+
+P8-11 | Monthly money review
+When to use: Month end, to see what's paid, owed and coming.
+Prompt: About me: {{profile}} My numbers: paid this month [Paid this month], invoiced but unpaid [Unpaid], pipeline [Pipeline]. Tell me what to chase, what to invoice and one pricing question to think about. Use only my numbers, under 120 words.
+Check 1: Only your numbers
+Check 2: Chase list included
+Check 3: One clear question
+
+P8-12 | Turn a long thread into decisions
+When to use: An email thread has 25 messages and you need the outcome.
+Prompt: About me: {{profile}} Thread with [Client name]: [Paste thread]. List the decisions made, the open questions and who owes what by when. Under 150 words. Mark anything unclear as 'unclear'.
+Check 1: Decisions vs open split
+Check 2: Owners and dates
+Check 3: Unclear items marked
+
+P8-13 | A 30-minute call agenda
+When to use: Before a client call, so it ends on time with a decision.
+Prompt: About me: {{profile}} Write a 30-minute agenda for my call with [Client name] about [Topic]: 4-5 items with minutes for each, and the decision we need by the end. Under 80 words.
+Check 1: Adds up to 30 minutes
+Check 2: Decision stated
+Check 3: Under 80 words
+
+P8-14 | Progress update before there's much to show
+When to use: Mid-project, the client is anxious and nothing is ready to show yet.
+Prompt: About me: {{profile}} Write a short progress update to [Client name] on [Project]: what's done, what's next and the date they will see something ([Preview date]). Under 80 words, 4 sentences max.
+Check 1: Real progress only
+Check 2: Preview date set
+Check 3: 4 sentences max
+
+P8-15 | Build your own prompt for a repeat task
+When to use: You keep doing a task this kit doesn't cover.
+Prompt: About me: {{profile}} I keep doing this task: [Describe the task]. Write a reusable prompt for it with fields in square brackets, a length limit and 3 checks before sending. Under 150 words.
+Check 1: Has bracket fields
+Check 2: Has a length limit
+Check 3: Has 3 checks
+
+==== END: 120 prompts ====
