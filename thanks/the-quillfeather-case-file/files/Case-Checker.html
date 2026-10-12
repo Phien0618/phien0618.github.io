@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Checker · The Quillfeather Case File · Clue &amp; Candle Games</title>
+<style>
+:root{--paper:#F4EBD9;--paper2:#EADFC8;--kraft:#C9A66B;--kraftd:#A9854B;--green:#2F5D62;--greend:#1E3D40;--stamp:#8B2E2E;--ink:#1A1A1A;--soft:#4A4A44;--sheet:#FFFDF7}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.45;overflow-x:hidden}
+header{background:var(--green);color:var(--paper);padding:22px 18px 18px;text-align:center;border-bottom:4px solid var(--kraft)}
+header .ey{font-family:"Trebuchet MS",Arial,sans-serif;letter-spacing:.18em;font-size:12px;color:var(--kraft);font-weight:bold}
+header h1{font-size:30px;line-height:1.1;margin-top:6px}
+header h1 i{color:var(--kraft)}
+header p{font-size:15px;margin-top:8px;opacity:.95}
+main{max-width:760px;margin:0 auto;padding:16px 14px 40px}
+.intro{background:var(--sheet);border:1px solid var(--kraftd);padding:14px 16px;font-size:15.5px}
+.prog{display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap}
+.prog span{flex:1;min-width:90px;text-align:center;font-family:"Trebuchet MS",Arial,sans-serif;font-size:12px;letter-spacing:.1em;border:1.5px solid var(--ink);padding:6px 4px;background:var(--sheet)}
+.prog span.ok{background:var(--green);color:#fff;border-color:var(--green)}
+section.obj{background:var(--sheet);border:1.5px solid var(--ink);margin-top:16px;padding:16px}
+section.obj h2{font-size:22px;line-height:1.2}
+section.obj h2 small{display:block;font-family:"Trebuchet MS",Arial,sans-serif;font-size:12px;letter-spacing:.14em;color:var(--soft);font-weight:normal;margin-bottom:3px}
+.q{font-size:15.5px;color:var(--soft);margin:4px 0 10px}
+label{display:block;font-family:"Trebuchet MS",Arial,sans-serif;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:10px 0 4px}
+select{width:100%;max-width:100%;font-size:16px;padding:9px 8px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:4px;font-family:inherit}
+.docs{display:flex;gap:8px;flex-wrap:wrap}
+.docs select{flex:1;min-width:88px;width:auto}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button{font-family:"Trebuchet MS",Arial,sans-serif;font-size:15px;font-weight:bold;letter-spacing:.04em;border:2px solid var(--green);background:var(--green);color:#fff;padding:10px 16px;border-radius:4px;cursor:pointer}
+button.alt{background:var(--sheet);color:var(--green)}
+button:disabled{opacity:.45;cursor:default}
+.res{margin-top:12px;font-weight:bold;font-size:17px;min-height:1.4em}
+.res.good{color:var(--green)}
+.res.bad{color:var(--stamp)}
+.res.good:before{content:"\2713  "}
+.res.bad:before{content:"\2715  "}
+.hints{margin-top:12px;border-top:1px dashed var(--ink);padding-top:10px}
+.hint{background:var(--paper2);border-left:4px solid var(--green);padding:9px 12px;margin-top:8px;font-size:15.5px}
+.hint b{font-family:"Trebuchet MS",Arial,sans-serif;font-size:12px;letter-spacing:.12em;display:block;margin-bottom:2px}
+.done{display:none;margin-top:18px;background:var(--green);color:#fff;padding:18px;text-align:center;font-size:19px;border:3px double var(--kraft)}
+.done.on{display:block}
+footer{text-align:center;font-family:"Trebuchet MS",Arial,sans-serif;font-size:12px;letter-spacing:.12em;color:var(--soft);padding:10px 14px 26px}
+.reset{margin-top:18px;text-align:center}
+@media (max-width:420px){header h1{font-size:25px}section.obj{padding:13px}button{width:100%}}
+</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header>
+  <div class="ey">CLUE &amp; CANDLE GAMES · CASE LW-1027</div>
+  <h1>The Quillfeather <i>Case Checker</i></h1>
+  <p>Enter your conclusions. The checker only says whether you are right. It never shows the answer.</p>
+</header>
+<main>
+  <div class="intro">Solve the objectives in order and write your answers on worksheet 04 first. Stuck? Press <b>Show Hint A</b>, then B, then C. The hints are word for word the same as the printed cards in file 05. This page works offline and sends nothing anywhere; your progress is saved in this browser only.</div>
+  <div class="prog"><span id="p1">OBJECTIVE 1</span><span id="p2">OBJECTIVE 2</span><span id="p3">OBJECTIVE 3</span></div>
+
+  <section class="obj" id="o1">
+    <h2><small>OBJECTIVE 1</small>The Lie</h2>
+    <div class="q">Whose account of Thursday evening is false, and which two documents prove it?</div>
+    <label for="s1">Suspect</label><select id="s1"></select>
+    <label>Two documents that prove it</label><div class="docs"><select id="d1a"></select><select id="d1b"></select></div>
+    <div class="row"><button id="c1">Check</button></div>
+    <div class="res" id="r1"></div>
+    <div class="hints"><button class="alt" id="h1">Show Hint A</button><div id="hl1"></div></div>
+  </section>
+
+  <section class="obj" id="o2">
+    <h2><small>OBJECTIVE 2</small>The Method</h2>
+    <div class="q">How did the person get into the Rare Book Room, and when was the top rung loosened?</div>
+    <label for="m2">How</label><select id="m2"></select>
+    <label for="t2">When (Thursday)</label><select id="t2"></select>
+    <div class="row"><button id="c2">Check</button></div>
+    <div class="res" id="r2"></div>
+    <div class="hints"><button class="alt" id="h2">Show Hint A</button><div id="hl2"></div></div>
+  </section>
+
+  <section class="obj" id="o3">
+    <h2><small>OBJECTIVE 3</small>The Culprit</h2>
+    <div class="q">Who did it, why, and which key documents prove it? (Up to three documents.)</div>
+    <label for="s3">Culprit</label><select id="s3"></select>
+    <label for="mo3">Motive</label><select id="mo3"></select>
+    <label>Key documents (at least two must be key evidence)</label><div class="docs"><select id="d3a"></select><select id="d3b"></select><select id="d3c"></select></div>
+    <div class="row"><button id="c3">Check</button></div>
+    <div class="res" id="r3"></div>
+    <div class="hints"><button class="alt" id="h3">Show Hint A</button><div id="hl3"></div></div>
+  </section>
+
+  <div class="done" id="done"></div>
+  <div class="reset"><button class="alt" id="reset">Reset all progress</button></div>
+</main>
+<footer>THE QUILLFEATHER CASE FILE · CLUE &amp; CANDLE GAMES</footer>
+<script>
+(function(){
+var P="eyJzIjpbIkltb2dlbiBRdWlsbGZlYXRoZXIiLCJUaGVvIE1hcmNoZXR0aSIsIlByaXlhIEhhbGxvcmFuIiwiRGVzbW9uZCBBY2h0ZXJiZXJnIiwiUm9zYWxpbmQgRmVud2ljayJdLCJtIjpbIkR1cmluZyBEZXNtb25kIEFjaHRlcmJlcmcncyBhZnRlcm5vb24gdmlzaXQsIHdoaWxlIENvcm5lbGl1cyB3YXMgYnVzeSBhdCB0aGUgcmVhZGluZyB0YWJsZSIsIkFmdGVyIGNsb3NpbmcsIGJ5IHNvbWVvbmUgd2hvIGJvcnJvd2VkIHNwYXJlIGtleSBzZXQgMyBmcm9tIHRoZSBjb3VudGVyIGhvb2siLCJUaHJvdWdoIHRoZSBSYXJlIEJvb2sgUm9vbSB3aW5kb3csIGZyb20gdGhlIHlhcmQiLCJBZnRlciBjbG9zaW5nLCBieSBzb21lb25lIHdpdGggdGhlaXIgb3duIGtleSBzZXQgd2hvIGNhbWUgaW4gdGhyb3VnaCB0aGUgYmFjayBkb29yIGZyb20gTWlsbCBMYW5lIiwiQWZ0ZXIgQ29ybmVsaXVzIGNhbWUgYmFjaywgd2hpbGUgaGUgd2FzIGluIHRoZSBvZmZpY2UiXSwidCI6WyIyOjAwIHRvIDQ6MTUgcG0iLCI0OjIwIHRvIDU6NDUgcG0iLCI1OjQ1IHRvIDc6MDUgcG0iLCI3OjA1IHRvIDk6MDAgcG0iLCJPdmVybmlnaHQsIGFmdGVyIDk6MDAgcG0iXSwibW8iOlsiVG8gZ2V0IHRoZSBNYXJzaCBDbG9jayBmb3IgYSBwcml2YXRlIGNvbGxlY3Rpb24iLCJUbyB3aW4gYmFjayBhIGJvb2sgbG9zdCBhdCBhdWN0aW9uIiwiVG8gY2xlYXIgdGhlIHdheSBmb3Igc2VsbGluZyB0aGUgc2hvcCB0byBhIGNoYWluIiwiVG8gY292ZXIgdXAgbW9uZXkgbWlzc2luZyBmcm9tIHRoZSB0aWxsIiwiVG8gc3RvcCBDb3JuZWxpdXMgZXhwb3NpbmcgdGhhdCB0aGUgTWFyc2ggQ2xvY2sgaGFkIGJlZW4gc3dhcHBlZCBmb3IgYSBsYXRlciBwcmludGluZyIsIlRvIGluaGVyaXQgdGhlIHNob3AiXSwiaCI6eyIxIjp7IkEiOiJSZXJlYWQgaG93IGVhY2ggc3VzcGVjdCBzYXlzIHRoZXkgdHJhdmVsZWQgb24gVGh1cnNkYXksIGluIHRoZSBpbnRlcnZpZXdzIEQ0IHRvIEQ4IGFuZCB0aGUgc3RhdGVtZW50cyBpbiAwMi4gVGhlbiBmaW5kIHRoZSBvbmUgcHVibGljIHNjaGVkdWxlIGluIHRoZSBmaWxlIHRoYXQgY2FuIHRlc3QgYSB0cmF2ZWwgY2xhaW0uIiwiQiI6Ik9uIHRoZSBidXMgdGltZXRhYmxlLCBEMTIsIHJlYWQgdGhlIG5vdGVzIGF0IHRoZSBib3R0b20sIG5vdCBvbmx5IHRoZSB0aW1lcy4gT25lIGRlcGFydHVyZSBjYXJyaWVzIGEgbGV0dGVyLiBXaGF0IGRvZXMgdGhhdCBsZXR0ZXIgbWVhbiwgYW5kIGRpZCB0aGF0IGNvbmRpdGlvbiBhcHBseSBvbiB0aGlzIFRodXJzZGF5PyIsIkMiOiJQdXQgdGhlIFMgbm90ZSBvbiBEMTIgYmVzaWRlIHRoZSBzZWNvbmQgc3RvcnkgaW4gdGhlIG5ld3NwYXBlciBjbGlwcGluZywgRDE2LiBUaGVuIGNvbXBhcmUgYm90aCB3aXRoIHRoZSBidXMgdGltZSBvbmUgc3VzcGVjdCBnaXZlcyBpbiB0aGVpciBpbnRlcnZpZXcuIn0sIjIiOnsiQSI6IkZpcnN0IGZpbmQgd2hlbiB0aGUgdG9wIHJ1bmcgd2FzIGxhc3Qga25vd24gdG8gYmUgc2FmZSwgYW5kIHdoZW4gQ29ybmVsaXVzIG5leHQgY2xpbWJlZCB0aGUgbGFkZGVyLiBUaGUgaW50ZXJ2aWV3cyBENiBhbmQgRDcgYW5kIHRoZSBwaG9uZSBwcmludG91dCBEMTggZ2l2ZSB5b3UgYm90aCBlbmRzLiIsIkIiOiJOb3cgYXNrIGhvdyBhbnlvbmUgY291bGQgcmVhY2ggdGhlIFJhcmUgQm9vayBSb29tIHdoaWxlIHRoZSBzaG9wIHdhcyBsb2NrZWQuIFBDIEFzaGJ5J3Mgc2NlbmUgbm90ZXMsIEQyLCBjb3ZlciBldmVyeSBkb29yLCB0aGUgd2luZG93IGFuZCBib3RoIGRvb3JtYXRzLiBUaGUga2V5IHJlZ2lzdGVyLCBEOSwgc2hvd3Mgd2hvIGhvbGRzIGtleXMuIiwiQyI6IkNvbXBhcmUgdGhlIGJhY2sgZG9vcm1hdCBpbiBEMiB3aXRoIHdoYXQgUHJpeWEgZGlkIGF0IDU6MzAgcG0gKEQ2KSBhbmQgdGhlIHRpbWUgdGhlIHJhaW4gYmVnYW4gKEQxMykuIFRoZW4gdXNlIEQzIHRvIHNlZSB3aGVyZSBDb3JuZWxpdXMgd2FzIGFmdGVyIHRoZSBzaG9wIGNsb3NlZCwgYW5kIHdobyBoZWxkIGEga2V5IHNldC4ifSwiMyI6eyJBIjoiT25lIGl0ZW0gZm91bmQgdW5kZXIgdGhlIGxhZGRlciBkb2VzIG5vdCBiZWxvbmcgaW4gYSByb29tIHRoYXQgc3RheWVkIGxvY2tlZC4gUmVyZWFkIHRoZSBsaXN0IGluIEQyLCB0aGVuIHN0dWR5IHRoYXQgaXRlbSdzIG93biBleGhpYml0LiBGb3IgdGhlIG1vdGl2ZSwgbG9vayBhdCB0aGUgcHJpdmF0ZSBub3RlIENvcm5lbGl1cyBsZWZ0LCBEMTQuIiwiQiI6IkQxNCBpcyB3cml0dGVuIGluIHNoZWxmIG1hcmtzLiBQcml5YSBleHBsYWlucyB0aGUgcGF0dGVybiBpbiBENiwgYW5kIHRoZSBzaGVsZiBsaXN0IEQxNSBnaXZlcyBldmVyeSB0aXRsZS4gQ291bnQgbGV0dGVycyBvbmx5LCBza2lwcGluZyBzcGFjZXMgYW5kIHB1bmN0dWF0aW9uLiBGb3IgdGhlIHJlY2VpcHQsIEQxNywgbWF0Y2ggaXRzIHRyYWRlIGFjY291bnQgaW5pdGlhbHMgdG8gYSBidXNpbmVzcyBuYW1lZCBpbiAwMi4iLCJDIjoiU2V0IHRoZSBkZWNvZGVkIG5vdGUgYmVzaWRlIHRoZSBTZXB0ZW1iZXIgZW50cmllcyBpbiB0aGUgbGVkZ2VyIChEMTApLCBGcmlkYXkgaW4gdGhlIGRpYXJ5IChEMTEpIGFuZCB0aGUgMzoxMiBwbSBtZXNzYWdlIGluIEQxOC4gVGhlbiBjb21wYXJlIHRoZSByZWNlaXB0J3MgdGltZSBhbmQgd2hlcmUgaXQgd2FzIGZvdW5kIHdpdGggd2hhdCBpdHMgb3duZXIgc2F5cyBpbiBpbnRlcnZpZXcuIn19LCJhIjp7IjEiOnsicyI6NCwiZCI6WzgsMTIsMTZdfSwiMiI6eyJtIjozLCJ0IjoyfSwiMyI6eyJzIjo0LCJtbyI6NCwiZCI6WzIsMTAsMTEsMTQsMTUsMTcsMThdfX0sImRvbmUiOiJDYXNlIGNsb3NlZC4gT3BlbiA5OS1TT0xVVElPTiB0byByZWFkIERJIE1vc3MncyBmdWxsIHJlcG9ydC4ifQ==";
+var SUM=3528507469;
+var h=5381;for(var i=0;i<P.length;i++){h=((h*33)^P.charCodeAt(i))>>>0;}
+if(h!==SUM){document.body.innerHTML='<p style="padding:20px">This file is damaged. Please download it again.</p>';throw new Error('checker data checksum mismatch '+h);}
+var D=JSON.parse(decodeURIComponent(escape(atob(P))));
+var KEY='quillfeather-checker-v1';
+var S={sel:{},solved:{},hints:{1:0,2:0,3:0}};
+try{var raw=localStorage.getItem(KEY);if(raw){var o=JSON.parse(raw);if(o&&o.hints)S=o;}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function $(id){return document.getElementById(id);}
+function fill(id,list,ph){var el=$(id);el.innerHTML='';var o=document.createElement('option');o.value='';o.textContent=ph;el.appendChild(o);list.forEach(function(t,i){var x=document.createElement('option');x.value=String(i);x.textContent=t;el.appendChild(x);});if(S.sel[id]!==undefined)el.value=S.sel[id];el.onchange=function(){S.sel[id]=el.value;save();};}
+var docs=[];for(var n=1;n<=18;n++)docs.push('D'+n);
+fill('s1',D.s,'Choose a suspect');fill('d1a',docs,'D__');fill('d1b',docs,'D__');
+fill('m2',D.m,'Choose how');fill('t2',D.t,'Choose a time window');
+fill('s3',D.s,'Choose the culprit');fill('mo3',D.mo,'Choose a motive');fill('d3a',docs,'D__');fill('d3b',docs,'D__');fill('d3c',docs,'D__');
+function num(id){var v=$(id).value;return v===''?-1:parseInt(v,10);}
+function docN(id){var v=num(id);return v<0?-1:v+1;}
+function hits(ids,set){var seen={},c=0;ids.forEach(function(id){var d=docN(id);if(d>0&&!seen[d]){seen[d]=1;if(set.indexOf(d)>=0)c++;}});return c;}
+var checks={
+ 1:function(){var a=D.a[1];return num('s1')===a.s&&hits(['d1a','d1b'],a.d)>=2;},
+ 2:function(){var a=D.a[2];return num('m2')===a.m&&num('t2')===a.t;},
+ 3:function(){var a=D.a[3];return num('s3')===a.s&&num('mo3')===a.mo&&hits(['d3a','d3b','d3c'],a.d)>=2;}
+};
+function show(k,ok){var r=$('r'+k);r.className='res '+(ok?'good':'bad');r.textContent=ok?'Correct':'Not quite – try a hint';}
+function paint(){[1,2,3].forEach(function(k){$('p'+k).className=S.solved[k]?'ok':'';if(S.solved[k])show(k,true);
+ var n=S.hints[k]||0,box=$('hl'+k),L=['A','B','C'];box.innerHTML='';
+ for(var j=0;j<n;j++){var d=document.createElement('div');d.className='hint';var b=document.createElement('b');b.textContent='OBJECTIVE '+k+' · HINT '+L[j];d.appendChild(b);d.appendChild(document.createTextNode(D.h[k][L[j]]));box.appendChild(d);}
+ var btn=$('h'+k);if(n>=3){btn.textContent='All hints shown';btn.disabled=true;}else{btn.textContent='Show Hint '+L[n];btn.disabled=false;}});
+ var all=S.solved[1]&&S.solved[2]&&S.solved[3];var dn=$('done');dn.className='done'+(all?' on':'');dn.textContent=all?D.done:'';}
+[1,2,3].forEach(function(k){
+ $('c'+k).onclick=function(){var ok=checks[k]();if(ok)S.solved[k]=true;save();show(k,ok);paint();if(!ok)show(k,false);};
+ $('h'+k).onclick=function(){if((S.hints[k]||0)<3){S.hints[k]=(S.hints[k]||0)+1;save();paint();}};
+});
+$('reset').onclick=function(){if(!window.confirm||window.confirm('Clear all answers, hints and progress?')){S={sel:{},solved:{},hints:{1:0,2:0,3:0}};save();['s1','d1a','d1b','m2','t2','s3','mo3','d3a','d3b','d3c'].forEach(function(id){$(id).value='';});[1,2,3].forEach(function(k){var r=$('r'+k);r.className='res';r.textContent='';});paint();}};
+paint();
+})();
+</script>
+</body>
+</html>
