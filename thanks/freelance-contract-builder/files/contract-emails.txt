@@ -1,0 +1,135 @@
+FREELANCE CONTRACT & SOW BUILDER: 8 EMAILS
+==========================================
+Replace every [Placeholder]. The numbers in brackets should match your Agreement and SOW from contract-builder.html.
+Not legal advice. Have a local lawyer review your agreement before you rely on it.
+
+
+EMAIL 1: SENDING THE CONTRACT AND SOW
+Subject: Contract and Statement of Work for [Project Name]
+
+Hi [Client First Name],
+
+Thanks again for choosing me for [Project Name]. Attached are two short documents:
+
+1. The Freelance Services Agreement ([Agreement Ref]): how we work together, payment, revisions and ownership.
+2. The Statement of Work: exactly what you get, what is not included, the dates and the payment schedule.
+
+The key numbers:
+- Total fee: [Total Fee]
+- Deposit: [Deposit Amount], due when you sign
+- Balance: [Balance Amount], due [Net Days] days after delivery, on [Balance Due Date]
+- Delivery: [Delivery Date]
+
+If everything looks right, please sign and return both by [Sign By Date], and I'll send the deposit invoice. Your start date of [Start Date] is reserved once the deposit arrives.
+
+Happy to walk through any clause on a quick call.
+
+Best,
+[Your Name]
+
+
+EMAIL 2: GENTLE NUDGE, CONTRACT NOT SIGNED YET
+Subject: Quick check: contract for [Project Name]
+
+Hi [Client First Name],
+
+Just checking that the agreement and Statement of Work for [Project Name] reached you. I'm holding [Start Date] for your project, and I can keep it for you until [Hold Until Date].
+
+If anything in the documents needs a change, reply with the clause number and I'll update it today.
+
+Best,
+[Your Name]
+
+
+EMAIL 3: CLIENT ASKS TO DROP THE DEPOSIT
+Subject: Re: Deposit for [Project Name]
+
+Hi [Client First Name],
+
+Thanks for asking. I take a deposit from every client because it reserves your start date and the time I set aside for your project, which means turning other work away for those weeks.
+
+If [Deposit %] is difficult for your cash flow right now, I can do [Lower Deposit %] instead. The balance date stays the same: [Net Days] days after delivery.
+
+Let me know which works and I'll update the agreement.
+
+Best,
+[Your Name]
+
+
+EMAIL 4: CLIENT WANTS FULL RIGHTS BEFORE FINAL PAYMENT
+Subject: Re: Ownership of the [Project Name] files
+
+Hi [Client First Name],
+
+Good question. Here is how it works in practice:
+
+- You receive every final file on the delivery date, [Delivery Date].
+- From that day you can use them for the project under the license in the agreement.
+- Full ownership transfers to you the moment the balance of [Balance Amount] is paid. That payment is due [Net Days] days after delivery, on [Balance Due Date].
+
+So nothing is held back from you while the balance is outstanding; only the formal transfer of ownership follows payment. This is standard for freelance work and protects both of us.
+
+Best,
+[Your Name]
+
+
+EMAIL 5: CLIENT ASKS FOR UNLIMITED REVISIONS
+Subject: Re: Revisions on [Project Name]
+
+Hi [Client First Name],
+
+I want you to love the result too. That's why the fee includes [Revision Rounds] full rounds of revisions on a direction we agree on together first. In my experience, a clear brief plus agreed rounds gets a better result than open-ended changes.
+
+If we ever need more, each extra round is [Extra Round Price], and I'll always ask you before starting one, so you stay in control of the budget.
+
+Best,
+[Your Name]
+
+
+EMAIL 6: SENDING A CHANGE ORDER
+Subject: Change Order [CO Number] for [Project Name]
+
+Hi [Client First Name],
+
+Happy to add [Change Title]. It isn't in the original Statement of Work, so I've put it in a short change order (attached) so we both have the same numbers:
+
+- Price change: [Price Change]
+- New total: [New Total]
+- Time change: [Days Change] days, so delivery moves to [New Delivery Date]
+- Balance due: [New Balance], [Net Days] days after the new delivery date, on [New Balance Due Date]
+
+Everything else in the agreement stays the same. Once you sign and return it, I'll start on the extra work.
+
+Best,
+[Your Name]
+
+
+EMAIL 7: CLIENT MATERIALS ARE LATE (TIMELINE MOVES, BALANCE DATE STAYS)
+Subject: [Project Name]: new delivery date (payment date unchanged)
+
+Hi [Client First Name],
+
+A quick update on the timeline. I asked for [Missing Materials] on [Request Date], and they arrived on [Received Date] / are still on the way. As set out in the Client Responsibilities & Delays clause, the delivery date moves by the same number of days:
+
+- New delivery date: [New Delivery Date] (was [Delivery Date])
+- Balance due date: unchanged, [Balance Due Date]
+
+If you can send [Missing Materials] by [Date], I can keep the delay to [Number] days. Let me know if anything is holding them up and I'll help where I can.
+
+Best,
+[Your Name]
+
+
+EMAIL 8: RETAINER RENEWAL OR RATE CHANGE NOTICE
+Subject: Your retainer from [Effective Date]: renewal and new rate
+
+Hi [Client First Name],
+
+Our minimum term of [Minimum Months] months ends on [Term End Date], and I've really enjoyed the work so far: [One Result You Can Point To].
+
+I'd love to continue month to month. From [Effective Date], the monthly fee will be [New Monthly Fee] (currently [Monthly Fee]) for up to [Monthly Hours] hours, with extra hours at [Overage Rate]. Everything else in our agreement stays the same.
+
+I'm giving you [Notice Days] days' notice so you have time to plan. If you'd like to adjust the scope instead, for example fewer posts at the current fee, I'm happy to set that up with a short change order.
+
+Best,
+[Your Name]

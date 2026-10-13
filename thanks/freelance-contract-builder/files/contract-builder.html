@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contract Builder · Agreement, Statement of Work and Change Order</title>
+<style id="pagecss"></style>
+<style>
+:root{--navy:#16233A;--navy2:#2B3D5C;--coral:#EE6B57;--teal:#1F6475;--tealt:#E3EFF1;--paper:#FAF7F1;--sand:#EFE8DC;--ink:#1E1E24;--muted:#6B6F7B;--line:#D9D3C7;--yellow:#FFF4C2;--sage:#2F6B57;--saget:#E3F0EA;
+--display:"Fraunces",Georgia,"Iowan Old Style","Times New Roman",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--brand:#16233A;--bi:#16233A;--btint:#E8E9EB}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);font-family:var(--body);color:var(--ink);font-size:14px;line-height:1.4}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.m,.mono{font-family:var(--mono)}
+.banner{position:sticky;top:0;z-index:40;height:36px;background:var(--sand);color:var(--navy2);display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:600;border-bottom:1px solid var(--line);padding:0 12px;text-align:center}
+.hdr{background:var(--navy);color:#fff;min-height:80px;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;gap:14px;flex-wrap:wrap}
+.brandt b{font-family:var(--display);font-size:26px;font-weight:700;display:block;line-height:1.1}
+.brandt span{color:var(--sand);font-size:13px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.hb{height:38px;padding:0 13px;border-radius:8px;border:1px solid #3A4B6B;background:transparent;color:#fff;font-weight:600;font-size:13px;white-space:nowrap}
+.hb:hover{background:#22314d}
+.hb.print{background:var(--coral);border-color:var(--coral);font-size:16px;font-weight:700}
+.hb.print:hover{background:#e25a45}
+.seg{display:inline-flex;border:1px solid #3A4B6B;border-radius:8px;overflow:hidden}
+.seg button{height:36px;padding:0 12px;border:0;background:transparent;color:#C9CED8;font-weight:600;font-size:13px}
+.seg button.on{background:#fff;color:var(--navy)}
+.main{display:grid;grid-template-columns:420px minmax(0,1fr);gap:24px;padding:20px 24px 60px;align-items:start}
+.form{display:flex;flex-direction:column;gap:12px;min-width:0}
+details.card{background:#fff;border:1px solid var(--line);border-radius:12px}
+details.card>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;color:var(--navy);display:flex;justify-content:space-between;align-items:center;font-size:15px}
+details.card>summary::-webkit-details-marker{display:none}
+details.card[open]>summary .chev{transform:rotate(180deg)}
+.chev{color:var(--muted);font-size:12px}
+.cbody{padding:0 16px 16px}
+.f{margin-bottom:10px;min-width:0}
+.f>label{display:block;font-size:12px;font-weight:600;color:var(--navy2);margin-bottom:4px}
+.f input,.f select,.f textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:8px;padding:0 10px;background:#fff;min-width:0}
+.f textarea{height:auto;min-height:72px;padding:8px 10px;resize:vertical;line-height:1.4}
+.f input[type=color]{width:48px;padding:3px;flex:none}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px var(--yellow)}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.hint{font-size:11.5px;color:var(--muted);margin-top:3px}
+.colr{display:flex;align-items:center;gap:8px}
+.logo-row{display:flex;align-items:center;gap:8px;min-height:40px}
+.logo-row img{max-height:38px;max-width:110px;object-fit:contain;border:1px solid var(--line);border-radius:6px;padding:2px;background:#fff}
+.calc{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:4px}
+.calc .cl-l{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-family:var(--mono);font-size:12px;background:var(--yellow);border-radius:6px;padding:4px 8px;color:var(--ink)}
+.warn{background:var(--yellow);color:#7A5A00;border-radius:8px;padding:8px 10px;font-size:12.5px;font-weight:600;margin-top:2px}
+.lrow{display:grid;grid-template-columns:minmax(0,1fr) 36px;gap:6px;margin-bottom:6px}
+.lrow.ms{grid-template-columns:minmax(0,1fr) 150px 36px}
+.lrow input{width:100%;height:38px;border:1px solid var(--line);border-radius:8px;padding:0 10px;background:#fff;min-width:0}
+.x{height:38px;border:1px solid var(--line);background:#fff;border-radius:8px;color:var(--muted)}
+.add{border:1px dashed var(--navy2);background:transparent;border-radius:8px;height:34px;padding:0 12px;color:var(--navy2);font-weight:600;font-size:13px}
+.linkb{border:0;background:none;color:var(--teal);font-weight:700;text-decoration:underline;padding:0 4px}
+.ptag{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--sand);border-radius:8px;padding:9px 12px;font-weight:600;color:var(--navy)}
+.segf{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.segf button{flex:1;height:38px;border:0;background:#fff;font-weight:600;color:var(--navy2);border-right:1px solid var(--line);font-size:13px;padding:0 4px}
+.segf button:last-child{border-right:0}
+.segf button.on{background:var(--navy);color:#fff}
+.cono{display:flex;gap:10px;align-items:center}
+.chipco{font-family:var(--mono);font-weight:700;color:var(--navy);border:1.5px solid var(--navy);border-radius:6px;padding:5px 10px}
+.pv{min-width:0}
+.tabs{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap}
+.tab{border:1px solid var(--line);border-bottom:0;background:#fff;border-radius:8px 8px 0 0;padding:10px 14px;font-weight:700;font-size:12px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tab.t2.on{background:var(--navy2);border-color:var(--navy2)}
+.tab.t3{border:1.5px solid var(--coral);border-bottom:0;color:var(--coral)}
+.tab.t3.on{background:#fff;color:var(--coral);box-shadow:inset 0 -3px 0 var(--coral)}
+.toolbar{background:#fff;border:1px solid var(--line);border-radius:0 12px 0 0;padding:10px 14px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.sw{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--navy);font-size:13px;background:none;border:0;padding:0}
+.sw i{width:40px;height:22px;border-radius:11px;background:#C9CED8;position:relative;flex:none}
+.sw i:after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}
+.sw.on i{background:var(--teal)}
+.sw.on i:after{left:21px}
+.ck{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--navy2)}
+.seg2{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg2 button{height:32px;border:0;background:#fff;color:var(--navy2);font-weight:600;font-size:12.5px;padding:0 10px}
+.seg2 button.on{background:var(--navy);color:#fff}
+.tb{height:32px;padding:0 12px;border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;font-weight:700;font-size:12.5px}
+.tb.done{background:var(--saget);border-color:var(--sage);color:var(--sage)}
+.stage{background:#E9E4DA;border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px;padding:18px;overflow:hidden}
+#docs{transform-origin:top left}
+.doc{background:#fff;width:816px;padding:58px 62px 46px;box-shadow:0 10px 30px rgba(10,20,40,.15);margin:0 auto;display:none;position:relative}
+.doc.on{display:block}
+body.a4 .doc{width:794px;padding:57px 60px 46px}
+.dbar{position:absolute;right:14px;top:12px}
+/* ---------- printed document ---------- */
+.doc{font-size:10.5pt;line-height:1.5;color:var(--ink)}
+.lh{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:2px solid var(--brand);padding-bottom:8px;margin-top:6px}
+.lh .who{display:flex;gap:10px;align-items:center;min-width:0}
+.lh img{max-height:40px;max-width:140px;object-fit:contain;display:block}
+.lh .nm{font-family:var(--display);font-weight:700;font-size:16pt;color:var(--bi);line-height:1.15}
+.lh .ct{font-size:8.5pt;color:var(--muted);margin-top:1px}
+.lh .rf{text-align:right;flex:none;max-width:55%}
+.ey{font-size:8.5pt;font-weight:700;letter-spacing:.12em;color:var(--bi);text-transform:uppercase}
+.bt{font-size:8.5pt;margin-top:2px}
+h1.dt{font-family:var(--display);font-weight:700;font-size:25pt;color:var(--bi);margin:16px 0 2px;line-height:1.1;letter-spacing:-.01em}
+#docs.lightbrand h1.dt{border-left:4px solid var(--brand);padding-left:10px}
+.dated{font-size:9.5pt;color:var(--muted);margin-bottom:12px}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--sand);border-radius:6px;margin-bottom:14px;break-inside:avoid}
+.facts div{padding:7px 10px;border-right:1px solid #E0D7C8;min-width:0}
+.facts div:last-child{border-right:0}
+.facts span{display:block;font-size:8pt;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.facts b{font-family:var(--mono);font-weight:700;font-size:10.5pt}
+.cl{display:grid;grid-template-columns:28px minmax(0,1fr);margin-bottom:9px;break-inside:avoid}
+.cl .n{font-weight:700;color:var(--bi);font-size:11pt;line-height:1.5}
+.ch{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cl h3{margin:0;font-size:11.5pt;font-weight:700;line-height:1.4;break-after:avoid}
+.cl p{margin:1px 0 0}
+.v{background:var(--yellow);border-radius:3px;padding:0 2px}
+.v.nm2{font-family:var(--mono);font-weight:500;font-size:.93em}
+.ph{font-family:var(--mono);font-size:.93em;background:var(--sand);border-radius:3px;padding:0 2px;color:#7A5A00;font-style:normal}
+.note{display:none;margin-top:6px;background:var(--tealt);border-left:3px solid var(--teal);border-radius:4px;padding:6px 10px;font-size:9.5pt;line-height:1.45;break-inside:avoid}
+.note b{display:block;font-size:8pt;letter-spacing:.1em;color:var(--teal);font-weight:700;text-transform:uppercase}
+body.notes .note{display:block}
+.cl.off{opacity:.4}
+.cl.off .note{display:none!important}
+.ctl{display:flex;gap:8px;align-items:center;flex:none;font-family:var(--body)}
+.pill{display:inline-flex;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden}
+.pill button{border:0;background:#fff;color:var(--navy);font-size:11px;font-weight:600;padding:3px 9px;display:inline-flex;gap:4px;align-items:center;border-right:1px solid #C9CED8}
+.pill button:last-child{border-right:0}
+.pill button.on{background:var(--navy);color:#fff}
+.inc{font-size:11px;color:var(--muted);display:inline-flex;gap:4px;align-items:center;cursor:pointer;white-space:nowrap}
+.lk{font-size:11px;color:var(--muted);white-space:nowrap}
+.xtag{display:none;font-size:10px;font-weight:700;letter-spacing:.1em;background:var(--sand);padding:2px 6px;border-radius:4px;color:var(--muted)}
+.cl.off .xtag{display:inline-block}
+.lawbar{background:var(--yellow);color:#7A5A00;font-weight:600;font-size:10pt;border-radius:6px;padding:8px 12px;margin:0 0 12px}
+h2.sh{font-size:9pt;letter-spacing:.12em;text-transform:uppercase;color:var(--bi);margin:16px 0 6px;font-weight:700;display:flex;gap:8px;align-items:baseline;break-after:avoid}
+h2.sh span{font-family:var(--mono)}
+.doc p{margin:0 0 4px}
+.doc .sm{font-size:9.5pt;color:var(--ink);margin-top:6px}
+table.t{width:100%;border-collapse:collapse;font-size:10pt}
+table.t tr{break-inside:avoid}
+table.t th{background:var(--sand);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 8px;font-weight:700}
+table.t td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+table.t .r{text-align:right;font-family:var(--mono);white-space:nowrap}
+table.t td.d{font-size:9.5pt}
+table.t tr.sum td{background:var(--btint);font-weight:700}
+table.t .after{background:var(--btint);font-weight:700}
+table.t th.after{color:var(--bi)}
+.ibox{border:1px solid #9AA0AA;border-radius:6px;padding:6px 12px;break-inside:avoid}
+.xbox{border:1.5px dashed #8A8F9A;border-radius:6px;padding:6px 12px;break-inside:avoid}
+ul.lst{list-style:none;margin:0;padding:0}
+ul.lst li{display:flex;gap:8px;padding:2px 0}
+ul.lst li i{font-style:normal;font-weight:700;flex:none;width:14px}
+ul.lst li i.no{color:var(--muted)}
+.refs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:6px;margin:6px 0 4px;break-inside:avoid}
+.refs div{padding:8px 10px;border-right:1px solid var(--line);font-size:9.5pt;min-width:0}
+.refs div:last-child{border-right:0}
+.refs span{display:block;font-size:8pt;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
+.cochip{display:inline-block;font-family:var(--mono);font-weight:700;font-size:11pt;color:var(--bi);border:1.5px solid var(--brand);border-radius:6px;padding:2px 9px;margin-top:3px}
+.desc{border:1px solid var(--line);border-radius:6px;padding:9px 12px;break-inside:avoid}
+.desc ul{margin:4px 0 0;padding-left:18px}
+.sig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;margin-top:10px;break-inside:avoid}
+.sig h4{margin:0 0 2px;font-size:8pt;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.sig .ln{border-bottom:1px solid var(--ink);min-height:26px;display:flex;align-items:flex-end;padding-bottom:2px;font-size:10pt}
+.sig .ln.tall{min-height:12mm}
+.sig .lab{font-size:8pt;color:var(--muted);margin:2px 0 4px}
+.keep{break-inside:avoid}
+.conotes{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:6px;padding:8px 12px 6px;margin:10px 0 4px;break-inside:avoid}
+.conotes span{font-size:8pt;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.conotes small{font-size:8.5pt;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400}
+.conotes i{display:block;flex:1 0 0;border-bottom:1px solid var(--line);min-height:0}
+@media screen{.conotes i{flex:none;height:22px}}
+.conotes i:last-child{border-bottom:0}
+.disc{margin-top:16px;border-top:1px solid var(--line);padding-top:6px;font-size:8pt;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+/* ---------- modals ---------- */
+.modal{position:fixed;inset:0;background:rgba(22,35,58,.45);z-index:60;display:flex;align-items:flex-start;justify-content:center;padding-top:90px}
+.modal[hidden]{display:none}
+.mbox{background:#fff;border-radius:14px;width:min(560px,94vw);max-height:76vh;overflow:auto;padding:20px 22px;box-shadow:0 30px 60px rgba(10,20,40,.3)}
+.mbox h3{margin:0 0 4px;font-family:var(--display);font-size:22px;color:var(--navy)}
+.mbox .hint{margin-bottom:12px}
+.pbtn{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px 14px;margin-bottom:8px}
+.pbtn b{display:block;color:var(--navy)}
+.pbtn span{font-size:12.5px;color:var(--muted)}
+.pbtn:hover,.pbtn.cur{border-color:var(--navy);background:var(--paper)}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:9px 0}
+.srow small{display:block;color:var(--muted)}
+.mact{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.btn{height:36px;border-radius:8px;border:1px solid var(--navy);background:var(--navy);color:#fff;font-weight:700;padding:0 14px}
+.btn.ghost{background:#fff;color:var(--navy)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.close{float:right;border:0;background:none;font-size:20px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--sage);color:#fff;font-weight:700;padding:10px 18px;border-radius:10px;opacity:0;transition:all .2s;z-index:70;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr);padding:14px}.hdr{padding:12px 14px}}
+@media print{
+ html,body{background:#fff}
+ .banner,.hdr,.form,.tabs,.toolbar,.ctl,.lawbar,.xtag,.toast,.modal,.dbar{display:none!important}
+ .main{display:block;padding:0}
+ .pv{display:block}
+ .stage{background:none;border:0;padding:0;overflow:visible}
+ #docs{zoom:1!important;transform:none!important}
+ .doc{display:none;box-shadow:none;margin:0;padding:0!important;width:auto!important}
+ body.pall .doc{display:block}
+ body:not(.pall) .doc.on{display:block}
+ .doc.brk{break-before:page}
+ .cl.off{display:none!important}
+ .v,.ph{background:none;padding:0;color:inherit}
+ .note{display:none!important}
+ body.pnotes .cl:not(.off) .note{display:block!important;background:none;border:1px solid var(--teal);border-radius:6px;padding:6px 10px}
+ .lh{margin-top:0}
+ body:not(.nomb) .disc{display:none!important}
+ #d-sow{page:sow}
+ #d-co{page:co}
+ body.pall #d-co,body:not(.pall) #d-co.on{display:flex!important;flex-direction:column;min-height:9.5in}
+ body.a4.pall #d-co,body.a4:not(.pall) #d-co.on{min-height:258mm}
+ #d-co .conotes{flex:1 0 auto}
+}
+</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body class="notes pall">
+<div class="banner" role="note"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9v5M10 6v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Not legal advice. Have a local lawyer review before signing.</div>
+<header class="hdr">
+ <div class="brandt"><b>Contract Builder</b><span>Agreement · SOW · Change Order</span></div>
+ <div class="acts">
+  <button type="button" class="hb" id="bPreset">Preset ▾</button>
+  <button type="button" class="hb" id="bSaved">Saved (<span id="savedn">0</span>/20)</button>
+  <button type="button" class="hb" id="bExport">Export JSON</button>
+  <button type="button" class="hb" id="bImport">Import JSON</button>
+  <input type="file" id="importFile" accept=".json,application/json" hidden>
+  <div class="seg" id="paper"><button type="button" data-paper="letter">Letter</button><button type="button" data-paper="a4">A4</button></div>
+  <button type="button" class="hb print" id="bPrint">Print / Save as PDF</button>
+ </div>
+</header>
+<main class="main">
+ <section class="form" id="form" aria-label="Contract details"></section>
+ <section class="pv" aria-label="Documents">
+  <div class="tabs">
+   <button type="button" class="tab t1" data-tab="agr">Freelance Services Agreement</button>
+   <button type="button" class="tab t2" data-tab="sow">Statement of Work</button>
+   <button type="button" class="tab t3" data-tab="co">Change Order · <span id="cotab">CO-001</span></button>
+  </div>
+  <div class="toolbar">
+   <button type="button" class="sw" id="swNotes" aria-pressed="true"><i></i>Show plain-English notes</button>
+   <label class="ck"><input type="checkbox" id="ckPN"> Print notes</label>
+   <div class="seg2" id="pscope"><button type="button" data-ps="all">Print all 3</button><button type="button" data-ps="one">Print this tab only</button></div>
+  </div>
+  <div class="stage" id="stage"><div id="docs"><article class="doc" id="d-agr"></article><article class="doc" id="d-sow"></article><article class="doc" id="d-co"></article></div></div>
+ </section>
+</main>
+<div class="modal" id="mPreset" hidden><div class="mbox"><button type="button" class="close" data-close aria-label="Close">✕</button><h3>Profession presets</h3><div class="hint">A preset fills the project, scope, fees, two profession-specific clauses and an example change order. Your own details, color and logo stay. Save your current contract first if you want to keep it.</div><div id="presetList"></div></div></div>
+<div class="modal" id="mSaved" hidden><div class="mbox"><button type="button" class="close" data-close aria-label="Close">✕</button><h3>Saved contracts</h3><div class="hint">Up to 20 contracts are kept in this browser only. Use Export JSON to back them up or move them to another computer.</div><div class="mact"><button type="button" class="btn" id="saveNow">Save current contract</button><span class="hint" id="savedCount"></span></div><div id="savedList"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script id="fcb-data" type="application/json">
+{
+"clauses":[
+{"id":"parties","lock":true,"title":"Parties","note":"Confusion about who owes you the money. Naming the client's business, not just the person you talk to, makes it clear who is bound.","v":{"standard":"This agreement is between [Freelancer Business] (“I”, “me”), [Freelancer Email], and [Client Company], represented by [Client Contact], [Client Title] (“you”). It is dated [Agreement Date] and has the reference [Agreement Ref]."}},
+{"id":"services","title":"Services & Statement of Work","note":"Arguments about what was “obviously included”. The SOW is the written list both of you can point to.","v":{"standard":"I will provide the [Service Description] listed in the Statement of Work (SOW) dated [Agreement Date] for [Project Name]. The SOW is part of this agreement. Anything not listed there, including the items under “Not included”, is outside this agreement."}},
+{"id":"fees","title":"Fees & Deposit","note":"Doing weeks of work for a client who disappears. The deposit means you are never fully unpaid, and it shows the client is committed.",
+ "v":{"flexible":"The fixed fee is [Total Fee]. A deposit of [Deposit Amount] ([Deposit %]) is due when you sign and is credited to the total. If you cancel before work starts, I refund the deposit minus the cost of any work already done.",
+      "standard":"The fixed fee is [Total Fee]. A non-refundable deposit of [Deposit Amount] ([Deposit %]) is due when you sign. Work starts once the deposit is received.",
+      "firm":"The fixed fee is [Total Fee]. A non-refundable deposit of [Deposit Amount] ([Deposit %]) is due when you sign. Your start date of [Start Date] is reserved only once the deposit has cleared; if it arrives late, the start date and the delivery date move by the same number of days."},
+ "byBilling":{
+  "hourly":{"flexible":"My rate is [Hourly Rate] per hour. The estimate is [Estimated Hours] hours ([Total Fee]). A deposit of [Deposit Amount] ([Deposit %] of the estimate) is due when you sign and is credited to the final invoice. If you cancel before work starts, I refund the deposit minus the cost of any work already done.",
+            "standard":"My rate is [Hourly Rate] per hour. The estimate is [Estimated Hours] hours ([Total Fee]). A non-refundable deposit of [Deposit Amount] ([Deposit %] of the estimate) is due when you sign and is credited to the final invoice. I will ask you in writing before the work goes more than 10% over the estimate.",
+            "firm":"My rate is [Hourly Rate] per hour, tracked in 15-minute blocks. The estimate is [Estimated Hours] hours ([Total Fee]). A non-refundable deposit of [Deposit Amount] ([Deposit %] of the estimate) is due when you sign and is credited to the final invoice. Work starts once the deposit has cleared. Work beyond the estimate continues only after you approve a new estimate in writing."},
+  "retainer":{"flexible":"The fee is [Monthly Fee] per month for up to [Monthly Hours] hours of work. Extra hours are billed at [Overage Rate] per hour if you approve them. A deposit of [Deposit Amount] ([Deposit %] of the first month) is due when you sign and is credited to the first monthly invoice. Unused hours roll over to the next month once, then expire.",
+              "standard":"The fee is [Monthly Fee] per month for up to [Monthly Hours] hours of work. Extra hours are billed at [Overage Rate] per hour, only after you approve them in writing (email is fine). A non-refundable deposit of [Deposit Amount] ([Deposit %] of the first month) is due when you sign and is credited to the first monthly invoice. Unused hours do not roll over.",
+              "firm":"The fee is [Monthly Fee] per month for up to [Monthly Hours] hours of work. Extra hours are billed at [Overage Rate] per hour after your written approval. The minimum term is [Minimum Months] months ([Minimum Total]). A non-refundable deposit of [Deposit Amount] ([Deposit %] of the first month) is due when you sign and is credited to the first monthly invoice. Unused hours do not roll over and are not refunded."}}},
+{"id":"payment","title":"Payment Terms & Late Fee","note":"“We'll pay when we can.” A fixed date plus a late fee turns a vague promise into a deadline. Late-fee limits differ by place, so check yours.",
+ "v":{"flexible":"The balance of [Balance Amount] is due [Net Days] days after delivery, on [Balance Due Date]. If a payment is more than 14 days late, a late fee of [Late Fee %] per month applies to the unpaid amount.",
+      "standard":"The balance of [Balance Amount] is due [Net Days] days after delivery, on [Balance Due Date]. Late invoices carry a fee of [Late Fee %] per month on the unpaid amount.",
+      "firm":"The balance of [Balance Amount] is due [Net Days] days after delivery, on [Balance Due Date]. Late invoices carry a fee of [Late Fee %] per month on the unpaid amount, from the day after the due date. If a payment is more than 14 days late, I may pause all work until the account is paid, and deadlines move by the length of the pause."},
+ "byBilling":{
+  "retainer":{"flexible":"I invoice [Monthly Fee] at the start of each month for that month's work. Invoices are due within [Net Days] days. If a payment is more than 14 days late, a late fee of [Late Fee %] per month applies to the unpaid amount.",
+              "standard":"I invoice [Monthly Fee] on the first working day of each month for that month's work, due within [Net Days] days. Approved extra hours are added to the next monthly invoice. Late invoices carry a fee of [Late Fee %] per month on the unpaid amount.",
+              "firm":"I invoice [Monthly Fee] on the first working day of each month for that month's work, due within [Net Days] days. Approved extra hours are added to the next monthly invoice. Late invoices carry a fee of [Late Fee %] per month on the unpaid amount. If an invoice is more than 14 days late, I may pause work until the account is paid; paused days still count toward the minimum term."}}},
+{"id":"revisions","title":"Revisions","note":"Endless “one more tweak” rounds. A set number of rounds, and a price for extra ones, ends the loop politely.",
+ "v":{"flexible":"The fee includes [Revision Rounds] rounds of revisions. Small fixes after that, such as typos or spacing, are free; larger extra rounds are [Extra Round Price] each.",
+      "standard":"The fee includes [Revision Rounds] rounds of revisions on the chosen direction. Each extra round is [Extra Round Price], agreed in writing before I start it.",
+      "firm":"The fee includes [Revision Rounds] rounds of revisions on the chosen direction. A round is one set of combined feedback sent in a single message. Each extra round is [Extra Round Price], paid before I start it. Changing direction after approval is a change request, not a revision."}},
+{"id":"changes","title":"Change Requests","note":"“Can you just add…” scope creep. Every extra has a price and a date before you do it.",
+ "v":{"flexible":"If you want to add or change work, I will tell you the price and time impact by email before I start. Your written OK by email is enough.",
+      "standard":"New work or changes to the SOW are made with a numbered Change Order that states the price and time impact. I start changed work after we both sign it.",
+      "firm":"New work or changes to the SOW are made only with a numbered Change Order that states the price and time impact. I start changed work after we both sign it and any extra deposit stated in it is paid. Until then, the original scope, price and dates apply."}},
+{"id":"delays","title":"Client Responsibilities & Delays","note":"Waiting weeks for content and then waiting weeks to be paid. Your deadline moves when theirs slips, but your payday does not.",
+ "v":{"flexible":"You will send the materials and feedback I ask for within a reasonable time, normally 5 business days. If materials you owe me arrive late, the delivery date moves by the same number of days. The final payment stays due on the original date ([Balance Due Date]).",
+      "standard":"You will send the materials, access and feedback I ask for within 3 business days of my request. If materials you owe me arrive late, the delivery date moves by the same number of days. The final payment stays due on the original date ([Balance Due Date]).",
+      "firm":"You will send the materials, access and feedback I ask for within 2 business days of my request. If materials you owe me arrive late, the delivery date moves by the same number of days, plus up to 5 business days for me to fit the work back into my schedule. The final payment stays due on the original date ([Balance Due Date])."},
+ "byBilling":{
+  "retainer":{"flexible":"You will send the materials and feedback I ask for within a reasonable time, normally 5 business days. If materials you owe me arrive late, the work that depends on them moves by the same number of days. Monthly invoices stay due on their normal dates.",
+              "standard":"You will send the materials, access and feedback I ask for within 3 business days of my request. If materials you owe me arrive late, the work that depends on them moves by the same number of days. Monthly invoices stay due on their normal dates.",
+              "firm":"You will send the materials, access and feedback I ask for within 2 business days of my request. If materials you owe me arrive late, the work that depends on them moves by the same number of days, plus up to 5 business days for me to fit it back into my schedule. Monthly invoices stay due on their normal dates."}}},
+{"id":"acceptance","title":"Acceptance","note":"A project that is never “finished”. A review window with a clear end turns “we're still looking at it” into a yes or a list.",
+ "v":{"flexible":"After delivery, you have [Acceptance Days] days to review the work and tell me about anything that doesn't match the SOW. I will fix those items at no charge.",
+      "standard":"After delivery, you have [Acceptance Days] days to tell me in writing about anything that doesn't match the SOW. I fix those items at no charge. If I hear nothing in that time, the work is accepted.",
+      "firm":"After delivery, you have [Acceptance Days] days to list in writing anything that doesn't match the SOW. I fix listed items at no charge; anything else is a revision or a change request. If I hear nothing in that time, or you use the work publicly, the work is accepted."}},
+{"id":"ip","title":"Intellectual Property","note":"Handing over everything and then chasing the balance. Ownership follows payment, so the client has a reason to pay on time.",
+ "v":{"flexible":"When you have paid the full fee, you own the final delivered work. Until then, you may use the delivered work for this project under a license from me.",
+      "standard":"Ownership of the final delivered work transfers to you once the full fee is paid. Until then, you have a license to use it for this project. Drafts, unused concepts and my own tools, templates and know-how stay mine.",
+      "firm":"Ownership of the final delivered work transfers to you once the full fee and any signed Change Orders are paid. Until then, you have a license to use it for this project, which ends if a payment is more than 30 days late. Drafts, unused concepts and my own tools, templates and know-how stay mine."}},
+{"id":"portfolio","title":"Portfolio Rights","note":"Doing your best work and never being allowed to show it. Your next client wants to see this one.",
+ "v":{"flexible":"I may show the finished work in my portfolio after it is public. If you would rather I didn't, tell me in writing and I won't.",
+      "standard":"I may show the finished work and a short description of the project in my portfolio and on social media after it is publicly launched, unless it contains your confidential information.",
+      "firm":"I may show the finished work, drafts and a short case study in my portfolio, on social media and in award entries, starting 30 days after delivery. You may ask me to remove confidential details."}},
+{"id":"confidential","title":"Confidentiality","note":"A client who worries you will leak their plans, and a client who shares your prices or methods. Making it mutual protects you too.",
+ "v":{"flexible":"I will keep your non-public business information private and use it only for this project.",
+      "standard":"Each of us will keep the other's non-public business information private, use it only for this project, and return or delete it when asked. This does not cover information that is already public.",
+      "firm":"Each of us will keep the other's non-public business information private during this agreement and for 2 years after it ends, use it only for this project, and return or delete it when asked. This does not cover information that is already public or that the law requires us to share."}},
+{"id":"contractor","title":"Independent Contractor Status","note":"Being treated like staff without staff benefits: fixed hours, daily check-ins, office rules. It also makes clear who handles tax. How this is judged depends on local law.","v":{"standard":"I am an independent business, not your employee. I choose how, when and where I do the work, use my own equipment, and pay my own taxes and insurance. Nothing in this agreement creates an employment relationship or a partnership."}},
+{"id":"kill","title":"Cancellation & Kill Fee","note":"A client who cancels halfway after you turned down other work. The kill fee pays for the time you reserved.",
+ "v":{"flexible":"If you cancel the project after work has started, you pay for the work done so far, up to [Kill Fee %] of the fee ([Kill Fee Amount]). I refund any part of the deposit above that amount.",
+      "standard":"If you cancel after this agreement is signed, you owe a kill fee of [Kill Fee %] of the fee ([Kill Fee Amount]), or the value of the work completed so far if that is higher. The deposit counts toward this amount and is not refunded.",
+      "firm":"If you cancel after this agreement is signed, you owe a kill fee of [Kill Fee %] of the fee ([Kill Fee Amount]) plus the value of all work completed so far. The deposit counts toward this amount and is not refunded. Cancellation must be in writing."},
+ "byBilling":{
+  "retainer":{"flexible":"If you cancel before the start date, you owe up to [Kill Fee %] of one month's fee ([Kill Fee Amount]) for time already booked, and I refund any part of the deposit above that amount. After the start date, the Termination clause applies.",
+              "standard":"If you cancel before the start date, you owe a kill fee of [Kill Fee %] of one month's fee ([Kill Fee Amount]). The deposit counts toward it and is not refunded. After the start date, the Termination clause applies.",
+              "firm":"If you cancel before the start date, you owe a kill fee of [Kill Fee %] of one month's fee ([Kill Fee Amount]). The deposit counts toward it and is not refunded. After the start date, the minimum term and the Termination clause apply."}}},
+{"id":"liability","title":"Limitation of Liability","note":"One bad day costing more than the whole project. A cap ties your worst case to what you were paid. Some losses cannot be capped by law, so check locally.",
+ "v":{"flexible":"My total liability under this agreement is limited to twice the fees you paid me under it. Neither of us is liable for indirect losses, such as lost profits.",
+      "standard":"My total liability under this agreement is limited to the fees you paid me under it. Neither of us is liable for indirect or consequential losses, such as lost profits or lost data.",
+      "firm":"My total liability under this agreement is limited to the fees you paid me in the 3 months before the claim. Neither of us is liable for indirect or consequential losses, such as lost profits, lost data or lost business. You are responsible for checking that the final work suits your legal needs, such as trademark clearance or industry rules."}},
+{"id":"preset"},
+{"id":"termination","title":"Termination","note":"Being stuck with a client who stopped paying, or being dropped overnight. A clear exit and a notice period give both of you time to plan.",
+ "v":{"flexible":"Either of us may end this agreement in writing if the other doesn't fix a serious problem within 14 days of being told about it. You pay for the work done up to that date.",
+      "standard":"Either of us may end this agreement in writing if the other breaks it and doesn't fix the problem within 10 days of written notice. You pay for the work done up to the end date. If you end it for any other reason, the Cancellation & Kill Fee clause applies.",
+      "firm":"Either of us may end this agreement in writing if the other breaks it and doesn't fix the problem within 7 days of written notice. I may also end it if a payment is more than 30 days late. You pay for all work done up to the end date. If you end it for any other reason, the Cancellation & Kill Fee clause applies."},
+ "byBilling":{
+  "retainer":{"flexible":"After the minimum term of [Minimum Months] months ([Minimum Total]), either of us may end this agreement with [Notice Days] days' written notice. You pay for the work done up to the end of the notice period.",
+              "standard":"This retainer has a minimum term of [Minimum Months] months ([Minimum Total]). After that, it continues month to month until either of us ends it with [Notice Days] days' written notice. You pay the monthly fee up to the end of the notice period.",
+              "firm":"This retainer has a minimum term of [Minimum Months] months ([Minimum Total]); if you end it early, the fees for the rest of the minimum term are still due. After that, it continues month to month until either of us ends it with [Notice Days] days' written notice. You pay the monthly fee up to the end of the notice period. I may end it at once if an invoice is more than 30 days late."}}},
+{"id":"law","title":"Governing Law","note":"Arguing later about whose rules apply. Ask a local lawyer which state or country to name here.","v":{"standard":"This agreement is governed by the laws of [Your state/country]. If we disagree, we will first try to settle it by talking in good faith for at least 14 days before taking any formal step."}},
+{"id":"entire","title":"Entire Agreement","note":"“But you said on the call…” Only what is written in these documents counts, and changes have to be written down too.","v":{"standard":"This agreement, the SOW and any signed Change Orders are the whole agreement between us about this project. They replace earlier emails and conversations. Changes must be in writing and accepted by both of us."}},
+{"id":"sign","lock":true,"title":"Signatures","note":"Starting work on a handshake. Typed names and dates on a copy you both keep show what was agreed. This builder does not create electronic signatures: sign by hand or with an e-signature service you trust.","v":{"standard":"By signing below, we both agree to this agreement and the Statement of Work dated [Agreement Date]. Each of us keeps a signed copy."}}
+],
+"presets":{
+"design":{"label":"Brand/Graphic Design","short":"Fixed fee · logo, palette, brand guide","persona":{"name":"Maya Chen","business":"Maya Chen Studio","email":"maya@example.com"},
+ "contract":{"ref":"MCS-2026-07","date":"2026-10-26","project":"Northfield Bakery Brand Refresh","service":"brand design services","start":"2026-11-02","delivery":"2026-12-14","accDays":5,
+  "summary":"A refreshed brand identity for Northfield Bakery's second location and online orders: a new logo suite, color palette, typography and a short brand guide the team can use without a designer.",
+  "deliverables":["Logo suite: primary, secondary and icon versions","Color palette with HEX, RGB and CMYK values","Typography pairing (2 fonts) with usage rules","Business card design (front and back)","8-page brand guidelines PDF","Final files in PNG, SVG and PDF, in color and black and white"],
+  "excluded":["Website design or build","Packaging and print management","Photography","Copywriting and taglines","Editable source files (available by change order)"],
+  "milestones":[{"name":"Kickoff call and moodboard","date":"2026-11-04"},{"name":"First concepts (2 directions)","date":"2026-11-16"},{"name":"Chosen direction refined","date":"2026-11-30"}],
+  "client":{"company":"Northfield Bakery","contact":"Dana Brooks","title":"Owner","email":"dana@example.com","address":""},
+  "fees":{"billing":"fixed","cur":"$","amount":3200,"hours":"","dep":50,"net":14,"late":1.5,"rounds":2,"extra":180,"kill":25,"cap":"","overage":"","minMonths":"","notice":30},
+  "co":{"seq":1,"date":"2026-11-20","title":"Add 3 Instagram post templates using the new brand","details":"3 editable templates (feed post 1080×1350), delivered as layered files\nUses the approved logo, colors and fonts; 1 revision round","price":450,"days":5,"by":"Dana Brooks, Northfield Bakery"}},
+ "clauses":[
+  {"id":"p1","title":"Final Files & Source Files","note":"“Send me all your working files” after the project. Source files are valuable; list them in the SOW if they are part of the price.","v":{"standard":"Final files are delivered on the delivery date in the formats listed in the SOW. Editable source files, such as layered working files, are included only if the SOW lists them. Ownership of delivered files transfers under the Intellectual Property clause."}},
+  {"id":"p2","title":"Fonts, Stock Images & Printing","note":"Surprise costs coming out of your fee, and blame for a printer's color mistake.","v":{"standard":"Licensed fonts, stock images and printing are paid by you, at cost, after you approve them. Their licenses are in your name. I check print proofs on screen; the final printed result is the printer's responsibility."}}]},
+"dev":{"label":"Web/Shopify Development","short":"Fixed fee · store build, hosting terms, launch support","persona":{"name":"Leo Park","business":"Oakline Web Co.","email":"leo@example.com"},
+ "contract":{"ref":"OWC-2027-02","date":"2027-01-04","project":"Harbor & Pine Shopify Store Build","service":"Shopify development services","start":"2027-01-11","delivery":"2027-03-05","accDays":7,
+  "summary":"A new Shopify store for Harbor & Pine Outfitters to replace its marketplace listings, built on a customized theme so the team can add products and edit pages without code.",
+  "deliverables":["Customized Shopify theme: home, collection, product, cart and 4 content pages","Import of up to 150 products from your spreadsheet","Payment, shipping and tax settings configured with you","Email signup form connected to your email platform","Speed and mobile check before launch","Launch-day support and a 45-minute handover call, recorded"],
+  "excluded":["Product photography and product descriptions","Custom app development","Paid apps, theme licenses and Shopify plan fees","Maintenance after the 14-day support period","Moving customer accounts or order history"],
+  "milestones":[{"name":"Design mockups: home and product page","date":"2027-01-25"},{"name":"Store built on a preview theme","date":"2027-02-15"},{"name":"Products and content imported","date":"2027-02-26"}],
+  "client":{"company":"Harbor & Pine Outfitters","contact":"Ruth Alvarez","title":"Founder","email":"ruth@example.com","address":""},
+  "fees":{"billing":"fixed","cur":"$","amount":6800,"hours":"","dep":40,"net":14,"late":1.5,"rounds":2,"extra":250,"kill":25,"cap":"","overage":"","minMonths":"","notice":30},
+  "co":{"seq":1,"date":"2027-02-10","title":"Add a wholesale order form page","details":"Password-protected page with a quick-order table\nOrders arrive by email; no new paid apps","price":900,"days":6,"by":"Ruth Alvarez, Harbor & Pine Outfitters"}},
+ "clauses":[
+  {"id":"p1","title":"Hosting, Domains & Third-Party Tools","note":"Being blamed, or billed, for a platform outage, an app price rise or a plugin update you did not make.","v":{"standard":"You own and pay for your hosting, domain, store plan, apps and plugins directly with the providers, in your name. I am not responsible for outages, price changes or updates made by those providers."}},
+  {"id":"p2","title":"Support After Launch","note":"Being on call for free forever. A short bug-fix window is fair; ongoing care is a separate paid service.","v":{"standard":"The fee includes 14 days of bug fixes after launch for problems in my own work. After that, support, updates and new features are quoted and billed separately."}}]},
+"copy":{"label":"Copywriting/Content Writing","short":"Fixed fee · web pages, byline and AI terms","persona":{"name":"Priya Nair","business":"Priya Nair Words","email":"priya@example.com"},
+ "contract":{"ref":"PNW-2026-11","date":"2026-11-02","project":"Brightpath Website Copy","service":"copywriting services","start":"2026-11-09","delivery":"2026-12-04","accDays":5,
+  "summary":"Clear, friendly website copy for Brightpath Dental Group's new site that explains each service in plain language and makes booking an appointment the obvious next step.",
+  "deliverables":["Copy for 6 website pages (Home, About, 3 service pages, Contact), up to 4,500 words in total","SEO title and meta description for each page","One 30-minute interview call with your team","Delivered as an editable shared document with comments"],
+  "excluded":["Blog posts and email sequences","Keyword research reports","Uploading the text to the website","Clinical accuracy review (your team approves clinical wording)","Photography and graphics"],
+  "milestones":[{"name":"Interview call","date":"2026-11-11"},{"name":"Home and About drafts","date":"2026-11-20"},{"name":"All page drafts","date":"2026-11-27"}],
+  "client":{"company":"Brightpath Dental Group","contact":"Alan Kim","title":"Practice Manager","email":"alan@example.com","address":""},
+  "fees":{"billing":"fixed","cur":"$","amount":2400,"hours":"","dep":50,"net":7,"late":1.5,"rounds":2,"extra":150,"kill":25,"cap":"","overage":"","minMonths":"","notice":30},
+  "co":{"seq":1,"date":"2026-11-24","title":"Add an FAQ page (12 questions)","details":"Up to 900 words, written from your team's answers\n1 revision round","price":380,"days":3,"by":"Alan Kim, Brightpath Dental Group"}},
+ "clauses":[
+  {"id":"p1","title":"Byline & Credit","note":"Your name on text someone else rewrote, or your best work published with no way to prove it is yours.","v":{"standard":"You may publish the work with or without my name. If you change the text substantially, you will not credit me as its sole author without asking me first. I may list the project in my portfolio under the Portfolio Rights clause."}},
+  {"id":"p2","title":"AI Tools","note":"A client worrying they paid for machine-written text. Saying plainly how you use AI tools builds trust before it becomes a question.","v":{"standard":"I write the delivered text myself. I may use AI tools for research or proofreading, but not to generate the delivered text, unless we agree otherwise in writing."}}]},
+"marketing":{"label":"Marketing (retainer)","short":"Monthly retainer · hours cap, minimum term, notice","persona":{"name":"Sam Ortiz","business":"Ortiz Social","email":"sam@example.com"},
+ "contract":{"ref":"OS-2027-01","date":"2026-12-14","project":"Greenleaf Social Media Retainer","service":"social media marketing services","start":"2027-01-04","delivery":"2027-04-03","accDays":3,
+  "summary":"Monthly social media management for Greenleaf Yoga Studio on Instagram, focused on filling new beginner classes and keeping members engaged.",
+  "deliverables":["12 Instagram posts per month (design and captions)","8 stories per month","Monthly content calendar, sent for approval by the 25th of the month before","Replies to comments and messages on weekdays (up to 30 minutes a day)","Monthly 1-page report and a 30-minute review call"],
+  "excluded":["Ad spend and boosted posts","Photo and video shoots","Paid scheduling or design tools","Influencer fees","Website changes"],
+  "milestones":[{"name":"Strategy call and first content calendar","date":"2027-01-06"},{"name":"First monthly report and review call","date":"2027-02-03"}],
+  "client":{"company":"Greenleaf Yoga Studio","contact":"Hannah Lee","title":"Studio Owner","email":"hannah@example.com","address":""},
+  "fees":{"billing":"retainer","cur":"$","amount":2400,"hours":"","dep":100,"net":14,"late":1.5,"rounds":2,"extra":120,"kill":25,"cap":20,"overage":95,"minMonths":3,"notice":30},
+  "co":{"seq":1,"date":"2027-02-01","title":"Add short videos: 8 per month","details":"Edited from footage you supply\nCaptions and posting included","price":600,"days":0,"by":"Hannah Lee, Greenleaf Yoga Studio"}},
+ "clauses":[
+  {"id":"p1","title":"Ad Spend & Paid Tools","note":"Ad budgets eating your fee, or a surprise bill you are expected to cover.","v":{"standard":"Advertising budgets, boosted posts and paid tools are not part of my fee. You pay them directly to the platforms, and you approve every budget in writing before it is spent."}},
+  {"id":"p2","title":"Results & Platform Rules","note":"Being blamed for an algorithm change. You promise the work, not the follower count.","v":{"standard":"I will follow good practice, but I cannot promise specific results such as followers, leads or sales. Platforms can change their rules or restrict accounts at any time, and that is outside my control."}}]},
+"consulting":{"label":"Consulting","short":"Hourly estimate · advice, not guaranteed results","persona":{"name":"Jordan Ellis","business":"Ellis Ops Consulting","email":"jordan@example.com"},
+ "contract":{"ref":"EOC-2026-09","date":"2026-11-09","project":"Riverside Wholesale Operations Review","service":"operations consulting services","start":"2026-11-16","delivery":"2026-12-18","accDays":7,
+  "summary":"A review of Riverside Coffee Roasters' wholesale order-to-delivery process, ending in a prioritized list of fixes and a 90-day action plan.",
+  "deliverables":["2 discovery workshops (90 minutes each) with your team","Review of your order, packing and delivery process","Written report with 10 to 15 prioritized recommendations","90-day action plan with owners and dates","One 60-minute follow-up call within 30 days of delivery"],
+  "excluded":["Carrying out the recommendations","Software setup or staff training","Legal, tax or accounting advice","Supplier negotiations"],
+  "milestones":[{"name":"Discovery workshop 1","date":"2026-11-18"},{"name":"Discovery workshop 2","date":"2026-11-25"},{"name":"Draft report for comments","date":"2026-12-09"}],
+  "client":{"company":"Riverside Coffee Roasters","contact":"Marcus Bell","title":"Co-founder","email":"marcus@example.com","address":""},
+  "fees":{"billing":"hourly","cur":"$","amount":150,"hours":24,"dep":30,"net":30,"late":1.5,"rounds":1,"extra":300,"kill":25,"cap":"","overage":"","minMonths":"","notice":30},
+  "co":{"seq":1,"date":"2026-12-01","title":"Add a review of the café's stock ordering","details":"1 extra workshop (90 minutes)\nFindings added to the final report","price":900,"days":4,"by":"Marcus Bell, Riverside Coffee Roasters"}},
+ "clauses":[
+  {"id":"p1","title":"Advice, Not Guaranteed Results","note":"Being blamed when a client acts on your advice badly, or not at all. They own their decisions.","v":{"standard":"My recommendations are based on the information you give me. You decide whether and how to act on them, and I don't guarantee any particular business result."}},
+  {"id":"p2","title":"Regulated Advice","note":"Drifting into legal, tax or financial advice you are not licensed to give.","v":{"standard":"I don't give legal, tax, accounting or investment advice. Where a decision needs one of those, I will suggest you speak to a qualified professional."}}]}
+}
+}
+</script>
+<script>
+(function(){
+'use strict';
+var D=JSON.parse(document.getElementById('fcb-data').textContent);
+var LS='fcb.v1.state',LSS='fcb.v1.saved',MAXS=20,ORDER=['design','dev','copy','marketing','consulting'];
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var VN={flexible:'Flexible',standard:'Standard',firm:'Firm'};
+var GLY={flexible:'<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',standard:'',firm:'<svg width="10" height="11" viewBox="0 0 10 11" aria-hidden="true"><path d="M5 .8 9 2.3v3.2c0 2.4-1.7 4.1-4 4.9C2.7 9.6 1 7.9 1 5.5V2.3z" fill="currentColor"/></svg>'};
+var S,saved=[];
+function $(s,r){return (r||document).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function num(v){if(v===''||v==null)return NaN;var n=parseFloat(String(v).replace(/[^0-9.\-]/g,''));return isFinite(n)?n:NaN}
+function ok(n){return typeof n==='number'&&isFinite(n)}
+function pad3(n){n=String(n);while(n.length<3)n='0'+n;return n}
+function pdate(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||'').trim());if(!m)return null;var d=new Date(+m[1],+m[2]-1,+m[3]);return isNaN(d.getTime())?null:d}
+function fdate(d){return d?MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear():''}
+function sdate(d){return d?MON[d.getMonth()]+' '+d.getDate():''}
+function addDays(d,n){if(!d||!ok(n))return null;return new Date(d.getFullYear(),d.getMonth(),d.getDate()+n)}
+function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function money(n){if(!ok(n))return '';var c=S.c.fees.cur==null?'$':String(S.c.fees.cur);var neg=n<0;n=Math.round(Math.abs(n)*100)/100;var s=n%1?n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):n.toLocaleString('en-US');return (neg?'−':'')+c+s}
+function pct(v){var n=num(v);return ok(n)?n+'%':''}
+function nstr(v){var n=num(v);return ok(n)?String(n):''}
+function filled(x){return String(x==null?'':x).trim()!==''}
+function rgb(h){h=String(h||'#16233A').replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');var n=parseInt(h,16);if(isNaN(n))n=0x16233A;return [(n>>16)&255,(n>>8)&255,n&255]}
+function lum(h){var c=rgb(h).map(function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)});return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2]}
+function tint(h,a){return '#'+rgb(h).map(function(v){var x=Math.round(v*a+255*(1-a));return ('0'+x.toString(16)).slice(-2)}).join('')}
+
+/* ---------- state ---------- */
+function newContract(k){var P=D.presets[k];var c=clone(P.contract);c.preset=k;c.law='';c.clauses={};c.co.seq=1;return c}
+function defaults(){var P=D.presets.design.persona;return {profile:{name:P.name,business:P.business,email:P.email,address:'',brand:'#16233A',logo:'',example:true},c:newContract('design'),ui:{tab:'agr',notes:true,printNotes:false,paper:'letter',printAll:true,open:{you:false,client:false,project:false,fees:true,law:true,co:false}}}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S));localStorage.setItem(LSS,JSON.stringify(saved))}catch(e){toast('Browser storage is full. Delete a saved contract or use a smaller logo.')}}
+function load(){var d=defaults();try{var x=JSON.parse(localStorage.getItem(LS)||'null');if(x&&x.c&&x.profile&&D.presets[x.c.preset]){d.profile=Object.assign(d.profile,x.profile);d.c=x.c;d.ui=Object.assign(d.ui,x.ui||{})}}catch(e){}S=d;
+ try{saved=JSON.parse(localStorage.getItem(LSS)||'[]')}catch(e){saved=[]}if(!Array.isArray(saved))saved=[];}
+function cs(id){var o=S.c.clauses[id];if(!o)o=S.c.clauses[id]={on:true,v:'standard'};return o}
+function gp(p){return p.split('.').reduce(function(o,k){return o==null?o:o[k]},S)}
+function sp(p,v){var ks=p.split('.'),l=ks.pop(),o=ks.reduce(function(o,k){return o[k]},S);o[l]=v}
+
+/* ---------- numbers ---------- */
+function calc(){var c=S.c,f=c.fees,b=f.billing,a=num(f.amount),hrs=num(f.hours),dp=num(f.dep),k=num(f.kill),net=num(f.net);
+ var total=b==='hourly'?a*hrs:a;
+ var dep=ok(total)&&ok(dp)?Math.round(total*dp)/100:NaN;
+ var bal=ok(dep)?Math.round((total-dep)*100)/100:NaN;
+ var deliv=pdate(c.delivery),due=addDays(deliv,net),acc=addDays(deliv,num(c.accDays));
+ var kill=ok(total)&&ok(k)?Math.round(total*k)/100:NaN;
+ var minT=b==='retainer'?a*num(f.minMonths):NaN;
+ var cp=num(c.co.price),cd=num(c.co.days);cp=ok(cp)?cp:0;cd=ok(cd)?Math.round(cd):0;
+ var base=b==='retainer'?a:total;
+ var nT=ok(base)?Math.round((base+cp)*100)/100:NaN,nD=addDays(deliv,cd),nB=ok(nT)&&ok(dep)?Math.round((nT-dep)*100)/100:NaN,nDue=addDays(nD,net);
+ return {b:b,a:a,total:total,dep:dep,bal:bal,deliv:deliv,due:due,acc:acc,kill:kill,minT:minT,cp:cp,cd:cd,nT:nT,nD:nD,nB:nB,nDue:nDue,net:net}}
+function vals(K){var c=S.c,p=S.profile,f=c.fees,m={};
+ m['Freelancer Business']=p.business||p.name;m['Freelancer Name']=p.name;m['Freelancer Email']=p.email;
+ m['Client Company']=c.client.company;m['Client Contact']=c.client.contact;m['Client Title']=c.client.title;m['Client Email']=c.client.email;
+ m['Project Name']=c.project;m['Agreement Ref']=c.ref;m['Agreement Date']=fdate(pdate(c.date));m['Start Date']=fdate(pdate(c.start));m['Delivery Date']=fdate(K.deliv);
+ m['Acceptance Days']=nstr(c.accDays);m['Service Description']=c.service;
+ m['Total Fee']=money(K.total);m['Deposit %']=pct(f.dep);m['Deposit Amount']=money(K.dep);m['Balance Amount']=money(K.bal)?money(K.bal)+(K.b==='hourly'?' (estimated)':''):'';
+ m['Net Days']=nstr(f.net);m['Balance Due Date']=fdate(K.due);m['Late Fee %']=pct(f.late);m['Revision Rounds']=nstr(f.rounds);m['Extra Round Price']=money(num(f.extra));
+ m['Kill Fee %']=pct(f.kill);m['Kill Fee Amount']=money(K.kill);m['Hourly Rate']=money(K.a);m['Estimated Hours']=nstr(f.hours);
+ m['Monthly Fee']=money(K.a);m['Monthly Hours']=nstr(f.cap);m['Overage Rate']=money(num(f.overage));m['Minimum Months']=nstr(f.minMonths);m['Minimum Total']=money(K.minT);m['Notice Days']=nstr(f.notice);
+ m['Your state/country']=String(c.law||'').trim();
+ return m}
+function prep(t){if(num(S.c.fees.late)===0){t=t.replace(/[^.]*\[Late Fee %\][^.]*\./g,' No late fee applies.').replace(/\s+/g,' ').trim()}return t}
+function fill(t,V,txt){t=prep(t);if(txt)return t.replace(/\[([^\]]+)\]/g,function(m,k){return (k in V&&filled(V[k]))?String(V[k]):m});
+ return esc(t).replace(/\[([^\]]+)\]/g,function(m,k){return (k in V&&filled(V[k]))?'<span class="v'+(/\d/.test(V[k])?' nm2':'')+'">'+esc(V[k])+'</span>':'<span class="ph">'+m+'</span>'})}
+function pv(s,ph){return filled(s)?esc(s):'<span class="ph">'+esc(ph)+'</span>'}
+function tv(s,ph){return filled(s)?String(s):ph}
+
+/* ---------- clauses ---------- */
+function clauses(){var pre=D.presets[S.c.preset].clauses,out=[];D.clauses.forEach(function(c){if(c.id==='preset')pre.forEach(function(p){out.push(p)});else out.push(c)});return out}
+function vset(cl){var b=S.c.fees.billing;return (cl.byBilling&&cl.byBilling[b])||cl.v}
+function vers(cl){var s=vset(cl);return ['flexible','standard','firm'].filter(function(k){return s[k]})}
+function ever(cl){var vs=vers(cl),v=cs(cl.id).v;return vs.indexOf(v)>=0?v:(vs.indexOf('standard')>=0?'standard':vs[0])}
+function ctext(cl){return vset(cl)[ever(cl)]}
+function isOn(cl){return cl.lock||cs(cl.id).on}
+
+/* ---------- documents (HTML) ---------- */
+function names(){var p=S.profile,c=S.c;return {biz:p.business||p.name,cli:c.client.company}}
+function lh(ey,extra){var p=S.profile,n=names();var ct=[p.business&&p.name?p.name:'',p.email,p.address].filter(filled).join(' · ');
+ return '<div class="lh"><div class="who">'+(p.logo?'<img src="'+p.logo+'" alt="">':'')+'<div><div class="nm">'+pv(n.biz,'[Your Business]')+'</div><div class="ct">'+esc(ct)+'</div></div></div><div class="rf"><div class="ey">'+ey+'</div>'+(extra||'<div class="bt">Between '+pv(n.biz,'[Your Business]')+' and '+pv(n.cli,'[Client Company]')+'</div>')+'</div></div>'}
+function facts(K){var f=S.c.fees,c;
+ if(K.b==='retainer')c=[['Monthly fee',money(K.a)],['Deposit '+pct(f.dep),money(K.dep)],['Minimum term',money(K.minT)?nstr(f.minMonths)+' mo · '+money(K.minT):''],['Start',fdate(pdate(S.c.start))]];
+ else c=[[K.b==='hourly'?'Estimate':'Total fee',money(K.total)],['Deposit '+pct(f.dep),money(K.dep)],[K.b==='hourly'?'Balance due (est.)':'Balance due',money(K.bal)?money(K.bal)+(K.due?' · '+sdate(K.due):''):''],['Delivery',fdate(K.deliv)]];
+ return {html:'<div class="facts">'+c.map(function(x){return '<div><span>'+esc(x[0])+'</span><b>'+(x[1]?esc(x[1]):'<i class="ph">[to fill]</i>')+'</b></div>'}).join('')+'</div>',text:c.map(function(x){return x[0]+': '+(x[1]||'[to fill]')}).join(' | ')}}
+function ctl(cl,st){if(cl.lock)return '<div class="ctl"><span class="lk">Always included</span></div>';var vs=vers(cl),ev=ever(cl),h='<div class="ctl">';
+ if(vs.length>1)h+='<span class="pill" role="group" aria-label="Wording">'+vs.map(function(v){return '<button type="button" data-ver="'+cl.id+'|'+v+'" class="'+(ev===v?'on':'')+'">'+GLY[v]+VN[v]+'</button>'}).join('')+'</span>';
+ return h+'<label class="inc"><input type="checkbox" data-inc="'+cl.id+'"'+(st.on?' checked':'')+'> Include</label><span class="xtag">EXCLUDED</span></div>'}
+function sigCols(){var p=S.profile,c=S.c;var fr=[p.name,p.business&&p.business!==p.name?p.business:''].filter(filled).join(', ');var cl=[[c.client.contact,c.client.title].filter(filled).join(', '),c.client.company].filter(filled).join(', ');
+ return [['Freelancer',fr,'[Your Name]','Name (typed)'],['Client',cl,'[Client Name, Title]','Name & title (typed)']]}
+function sig(){return '<div class="sig">'+sigCols().map(function(x){return '<div><h4>'+x[0]+'</h4><div class="ln">'+pv(x[1],x[2])+'</div><div class="lab">'+x[3]+'</div><div class="ln tall"></div><div class="lab">Signature</div><div class="ln"></div><div class="lab">Date</div></div>'}).join('')+'</div>'}
+function sigText(){return sigCols().map(function(x){return x[0]+': '+tv(x[1],x[2])+'\nSignature: ______________________   Date: ____________'}).join('\n\n')}
+function disc(extra){return '<div class="disc"><span>Not legal advice. Have a local lawyer review before signing.</span><span>'+esc([S.c.ref,extra].filter(filled).join(' · '))+'</span></div>'}
+function dbar(k){return '<div class="dbar"><button type="button" class="tb" data-copy="'+k+'">Copy as plain text</button></div>'}
+function agrHtml(V,K){var c=S.c,n=0,lawN=0,body='';
+ clauses().forEach(function(cl){var st=cs(cl.id),on=isOn(cl);var N=on?(++n)+'.':'–';if(cl.id==='law'&&on)lawN=n;
+  body+='<div class="cl'+(on?'':' off')+'" data-cid="'+cl.id+'"><div class="n">'+N+'</div><div class="cb"><div class="ch"><h3>'+esc(cl.title)+'</h3>'+ctl(cl,st)+'</div><p>'+fill(ctext(cl),V)+'</p>'+(cl.id==='sign'?sig():'')+'<div class="note"><b>What this protects you from</b>'+esc(cl.note)+'</div></div></div>'});
+ var warn=(!filled(c.law)&&lawN)?'<div class="lawbar">⚠ Governing law is empty, so clause '+lawN+' prints “[Your state/country]”. Fill it in under Governing law and ask a local lawyer which law to name.</div>':'';
+ return dbar('agr')+lh('Services Agreement · '+esc(c.ref||''))+'<h1 class="dt">Freelance Services Agreement</h1><div class="dated">'+pv(c.project,'[Project Name]')+' · dated <span class="m">'+pv(fdate(pdate(c.date)),'[Agreement Date]')+'</span> · see Statement of Work of the same date</div>'+facts(K).html+warn+body+disc()}
+function msRows(K){var c=S.c,f=c.fees,r=[['Agreement signed, deposit due',pdate(c.date)],['Work starts',pdate(c.start)]];
+ (c.milestones||[]).forEach(function(m){if(filled(m.name)||filled(m.date))r.push([filled(m.name)?m.name:'[Milestone]',pdate(m.date)])});
+ if(K.b==='retainer')r.push(['End of minimum term ('+tv(nstr(f.minMonths),'[Minimum Months]')+' months), then month to month',K.deliv]);
+ else{r.push(['Delivery',K.deliv]);r.push(['Review window ends ('+tv(nstr(c.accDays),'[Acceptance Days]')+' days after delivery)',K.acc]);r.push(['Balance due (Net '+tv(nstr(f.net),'[Net Days]')+' after delivery)',K.due])}
+ return r}
+function payRows(K){var f=S.c.fees,dp=tv(pct(f.dep),'[Deposit %]'),sd=fdate(pdate(S.c.date)),net=tv(nstr(f.net),'[Net Days]'),on='On signing'+(sd?', '+sd:'');
+ if(K.b==='retainer')return {rows:[['Deposit ('+dp+' of the first month), credited to the first invoice',money(K.dep),on],['Monthly fee',money(K.a),'Invoiced on the first working day of each month, due Net '+net]],sum:['Minimum term ('+tv(nstr(f.minMonths),'[Minimum Months]')+' months)',money(K.minT)]};
+ if(K.b==='hourly')return {rows:[['Deposit ('+dp+' of the estimate)',money(K.dep),on],['Final invoice: hours worked × '+tv(money(K.a),'[Hourly Rate]')+', minus the deposit',money(K.bal)?'est. '+money(K.bal):'',tv(fdate(K.due),'[Balance Due Date]')+' (Net '+net+' after delivery)']],sum:['Estimate ('+tv(nstr(f.hours),'[Estimated Hours]')+' h × '+tv(money(K.a),'[Hourly Rate]')+')',money(K.total)]};
+ return {rows:[['Deposit ('+dp+')',money(K.dep),on],['Balance',money(K.bal),tv(fdate(K.due),'[Balance Due Date]')+' (Net '+net+' after delivery)']],sum:['Total fee',money(K.total)]}}
+function lateLine(){var f=S.c.fees;return num(f.late)===0?'No late fee applies.':'Late fee: '+tv(pct(f.late),'[Late Fee %]')+' per month on unpaid amounts.'}
+function killLine(K){var f=S.c.fees;return 'Kill fee if '+(K.b==='retainer'?'cancelled before the start date':'the project is cancelled')+': '+tv(pct(f.kill),'[Kill Fee %]')+(money(K.kill)?' ('+money(K.kill)+')':'')+'.'}
+function accText(K){var c=S.c,d=tv(nstr(c.accDays),'[Acceptance Days]');
+ if(K.b==='retainer')return 'You have '+d+' days after each delivery to tell me in writing about anything that doesn\'t match this SOW. I fix those items at no charge. The Acceptance clause of agreement '+tv(c.ref,'[Agreement Ref]')+' sets out the details.';
+ return 'You have '+d+' days after delivery'+(K.acc?' (until '+fdate(K.acc)+')':'')+' to review the work against this SOW and tell me in writing about anything that doesn\'t match. I fix those items at no charge. The Acceptance clause of agreement '+tv(c.ref,'[Agreement Ref]')+' sets out the details.'}
+function revText(){var f=S.c.fees;return tv(nstr(f.rounds),'[Revision Rounds]')+' rounds of revisions are included'+(S.c.fees.billing==='retainer'?' for each piece of work':'')+'. Each extra round is '+tv(money(num(f.extra)),'[Extra Round Price]')+'.'}
+function retRows(K){var f=S.c.fees;return [['Hours included per month',tv(nstr(f.cap),'[Monthly Hours]')+' hours'],['Extra hours',tv(money(num(f.overage)),'[Overage Rate]')+' per hour, approved in writing first'],['Minimum term',tv(nstr(f.minMonths),'[Minimum Months]')+' months'+(money(K.minT)?' ('+money(K.minT)+')':'')],['Notice to end',tv(nstr(f.notice),'[Notice Days]')+' days in writing, after the minimum term']]}
+function sowHtml(V,K){var c=S.c,n=0,ret=K.b==='retainer';function H(t){return '<h2 class="sh"><span>'+(++n)+'</span>'+t+'</h2>'}
+ var dl=(c.deliverables||[]).filter(filled),ex=(c.excluded||[]).filter(filled),P=payRows(K);
+ var h=dbar('sow')+lh('Statement of Work · '+esc(c.ref||''))+'<h1 class="dt">Statement of Work</h1><div class="dated">'+pv(c.project,'[Project Name]')+' · part of Freelance Services Agreement <span class="m">'+pv(c.ref,'[Agreement Ref]')+'</span> · dated <span class="m">'+pv(fdate(pdate(c.date)),'[Agreement Date]')+'</span></div>'+facts(K).html;
+ h+='<div class="keep">'+H('Project overview')+'<p>'+pv(c.summary,'[Project overview]')+'</p></div>';
+ h+='<div class="keep">'+H(ret?'Monthly deliverables':'Deliverables')+'<div class="ibox"><ul class="lst">'+(dl.length?dl:['[Deliverable]']).map(function(x){return '<li><i>✓</i><span>'+esc(x)+'</span></li>'}).join('')+'</ul></div></div>';
+ h+='<div class="keep">'+H('Not included')+'<div class="xbox"><ul class="lst">'+(ex.length?ex:['[Not included item]']).map(function(x){return '<li><i class="no">✕</i><span>'+esc(x)+'</span></li>'}).join('')+'</ul></div><p class="sm">Anything not listed under '+(ret?'Monthly deliverables':'Deliverables')+' is not included and needs a Change Order.</p></div>';
+ h+=H('Milestones & dates')+'<table class="t"><tr><th>Milestone</th><th class="r">Date</th></tr>'+msRows(K).map(function(r){return '<tr><td>'+esc(r[0])+'</td><td class="r">'+(r[1]?fdate(r[1]):'<span class="ph">[Date]</span>')+'</td></tr>'}).join('')+'</table>';
+ h+='<div class="keep">'+H('Acceptance')+'<p>'+esc(accText(K))+'</p></div>';
+ h+='<div class="keep">'+H('Payment schedule')+'<table class="t"><tr><th>Payment</th><th class="r">Amount</th><th>Due</th></tr>'+P.rows.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td class="r">'+(r[1]?esc(r[1]):'—')+'</td><td class="d">'+esc(r[2])+'</td></tr>'}).join('')+'<tr class="sum"><td>'+esc(P.sum[0])+'</td><td class="r">'+(P.sum[1]?esc(P.sum[1]):'—')+'</td><td></td></tr></table><p class="sm">'+esc(lateLine()+' '+killLine(K))+'</p></div>';
+ h+='<div class="keep">'+H('Revisions')+'<p>'+esc(revText())+'</p></div>';
+ if(ret)h+='<div class="keep">'+H('Retainer terms')+'<table class="t">'+retRows(K).map(function(r){return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>'}).join('')+'</table></div>';
+ h+='<div class="keep">'+H('Signatures')+'<p class="sm">Signed as part of agreement '+pv(c.ref,'[Agreement Ref]')+'.</p>'+sig()+'</div>';
+ return h+disc('SOW')}
+function chg(n,d){if(!ok(n)||n===0)return '—';var a=Math.abs(n);return (n>0?'+ ':'− ')+(d?a+' day'+(a===1?'':'s'):money(a))}
+function coRows(K){var f=S.c.fees,h=K.b==='hourly';
+ if(K.b==='retainer')return [['Monthly fee',money(K.a),chg(K.cp),money(K.nT)],['End of minimum term',fdate(K.deliv),chg(K.cd,1),fdate(K.nD)]];
+ return [[h?'Estimated total':'Total fee',money(K.total),chg(K.cp),money(K.nT)],['Deposit paid',money(K.dep),'—',money(K.dep)],[h?'Balance (estimated)':'Balance',money(K.bal),chg(K.cp),money(K.nB)],['Delivery date',fdate(K.deliv),chg(K.cd,1),fdate(K.nD)],['Balance due (Net '+tv(nstr(f.net),'[Net Days]')+')',fdate(K.due),chg(K.cd,1),fdate(K.nDue)]]}
+function coNo(){return 'CO-'+pad3(S.c.co.seq||1)}
+function coTerms(K){var r=tv(S.c.ref,'[Agreement Ref]');return 'All other terms of agreement '+r+' and the Statement of Work stay the same.'+(K.b==='retainer'?' The new monthly fee applies from the first monthly invoice after we both sign.':'')+' Work on this change starts after we both sign below. If this change order is not signed, the original scope, price and dates apply.'}
+function coHtml(V,K){var c=S.c,co=c.co,dt=fdate(pdate(c.date)),lines=String(co.details||'').split('\n').filter(filled);
+ var h=dbar('co')+lh('Change Order','<div class="cochip">'+coNo()+'</div>')+'<h1 class="dt">Change Order</h1><div class="dated">'+pv(c.project,'[Project Name]')+' · issued <span class="m">'+pv(fdate(pdate(co.date)),'[Date]')+'</span></div>';
+ h+='<div class="refs"><div><span>Refers to agreement</span><b class="m">'+pv(c.ref,'[Agreement Ref]')+'</b>'+(dt?' · '+dt:'')+'</div><div><span>Refers to SOW</span>Statement of Work'+(dt?' · '+dt:'')+'</div><div><span>Requested by</span>'+pv(co.by,'[Client Name]')+'</div></div>';
+ h+='<h2 class="sh">What changes</h2><div class="desc">'+pv(co.title,'[Describe the change]')+(lines.length?'<ul>'+lines.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+'</div>';
+ h+='<div class="keep"><h2 class="sh">Impact on price and dates</h2><table class="t"><tr><th></th><th class="r">Before</th><th class="r">Change</th><th class="r after">After</th></tr>'+coRows(K).map(function(r){return '<tr><td>'+esc(r[0])+'</td><td class="r">'+(r[1]?esc(r[1]):'—')+'</td><td class="r">'+esc(r[2])+'</td><td class="r after">'+(r[3]?esc(r[3]):'—')+'</td></tr>'}).join('')+'</table>';
+ h+='<p class="sm">'+esc(coTerms(K))+'</p></div>';
+ h+='<div class="conotes"><span>Notes &amp; conditions (optional) <small>· e.g. files the client must send first, who approves the work</small></span><i></i><i></i><i></i></div>';
+ h+='<div class="keep">'+sig()+'</div>';
+ return h+disc(coNo())}
+
+/* ---------- documents (plain text) ---------- */
+function head(t,K,ey){var c=S.c,n=names();return [tv(n.biz,'[Your Business]').toUpperCase(),ey+' · '+tv(c.ref,'[Agreement Ref]'),'Between '+tv(n.biz,'[Your Business]')+' and '+tv(n.cli,'[Client Company]'),'',t.toUpperCase(),tv(c.project,'[Project Name]')+' · dated '+tv(fdate(pdate(c.date)),'[Agreement Date]'),'',facts(K).text,'']}
+function agrText(V,K){var L=head('Freelance Services Agreement',K,'SERVICES AGREEMENT'),n=0;
+ clauses().forEach(function(cl){if(!isOn(cl))return;L.push((++n)+'. '+cl.title.toUpperCase());L.push(fill(ctext(cl),V,1));if(cl.id==='sign'){L.push('');L.push(sigText())}L.push('')});
+ L.push('Not legal advice. Have a local lawyer review before signing.');return L.join('\n')}
+function sowText(V,K){var c=S.c,ret=K.b==='retainer',L=head('Statement of Work',K,'STATEMENT OF WORK'),n=0,P=payRows(K);function H(t){L.push('');L.push((++n)+'. '+t.toUpperCase())}
+ H('Project overview');L.push(tv(c.summary,'[Project overview]'));
+ H(ret?'Monthly deliverables':'Deliverables');((c.deliverables||[]).filter(filled).length?c.deliverables.filter(filled):['[Deliverable]']).forEach(function(x){L.push('✓ '+x)});
+ H('Not included');((c.excluded||[]).filter(filled).length?c.excluded.filter(filled):['[Not included item]']).forEach(function(x){L.push('✕ '+x)});L.push('Anything not listed under '+(ret?'Monthly deliverables':'Deliverables')+' is not included and needs a Change Order.');
+ H('Milestones & dates');msRows(K).forEach(function(r){L.push('- '+r[0]+': '+(r[1]?fdate(r[1]):'[Date]'))});
+ H('Acceptance');L.push(accText(K));
+ H('Payment schedule');P.rows.forEach(function(r){L.push('- '+r[0]+': '+(r[1]||'[Amount]')+' · '+r[2])});L.push('- '+P.sum[0]+': '+(P.sum[1]||'[Amount]'));L.push(lateLine()+' '+killLine(K));
+ H('Revisions');L.push(revText());
+ if(ret){H('Retainer terms');retRows(K).forEach(function(r){L.push('- '+r[0]+': '+r[1])})}
+ H('Signatures');L.push('Signed as part of agreement '+tv(c.ref,'[Agreement Ref]')+'.');L.push('');L.push(sigText());L.push('');L.push('Not legal advice. Have a local lawyer review before signing.');return L.join('\n')}
+function coText(V,K){var c=S.c,co=c.co,n=names(),dt=fdate(pdate(c.date)),L=[tv(n.biz,'[Your Business]').toUpperCase(),'CHANGE ORDER · '+coNo(),'','CHANGE ORDER '+coNo(),tv(c.project,'[Project Name]')+' · issued '+tv(fdate(pdate(co.date)),'[Date]'),'','Refers to agreement: '+tv(c.ref,'[Agreement Ref]')+(dt?' · '+dt:''),'Refers to SOW: Statement of Work'+(dt?' · '+dt:''),'Requested by: '+tv(co.by,'[Client Name]'),'','WHAT CHANGES',tv(co.title,'[Describe the change]')];
+ String(co.details||'').split('\n').filter(filled).forEach(function(x){L.push('- '+x)});L.push('');L.push('IMPACT ON PRICE AND DATES (before → change → after)');
+ coRows(K).forEach(function(r){L.push('- '+r[0]+': '+(r[1]||'—')+' → '+r[2]+' → '+(r[3]||'—'))});L.push('');L.push(coTerms(K));L.push('');L.push(sigText());L.push('');L.push('Not legal advice. Have a local lawyer review before signing.');return L.join('\n')}
+
+/* ---------- render ---------- */
+function cssStr(s){return '"'+String(s||'').replace(/\\/g,'\\\\').replace(/"/g,'\\"').replace(/[\r\n]+/g,' ')+'"'}
+function pageCss(){var a4=S.ui.paper==='a4',ref=filled(S.c.ref)?S.c.ref+' · ':'';var box='font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:8pt;color:#6B6F7B;vertical-align:top;padding-top:7px;border-top:1px solid #D9D3C7;';
+ var left='@bottom-left{content:"Not legal advice. Have a local lawyer review before signing.";'+box+'}';
+ function br(tag){return '@bottom-right{content:'+cssStr(ref+(tag?tag+' · ':'')+'Page ')+' counter(page) " of " counter(pages);'+box+'}'}
+ document.body.classList.toggle('nomb',typeof window.CSSMarginRule==='undefined');
+ var sz='size:'+(a4?'A4':'Letter')+';margin:'+(a4?'15mm 16mm 18mm':'0.6in 0.65in 0.7in')+';';
+ $('#pagecss').textContent='@page{'+sz+left+br('')+'}@page sow{'+sz+left+br('SOW')+'}@page co{'+sz+left+br(coNo())+'}'}
+function renderDocs(){var K=calc(),V=vals(K),docs=$('#docs'),brand=S.profile.brand||'#16233A',light=lum(brand)>0.45;
+ docs.style.setProperty('--brand',brand);docs.style.setProperty('--bi',light?'#1E1E24':brand);docs.style.setProperty('--btint',tint(brand,0.10));docs.classList.toggle('lightbrand',light);
+ $('#d-agr').innerHTML=agrHtml(V,K);$('#d-sow').innerHTML=sowHtml(V,K);$('#d-co').innerHTML=coHtml(V,K);
+ ['agr','sow','co'].forEach(function(k,i){var el=$('#d-'+k);el.classList.toggle('on',S.ui.tab===k);el.classList.toggle('brk',!!S.ui.printAll&&i>0)});
+ $$('.tab').forEach(function(t){t.classList.toggle('on',t.getAttribute('data-tab')===S.ui.tab)});$('#cotab').textContent=coNo();
+ document.body.classList.toggle('notes',!!S.ui.notes);document.body.classList.toggle('pnotes',!!S.ui.printNotes);document.body.classList.toggle('pall',!!S.ui.printAll);document.body.classList.toggle('a4',S.ui.paper==='a4');
+ $('#swNotes').classList.toggle('on',!!S.ui.notes);$('#swNotes').setAttribute('aria-pressed',S.ui.notes?'true':'false');$('#ckPN').checked=!!S.ui.printNotes;
+ $$('#pscope button').forEach(function(b){b.classList.toggle('on',(b.getAttribute('data-ps')==='all')===!!S.ui.printAll)});
+ $$('#paper button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-paper')===S.ui.paper)});
+ $('#savedn').textContent=saved.length;pageCss();updCalc();fit()}
+function fit(){var st=$('#stage');if(!st)return;var w=st.clientWidth-36,sw=S.ui.paper==='a4'?794:816;var z=Math.max(0.3,Math.min(1,w/sw));$('#docs').style.zoom=z}
+
+/* ---------- form ---------- */
+function fld(label,p,o){o=o||{};var v=gp(p);v=v==null?'':v;var id='f_'+p.replace(/\./g,'_');
+ var inp=o.ta?'<textarea id="'+id+'" data-k="'+p+'" rows="'+(o.rows||3)+'" placeholder="'+esc(o.ph||'')+'">'+esc(v)+'</textarea>':'<input id="'+id+'" data-k="'+p+'" type="'+(o.type||'text')+'" value="'+esc(v)+'" placeholder="'+esc(o.ph||'')+'"'+(o.type==='number'?' step="any" inputmode="decimal"':'')+'>';
+ return '<div class="f"><label for="'+id+'">'+label+'</label>'+inp+(o.hint?'<div class="hint">'+o.hint+'</div>':'')+'</div>'}
+function lst(label,p,max,ph){var a=gp(p)||[],h='<div class="f"><label>'+label+'</label>';
+ a.forEach(function(x,i){h+='<div class="lrow"><input data-li="'+p+'|'+i+'" value="'+esc(x)+'" placeholder="'+esc(ph)+'" aria-label="'+esc(label)+' '+(i+1)+'"><button type="button" class="x" data-del="'+p+'|'+i+'" aria-label="Remove">✕</button></div>'});
+ return h+(a.length<max?'<button type="button" class="add" data-addl="'+p+'">+ Add</button>':'<span class="hint">Max '+max+'</span>')+'</div>'}
+function msl(){var a=S.c.milestones||(S.c.milestones=[]),h='<div class="f"><label>Milestones between start and delivery (SOW)</label>';
+ a.forEach(function(m,i){h+='<div class="lrow ms"><input data-mi="'+i+'|name" value="'+esc(m.name)+'" placeholder="Milestone" aria-label="Milestone '+(i+1)+'"><input type="date" data-mi="'+i+'|date" value="'+esc(m.date)+'" aria-label="Milestone '+(i+1)+' date"><button type="button" class="x" data-delm="'+i+'" aria-label="Remove">✕</button></div>'});
+ return h+(a.length<6?'<button type="button" class="add" data-addm="1">+ Add</button>':'<span class="hint">Max 6</span>')+'</div>'}
+function card(k,t,body){return '<details class="card" data-card="'+k+'"'+(S.ui.open[k]?' open':'')+'><summary>'+t+'<span class="chev">▼</span></summary><div class="cbody">'+body+'</div></details>'}
+function renderForm(){var c=S.c,f=c.fees,b=f.billing,P=D.presets[c.preset],p=S.profile;S.ui.open=S.ui.open||{};
+ var you=fld('Your name','profile.name')+fld('Business name','profile.business',{hint:'Shown in the letterhead. Leave empty to use your name.'})+fld('Email','profile.email',{type:'email'})+fld('Address (optional)','profile.address')+
+  '<div class="row2"><div class="f"><label for="f_brand">Brand color</label><div class="colr"><input id="f_brand" type="color" data-k="profile.brand" value="'+esc(p.brand||'#16233A')+'"><span class="mono" id="brandhex">'+esc(String(p.brand||'#16233A').toUpperCase())+'</span></div></div><div class="f"><label>Logo (optional)</label><div class="logo-row">'+(p.logo?'<img src="'+p.logo+'" alt="Your logo"><button type="button" class="add" id="logoRm">Remove</button>':'<button type="button" class="add" id="logoUp">Upload logo</button>')+'</div></div></div><input type="file" id="logoFile" accept="image/*" hidden>';
+ var cli=fld('Client company','c.client.company')+'<div class="row2">'+fld('Contact name','c.client.contact')+fld('Contact title','c.client.title')+'</div>'+fld('Client email','c.client.email',{type:'email'})+fld('Client address (optional)','c.client.address');
+ var pr='<div class="f"><label>Profession preset</label><div class="ptag"><span>'+esc(P.label)+'</span><button type="button" class="linkb" data-open-preset="1">Change</button></div></div>'+
+  '<div class="row2">'+fld('Agreement ref','c.ref')+fld('Agreement date','c.date',{type:'date'})+'</div>'+fld('Project name','c.project')+fld('Service description','c.service',{hint:'Completes “I will provide the … listed in the Statement of Work”.'})+
+  '<div class="row2">'+fld('Start date','c.start',{type:'date'})+fld(b==='retainer'?'End of minimum term':'Delivery date','c.delivery',{type:'date'})+'</div>'+fld('Acceptance period (days)','c.accDays',{type:'number'})+fld('Project overview (SOW)','c.summary',{ta:1,rows:3})+
+  lst(b==='retainer'?'Monthly deliverables':'Deliverables','c.deliverables',10,'Deliverable')+lst('Not included','c.excluded',10,'Not included item')+msl();
+ var amtL=b==='hourly'?'Hourly rate':b==='retainer'?'Monthly fee':'Fixed fee';
+ var fe='<div class="f"><label>Billing</label><div class="segf">'+[['fixed','Fixed'],['hourly','Hourly'],['retainer','Monthly retainer']].map(function(x){return '<button type="button" data-set="c.fees.billing" data-val="'+x[0]+'" class="'+(b===x[0]?'on':'')+'">'+x[1]+'</button>'}).join('')+'</div></div>'+
+  '<div class="row2">'+fld(amtL,'c.fees.amount',{type:'number'})+fld('Currency symbol','c.fees.cur',{ph:'$'})+'</div>'+(b==='hourly'?fld('Estimated hours','c.fees.hours',{type:'number'}):'')+
+  '<div class="row2">'+fld(b==='retainer'?'Deposit % of first month':'Deposit %','c.fees.dep',{type:'number'})+'<div class="f"><label>Payment terms</label><div class="segf">'+[7,14,30].map(function(n){return '<button type="button" data-set="c.fees.net" data-val="'+n+'" class="'+(num(f.net)===n?'on':'')+'">Net '+n+'</button>'}).join('')+'</div></div></div>'+
+  '<div class="row2">'+fld('Late fee % per month','c.fees.late',{type:'number',hint:'0 = no late fee'})+fld(b==='retainer'?'Kill fee % of one month':'Kill fee %','c.fees.kill',{type:'number'})+'</div>'+
+  '<div class="row2">'+fld('Revision rounds','c.fees.rounds',{type:'number'})+fld('Extra round price','c.fees.extra',{type:'number'})+'</div>'+
+  (b==='retainer'?'<div class="row2">'+fld('Hours per month (cap)','c.fees.cap',{type:'number'})+fld('Extra hourly rate','c.fees.overage',{type:'number'})+'</div><div class="row2">'+fld('Minimum term (months)','c.fees.minMonths',{type:'number'})+fld('Notice to end (days)','c.fees.notice',{type:'number'})+'</div>':'')+
+  '<div class="calc" id="calc"></div>';
+ var law=fld('Governing law (state/country)','c.law',{ph:'Example: Oregon, USA'})+'<div class="warn" id="lawwarn">⚠ Empty: the agreement prints “[Your state/country]”. Fill it in, and ask a local lawyer which law to name.</div>';
+ var co='<div class="f"><label>Change order number</label><div class="cono"><span class="chipco" id="conum">'+coNo()+'</span><button type="button" class="add" id="newCO">+ New change order</button></div><div class="hint">Each new change order on this contract gets the next number.</div></div>'+
+  '<div class="row2">'+fld('Issued','c.co.date',{type:'date'})+fld('Requested by','c.co.by')+'</div>'+fld('What changes (title)','c.co.title')+fld('Details (one per line)','c.co.details',{ta:1,rows:3})+
+  '<div class="row2">'+fld(b==='retainer'?'Monthly fee change (+/−)':'Price change (+/−)','c.co.price',{type:'number'})+fld('Time change (days, +/−)','c.co.days',{type:'number'})+'</div>';
+ $('#form').innerHTML=card('you','1 · You',you)+card('client','2 · Client',cli)+card('project','3 · Project & scope',pr)+card('fees','4 · Fees & payment',fe)+card('law','Governing law',law)+card('co','Change order · '+coNo(),co);
+ updCalc()}
+function updCalc(){var el=$('#calc');if(!el)return;var K=calc(),h;
+ function ch(l,v){return '<span class="chip">'+l+' '+(v||'—')+'</span>'}
+ if(K.b==='retainer')h=ch('Deposit',money(K.dep))+ch('Minimum term',money(K.minT))+ch('Kill fee',money(K.kill));
+ else h=(K.b==='hourly'?ch('Estimate',money(K.total)):'')+ch('Deposit',money(K.dep))+ch('Balance',money(K.bal)?money(K.bal)+(K.due?' due '+fdate(K.due):''):'')+ch('Kill fee',money(K.kill));
+ el.innerHTML='<div class="cl-l">Calculated · same in all three documents</div><div class="chips">'+h+'</div>';
+ var w=$('#lawwarn');if(w)w.style.display=filled(S.c.law)?'none':'block';var cn=$('#conum');if(cn)cn.textContent=coNo()}
+
+/* ---------- actions ---------- */
+var tmr;function later(){clearTimeout(tmr);tmr=setTimeout(function(){renderDocs();save()},120)}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(function(){t.classList.remove('show')},1800)}
+function copy(t,btn){function done(){toast('Copied ✓');if(btn){btn.classList.add('done');btn.textContent='Copied ✓';setTimeout(function(){btn.classList.remove('done');btn.textContent='Copy as plain text'},1500)}}
+ function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){toast('Copy failed: select the text and press Ctrl/Cmd+C')}ta.remove()}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,fb)}else fb()}
+function docText(k){var K=calc(),V=vals(K);return k==='sow'?sowText(V,K):k==='co'?coText(V,K):agrText(V,K)}
+function loadPreset(k){var keep=S.c.clauses;S.c=newContract(k);if(S.profile.example){var P=D.presets[k].persona;S.profile.name=P.name;S.profile.business=P.business;S.profile.email=P.email}
+ closeModal();renderForm();renderDocs();save();toast('Loaded: '+D.presets[k].label)}
+function newCO(){S.c.co={seq:(S.c.co.seq||1)+1,date:iso(new Date()),title:'',details:'',price:'',days:'',by:[S.c.client.contact,S.c.client.company].filter(filled).join(', ')};S.ui.tab='co';S.ui.open.co=true;renderForm();renderDocs();save();toast(coNo()+' started')}
+function openModal(id){$(id).hidden=false}
+function closeModal(){$$('.modal').forEach(function(m){m.hidden=true})}
+function renderPresets(){$('#presetList').innerHTML=ORDER.map(function(k){var P=D.presets[k];return '<button type="button" class="pbtn'+(S.c.preset===k?' cur':'')+'" data-preset="'+k+'"><b>'+esc(P.label)+'</b><span>'+esc(P.short)+' · example: '+esc(P.contract.project)+'</span></button>'}).join('')}
+function renderSaved(){$('#savedn').textContent=saved.length;$('#savedCount').textContent=saved.length+' of '+MAXS+' saved';var b=$('#saveNow');var cur=saved.some(function(s){return s.id===S.c.sid});b.disabled=saved.length>=MAXS&&!cur;b.textContent=saved.length>=MAXS&&!cur?'Max 20 saved: delete one first':(cur?'Update saved copy':'Save current contract');
+ $('#savedList').innerHTML=saved.length?saved.map(function(s,i){return '<div class="srow"><div><b>'+esc(s.ref||'(no ref)')+' · '+esc(s.project||'(untitled)')+'</b><small>'+esc(s.client||'')+' · saved '+esc(s.at)+'</small></div><div style="display:flex;gap:6px"><button type="button" class="btn ghost" data-sload="'+i+'">Load</button><button type="button" class="btn ghost" data-sdel="'+i+'">Delete</button></div></div>'}).join(''):'<p class="hint">Nothing saved yet.</p>'}
+function saveNow(){if(!S.c.sid)S.c.sid='c'+Date.now();var snap={id:S.c.sid,at:fdate(new Date()),ref:S.c.ref,project:S.c.project,client:S.c.client.company,c:clone(S.c)};var i=-1;saved.forEach(function(s,j){if(s.id===snap.id)i=j});
+ if(i>=0)saved[i]=snap;else{if(saved.length>=MAXS){toast('Max 20 saved: delete one first');return}saved.unshift(snap)}save();renderSaved();toast('Saved ✓')}
+function exportJson(){var data={app:'freelance-contract-builder',version:1,exported:iso(new Date()),profile:S.profile,current:S.c,ui:S.ui,saved:saved};var blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='contract-builder-backup-'+iso(new Date())+'.json';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);toast('Backup downloaded')}
+function importJson(file){var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(!d||d.app!=='freelance-contract-builder')throw 0;if(d.profile)S.profile=Object.assign(S.profile,d.profile);if(d.current&&D.presets[d.current.preset])S.c=d.current;if(Array.isArray(d.saved))saved=d.saved.slice(0,MAXS);save();renderForm();renderDocs();toast('Imported ✓')}catch(e){toast('That file is not a Contract Builder backup')}};r.readAsText(file)}
+function readLogo(f){if(f.size>1500000){toast('Logo too large (max 1.5 MB)');return}var r=new FileReader();r.onload=function(){S.profile.logo=r.result;renderForm();renderDocs();save()};r.readAsDataURL(f)}
+function doPrint(){renderDocs();setTimeout(function(){window.print()},60)}
+function bind(){var form=$('#form');
+ form.addEventListener('input',function(e){var t=e.target,k=t.getAttribute('data-k');
+  if(k){sp(k,t.value);if(k.indexOf('profile.')===0)S.profile.example=false;if(k==='profile.brand'){var bh=$('#brandhex');if(bh)bh.textContent=t.value.toUpperCase()}if(k==='c.co.title'||k==='c.law'||k.indexOf('c.fees.')===0||k==='c.delivery'||k==='c.accDays')updCalc();later();return}
+  var li=t.getAttribute('data-li');if(li){var p=li.split('|');gp(p[0])[+p[1]]=t.value;later();return}
+  var mi=t.getAttribute('data-mi');if(mi){var q=mi.split('|');S.c.milestones[+q[0]][q[1]]=t.value;later()}});
+ form.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;
+  if(t.hasAttribute('data-set')){var p=t.getAttribute('data-set'),v=t.getAttribute('data-val');sp(p,p==='c.fees.net'?+v:v);renderForm();renderDocs();save();return}
+  if(t.hasAttribute('data-addl')){var pa=t.getAttribute('data-addl');gp(pa).push('');renderForm();var ins=$$('[data-li^="'+pa+'|"]');if(ins.length)ins[ins.length-1].focus();save();return}
+  if(t.hasAttribute('data-del')){var d=t.getAttribute('data-del').split('|');gp(d[0]).splice(+d[1],1);renderForm();renderDocs();save();return}
+  if(t.hasAttribute('data-addm')){S.c.milestones.push({name:'',date:''});renderForm();save();return}
+  if(t.hasAttribute('data-delm')){S.c.milestones.splice(+t.getAttribute('data-delm'),1);renderForm();renderDocs();save();return}
+  if(t.id==='logoUp'){$('#logoFile').click();return}
+  if(t.id==='logoRm'){S.profile.logo='';renderForm();renderDocs();save();return}
+  if(t.id==='newCO'){newCO();return}
+  if(t.hasAttribute('data-open-preset')){renderPresets();openModal('#mPreset')}});
+ form.addEventListener('change',function(e){if(e.target.id==='logoFile'&&e.target.files[0])readLogo(e.target.files[0])});
+ form.addEventListener('toggle',function(e){var d=e.target;if(d.matches&&d.matches('details[data-card]')){S.ui.open[d.getAttribute('data-card')]=d.open;save()}},true);
+ form.addEventListener('focusin',function(e){var t=e.target;if(t.type==='number'||t.getAttribute('data-k')==='c.law'){setTimeout(function(){try{t.select()}catch(x){}},0)}});
+ var docs=$('#docs');
+ docs.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;
+  if(t.hasAttribute('data-ver')){var a=t.getAttribute('data-ver').split('|');cs(a[0]).v=a[1];renderDocs();save();return}
+  if(t.hasAttribute('data-copy')){copy(docText(t.getAttribute('data-copy')),t)}});
+ docs.addEventListener('change',function(e){var t=e.target;if(t.hasAttribute('data-inc')){cs(t.getAttribute('data-inc')).on=t.checked;renderDocs();save()}});
+ $$('.tab').forEach(function(t){t.addEventListener('click',function(){S.ui.tab=t.getAttribute('data-tab');renderDocs();save()})});
+ $('#swNotes').addEventListener('click',function(){S.ui.notes=!S.ui.notes;renderDocs();save()});
+ $('#ckPN').addEventListener('change',function(e){S.ui.printNotes=e.target.checked;renderDocs();save()});
+ $$('#pscope button').forEach(function(b){b.addEventListener('click',function(){S.ui.printAll=b.getAttribute('data-ps')==='all';renderDocs();save()})});
+ $$('#paper button').forEach(function(b){b.addEventListener('click',function(){S.ui.paper=b.getAttribute('data-paper');renderDocs();save()})});
+ $('#bPrint').addEventListener('click',doPrint);
+ $('#bPreset').addEventListener('click',function(){renderPresets();openModal('#mPreset')});
+ $('#presetList').addEventListener('click',function(e){var b=e.target.closest('[data-preset]');if(b)loadPreset(b.getAttribute('data-preset'))});
+ $('#bSaved').addEventListener('click',function(){renderSaved();openModal('#mSaved')});
+ $('#saveNow').addEventListener('click',saveNow);
+ $('#savedList').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  if(b.hasAttribute('data-sload')){S.c=clone(saved[+b.getAttribute('data-sload')].c);closeModal();renderForm();renderDocs();save();toast('Loaded ✓')}
+  if(b.hasAttribute('data-sdel')){saved.splice(+b.getAttribute('data-sdel'),1);save();renderSaved()}});
+ $('#bExport').addEventListener('click',exportJson);
+ $('#bImport').addEventListener('click',function(){$('#importFile').click()});
+ $('#importFile').addEventListener('change',function(e){if(e.target.files[0])importJson(e.target.files[0]);e.target.value=''});
+ $$('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m||e.target.closest('[data-close]'))closeModal()})});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+ window.addEventListener('resize',fit);
+ window.addEventListener('beforeprint',function(){$('#docs').style.zoom=1});
+ window.addEventListener('afterprint',fit)}
+load();
+if(typeof window.FCB_SETUP==='function')window.FCB_SETUP({S:S,D:D,newContract:newContract});
+renderForm();renderDocs();bind();
+})();
+</script>
+</body>
+</html>
