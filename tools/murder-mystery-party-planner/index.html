@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murder Mystery Party Planner: Free Checklist, Timeline &amp; Shopping List</title>
+<meta name="description" content="Free Murder Mystery Party Planner: enter your guest count, occasion and party date to get a dated countdown checklist, a party-night timeline, a shopping list and the game that fits your group.">
+<style id="pagesize">@page{size:letter;margin:0.5in}</style>
+<style>
+:root{--claret:#5E1F2B;--claret-2:#3F131C;--gold:#C9973F;--gold-soft:#E7CF9A;--paper:#FBF6EC;--paper-2:#F1E7D3;--ink:#1A1A1A;--ink-soft:#45403A;--line:#D8CBB0;--ok:#3E6B48;--warn:#9A3B12;
+ --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+ --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;overflow-x:hidden}
+a{color:var(--claret)}
+.top{background:var(--claret);color:var(--paper);padding:9px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.top .brand{display:flex;align-items:center;gap:9px;color:var(--paper);text-decoration:none}
+.top a.all{color:var(--gold-soft);text-decoration:none;white-space:nowrap}
+.hero{background:radial-gradient(ellipse 80% 120% at 70% 0%,#7a2a38,var(--claret) 50%,var(--claret-2));color:var(--paper);padding:38px 20px 92px;text-align:center}
+.hero .eb{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);font-weight:700}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,5vw,52px);line-height:1.08;margin:10px 0}
+.hero p{font-family:var(--serif);font-style:italic;font-size:19px;color:#EADBC0;max-width:660px;margin:0 auto}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.form{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px rgba(63,19,28,.18);padding:20px;margin-top:-64px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) auto;gap:14px;align-items:start;position:relative}
+.field{min-width:0}
+label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--claret);margin-bottom:5px}
+input,select,textarea{width:100%;min-width:0;max-width:100%;font:inherit;font-size:16px;padding:10px 11px;border:1.5px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink)}
+input[type=date],input[type=time]{min-height:46px;-webkit-appearance:none;appearance:none}
+.field.err input,.field.err select{border-color:var(--warn);background:#FDF0EA}
+.err-msg{font-size:13px;color:var(--warn);margin-top:4px;font-weight:700}
+.btn{background:var(--claret);color:var(--paper);border:0;border-radius:8px;padding:12px 20px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;text-align:center}
+.form .btn{margin-top:22px}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--claret);border:1.5px solid var(--claret)}
+h2{font-family:var(--serif);font-size:28px;line-height:1.15;margin:34px 0 4px}
+h2 small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--claret);font-weight:700;margin-bottom:4px}
+.answer{background:var(--paper-2);border-left:5px solid var(--gold);padding:14px 18px;border-radius:0 10px 10px 0;margin-top:22px;font-family:var(--serif);font-size:18px}
+.match{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:12px}
+.game{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.game .pill{align-self:flex-start;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:20px;padding:3px 10px;background:var(--claret);color:var(--paper)}
+.game .pill.free{background:transparent;color:var(--ok);border:1.5px solid var(--ok)}
+.game h3{font-family:var(--serif);font-size:21px;line-height:1.2}
+.game .meta{font-size:14px;color:var(--ink-soft)}
+.game .why{font-size:15px}
+.game a{margin-top:auto;color:var(--claret);font-weight:700;text-decoration:none;padding-top:4px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;margin-top:4px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 16px 14px;min-width:0}
+.seg{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--claret);margin:12px 0 4px;padding-bottom:4px;border-bottom:2px solid var(--paper-2)}
+.task{display:grid;grid-template-columns:22px 104px minmax(0,1fr);gap:8px;align-items:start;padding:6px 0;border-bottom:1px solid #EFE6D4;font-size:15px}
+.task input{width:18px;height:18px;margin-top:3px;accent-color:var(--claret);padding:0}
+.task .d{font-weight:700;font-variant-numeric:tabular-nums}
+.task.past .d{color:var(--warn)}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.star{color:var(--claret);font-weight:700}
+.run{display:grid;grid-template-columns:78px minmax(0,1fr);gap:10px;padding:7px 0;border-bottom:1px solid #EFE6D4;font-size:15px}
+.run b{font-variant-numeric:tabular-nums}
+.shop{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;padding:6px 0;border-bottom:1px solid #EFE6D4;font-size:15px}
+.shop b{font-family:var(--serif);font-size:20px;color:var(--claret);font-variant-numeric:tabular-nums}
+.shop i{display:block;font-style:normal;font-size:13px;color:var(--ink-soft)}
+.note{font-size:14px;color:var(--ink-soft);margin-top:8px}
+.actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.guide{margin-top:44px;font-family:var(--serif);font-size:17.5px;line-height:1.6;max-width:760px}
+.guide h2{margin-top:0}
+.guide p{margin-top:12px}
+.guide ol{margin:12px 0 0 22px}
+.guide li{margin-top:6px}
+.full{margin:44px 0 40px;background:var(--claret);color:var(--paper);border-radius:16px;padding:26px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:26px}
+.full h2{color:var(--paper);margin:0 0 8px}
+.full h2 small{color:var(--gold-soft)}
+.full p{color:#EADBC0}
+.full ul{margin:10px 0 0 18px;color:#EADBC0;font-size:15px}
+.cmp{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--paper);color:var(--ink);border-radius:10px;overflow:hidden}
+.cmp th,.cmp td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp th{background:var(--paper-2);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.cmp td.c,.cmp th.c{text-align:center;font-weight:800;width:52px}
+.price{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--gold-soft);line-height:1;margin:14px 0}
+footer{border-top:1px solid var(--line);padding:18px 16px 30px;text-align:center;font-size:13px;color:var(--ink-soft)}
+@media (max-width:760px){.form{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.form .btn{grid-column:1/-1;margin-top:0}.match,.grid2,.full{grid-template-columns:minmax(0,1fr)}.task{grid-template-columns:22px 92px minmax(0,1fr)}.top{padding:9px 14px;letter-spacing:.08em}}
+@media (max-width:400px){.top .wm{font-size:11px}.hero p{font-size:17px}.full{padding:20px}}
+@media print{body{background:#fff}.top,.hero,.form,.actions,.full,.guide,footer{display:none!important}.panel,.game{box-shadow:none;break-inside:avoid}.answer{margin-top:0}.grid2{grid-template-columns:1fr 1fr}.match{grid-template-columns:repeat(3,1fr)}}
+</style>
+  <script data-goatcounter="https://phien.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="top"><a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><circle cx="26" cy="26" r="20" fill="none" stroke="#C9973F" stroke-width="5"/><path d="M40,40 L58,58" stroke="#FBF6EC" stroke-width="7" stroke-linecap="round"/><rect x="22" y="22" width="8" height="18" rx="1.5" fill="#FBF6EC"/><path d="M26,9 C30,14 30,18 26,20 C22,18 22,14 26,9Z" fill="#E9C46A"/></svg><span class="wm">Clue &amp; Candle Games</span></a><a class="all" href="/">All games</a></div>
+<header class="hero"><div class="eb">Free tool · works with any game</div><h1>Murder Mystery Party Planner</h1><p>Enter your guest count, occasion and party date. Get a matched game, a dated countdown checklist, a timeline for the night and a shopping list.</p></header>
+<main class="wrap">
+<form class="form" id="planform" novalidate aria-label="Your party">
+ <div class="field" id="fld-guests"><label for="f-guests">Guests</label><input id="f-guests" type="number" inputmode="numeric" min="1" max="40" step="1" value="10"><div class="err-msg" id="err-guests" hidden></div></div>
+ <div class="field" id="fld-occasion"><label for="f-occ">Occasion</label><select id="f-occ"></select><div class="err-msg" id="err-occasion" hidden></div></div>
+ <div class="field" id="fld-date"><label for="f-date">Party date</label><input id="f-date" type="date"><div class="err-msg" id="err-date" hidden></div></div>
+ <div class="field" id="fld-time"><label for="f-time">Start time</label><input id="f-time" type="time" value="19:00"><div class="err-msg" id="err-time" hidden></div></div>
+ <div class="field" id="fld-length"><label for="f-len">Length</label><select id="f-len"><option value="60">60 minutes</option><option value="90">90 minutes</option><option value="150" selected>150 minutes</option></select><div class="err-msg" id="err-length" hidden></div></div>
+ <button class="btn" type="submit" id="go">Plan my party</button>
+</form>
+
+<div id="results" hidden>
+ <div class="answer" id="out-answer"></div>
+ <h2><small>Output 1</small>Game match</h2>
+ <div class="match" id="out-match"></div>
+ <div class="grid2">
+  <div><h2><small>Output 2</small>Countdown checklist</h2><div class="panel" id="out-countdown"></div><p class="note">★ = do first if you are starting late. Tasks dated before today are tagged <b>Catch up</b>.</p></div>
+  <div><h2><small>Output 3</small><span id="run-title">Run sheet</span></h2><div class="panel" id="out-run"></div>
+   <h2><small>Output 4</small><span id="shop-title">Shopping list</span></h2><div class="panel" id="out-shop"></div></div>
+ </div>
+ <div class="actions"><button class="btn" type="button" id="print">Print this plan</button><button class="btn ghost" type="button" id="reset">Start over</button></div>
+</div>
+
+<section class="guide" id="how-to-plan">
+ <h2>How to plan a murder mystery party</h2>
+ <p>A murder mystery party is a dinner or drinks party where every guest plays a character, and the whole room works together to solve a cozy whodunit. Planning one takes less time than it sounds: about four weeks of light, steady steps. The planner above turns those steps into real dates for your party. Here is the plan in plain words.</p>
+ <ol>
+  <li><b>Four weeks before:</b> count your guests and pick a game written for that number and your occasion. Set the date and start time, then send invitations with a clear RSVP date. Decide whether you will serve a sit-down dinner, a buffet or finger food.</li>
+  <li><b>Two weeks before:</b> confirm final numbers and give every guest a character. Send each guest a short character intro and a costume hint, so they can dress up from what they already own.</li>
+  <li><b>One week before:</b> print the booklets, clue cards, name tags and ballots. Read the host guide from start to finish once, and gather candles, props and a playlist.</li>
+  <li><b>Three days before:</b> shop, then ask a friend to cut the clue cards and seal them in envelopes. That way the host can play and guess along with everyone else.</li>
+  <li><b>On the night:</b> follow a simple timeline: arrivals and name tags, the opening read aloud, two or three rounds of clues, food, accusations on paper ballots, the reveal, then awards.</li>
+ </ol>
+ <p><b>How long does a murder mystery party take?</b> Plan on 90 minutes for a drinks-and-snacks evening and about two and a half hours if dinner is part of the game. A short 60-minute version works for an office lunch hour if you keep the rounds brisk.</p>
+ <p><b>What if my numbers change?</b> Choose a game with optional roles. Couples can share one character, and in a big office group, small teams can share a role. The guest count field above shows which of our games fits 4, 8, 10, 12, 20 or 40 players.</p>
+ <p><b>Keep it cozy.</b> The best evenings are about bluffing, costumes and laughing at wild theories, not scares. Give out a few awards at the end, such as Super Sleuth or Best Costume, so the quiet guests get a moment to shine too.</p>
+</section>
+
+<section class="full" id="host-kit">
+ <div><h2><small>The full version</small>Murder Mystery Host Kit: Planner Tool + Printables, Any Game</h2>
+  <p>Everything above as an offline planner that saves your progress, plus printables filled in with your own guest list. Works with any murder mystery game, ours or another brand's.</p>
+  <ul><li>1 offline HTML planner (no internet needed)</li><li>5 PDFs in US Letter and in A4 (34 pages per size)</li><li>12 award certificates, 2 sheets of ballots, 2 sheets of name tags, 4 table signs</li></ul>
+  <div class="price">$7</div><a class="btn gold" href="/products/murder-mystery-party-planner/">Get the Host Kit</a></div>
+ <table class="cmp"><thead><tr><th>Feature</th><th class="c">Free</th><th class="c">Kit</th></tr></thead><tbody>
+  <tr><td>Game match, dated checklist, run sheet, shopping list</td><td class="c">✓</td><td class="c">✓</td></tr>
+  <tr><td>Works offline and saves ticks and your own tasks</td><td class="c">–</td><td class="c">✓</td></tr>
+  <tr><td>Guest &amp; casting tracker (40 rows, RSVP, JSON backup)</td><td class="c">–</td><td class="c">✓</td></tr>
+  <tr><td>Paste any game's character list and assign it to guests</td><td class="c">–</td><td class="c">✓</td></tr>
+  <tr><td>Name tags &amp; place cards printed with your guests' names</td><td class="c">–</td><td class="c">✓</td></tr>
+  <tr><td>12 award certificates and ballots, auto-filled</td><td class="c">–</td><td class="c">✓</td></tr>
+  <tr><td>34-page PDF set, US Letter + A4</td><td class="c">–</td><td class="c">✓</td></tr>
+ </tbody></table>
+</section>
+</main>
+<footer>© 2026 Clue &amp; Candle Games · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · This planner runs in your browser. Nothing you type is sent anywhere.</footer>
+
+<script>
+/* CCG-CORE v1 · Clue & Candle Games · shared by the free online planner and the offline Host Planner */
+var CCG_OCCASIONS=["Christmas","Office holiday party","New Year's Eve","Halloween","Friendsgiving/Thanksgiving","Bachelorette/Bridal shower","Birthday/any time","Dinner party","Kids party 8–12","Solo/couple at home"];
+var CCG_OCC_PHRASE={"Christmas":"a Christmas party","Office holiday party":"an office holiday party","New Year's Eve":"a New Year's Eve party","Halloween":"a Halloween party","Friendsgiving/Thanksgiving":"Friendsgiving or Thanksgiving","Bachelorette/Bridal shower":"a bachelorette party or bridal shower","Birthday/any time":"a birthday or any night of the year","Dinner party":"a dinner party","Kids party 8–12":"a kids party (ages 8–12)","Solo/couple at home":"a solo or couple night in"};
+var CCG_GAMES=[
+ {slug:"a-very-merry-murder",name:"A Very Merry Murder",players:"6–16",min:6,max:16,ext:16,price:17,occ:["Christmas"]},
+ {slug:"the-secret-santa-murder",name:"The Secret Santa Murder",players:"8–40",min:8,max:40,ext:40,price:24,occ:["Office holiday party","Christmas"]},
+ {slug:"the-last-countdown",name:"The Last Countdown",players:"6–16",min:6,max:16,ext:16,price:17,occ:["New Year's Eve"]},
+ {slug:"murder-at-the-masquerade",name:"Murder at the Blue Lantern Club",players:"8–16 (up to 20)",min:8,max:16,ext:20,price:19,occ:["Birthday/any time","New Year's Eve"]},
+ {slug:"the-candlewick-costume-ball",name:"The Candlewick Costume Ball Murder",players:"6–14 (up to 20 in pairs)",min:6,max:14,ext:20,price:17,occ:["Halloween"]},
+ {slug:"the-gravy-boat-murder",name:"The Gravy Boat Murder",players:"6–12 (13–16 as duos)",min:6,max:12,ext:16,price:17,occ:["Friendsgiving/Thanksgiving"]},
+ {slug:"the-something-blue-murder",name:"The Something Blue Murder",players:"6–14",min:6,max:14,ext:14,price:17,occ:["Bachelorette/Bridal shower"]},
+ {slug:"thistledown-supper",name:"The Thistledown Supper",players:"4–8",min:4,max:8,ext:8,price:15,occ:["Dinner party","Birthday/any time"]},
+ {slug:"the-golden-whisk-mystery",name:"The Golden Whisk Mystery",players:"6–12 kids (14–24 team mode)",min:6,max:12,ext:24,price:15,occ:["Kids party 8–12"]},
+ {slug:"the-quillfeather-case-file",name:"The Quillfeather Case File",players:"1–4",min:1,max:4,ext:4,price:9,occ:["Solo/couple at home"]},
+ {slug:null,name:"The Case of the Cold Cocoa",players:"4–6",min:4,max:6,ext:6,price:0,occ:["Any occasion (free trial)"],free:true,href:"/free/the-case-of-the-cold-cocoa.pdf"}
+];
+var CCG_TASKS=[
+ {label:"4 weeks before",tasks:[
+  {id:"w4a",off:28,star:1,text:"Pick a game that fits your guest count and occasion"},
+  {id:"w4b",off:28,text:"Set the date, start time and guest list"},
+  {id:"w4c",off:27,star:1,text:"Send invitations with an RSVP date"},
+  {id:"w4d",off:26,text:"Decide on dinner, buffet or finger food"}]},
+ {label:"2 weeks before",tasks:[
+  {id:"w2a",off:14,star:1,text:"Chase RSVPs and confirm final numbers"},
+  {id:"w2b",off:14,text:"Assign a character to every guest"},
+  {id:"w2c",off:13,text:"Send each guest their character intro and costume hint"},
+  {id:"w2d",off:12,text:"Plan the menu and drinks"}]},
+ {label:"1 week before",tasks:[
+  {id:"w1a",off:7,star:1,text:"Print booklets, clues, name tags and ballots"},
+  {id:"w1b",off:7,text:"Read the host guide from start to finish"},
+  {id:"w1c",off:6,text:"Order or gather props, candles and decor"},
+  {id:"w1d",off:5,text:"Make a party playlist"}]},
+ {label:"3 days before",tasks:[
+  {id:"d3a",off:3,text:"Shop from your shopping list"},
+  {id:"d3b",off:3,star:1,text:"Ask a friend to cut and envelope the clue cards, so you can play too"},
+  {id:"d3c",off:2,text:"Fill in the award certificates"},
+  {id:"d3d",off:2,text:"Send guests a friendly reminder"}]},
+ {label:"Day before",tasks:[
+  {id:"d1a",off:1,text:"Prep food that keeps overnight"},
+  {id:"d1b",off:1,text:"Set up Detective HQ and the evidence table"},
+  {id:"d1c",off:1,text:"Practice reading the opening aloud"}]},
+ {label:"Day of",tasks:[
+  {id:"d0a",off:0,star:1,text:"Lay out name tags, pens and ballots"},
+  {id:"d0b",off:0,text:"Keep the solution sealed until the reveal"},
+  {id:"d0c",off:0,text:"Light the candles and start the music"}]}
+];
+var CCG_RUN={
+ 60:[[0,"Guests arrive: name tags and drinks"],[10,"Host reads the opening and the rules"],[15,"Round 1: mingle in character and share clues"],[27,"Round 2: new clues and questions"],[39,"Final round: visit the evidence table"],[47,"Accusations: everyone fills in a ballot"],[52,"The reveal: host reads the solution"],[57,"Awards and a group photo"],[60,"Party wraps up"]],
+ 90:[[0,"Guests arrive: name tags, drinks and snacks"],[15,"Host reads the opening and the rules"],[20,"Round 1: mingle in character and share clues"],[40,"Round 2: new clues, with food out"],[60,"Final round: visit the evidence table"],[72,"Accusations: everyone fills in a ballot"],[78,"The reveal: host reads the solution"],[85,"Awards and a group photo"],[90,"Party wraps up"]],
+ 150:[[0,"Guests arrive: name tags and drinks"],[20,"Host reads the opening and the rules"],[30,"Round 1: mingle in character and share clues"],[60,"Dinner is served (stay in character)"],[80,"Round 2: new clues and questions"],[105,"Final round: visit the evidence table"],[120,"Accusations: everyone fills in a ballot"],[130,"The reveal: host reads the solution"],[140,"Awards and dessert"],[150,"Party wraps up"]]
+};
+var CCG={
+ DOW:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+ MON:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+ parseDate:function(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");if(!m)return null;var d=new Date(+m[1],+m[2]-1,+m[3]);if(d.getMonth()!==+m[2]-1)return null;return d;},
+ isoDate:function(d){var m=d.getMonth()+1,dd=d.getDate();return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(dd<10?"0":"")+dd;},
+ fmtDate:function(d){return this.DOW[d.getDay()]+", "+this.MON[d.getMonth()]+" "+d.getDate();},
+ addDays:function(d,n){return new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);},
+ today:function(){var t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate());},
+ parseTime:function(s){var m=/^(\d{1,2}):(\d{2})/.exec(s||"");if(!m)return null;var h=+m[1],mi=+m[2];if(h>23||mi>59)return null;return h*60+mi;},
+ fmtTime:function(mins){mins=((mins%1440)+1440)%1440;var h=Math.floor(mins/60),m=mins%60,ap=h<12?"am":"pm",h12=h%12===0?12:h%12;return h12+":"+(m<10?"0":"")+m+" "+ap;},
+ validate:function(inp){
+  var e={},g=String(inp.guests==null?"":inp.guests).trim();
+  if(!/^\d+$/.test(g)||+g<1||+g>40)e.guests="Enter a whole number of guests from 1 to 40.";
+  if(!inp.date)e.date="Pick your party date.";
+  else{var d=this.parseDate(inp.date);if(!d)e.date="Pick a valid date.";else if(d<this.today())e.date="That date has passed. Pick today or a later date.";}
+  if(this.parseTime(inp.time)===null)e.time="Pick a start time.";
+  if(CCG_OCCASIONS.indexOf(inp.occasion)<0)e.occasion="Pick an occasion.";
+  if([60,90,150].indexOf(+inp.length)<0)e.length="Pick 60, 90 or 150 minutes.";
+  return e;
+ },
+ match:function(n,occ){
+  var self=this,scored=[];
+  CCG_GAMES.forEach(function(g,i){if(g.free)return;var s=0,fit,occOk=g.occ.indexOf(occ)>=0;if(occOk)s+=100;
+   if(n>=g.min&&n<=g.max){s+=50;fit="in";}else if(n>g.max&&n<=g.ext){s+=30;fit="ext";}else if(n<g.min){s-=(g.min-n)*10;fit="under";}else{s-=(n-g.ext)*5;fit="over";}
+   scored.push({g:g,s:s,fit:fit,occOk:occOk,i:i});});
+  scored.sort(function(a,b){return b.s-a.s||a.i-b.i;});
+  var out=[{x:scored[0],label:"Best match"}];
+  for(var k=1;k<scored.length;k++){var x=scored[k];var yr=/Birthday\/any time|Dinner party|Solo\/couple at home/.test(x.g.occ.join("|"));if(x.s>=50&&(x.fit==="in"||x.fit==="ext")&&(x.occOk||yr)){out.push({x:x,label:"Also fits"});break;}}
+  return out.map(function(o){return {game:o.x.g,label:o.label,fit:o.x.fit,why:self.reason(o.x,n,occ)};});
+ },
+ reason:function(x,n,occ){
+  var g=x.g,gw=n===1?"guest":"guests",what=x.occOk?"Written for "+CCG_OCC_PHRASE[occ]:"Not written for "+CCG_OCC_PHRASE[occ]+" (it is a "+g.occ.join(" / ")+" story)";
+  if(x.fit==="in")return what+", and "+n+" "+gw+" sits inside its "+g.players+" player range.";
+  if(x.fit==="ext")return what+"; "+n+" guests uses its larger-group option ("+g.players+").";
+  if(x.fit==="under")return what+". It needs at least "+g.min+" players, so invite "+(g.min-n)+" more or let the host take a role too.";
+  var extra=n-g.ext;
+  if(extra<=g.ext)return what+". It has roles for up to "+g.ext+", so with "+n+" guests, "+extra+(extra===1?" pair of guests shares a role.":" pairs of guests share a role each.");
+  return what+". It has roles for up to "+g.ext+", so with "+n+" guests, split into small teams that share a role.";
+ },
+ freeGame:function(){for(var i=0;i<CCG_GAMES.length;i++)if(CCG_GAMES[i].free)return CCG_GAMES[i];},
+ freeWhy:function(n){return n>=4&&n<=6?"Free mini mystery for 4–6 players: it fits your "+n+" guests as is. Try our style before you buy.":"Free mini mystery for 4–6 players. Read it first to see how our games work.";},
+ countdown:function(dateStr){
+  var d=this.parseDate(dateStr),t=this.today(),self=this;
+  return CCG_TASKS.map(function(seg){return {label:seg.label,tasks:seg.tasks.map(function(k){var td=self.addDays(d,-k.off);return {id:k.id,text:k.text,star:!!k.star,date:td,dateText:self.fmtDate(td),catchUp:td<t};})};});
+ },
+ runsheet:function(timeStr,len){var st=this.parseTime(timeStr),self=this;return CCG_RUN[len].map(function(r){return {time:self.fmtTime(st+r[0]),text:r[1]};});},
+ shopping:function(n,len){
+  var c=Math.ceil,L=[
+   [n+2,"Name tag holders or sticker badges","1 per guest + 2 spare"],
+   [n+2,"Pens for notes and ballots","1 per guest + 2 spare"],
+   [n+4,"Envelopes for booklets and clues","1 per guest + 4 for the evidence table"],
+   [8*n+20,"Sheets of printer paper","8 per guest + 20 for host pages"],
+   [c(n/2)+12,"Sheets of card stock","1 per 2 guests for tags and place cards + 12 for awards"],
+   [c(n/3)+1,"Small prizes for the awards","1 per 3 guests, rounded up, + 1 for the top sleuth"],
+   [c(n/2),"LED tealights or candles","1 per 2 guests, rounded up"],
+   [c(n/3),"Bottles of sparkling drink (alcohol-free or not)","1 per 3 guests, rounded up"],
+   [c(n/4),"2-liter bottles of soft drink or juice","1 per 4 guests, rounded up"],
+   [c(n/5),"Bags of ice","1 per 5 guests, rounded up"],
+   [(len===60?3:5)*n,"Appetizer bites",(len===60?"3":"5")+" per guest"],
+   [3*n,"Napkins","3 per guest"]
+  ];
+  if(len===150)L.push([n+1,"Dinner portions","1 per guest + 1 spare"]);
+  if(len!==60)L.push([n,"Dessert portions","1 per guest"]);
+  return L.map(function(r){return {qty:r[0],item:r[1],rule:r[2]};});
+ },
+ playersAnswer:function(n){
+  var q="<b>How many players do you need for a murder mystery party?</b> A printable murder mystery works with 4 to 40 players. The easiest size to host is 6 to 12, where every guest gets a full character. Solo case files work for 1 to 4. ";
+  if(n<=3)return q+"With <b>"+n+" "+(n===1?"guest":"guests")+"</b>, pick a solo or couple case file: you read the evidence together instead of playing roles.";
+  if(n<=5)return q+"With <b>"+n+" guests</b>, choose a small dinner-party game written for 4 to 8, so nobody sits out.";
+  if(n<=12)return q+"With <b>"+n+" guests</b>, you are in the easy range: almost any party game gives each guest a full character.";
+  if(n<=20)return q+"With <b>"+n+" guests</b>, choose a game with extra optional roles, or let couples share a character as a pair.";
+  return q+"With <b>"+n+" guests</b>, you need a large-group game where teams share roles. The Secret Santa Murder covers 8 to 40.";
+ },
+ plan:function(inp){var e=this.validate(inp);if(Object.keys(e).length)return {errors:e};var n=+inp.guests,len=+inp.length;
+  return {errors:null,n:n,len:len,occasion:inp.occasion,answer:this.playersAnswer(n),matches:this.match(n,inp.occasion),free:this.freeGame(),freeWhy:this.freeWhy(n),countdown:this.countdown(inp.date),run:this.runsheet(inp.time,len),shop:this.shopping(n,len)};}
+};
+</script>
+<script>
+(function(){
+var BASE="";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function link(g){return g.free?BASE+g.href:BASE+"/products/"+g.slug+"/";}
+var occSel=$("f-occ");
+CCG_OCCASIONS.forEach(function(o){var op=document.createElement("option");op.value=o;op.textContent=o;occSel.appendChild(op);});
+function read(){return {guests:$("f-guests").value,occasion:occSel.value,date:$("f-date").value,time:$("f-time").value,length:$("f-len").value};}
+function showErrors(e){["guests","occasion","date","time","length"].forEach(function(k){var f=$("fld-"+k),m=$("err-"+k);if(e&&e[k]){f.classList.add("err");m.textContent=e[k];m.hidden=false;}else{f.classList.remove("err");m.textContent="";m.hidden=true;}});}
+function render(p){
+ $("out-answer").innerHTML=p.answer;
+ var h="";
+ p.matches.forEach(function(m){var g=m.game;h+='<div class="game"><span class="pill">'+m.label+'</span><h3>'+esc(g.name)+'</h3><div class="meta">'+g.players+' players · $'+g.price+' · '+esc(g.occ.join(", "))+'</div><div class="why">'+esc(m.why)+'</div><a href="'+link(g)+'">See the game →</a></div>';});
+ var f=p.free;h+='<div class="game"><span class="pill free">Free</span><h3>'+esc(f.name)+'</h3><div class="meta">'+f.players+' players · Free PDF</div><div class="why">'+esc(p.freeWhy)+'</div><a href="'+link(f)+'">Download free →</a></div>';
+ $("out-match").innerHTML=h;
+ h="";
+ p.countdown.forEach(function(seg){h+='<div class="seg">'+seg.label+'</div>';seg.tasks.forEach(function(t){h+='<label class="task'+(t.catchUp?' past':'')+'" style="text-transform:none;letter-spacing:0;font-weight:400;color:inherit;margin:0"><input type="checkbox"><span class="d">'+t.dateText+'</span><span>'+esc(t.text)+(t.star?' <span class="star">★</span>':'')+(t.catchUp?'<span class="tag">Catch up</span>':'')+'</span></label>';});});
+ $("out-countdown").innerHTML=h;
+ $("run-title").textContent="Run sheet · "+p.len+" min";
+ $("out-run").innerHTML=p.run.map(function(r){return '<div class="run"><b>'+r.time+'</b><span>'+esc(r.text)+'</span></div>';}).join("");
+ $("shop-title").textContent="Shopping list · "+p.n+" "+(p.n===1?"guest":"guests");
+ $("out-shop").innerHTML=p.shop.map(function(s){return '<div class="shop"><b>'+s.qty+'</b><span>'+esc(s.item)+'<i>'+esc(s.rule)+'</i></span></div>';}).join("");
+}
+function run(){var p=CCG.plan(read());if(p.errors){showErrors(p.errors);$("results").hidden=true;return false;}showErrors(null);render(p);$("results").hidden=false;return true;}
+$("planform").addEventListener("submit",function(ev){ev.preventDefault();if(run())$("out-answer").scrollIntoView({behavior:"smooth",block:"start"});});
+$("print").addEventListener("click",function(){window.print();});
+$("reset").addEventListener("click",function(){$("f-guests").value="";$("f-date").value="";$("results").hidden=true;showErrors(null);$("f-guests").focus();});
+$("f-date").value=CCG.isoDate(CCG.addDays(CCG.today(),28));
+var hp=new URLSearchParams(location.hash.replace(/^#/,""));
+if(hp.has("guests"))$("f-guests").value=hp.get("guests");
+if(hp.has("occasion"))occSel.value=hp.get("occasion");
+if(hp.has("date")){var dv=hp.get("date");$("f-date").value=/^\+\d+$/.test(dv)?CCG.isoDate(CCG.addDays(CCG.today(),+dv.slice(1))):dv;}
+if(hp.has("time"))$("f-time").value=hp.get("time");
+if(hp.has("length"))$("f-len").value=hp.get("length");
+run();
+})();
+</script>
+</body>
+</html>
