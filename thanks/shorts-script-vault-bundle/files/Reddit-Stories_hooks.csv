@@ -1,0 +1,151 @@
+hook_id,hook_type,subgenre,hook_text,word_count
+"H001","Judgment ask","AITA / judgment","Am I wrong for charging my best friend rent for my couch?",12
+"H002","Judgment ask","AITA / judgment","Was I wrong to skip my brother's birthday for a job interview?",12
+"H003","Judgment ask","AITA / judgment","Am I the bad guy for eating the last slice I paid for?",13
+"H004","Judgment ask","AITA / judgment","Was I wrong to tell my friend her proposal plan was terrible?",12
+"H005","Judgment ask","AITA / judgment","Am I wrong for not lending my car to my sister again?",12
+"H006","Judgment ask","AITA / judgment","Was I wrong to leave my own birthday dinner early?",10
+"H007","Judgment ask","AITA / judgment","Am I the jerk for refusing to switch plane seats with a family?",13
+"H008","Judgment ask","AITA / judgment","Was I wrong to read my roommate's note out loud?",10
+"H009","Judgment ask","AITA / judgment","Am I wrong for not going to my friend's third engagement party?",12
+"H010","Judgment ask","AITA / judgment","Was I out of line for correcting my boss in a meeting?",12
+"H011","Judgment ask","AITA / judgment","Am I wrong for keeping the money I found in a used jacket?",13
+"H012","Judgment ask","AITA / judgment","Was I wrong to cancel the group trip I planned and paid for?",13
+"H013","Judgment ask","AITA / judgment","Am I the problem for not wanting my in-laws to have a key?",13
+"H014","Judgment ask","AITA / judgment","Was I wrong to tell the truth in my friend's wedding toast?",12
+"H015","Judgment ask","AITA / judgment","Am I wrong for asking guests to pay for their own dinner?",12
+"H016","Cold open mid-action","Roommate & neighbor","I was halfway out the window when my roommate came home early.",12
+"H017","Cold open mid-action","Family & wedding","The bride was still screaming when I found the missing ring.",11
+"H018","Cold open mid-action","Workplace","My manager was reading my resignation letter out loud to the whole team.",13
+"H019","Cold open mid-action","Roommate & neighbor","I was holding twelve pizzas when the neighbor finally opened her door.",12
+"H020","Cold open mid-action","Unsettling / mystery","The lights went out just as the stranger said my name.",11
+"H021","Cold open mid-action","Family & wedding","I was mid-sentence in my toast when my phone started ringing.",11
+"H022","Cold open mid-action","Petty revenge","Three security guards were walking toward me, and I was smiling.",11
+"H023","Cold open mid-action","Entitled people","The customer threw her coffee, and I caught the cup.",10
+"H024","Cold open mid-action","Wholesome twist","My dad was already crying when I opened the envelope.",10
+"H025","Cold open mid-action","Roommate & neighbor","I had one sock on when the fire alarm went off.",11
+"H026","Cold open mid-action","Workplace","The whole office went quiet when my email hit every inbox.",11
+"H027","Cold open mid-action","Unsettling / mystery","I was locking the shop when someone knocked from inside.",10
+"H028","Cold open mid-action","AITA / judgment","My sister was halfway through my diary when I walked in.",11
+"H029","Cold open mid-action","Entitled people","The waiter was still holding the check when my date left.",11
+"H030","Cold open mid-action","Petty revenge","I was elbow-deep in the office fridge, holding the evidence.",10
+"H031","Shocking last line first","Family & wedding","And that's how my mother-in-law ended up locked out of her own party.",13
+"H032","Shocking last line first","Roommate & neighbor","That's why my landlord now has to knock twice.",9
+"H033","Shocking last line first","Workplace","So yes, my coworker got fired over a stapler.",9
+"H034","Shocking last line first","AITA / judgment","That's the story of how I got banned from my own book club.",13
+"H035","Shocking last line first","Wholesome twist","And that's how a stranger paid for my entire wedding cake.",11
+"H036","Shocking last line first","Petty revenge","Long story short, the neighbor's garden gnome now lives in my yard.",12
+"H037","Shocking last line first","Unsettling / mystery","That's why I never answer the door after midnight anymore.",10
+"H038","Shocking last line first","Entitled people","Which is how the entitled guy ended up apologizing to a parking meter.",13
+"H039","Shocking last line first","Family & wedding","And that's why my brother isn't allowed to plan birthdays.",10
+"H040","Shocking last line first","Workplace","So now my old boss works for me. Here's how.",10
+"H041","Shocking last line first","Wholesome twist","That's how I ended up adopting my neighbor's cat. Legally.",10
+"H042","Shocking last line first","AITA / judgment","Anyway, that's why the group chat is now called “Witness Protection.”",11
+"H043","Shocking last line first","Roommate & neighbor","And that's how my roommate learned to label her food.",10
+"H044","Shocking last line first","Entitled people","Which is why the lady in seat 14B now flies with headphones.",12
+"H045","Shocking last line first","Wholesome twist","And that's how a wrong number became my best friend.",10
+"H046","Petty revenge setup","Petty revenge","My coworker kept stealing my lunch, so I started packing decoys.",11
+"H047","Petty revenge setup","Petty revenge","My neighbor kept parking in my spot. So I read the lease.",12
+"H048","Petty revenge setup","Petty revenge","He took credit for my idea, so I gave him another one.",12
+"H049","Petty revenge setup","Petty revenge","My ex kept using my streaming password, so I renamed the profiles.",12
+"H050","Petty revenge setup","Petty revenge","She told everyone I couldn't cook. So I catered her party.",11
+"H051","Petty revenge setup","Petty revenge","My landlord ignored my repair requests, so I started mailing them. Daily.",12
+"H052","Petty revenge setup","Petty revenge","The HOA fined me for my mailbox color, so I read the bylaws.",13
+"H053","Petty revenge setup","Petty revenge","My brother always “borrowed” my charger, so I labeled them all.",11
+"H054","Petty revenge setup","Petty revenge","My roommate never did dishes, so I hid every plate but one.",12
+"H055","Petty revenge setup","Petty revenge","A customer wanted me to follow the rules exactly. So I did.",12
+"H056","Petty revenge setup","Petty revenge","My coworker replied-all to embarrass me. So I replied-all back.",10
+"H057","Petty revenge setup","Petty revenge","The guy who cut the line at the bakery didn't know I worked there.",14
+"H058","Petty revenge setup","Petty revenge","My neighbor blew leaves onto my lawn every Saturday. I kept every leaf.",13
+"H059","Petty revenge setup","Petty revenge","My sister copied every outfit I wore. So I planned one.",11
+"H060","Petty revenge setup","Petty revenge","My boss said, “Do only what's in your job description.” So I did.",13
+"H061","Entitled person","Entitled people","A stranger demanded my window seat because she “liked the view.”",11
+"H062","Entitled person","Entitled people","A woman at the park told me to give my dog to her son.",14
+"H063","Entitled person","Entitled people","A guest at my café demanded a refund for a free sample.",12
+"H064","Entitled person","Entitled people","My neighbor expected me to babysit because I “work from home.”",11
+"H065","Entitled person","Entitled people","A man cut in line, then asked me to hold his place.",12
+"H066","Entitled person","Entitled people","She wanted my handmade cake for free because it's “just a hobby.”",12
+"H067","Entitled person","Entitled people","A customer threw a tantrum because we closed at closing time.",11
+"H068","Entitled person","Entitled people","A parent demanded I hand over the last swing. I was fixing it.",13
+"H069","Entitled person","Entitled people","My cousin invited herself on my honeymoon. Then she complained about the hotel.",13
+"H070","Entitled person","Entitled people","A stranger at the gym asked me to leave so his friend could film.",14
+"H071","Entitled person","Entitled people","She returned a dress she clearly wore to a wedding. With confetti.",12
+"H072","Entitled person","Entitled people","A neighbor asked me to move my fence because it blocked her selfies.",13
+"H073","Entitled person","Entitled people","A passenger reclined into my lap, then asked me to hold her drink.",13
+"H074","Entitled person","Entitled people","A coworker's wife emailed me to demand my holiday shift.",10
+"H075","Entitled person","Entitled people","A man insisted my rescue dog was actually his. He'd never seen her.",13
+"H076","Family/wedding drama","Family & wedding","My mom gave my wedding fund to my brother. Then she asked for help.",14
+"H077","Family/wedding drama","Family & wedding","My sister-in-law wore a veil to my wedding. Nobody stopped her.",11
+"H078","Family/wedding drama","Family & wedding","At Thanksgiving, my dad announced who gets the house. It wasn't me.",12
+"H079","Family/wedding drama","Family & wedding","My cousin asked me to be a bridesmaid, then sent me an invoice.",13
+"H080","Family/wedding drama","Family & wedding","My grandma left me one thing in her will: a locked box.",12
+"H081","Family/wedding drama","Family & wedding","My fiancé's family had a group chat about me. I got added by mistake.",14
+"H082","Family/wedding drama","Family & wedding","My brother skipped my graduation. Now he wants me at his wedding.",12
+"H083","Family/wedding drama","Family & wedding","I was the only one left out of the family photo.",11
+"H084","Family/wedding drama","Family & wedding","My stepdad gave a speech at my wedding. It was about himself.",12
+"H085","Family/wedding drama","Family & wedding","My parents rented out my childhood room. I still lived in it.",12
+"H086","Family/wedding drama","Family & wedding","My aunt seated me at the kids' table. I was thirty-one.",11
+"H087","Family/wedding drama","Family & wedding","Everyone knew about the surprise party except the guest of honor. Me.",12
+"H088","Family/wedding drama","Family & wedding","My twin wanted to share my wedding date. I said no.",11
+"H089","Family/wedding drama","Family & wedding","My mother-in-law returned our wedding gift. To me. At dinner.",10
+"H090","Family/wedding drama","Family & wedding","The best man's speech revealed a secret even the groom didn't know.",12
+"H091","Workplace","Workplace","My boss scheduled a meeting about meetings. I brought a timer.",11
+"H092","Workplace","Workplace","The new hire got my promotion. Then she asked me to train her.",13
+"H093","Workplace","Workplace","HR called me in for smiling too much. I'm not kidding.",11
+"H094","Workplace","Workplace","My coworker microwaved fish every day. Then I found out why.",11
+"H095","Workplace","Workplace","I accidentally sent my boss a meme about my boss.",10
+"H096","Workplace","Workplace","The company gave us pizza instead of raises. I did the math.",12
+"H097","Workplace","Workplace","My manager took a photo of my desk and sent it to everyone.",13
+"H098","Workplace","Workplace","I trained my replacement without knowing it. Then she quit on day two.",13
+"H099","Workplace","Workplace","My coworker put my name on a project I never touched. It failed.",13
+"H100","Workplace","Workplace","The interviewer asked me one question. I've been thinking about it for years.",13
+"H101","Workplace","Workplace","My boss said I could leave early. Payroll disagreed.",9
+"H102","Workplace","Workplace","The office thermostat war ended with someone getting written up.",10
+"H103","Workplace","Workplace","I found my exact job posted online. At a higher salary.",11
+"H104","Workplace","Workplace","A client called me the wrong name for two years. Then he met me.",14
+"H105","Workplace","Workplace","My team lead sent a voice note meant for his wife. To everyone.",13
+"H106","Roommate/neighbor","Roommate & neighbor","My roommate has been paying half my rent for months. I didn't ask.",13
+"H107","Roommate/neighbor","Roommate & neighbor","My neighbor's security camera points directly at my kitchen window.",10
+"H108","Roommate/neighbor","Roommate & neighbor","My roommate started charging me for using the couch.",9
+"H109","Roommate/neighbor","Roommate & neighbor","The upstairs neighbor practices tap dancing at 2 a.m.",9
+"H110","Roommate/neighbor","Roommate & neighbor","My new roommate labeled half the fridge “mine.” Including my food.",11
+"H111","Roommate/neighbor","Roommate & neighbor","My neighbor keeps leaving notes on my car. They're getting longer.",11
+"H112","Roommate/neighbor","Roommate & neighbor","My roommate's boyfriend moved in. Nobody told me.",8
+"H113","Roommate/neighbor","Roommate & neighbor","Someone in my building has been taking my packages. I set a trap.",13
+"H114","Roommate/neighbor","Roommate & neighbor","My neighbor built a fence on my lawn. Then asked me to paint it.",14
+"H115","Roommate/neighbor","Roommate & neighbor","My roommate has been renting out my room while I'm at work.",12
+"H116","Roommate/neighbor","Roommate & neighbor","My neighbor's kid keeps “returning” things he never borrowed.",9
+"H117","Roommate/neighbor","Roommate & neighbor","My roommate made a chore chart. Her name wasn't on it.",11
+"H118","Roommate/neighbor","Roommate & neighbor","The couple next door argue every night. Last night they argued about me.",13
+"H119","Roommate/neighbor","Roommate & neighbor","My roommate keeps “borrowing” my clothes and posting photos in them.",11
+"H120","Roommate/neighbor","Roommate & neighbor","My neighbor mows his lawn at 6 a.m. So I learned the trumpet.",13
+"H121","Wholesome twist","Wholesome twist","I thought my neighbor hated me. Then I found what she'd been building.",13
+"H122","Wholesome twist","Wholesome twist","The grumpy old man next door left a box on my porch.",12
+"H123","Wholesome twist","Wholesome twist","A stranger paid for my groceries. Ten years later, I found her.",12
+"H124","Wholesome twist","Wholesome twist","My stepdad never said much. Then I read his notebook.",10
+"H125","Wholesome twist","Wholesome twist","The kid I tutored for free just sent me a letter.",11
+"H126","Wholesome twist","Wholesome twist","I was sure my coworker was spying on me. She was planning something.",13
+"H127","Wholesome twist","Wholesome twist","My landlord raised the rent. Then he explained why.",9
+"H128","Wholesome twist","Wholesome twist","A delivery driver kept leaving extra notes on my packages.",10
+"H129","Wholesome twist","Wholesome twist","My grandpa's “boring” hobby turned out to be the best gift ever.",12
+"H130","Wholesome twist","Wholesome twist","My strict teacher showed up at my graduation with a sign.",11
+"H131","Wholesome twist","Wholesome twist","I found a twenty with a note: “Pass it on.” I did.",12
+"H132","Wholesome twist","Wholesome twist","The neighbor who called me noisy left soup outside my door.",11
+"H133","Wholesome twist","Wholesome twist","My sister ruined my birthday plans on purpose. Then I saw the cake.",13
+"H134","Wholesome twist","Wholesome twist","The stranger who yelled at me on the bus found me later.",12
+"H135","Wholesome twist","Wholesome twist","My dad learned sign language in secret. For one conversation.",10
+"H136","Unsettling/mystery","Unsettling / mystery","Every night at 3:12, my smart speaker says good morning.",10
+"H137","Unsettling/mystery","Unsettling / mystery","My new apartment came with a key that fits no door.",11
+"H138","Unsettling/mystery","Unsettling / mystery","There's a chair in my attic I never put there.",10
+"H139","Unsettling/mystery","Unsettling / mystery","The house next door has been empty for years. Its lights still change.",13
+"H140","Unsettling/mystery","Unsettling / mystery","I keep getting texts from my own number.",8
+"H141","Unsettling/mystery","Unsettling / mystery","My dog won't walk past one spot in the hallway.",10
+"H142","Unsettling/mystery","Unsettling / mystery","The voicemail was me. I never made that call.",9
+"H143","Unsettling/mystery","Unsettling / mystery","Every photo from my trip has the same stranger in the background.",12
+"H144","Unsettling/mystery","Unsettling / mystery","The hotel room I booked doesn't exist. I stayed in it anyway.",12
+"H145","Unsettling/mystery","Unsettling / mystery","My grandmother's music box started playing on its own. It has no key.",13
+"H146","Unsettling/mystery","Unsettling / mystery","Someone has been leaving fresh flowers on my doorstep for a year.",12
+"H147","Unsettling/mystery","Unsettling / mystery","The old map in my new house shows a room we don't have.",13
+"H148","Unsettling/mystery","Unsettling / mystery","My babysitter asked who the other kid in the house was.",11
+"H149","Unsettling/mystery","Unsettling / mystery","The elevator in my building stops on a floor that isn't listed.",12
+"H150","Unsettling/mystery","Unsettling / mystery","I found a diary in a library book. The last entry was tomorrow.",13
